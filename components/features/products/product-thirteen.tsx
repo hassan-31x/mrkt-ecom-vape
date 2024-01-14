@@ -79,7 +79,7 @@ function ProductThirteen(props) {
         )}
 
         {product.stock && product.stock !== 0 ? (
-          product.variants.length > 0 ? (
+          product.variants?.length > 0 ? (
             <Link
               href={`/product/default/${product.slug}`}
               className="btn btn-link btn-link-secondary-dark"

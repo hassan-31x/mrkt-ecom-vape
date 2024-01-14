@@ -43,7 +43,7 @@ function ProductTwelve(props) {
     if (!isInWishlist(props.wishlist, product)) {
       props.addToWishlist(product);
     } else {
-      router.push("/pages/wishlist");
+      router?.push("/pages/wishlist");
     }
   }
 
@@ -128,7 +128,7 @@ function ProductTwelve(props) {
 
         {product.stock && product.stock !== 0 ? (
           <div className="product-action">
-            {product.variants.length > 0 ? (
+            {product.variants?.length > 0 ? (
               <Link
                 href={`/product/default/${product.slug}`}
                 className="btn-product btn-cart btn-select"
@@ -167,7 +167,7 @@ function ProductTwelve(props) {
           </div>
         ) : minPrice == maxPrice ? (
           <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product.variants.length == 0 ? (
+        ) : product.variants?.length == 0 ? (
           <div className="product-price">
             <span className="old-price">${maxPrice.toFixed(2)}</span>
             <span className="new-price">${minPrice.toFixed(2)}</span>

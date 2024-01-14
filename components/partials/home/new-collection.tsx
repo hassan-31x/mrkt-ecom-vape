@@ -7,6 +7,7 @@ import { productSlider } from "@/utils/data";
 import Link from "next/link";
 
 import data from '@/data/products.json'
+import OwlCarousel from "@/components/features/owl-carousel";
 
 function NewCollection() {
   const { products } = data;
@@ -20,8 +21,8 @@ function NewCollection() {
         </div>
 
         <div className="product-wrapper">
-          {/* <OwlCarousel options={ { ...productSlider, responsive: { ...productSlider.responsive, 1200: { items: 4 } } } }> */}
-          {products.length > 0
+          <OwlCarousel options={ { ...productSlider, responsive: { ...productSlider.responsive, 1200: { items: 4 } } } }>
+          {products?.length > 0
             ? products
                 .slice(0, 6)
                 .map((item, index) => (
@@ -32,7 +33,7 @@ function NewCollection() {
                 .map((item, index) => (
                   <div className="skel-pro" key={"Skeleton" + index}></div>
                 ))}
-          {/* </OwlCarousel> */}
+          </OwlCarousel>
         </div>
 
         <Link

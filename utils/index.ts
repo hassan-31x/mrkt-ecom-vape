@@ -4,7 +4,7 @@
  * @return { Float } totalPrice
  */
 export const cartPriceTotal = cartItems => {
-    return cartItems.reduce( ( acc, cur ) => {
+    return cartItems?.reduce( ( acc, cur ) => {
         return acc + cur.sum
     }, 0 );
 }
@@ -15,7 +15,7 @@ export const cartPriceTotal = cartItems => {
  * @return { Integer } numbers of cart items in cartlist
  */
 export const cartQtyTotal = cartItems => {
-    return cartItems.reduce( ( acc, cur ) => {
+    return cartItems?.reduce( ( acc, cur ) => {
         return acc + parseInt( cur.qty, 10 );
     }, 0 );
 }
@@ -26,7 +26,7 @@ export const cartQtyTotal = cartItems => {
  * @param { Object } product 
  */
 export const isInCart = ( cartItems, product ) => {
-    return cartItems.find( item => item.id == product.id ) ? true : false;
+    return cartItems?.find( item => item.id == product.id ) ? true : false;
 }
 
 /**
@@ -36,7 +36,7 @@ export const isInCart = ( cartItems, product ) => {
  * @param { Number } qty 
  */
 export const canAddToCart = ( cartItems, product, qty ) => {
-    let find = cartItems.find( item => item.id == product.id );
+    let find = cartItems?.find( item => item.id == product.id );
     if ( find ) {
         if ( product.stock == 0 || ( product.stock < ( find.qty + qty ) ) ) return false;
         else return true;
@@ -94,7 +94,7 @@ export const isEdgeBrowser = function () {
  */
 export const getIndex = function ( element ) {
     let children = element.parentElement.children;
-    for ( let i = 0; i < children.length; i++ ) {
+    for ( let i = 0; i < children?.length; i++ ) {
         if ( element == children[ i ] ) return i;
     }
 
@@ -111,7 +111,7 @@ export const catFilter = function ( products = [], category, flag = false ) {
     if ( category[ 0 ] === 'All' ) return products;
 
     return products.filter( item => {
-        for ( let i = 0; i < category.length; i++ ) {
+        for ( let i = 0; i < category?.length; i++ ) {
             if ( item.category.find( cat => cat.slug == category[ i ] ) ) {
                 if ( !flag ) return true;
             } else {
@@ -183,7 +183,7 @@ export const scrollToPageContent = function () {
 export const parallax = () => {
     let parallax = document.querySelectorAll( '.bg-parallax' );
 
-    for ( let i = 0; i < parallax.length; i++ ) {
+    for ( let i = 0; i < parallax?.length; i++ ) {
         let y = 0;
         if ( parallax[ i ].classList.contains( 'header-parallax' ) ) {
             y = ( 10 - window.pageYOffset ) * 47 / 900 + 50;
@@ -202,7 +202,7 @@ export const countTo = function () {
     let items = document.querySelectorAll( '.count' );
 
     if ( items ) {
-        for ( let i = 0; i < items.length; i++ ) {
+        for ( let i = 0; i < items?.length; i++ ) {
 
             let item = items[ i ];
             let amount = parseInt( item.getAttribute( 'data-to' ), 10 ) - parseInt( item.getAttribute( 'data-from' ), 10 );

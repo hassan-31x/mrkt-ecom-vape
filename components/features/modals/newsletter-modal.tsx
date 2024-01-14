@@ -91,8 +91,8 @@ function NewsletterModal () {
                                 <Image
                                     alt="newsletter"
                                     src="/images/popup/newsletter/img-1.jpg"
-                                    width={ 396 }
-                                    height={ 420 }
+                                    width={396}
+                                    height={420}
                                     className="newsletter-img"
                                 />
                             </div>

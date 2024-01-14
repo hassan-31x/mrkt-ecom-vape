@@ -5,6 +5,7 @@ import ProductTwelve from "@/components/features/products/product-twelve";
 import { productSlider } from "@/utils/data";
 
 import data from '@/data/products.json'
+import OwlCarousel from "@/components/features/owl-carousel";
 
 function TopCollection() {
   const { products } = data;
@@ -19,8 +20,8 @@ function TopCollection() {
           </p>
         </div>
 
-        {/* <OwlCarousel options={ productSlider }> */}
-        {products.length > 0
+        <OwlCarousel options={ productSlider }>
+        {products?.length > 0
           ? products
               .slice(0, 6)
               .map((item, index) => (
@@ -31,7 +32,7 @@ function TopCollection() {
               .map((item, index) => (
                 <div className="skel-pro" key={"Skeleton" + index}></div>
               ))}
-        {/* </OwlCarousel> */}
+        </OwlCarousel>
       </div>
     </section>
   );

@@ -21,6 +21,7 @@ import { attrFilter } from "@/utils";
 import data from '@/data/products.json'
 import Link from "next/link";
 import Image from "next/image";
+import OwlCarousel from "@/components/features/owl-carousel";
 
 function Home() {
   const products = data && data.products;
@@ -42,14 +43,14 @@ function Home() {
     >
       <section className="intro-section">
         <div className="intro-slider-container">
-          {/* <OwlCarousel
+          <OwlCarousel
             adClass="intro-slider owl-nav-inside"
             options={{ nav: false, dots: true }}
-          > */}
+          >
             <div
               className="intro-slide slide-image"
               style={{
-                backgroundImage: "url(/images/home/slides/1.jpg)",
+                backgroundImage: "url(images/home/slides/1.jpg)",
                 backgroundColor: "#f0f2fa",
               }}
             >
@@ -90,7 +91,7 @@ function Home() {
             <div
               className="intro-slide slide-image"
               style={{
-                backgroundImage: "url(/images/home/slides/2.jpg)",
+                backgroundImage: "url(images/home/slides/2.jpg)",
                 backgroundColor: "#f2f4fb",
               }}
             >
@@ -131,7 +132,7 @@ function Home() {
             <div
               className="intro-slide intro-slide3 slide-image"
               style={{
-                backgroundImage: "url(/images/home/slides/3.jpg)",
+                backgroundImage: "url(images/home/slides/3.jpg)",
                 backgroundColor: "#f2f3f9",
               }}
             >
@@ -170,7 +171,7 @@ function Home() {
                 </Reveal>
               </div>
             </div>
-          {/* </OwlCarousel> */}
+          </OwlCarousel>
 
           <span className="slider-loader"></span>
         </div>
@@ -185,7 +186,7 @@ function Home() {
               </h2>
             </div>
 
-            {/* <OwlCarousel adClass="owl-brand" options={brandSlider}> */}
+            <OwlCarousel adClass="owl-brand" options={brandSlider}>
               <a href="#" className="brand">
                 <img
                   src="/images/brands/1.png"
@@ -255,7 +256,7 @@ function Home() {
               >
                 <img src="/images/brands/7.png" alt="Brand Name" />
               </a>
-            {/* </OwlCarousel> */}
+            </OwlCarousel>
           </div>
         </section>
       </Reveal>
@@ -895,7 +896,7 @@ function Home() {
       <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
         <section className="testimonial-section">
           <h2 className="title text-center">Customer Reviews</h2>
-          {/* <OwlCarousel options={{ nav: false, dots: true }}> */}
+          <OwlCarousel options={{ nav: false, dots: true }}>
             <blockquote className="testimonial text-center">
               <div className="ratings-container justify-content-center">
                 <div className="ratings">
@@ -952,7 +953,7 @@ function Home() {
               </p>
               <cite className="font-weight-normal text-dark">- Maximus J</cite>
             </blockquote>
-          {/* </OwlCarousel> */}
+          </OwlCarousel>
         </section>
       </Reveal>
 

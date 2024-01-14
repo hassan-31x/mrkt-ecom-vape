@@ -41,6 +41,7 @@ function ProductThirteen(props) {
             alt="product"
             src={product?.sm_pictures?.[0]?.url}
             className="product-image"
+            fill
           />
           {product.sm_pictures?.length >= 2 ? (
             <Image
@@ -49,6 +50,7 @@ function ProductThirteen(props) {
                 product.sm_pictures[1].url
               }
               className="product-image-hover"
+              fill
             />
           ) : (
             ""

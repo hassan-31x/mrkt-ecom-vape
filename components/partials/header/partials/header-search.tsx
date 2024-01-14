@@ -131,7 +131,7 @@ function HeaderSearch () {
                         {
                             searchTerm?.length > 2 && products.map( ( product, index ) => (
                                 <Link href={ `/product/default/${product.slug}` } className="autocomplete-suggestion" key={ `search-result-${index}` }>
-                                    <Image src={ process.env.NEXT_PUBLIC_ASSET_URI + product?.sm_pictures?.[ 0 ]?.url } width={ 40 } height={ 40 } alt="product" />
+                                    <Image src={ product?.sm_pictures?.[ 0 ]?.url } width={ 40 } height={ 40 } alt="product" />
                                     <div className="search-name" dangerouslySetInnerHTML={ safeContent( matchEmphasize( product.name ) ) }></div>
                                     <span className="search-price">
                                         {

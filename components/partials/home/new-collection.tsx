@@ -1,6 +1,7 @@
+"use client"
+
 // Import Custom Component
 import ProductTwelve from "@/components/features/products/product-twelve";
-// import OwlCarousel from '@/components/features/owl-carousel';
 
 // Import Utils
 import { productSlider } from "@/utils/data";

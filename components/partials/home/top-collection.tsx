@@ -1,3 +1,5 @@
+"use client"
+
 // Import Custom Component
 import ProductTwelve from "@/components/features/products/product-twelve";
 

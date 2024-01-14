@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import data from "@/data/products.json";
 
 function ProductThirteen(props) {
-  const { products: product } = data;
+  const { product } = props;
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(99999);
 
@@ -39,14 +39,14 @@ function ProductThirteen(props) {
         <Link href={`/product/default/${product.slug}`}>
           <Image
             alt="product"
-            src={process.env.NEXT_PUBLIC_ASSET_URI + product?.sm_pictures?.[0]?.url}
+            src={product?.sm_pictures?.[0]?.url}
             className="product-image"
           />
           {product.sm_pictures?.length >= 2 ? (
             <Image
               alt="product"
               src={
-                process.env.NEXT_PUBLIC_ASSET_URI + product.sm_pictures[1].url
+                product.sm_pictures[1].url
               }
               className="product-image-hover"
             />

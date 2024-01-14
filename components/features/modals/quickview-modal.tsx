@@ -131,9 +131,9 @@ function QuickViewModal(props) {
                       {/* <OwlCarousel adClass="product-gallery-carousel owl-full owl-nav-dark cols-1 cols-md-2 cols-lg-3" onChangeRef={ setCarouselRef } events={ events } options={ { 'dots': false, 'nav': false } }>
                                                     { product.pictures.map( ( item, index ) =>
                                                         <Magnifier
-                                                            imageSrc={ process.env.NEXT_PUBLIC_ASSET_URI + item.url }
+                                                            imageSrc={ item.url }
                                                             imageAlt="product"
-                                                            largeImageSrc={ process.env.NEXT_PUBLIC_ASSET_URI + item.url } // Optional
+                                                            largeImageSrc={ item.url } // Optional
                                                             dragToMove={ false }
                                                             mouseActivation="hover"
                                                             cursorStyleActive="crosshair"
@@ -160,7 +160,6 @@ function QuickViewModal(props) {
                               <Image
                                 alt="Thumbnail"
                                 src={
-                                  process.env.NEXT_PUBLIC_ASSET_URI +
                                   product.sm_pictures[index].url
                                 }
                                 fill

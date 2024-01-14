@@ -409,7 +409,7 @@ function DetailOne ( props ) {
                         <div className="col-6">
                             <figure className="product-media">
                                 <Link href={ `/product/default/${product.slug}` }>
-                                    <img src={ process.env.NEXT_PUBLIC_ASSET_URI + product.sm_pictures[ 0 ].url } alt="product" width={ product.sm_pictures[ 0 ].width } height={ product.sm_pictures[ 0 ].height } />
+                                    <img src={ product.sm_pictures[ 0 ].url } alt="product" width={ product.sm_pictures[ 0 ].width } height={ product.sm_pictures[ 0 ].height } />
                                 </Link>
                             </figure>
                             <h3 className="product-title">

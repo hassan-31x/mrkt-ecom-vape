@@ -1,6 +1,6 @@
 export const discount = {
     name: "discount",
-    title: "Discount Codes",
+    title: "Ecom - Discount Codes",
     type: "document",
     fields: [
       {
@@ -8,6 +8,7 @@ export const discount = {
         title: "Code Name",
         description: "optional",
         type: "string",
+        validation: (Rule) => Rule.required(),
       },
       {
         name: "code",

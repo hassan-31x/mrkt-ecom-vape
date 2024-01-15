@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Header from "./partials/header/header";
 import Footer from "./partials/footer/footer";
-// import VideoModal from "./features/modals/video-modal";
+import VideoModal from "./features/modals/video-modal";
 import QuickViewModal from "./features/modals/quickview-modal";
 import MobileMenu from "./features/mobile-menu";
 
@@ -92,7 +92,7 @@ function Layout({ children, hideQuick, hideVideo }) {
 
       <QuickViewModal />
 
-      {/* <VideoModal /> */}
+      <VideoModal />
     </>
   );
 }

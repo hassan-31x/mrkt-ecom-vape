@@ -1,15 +1,15 @@
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React, { useState, useEffect } from 'react';
-import { Tabs, TabList, Tab, TabPanel } from 'react-tabs';
 import SlideToggle from 'react-slide-toggle';
+import Link from 'next/link';
 
 function MobileMenu () {
     const router = useRouter();
     const [ searchTerm, setSearchTerm ] = useState( "" );
 
-    useEffect( () => {
-        router?.events.on( 'routeChangeComplete', hideMobileMenu );
-    }, [] )
+    // useEffect( () => {
+    //     router?.events.on( 'routeChangeComplete', hideMobileMenu );
+    // }, [] )
 
     function hideMobileMenu () {
         document.querySelector( 'body' ).classList.remove( 'mmenu-active' );

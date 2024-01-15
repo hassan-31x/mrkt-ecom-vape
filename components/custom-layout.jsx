@@ -12,7 +12,7 @@ import Header from "./partials/header/header";
 import Footer from "./partials/footer/footer";
 // import VideoModal from "./features/modals/video-modal";
 import QuickViewModal from "./features/modals/quickview-modal";
-// import MobileMenu from "./features/mobile-menu";
+import MobileMenu from "./features/mobile-menu";
 
 import { isSafariBrowser, isEdgeBrowser } from "@/utils";
 
@@ -76,7 +76,7 @@ function Layout({ children, hideQuick, hideVideo }) {
       <button id="scroll-top" title="Back to top" onClick={toScrollTop}>
         <i className="icon-arrow-up"></i>
       </button>
-      {/* <MobileMenu /> */}
+      <MobileMenu />
 
       <ToastContainer
         autoClose={3000}

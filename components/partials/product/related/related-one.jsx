@@ -1,4 +1,4 @@
-import React from "react";
+
 import ProductSix from "@/components/features/products/product-six";
 import OwlCarousel from "@/components/features/owl-carousel";
 

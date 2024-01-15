@@ -1,4 +1,4 @@
-import React from "react";
+
 
 function Accordion(props) {
   const { adClass = "", type = "normal" } = props;

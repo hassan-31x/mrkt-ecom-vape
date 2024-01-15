@@ -1,4 +1,4 @@
-import React from "react";
+
 
 import Card from "@/components/features/accordion/card";
 import Accordion from "@/components/features/accordion/accordion";

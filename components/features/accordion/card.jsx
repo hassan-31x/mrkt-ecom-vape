@@ -1,4 +1,4 @@
-import React from "react";
+
 import SlideToggle from "react-slide-toggle";
 
 import { safeContent } from "@/utils";

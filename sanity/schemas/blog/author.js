@@ -7,6 +7,7 @@ export const author = {
       name: "name",
       title: "Name",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "slug",
@@ -16,21 +17,7 @@ export const author = {
         source: "name",
         maxLength: 96,
       },
-    },
-    {
-      name: "image",
-      title: "Image",
-      type: "image",
-      options: {
-        hotspot: true,
-      },
-      fields: [
-        {
-          name: "alt",
-          type: "string",
-          title: "Alternative Text",
-        },
-      ],
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "bio",

@@ -7,6 +7,7 @@ export const category = {
       name: "title",
       title: "Title",
       type: "string",
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "description",

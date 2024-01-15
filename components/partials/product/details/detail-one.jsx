@@ -42,7 +42,7 @@ function DetailOne(props) {
     let max = 0;
 
     setVariationGroup(
-      product.variants.reduce((acc, cur) => {
+      product?.variants.reduce((acc, cur) => {
         cur.size.map((item) => {
           acc.push({
             color: cur.color,
@@ -57,9 +57,9 @@ function DetailOne(props) {
       }, [])
     );
 
-    if (product.variants?.length == 0) {
-      min = product.sale_price ? product.sale_price : product.price;
-      max = product.price;
+    if (product?.variants?.length == 0) {
+      min = product?.sale_price ? product?.sale_price : product?.price;
+      max = product?.price;
     }
 
     setMinPrice(min);
@@ -70,7 +70,7 @@ function DetailOne(props) {
     setSelectedVariant({ color: null, colorName: null, price: null, size: "" });
     setQty(1);
     setQty2(1);
-  }, [router?.query.slug]);
+  }, [router?.query?.slug]);
 
   useEffect(() => {
     refreshSelectableGroup();
@@ -87,7 +87,7 @@ function DetailOne(props) {
     setShowVariationPrice(
       selectedVariant.color && selectedVariant.size != "" ? true : false
     );
-    let toggle = ref.current.querySelector(".variation-toggle");
+    let toggle = ref?.current?.querySelector(".variation-toggle");
 
     if (toggle) {
       if (
@@ -108,8 +108,8 @@ function DetailOne(props) {
   }, [selectedVariant]);
 
   function scrollHandler() {
-    if (router?.pathname.includes("/product/default")) {
-      let stickyBar = ref.current.querySelector(".sticky-bar");
+    if (router?.pathname?.includes("/product/default")) {
+      let stickyBar = ref.current?.querySelector(".sticky-bar");
       if (
         stickyBar.classList.contains("d-none") &&
         ref.current.getBoundingClientRect().bottom < 0
@@ -136,7 +136,8 @@ function DetailOne(props) {
   }
 
   function refreshSelectableGroup() {
-    let tempArray = [...variationGroup];
+    // let tempArray = [...variationGroup];
+    let tempArray = [];
     if (selectedVariant.color) {
       tempArray = variationGroup.reduce((acc, cur) => {
         if (selectedVariant.color !== cur.color) {
@@ -153,7 +154,8 @@ function DetailOne(props) {
       }, [])
     );
 
-    tempArray = [...variationGroup];
+    // tempArray = [...variationGroup];
+    tempArray = [];
     if (selectedVariant.size) {
       tempArray = variationGroup.reduce((acc, cur) => {
         if (selectedVariant.size !== cur.size) {
@@ -164,7 +166,7 @@ function DetailOne(props) {
     }
 
     setColorArray(
-      product.variants.reduce((acc, cur) => {
+      product?.variants.reduce((acc, cur) => {
         if (tempArray.findIndex((item) => item.color == cur.color) == -1) {
           return [
             ...acc,
@@ -240,11 +242,11 @@ function DetailOne(props) {
     if (e.currentTarget.classList.contains("btn-disabled")) return;
 
     let newProduct = { ...product };
-    if (product.variants?.length > 0) {
+    if (product?.variants?.length > 0) {
       newProduct = {
         ...product,
         name:
-          product.name +
+          product?.name +
           " - " +
           selectedVariant.colorName +
           ", " +
@@ -261,24 +263,24 @@ function DetailOne(props) {
 
   return (
     <div className="product-details" ref={ref}>
-      <h1 className="product-title">{product.name}</h1>
+      <h1 className="product-title">{product?.name}</h1>
 
       <div className="ratings-container">
         <div className="ratings">
           <div
             className="ratings-val"
-            style={{ width: product.ratings * 20 + "%" }}
+            style={{ width: product?.ratings * 20 + "%" }}
           ></div>
-          <span className="tooltip-text">{product.ratings.toFixed(2)}</span>
+          <span className="tooltip-text">{product?.ratings.toFixed(2)}</span>
         </div>
-        <span className="ratings-text">( {product.review} Reviews )</span>
+        <span className="ratings-text">( {product?.review} Reviews )</span>
       </div>
 
-      {product.stock == 0 ? (
+      {product?.stock == 0 ? (
         <div className="product-price">
           <span className="out-price">
             {minPrice == maxPrice ? (
-              <span>${product.price.toFixed(2)}</span>
+              <span>${product?.price.toFixed(2)}</span>
             ) : (
               <span>
                 ${minPrice.toFixed(2)}&ndash;${maxPrice.toFixed(2)}
@@ -288,7 +290,7 @@ function DetailOne(props) {
         </div>
       ) : minPrice == maxPrice ? (
         <div className="product-price">${minPrice.toFixed(2)}</div>
-      ) : product.variants?.length == 0 ? (
+      ) : product?.variants?.length == 0 ? (
         <div className="product-price">
           <span className="new-price">${minPrice.toFixed(2)}</span>
           <span className="old-price">${maxPrice.toFixed(2)}</span>
@@ -300,10 +302,10 @@ function DetailOne(props) {
       )}
 
       <div className="product-content">
-        <p>{product.short_desc}</p>
+        <p>{product?.short_desc}</p>
       </div>
 
-      {product.variants?.length > 0 ? (
+      {product?.variants?.length > 0 ? (
         <>
           <div className="details-filter-row details-row-size">
             <label>Color:</label>
@@ -372,7 +374,7 @@ function DetailOne(props) {
 
       <div className="details-filter-row details-row-size">
         <label htmlFor="qty">Qty:</label>
-        <Qty changeQty={onChangeQty} max={product.stock} value={qty}></Qty>
+        <Qty changeQty={onChangeQty} max={product?.stock} value={qty}></Qty>
       </div>
 
       <div className="product-details-action">
@@ -380,7 +382,7 @@ function DetailOne(props) {
           href="#"
           className={`btn-product btn-cart ${
             !canAddToCart(props.cartlist, product, qty) ||
-            (product.variants?.length > 0 && !showVariationPrice)
+            (product?.variants?.length > 0 && !showVariationPrice)
               ? "btn-disabled"
               : ""
           }`}
@@ -411,7 +413,7 @@ function DetailOne(props) {
       <div className="product-details-footer">
         <div className="product-cat w-100 text-truncate">
           <span>Category:</span>
-          {product.category.map((cat, index) => (
+          {product?.category.map((cat, index) => (
             <span key={index}>
               <Link
                 href={{
@@ -421,7 +423,7 @@ function DetailOne(props) {
               >
                 {cat.name}
               </Link>
-              {index < product.category?.length - 1 ? "," : ""}
+              {index < product?.category?.length - 1 ? "," : ""}
             </span>
           ))}
         </div>
@@ -447,18 +449,18 @@ function DetailOne(props) {
           <div className="row">
             <div className="col-6">
               <figure className="product-media">
-                <Link href={`/product/default/${product.slug}`}>
+                <Link href={`/product/default/${product?.slug}`}>
                   <img
-                    src={product.sm_pictures[0].url}
+                    src={product?.sm_pictures[0].url}
                     alt="product"
-                    width={product.sm_pictures[0].width}
-                    height={product.sm_pictures[0].height}
+                    width={product?.sm_pictures[0].width}
+                    height={product?.sm_pictures[0].height}
                   />
                 </Link>
               </figure>
               <h3 className="product-title">
-                <Link href={`/product/default/${product.slug}`}>
-                  {product.name}
+                <Link href={`/product/default/${product?.slug}`}>
+                  {product?.name}
                 </Link>
               </h3>
             </div>
@@ -468,13 +470,13 @@ function DetailOne(props) {
                   $
                   {selectedVariant.price ? selectedVariant.price.toFixed(2) : 0}
                 </div>
-              ) : product.stock == 0 ? (
+              ) : product?.stock == 0 ? (
                 <div className="product-price">
-                  <span className="out-price">${product.price.toFixed(2)}</span>
+                  <span className="out-price">${product?.price.toFixed(2)}</span>
                 </div>
               ) : minPrice == maxPrice ? (
                 <div className="product-price">${minPrice.toFixed(2)}</div>
-              ) : product.variants?.length == 0 ? (
+              ) : product?.variants?.length == 0 ? (
                 <div className="product-price">
                   <span className="new-price">${minPrice.toFixed(2)}</span>
                   <span className="old-price">${maxPrice.toFixed(2)}</span>
@@ -486,7 +488,7 @@ function DetailOne(props) {
               )}
               <Qty
                 changeQty={onChangeQty2}
-                max={product.stock}
+                max={product?.stock}
                 value={qty2}
               ></Qty>
               <div className="product-details-action">
@@ -494,7 +496,7 @@ function DetailOne(props) {
                   href="#"
                   className={`btn-product btn-cart ${
                     !canAddToCart(props.cartlist, product, qty) ||
-                    (product.variants?.length > 0 && !showVariationPrice)
+                    (product?.variants?.length > 0 && !showVariationPrice)
                       ? "btn-disabled"
                       : ""
                   }`}

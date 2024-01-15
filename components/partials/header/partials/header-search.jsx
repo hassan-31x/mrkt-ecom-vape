@@ -28,16 +28,16 @@
 //             setProducts( result.reduce( ( acc, product ) => {
 //                 let max = 0;
 //                 let min = 999999;
-//                 product.variants.map( item => {
+//                 product?.variants.map( item => {
 //                     if ( min > item.price ) min = item.price;
 //                     if ( max < item.price ) max = item.price;
 //                 }, [] );
 
-//                 if ( product.variants?.length == 0 ) {
-//                     min = product.sale_price
-//                         ? product.sale_price
-//                         : product.price;
-//                     max = product.price;
+//                 if ( product?.variants?.length == 0 ) {
+//                     min = product?.sale_price
+//                         ? product?.sale_price
+//                         : product?.price;
+//                     max = product?.price;
 //                 }
 
 //                 return [
@@ -130,23 +130,23 @@
 //                     <div className="live-search-list" onClick={ goProductPage }>
 //                         {
 //                             searchTerm?.length > 2 && products.map( ( product, index ) => (
-//                                 <Link href={ `/product/default/${product.slug}` } className="autocomplete-suggestion" key={ `search-result-${index}` }>
+//                                 <Link href={ `/product/default/${product?.slug}` } className="autocomplete-suggestion" key={ `search-result-${index}` }>
 //                                     <Image src={ product?.sm_pictures?.[ 0 ]?.url } width={ 40 } height={ 40 } alt="product" />
-//                                     <div className="search-name" dangerouslySetInnerHTML={ safeContent( matchEmphasize( product.name ) ) }></div>
+//                                     <div className="search-name" dangerouslySetInnerHTML={ safeContent( matchEmphasize( product?.name ) ) }></div>
 //                                     <span className="search-price">
 //                                         {
-//                                             product.stock == 0 ?
+//                                             product?.stock == 0 ?
 //                                                 <div className="product-price mb-0">
-//                                                     <span className="out-price">${ product.price.toFixed( 2 ) }</span>
+//                                                     <span className="out-price">${ product?.price.toFixed( 2 ) }</span>
 //                                                 </div>
 //                                                 :
-//                                                 product.minPrice == product.maxPrice ?
-//                                                     <div className="product-price mb-0">${ product.minPrice.toFixed( 2 ) }</div>
+//                                                 product?.minPrice == product?.maxPrice ?
+//                                                     <div className="product-price mb-0">${ product?.minPrice.toFixed( 2 ) }</div>
 //                                                     :
-//                                                     product.variants?.length == 0 ?
+//                                                     product?.variants?.length == 0 ?
 //                                                         <div className="product-price mb-0">
-//                                                             <span className="new-price">${ product.minPrice.toFixed( 2 ) }</span>
-//                                                             <span className="old-price">${ product.maxPrice.toFixed( 2 ) }</span>
+//                                                             <span className="new-price">${ product?.minPrice.toFixed( 2 ) }</span>
+//                                                             <span className="old-price">${ product?.maxPrice.toFixed( 2 ) }</span>
 //                                                         </div>
 //                                                         :
 //                                                         <div className="product-price mb-0">${ product.minPrice.toFixed( 2 ) }&ndash;${ product.maxPrice.toFixed( 2 ) }</div>

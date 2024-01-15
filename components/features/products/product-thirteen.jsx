@@ -14,14 +14,14 @@ function ProductThirteen(props) {
   useEffect(() => {
     let min = minPrice;
     let max = maxPrice;
-    product.variants?.map((item) => {
+    product?.variants?.map((item) => {
       if (min > item.price) min = item.price;
       if (max < item.price) max = item.price;
     }, []);
 
-    if (product.variants?.length == 0) {
-      min = product.sale_price ? product.sale_price : product.price;
-      max = product.price;
+    if (product?.variants?.length == 0) {
+      min = product?.sale_price ? product?.sale_price : product?.price;
+      max = product?.price;
     }
 
     setMinPrice(min);
@@ -36,18 +36,18 @@ function ProductThirteen(props) {
   return (
     <div className="tooltip">
       <figure className="product-media">
-        <Link href={`/product/default/${product.slug}`}>
+        <Link href={`/product/default/${product?.slug}`}>
           <Image
             alt="product"
             src={product?.sm_pictures?.[0]?.url}
             className="product-image"
             fill
           />
-          {product.sm_pictures?.length >= 2 ? (
+          {product?.sm_pictures?.length >= 2 ? (
             <Image
               alt="product"
               src={
-                product.sm_pictures[1].url
+                product?.sm_pictures[1].url
               }
               className="product-image-hover"
               fill
@@ -60,16 +60,16 @@ function ProductThirteen(props) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/default/${product.slug}`}>{product.name}</Link>
+          <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
         </h3>
 
-        {!product?.stock || product.stock == 0 ? (
+        {!product?.stock || product?.stock == 0 ? (
           <div className="product-price">
-            <span className="out-price">${product.price?.toFixed(2)}</span>
+            <span className="out-price">${product?.price?.toFixed(2)}</span>
           </div>
         ) : minPrice == maxPrice ? (
           <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product.variants?.length == 0 ? (
+        ) : product?.variants?.length == 0 ? (
           <div className="product-price">
             <span className="old-price">${maxPrice?.toFixed(2)}</span>
             <span className="new-price">${minPrice?.toFixed(2)}</span>
@@ -80,10 +80,10 @@ function ProductThirteen(props) {
           </div>
         )}
 
-        {product.stock && product.stock !== 0 ? (
-          product.variants?.length > 0 ? (
+        {product?.stock && product?.stock !== 0 ? (
+          product?.variants?.length > 0 ? (
             <Link
-              href={`/product/default/${product.slug}`}
+              href={`/product/default/${product?.slug}`}
               className="btn btn-link btn-link-secondary-dark"
             >
               <span>Select Options</span>

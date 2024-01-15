@@ -25,7 +25,7 @@ function QuickViewModal(props) {
   }
   const loading = false;
   const error = null;
-  const product = data && data.product.single;
+  const product = data && data.product?.single;
   const router = useRouter();
   const [carouselRef, setCarouselRef] = useState(null);
 
@@ -103,25 +103,25 @@ function QuickViewModal(props) {
                 {!loading ? (
                   <>
                     <div className="product-lg mb-1 position-relative">
-                      {product.new ? (
+                      {product?.new ? (
                         <span className="product-label label-new">New</span>
                       ) : (
                         ""
                       )}
 
-                      {product.sale_price ? (
+                      {product?.sale_price ? (
                         <span className="product-label label-sale">Sale</span>
                       ) : (
                         ""
                       )}
 
-                      {product.top ? (
+                      {product?.top ? (
                         <span className="product-label label-top">Top</span>
                       ) : (
                         ""
                       )}
 
-                      {product.stock == 0 ? (
+                      {product?.stock == 0 ? (
                         <span className="product-label label-out">
                           Out of Stock
                         </span>
@@ -129,7 +129,7 @@ function QuickViewModal(props) {
                         ""
                       )}
                       {/* <OwlCarousel adClass="product-gallery-carousel owl-full owl-nav-dark cols-1 cols-md-2 cols-lg-3" onChangeRef={ setCarouselRef } events={ events } options={ { 'dots': false, 'nav': false } }>
-                                                    { product.pictures.map( ( item, index ) =>
+                                                    { product?.pictures.map( ( item, index ) =>
                                                         <Magnifier
                                                             imageSrc={ item.url }
                                                             imageAlt="product"
@@ -138,7 +138,7 @@ function QuickViewModal(props) {
                                                             mouseActivation="hover"
                                                             cursorStyleActive="crosshair"
                                                             className="product-gallery-image"
-                                                            style={ { paddingTop: `${product.pictures[ 0 ].height / product.pictures[ 0 ].width * 100}%` } }
+                                                            style={ { paddingTop: `${product?.pictures[ 0 ].height / product?.pictures[ 0 ].width * 100}%` } }
                                                             key={ "gallery-" + index }
                                                         />
                                                     ) }
@@ -146,12 +146,12 @@ function QuickViewModal(props) {
                     </div>
 
                     <div className="product-sm row px-2" id="owl-dots">
-                      {product.pictures.map((item, index) => (
+                      {product?.pictures.map((item, index) => (
                         <button
                           className={`product-gallery-item mb-0 ${
                             0 === index ? "active" : ""
                           }`}
-                          key={product.id + "-" + index}
+                          key={product?.id + "-" + index}
                           onClick={(e) => changeBgImage(e, index)}
                         >
                           <div className="lazy-media">
@@ -160,7 +160,7 @@ function QuickViewModal(props) {
                               <Image
                                 alt="Thumbnail"
                                 src={
-                                  product.sm_pictures[index].url
+                                  product?.sm_pictures[index].url
                                 }
                                 fill
                                 className="d-block"

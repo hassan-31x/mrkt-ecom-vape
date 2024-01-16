@@ -113,5 +113,17 @@ export const product = {
       title: "Shipping Details",
       type: "blockContent",
     },
+    {
+      name: "relatedProducts",
+      title: "Related Products",
+      type: "array",
+      of: [{ type: "reference", to: [{ type: "product" }] }],
+    }
   ],
+  preview: {
+    select: {
+      title: "name",
+      media: "pictures.0.img",
+    },
+  },
 };

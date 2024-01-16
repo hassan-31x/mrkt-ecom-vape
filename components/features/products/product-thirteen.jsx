@@ -1,10 +1,9 @@
 'use client'
 
+import urlFor from "@/sanity/lib/image.js";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
-
-import data from "@/data/products.json";
 
 function ProductThirteen(props) {
   const { product } = props;
@@ -36,19 +35,17 @@ function ProductThirteen(props) {
   return (
     <div className="tooltip">
       <figure className="product-media">
-        <Link href={`/product/default/${product?.slug}`}>
+        <Link href={`/product/${product.slug.current}`}>
           <Image
             alt="product"
-            src={product?.sm_pictures?.[0]?.url}
+            src={urlFor(product?.pictures?.[0]?.img)?.url()}
             className="product-image"
             fill
           />
-          {product?.sm_pictures?.length >= 2 ? (
+          {product?.pictures?.length >= 2 ? (
             <Image
               alt="product"
-              src={
-                product?.sm_pictures[1].url
-              }
+              src={urlFor(product?.pictures?.[1]?.img)?.url()}
               className="product-image-hover"
               fill
             />
@@ -60,30 +57,24 @@ function ProductThirteen(props) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
+          <Link href={`/product/default/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
-        {!product?.stock || product?.stock == 0 ? (
+        {product?.sale_price ? (
           <div className="product-price">
-            <span className="out-price">${product?.price?.toFixed(2)}</span>
-          </div>
-        ) : minPrice == maxPrice ? (
-          <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product?.variants?.length == 0 ? (
-          <div className="product-price">
-            <span className="old-price">${maxPrice?.toFixed(2)}</span>
-            <span className="new-price">${minPrice?.toFixed(2)}</span>
+            <span className="old-price">${product.sale_price.toFixed(2)}</span>
+            <span className="new-price">${product.price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
-            ${minPrice.toFixed(2)}&ndash;${maxPrice?.toFixed(2)}
+            <span className="out-price">${product.price?.toFixed(2)}</span>
           </div>
         )}
 
         {product?.stock && product?.stock !== 0 ? (
           product?.variants?.length > 0 ? (
             <Link
-              href={`/product/default/${product?.slug}`}
+              href={`/product/${product?.slug.current}`}
               className="btn btn-link btn-link-secondary-dark"
             >
               <span>Select Options</span>

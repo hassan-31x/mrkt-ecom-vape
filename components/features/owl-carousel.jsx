@@ -5,7 +5,7 @@ import Carousel from "react-owl-carousel2";
 
 function OwlCarousel(props) {
 
-  if (typeof window === "undefined") return null
+  if (typeof window === "undefined") return <></>
 
   window.$ = window.jQuery = require('jquery')
 

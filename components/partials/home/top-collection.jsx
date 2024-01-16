@@ -21,7 +21,7 @@ function TopCollection({ products }) {
         </div>
 
         <OwlCarousel options={ productSlider }>
-        {products?.length > 0
+        {products?.length
           ? products
               .slice(0, 6)
               .map((item, index) => (

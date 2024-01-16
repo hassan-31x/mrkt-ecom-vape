@@ -7,12 +7,9 @@ import ProductTwelve from "@/components/features/products/product-twelve";
 import { productSlider } from "@/utils/data";
 import Link from "next/link";
 
-import data from '@/data/products.json'
 import OwlCarousel from "@/components/features/owl-carousel";
 
-function NewCollection() {
-  const { products } = data;
-
+function NewCollection({ products }) {
   return (
     <section className="product-section new-arrivals mb-8">
       <div className="container text-center">
@@ -23,7 +20,7 @@ function NewCollection() {
 
         <div className="product-wrapper">
           <OwlCarousel options={ { ...productSlider, responsive: { ...productSlider.responsive, 1200: { items: 4 } } } }>
-          {products?.length > 0
+          {products?.length
             ? products
                 .slice(0, 6)
                 .map((item, index) => (

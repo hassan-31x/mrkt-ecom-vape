@@ -6,13 +6,13 @@ import { useRouter } from "next/navigation";
 import { isInWishlist, isInCompare } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import urlFor from "@/sanity/lib/image";
 
 
 function ProductTwelve(props) {
   const router = useRouter();
   const { wishlist } = props;
   const { product } = props
-  console.log("🚀 ~ ProductTwelve ~ product:", product)
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(99999);
 
@@ -62,8 +62,8 @@ function ProductTwelve(props) {
   return (
     <div className="product product-4 text-center">
       <figure className="product-media">
-        {product?.new ? (
-          <span className="product-label label-circle label-new">New</span>
+        {product?.hot ? (
+          <span className="product-label label-circle label-new">Hot</span>
         ) : (
           ""
         )}
@@ -74,8 +74,8 @@ function ProductTwelve(props) {
           ""
         )}
 
-        {product?.top ? (
-          <span className="product-label label-circle label-top">Top</span>
+        {product?.featured ? (
+          <span className="product-label label-circle label-top">Feat</span>
         ) : (
           ""
         )}
@@ -88,26 +88,24 @@ function ProductTwelve(props) {
           ""
         )}
 
-        {/* <Link href={`/product/default/${product?.slug}`}>
+        <Link href={`/product/${product.slug.current}`}>
           <Image
             alt="product"
-            src={product?.sm_pictures?.[0]?.url}
+            src={urlFor(product?.pictures?.[0]?.img)?.url()}
             fill
             className="product-image"
           />
-          {product?.sm_pictures?.length >= 2 ? (
+          {product?.pictures?.length >= 2 ? (
             <Image
               alt="product"
-              src={
-                product?.sm_pictures[1].url
-              }
+              src={urlFor(product?.pictures[1]?.img)?.url()}
               fill
               className="product-image-hover"
             />
           ) : (
             ""
           )}
-        </Link> */}
+        </Link>
 
         <div className="product-action-vertical">
           {isInWishlist(wishlist, product) ? (
@@ -132,8 +130,7 @@ function ProductTwelve(props) {
           <div className="product-action">
             {product?.variants?.length > 0 ? (
               <Link
-                // href={`/product/default/${product?.slug}`}
-                href='/'
+                href={`/product/default/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span className="border-bottom-0">SELECT OPTIONS</span>
@@ -161,7 +158,7 @@ function ProductTwelve(props) {
         </div>
 
         <h3 className="product-title">
-          {/* <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link> */}
+          <Link href={`/product/default/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
         {product?.sale_price ? (

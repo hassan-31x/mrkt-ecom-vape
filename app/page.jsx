@@ -16,10 +16,12 @@ const fetchData = async () => {
   }
 }
 
+export const revalidate = 60
+
 const HomePage = async () => {
   const products = await fetchData()
-  const bestSellers = products.filter(product => product.showInTrendy)
-  const hotProducts = products.filter(product => product.hot)
+  const bestSellers = products.filter(product => product?.showInTrendy === true)
+  const hotProducts = products.filter(product => product?.hot === true)
 
 
   return <HomePageComponent products={products} bestSellers={bestSellers} hotProducts={hotProducts} />

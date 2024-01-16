@@ -342,9 +342,9 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
         </div>
       </section>
 
-      {/* <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
+      <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
         <NewCollection products={hotProducts} />
-      </Reveal> */}
+      </Reveal>
 
       <section className="banner-section banner-2cols">
         <div className="container">
@@ -419,7 +419,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          {/* <ProductThirteen product={item} /> */}
+                          <ProductThirteen product={item} />
                         </div>
                       ))}
 
@@ -432,7 +432,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          {/* <ProductThirteen product={item} /> */}
+                          <ProductThirteen product={item} />
                         </div>
                       ))}
 
@@ -445,7 +445,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          {/* <ProductThirteen product={item} /> */}
+                          <ProductThirteen product={item} />
                         </div>
                       ))}
 
@@ -458,7 +458,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          {/* <ProductThirteen product={item} /> */}
+                          <ProductThirteen product={item} />
                         </div>
                       ))}
                     </>

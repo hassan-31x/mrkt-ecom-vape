@@ -23,6 +23,7 @@ export const product = {
         source: "name",
         maxLength: 96,
       },
+      validation: (Rule) => Rule.required(),
     },
     {
       name: "short_desc",
@@ -39,6 +40,18 @@ export const product = {
       name: "sale_price",
       title: "Sale Price",
       description: "Only if there's a sale on this product",
+      type: "number",
+    },
+    {
+      name: "review",
+      title: "Reviews Received",
+      description: "Number of reviewss received",
+      type: "number",
+    },
+    {
+      name: "ratings",
+      title: "Ratings",
+      description: "Average review score 1-5",
       type: "number",
     },
     {
@@ -85,14 +98,9 @@ export const product = {
       type: "array",
       of: [
         {
-          type: "object",
-          fields: [
-            {
-              name: "img",
-              title: "Image",
-              type: "image",
-            },
-          ],
+          name: "img",
+          title: "Image",
+          type: "image",
         },
       ],
       validation: (Rule) =>
@@ -118,7 +126,7 @@ export const product = {
       title: "Related Products",
       type: "array",
       of: [{ type: "reference", to: [{ type: "product" }] }],
-    }
+    },
   ],
   preview: {
     select: {

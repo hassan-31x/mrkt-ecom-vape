@@ -7,12 +7,12 @@ import { isInWishlist, isInCompare } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-import data from "@/data/products.json";
 
 function ProductTwelve(props) {
   const router = useRouter();
   const { wishlist } = props;
   const { product } = props
+  console.log("🚀 ~ ProductTwelve ~ product:", product)
   const [maxPrice, setMaxPrice] = useState(0);
   const [minPrice, setMinPrice] = useState(99999);
 
@@ -88,7 +88,7 @@ function ProductTwelve(props) {
           ""
         )}
 
-        <Link href={`/product/default/${product?.slug}`}>
+        {/* <Link href={`/product/default/${product?.slug}`}>
           <Image
             alt="product"
             src={product?.sm_pictures?.[0]?.url}
@@ -107,7 +107,7 @@ function ProductTwelve(props) {
           ) : (
             ""
           )}
-        </Link>
+        </Link> */}
 
         <div className="product-action-vertical">
           {isInWishlist(wishlist, product) ? (
@@ -132,7 +132,8 @@ function ProductTwelve(props) {
           <div className="product-action">
             {product?.variants?.length > 0 ? (
               <Link
-                href={`/product/default/${product?.slug}`}
+                // href={`/product/default/${product?.slug}`}
+                href='/'
                 className="btn-product btn-cart btn-select"
               >
                 <span className="border-bottom-0">SELECT OPTIONS</span>
@@ -160,23 +161,17 @@ function ProductTwelve(props) {
         </div>
 
         <h3 className="product-title">
-          <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
+          {/* <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link> */}
         </h3>
 
-        {!product?.stock || product?.stock == 0 ? (
+        {product?.sale_price ? (
           <div className="product-price">
-            <span className="out-price">${product?.price?.toFixed(2)}</span>
-          </div>
-        ) : minPrice == maxPrice ? (
-          <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product?.variants?.length == 0 ? (
-          <div className="product-price">
-            <span className="old-price">${maxPrice.toFixed(2)}</span>
-            <span className="new-price">${minPrice.toFixed(2)}</span>
+            <span className="old-price">${product.sale_price.toFixed(2)}</span>
+            <span className="new-price">${product.price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
-            ${minPrice.toFixed(2)}&ndash;${maxPrice.toFixed(2)}
+            <span className="out-price">${product.price?.toFixed(2)}</span>
           </div>
         )}
       </div>

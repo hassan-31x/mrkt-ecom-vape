@@ -76,7 +76,7 @@ export const product = {
     },
     {
       name: "showInTrendy",
-      title: "Show In Trendy?",
+      title: "Show In Best Seller?",
       type: "boolean",
     },
     {

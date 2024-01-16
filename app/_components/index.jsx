@@ -19,21 +19,12 @@ import {
 } from "@/utils/data";
 import { attrFilter } from "@/utils";
 
-import data from '@/data/products.json'
 import Link from "next/link";
 import Image from "next/image";
 
-function HomePageComponent() {
-  const products = data && data.products;
-  const topProducts = attrFilter(products, "top");
-  const newProducts = attrFilter(products, "new");
+function HomePageComponent({ products, bestSellers, hotProducts }) {
 
-  const loading = false;
-  const error = null
-
-  if (error) {
-    return <div></div>;
-  }
+  const loading = !!!products?.length;
 
   return (
     <div
@@ -262,7 +253,7 @@ function HomePageComponent() {
       </Reveal>
 
       <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
-        <TopCollection products={topProducts} />
+        <TopCollection products={bestSellers} />
       </Reveal>
 
       <section className="banner-section banner-2cols-with-gap">
@@ -351,9 +342,9 @@ function HomePageComponent() {
         </div>
       </section>
 
-      <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
-        <NewCollection products={newProducts} />
-      </Reveal>
+      {/* <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
+        <NewCollection products={hotProducts} />
+      </Reveal> */}
 
       <section className="banner-section banner-2cols">
         <div className="container">
@@ -417,7 +408,7 @@ function HomePageComponent() {
                     />
                   </figure>
 
-                  {products ? (
+                  {products?.length ? (
                     <>
                       {products.slice(1, 2).map((item, index) => (
                         <div
@@ -428,11 +419,11 @@ function HomePageComponent() {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          <ProductThirteen product={item} />
+                          {/* <ProductThirteen product={item} /> */}
                         </div>
                       ))}
 
-                      {products.slice(9, 10).map((item, index) => (
+                      {products?.slice(9, 10).map((item, index) => (
                         <div
                           className={`hotspot-wrapper hotspot-2`}
                           key={"Dot:" + index}
@@ -441,11 +432,11 @@ function HomePageComponent() {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          <ProductThirteen product={item} />
+                          {/* <ProductThirteen product={item} /> */}
                         </div>
                       ))}
 
-                      {products.slice(6, 7).map((item, index) => (
+                      {products?.slice(6, 7).map((item, index) => (
                         <div
                           className={`hotspot-wrapper hotspot-3`}
                           key={"Dot:" + index}
@@ -454,11 +445,11 @@ function HomePageComponent() {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          <ProductThirteen product={item} />
+                          {/* <ProductThirteen product={item} /> */}
                         </div>
                       ))}
 
-                      {products.slice(0, 1).map((item, index) => (
+                      {products?.slice(0, 1).map((item, index) => (
                         <div
                           className={`hotspot-wrapper hotspot-4`}
                           key={"Dot:" + index}
@@ -467,7 +458,7 @@ function HomePageComponent() {
                             <i className="icon-plus"></i>
                           </Link>
 
-                          <ProductThirteen product={item} />
+                          {/* <ProductThirteen product={item} /> */}
                         </div>
                       ))}
                     </>

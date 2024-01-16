@@ -17,6 +17,7 @@
     "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
     "next": "14.0.4",
+    "next-sanity": "^7.0.10",
     "path": "^0.12.7",
     "react": "^18",
     "react-awesome-reveal": "^4.2.7",

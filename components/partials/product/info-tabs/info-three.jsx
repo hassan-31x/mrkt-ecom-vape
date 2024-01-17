@@ -4,8 +4,10 @@ import Link from "next/link";
 
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
+import { calculateDaysAgo } from "@/utils/daysAgo.js";
 
 function InfoThree({ product }) {
+  console.log("🚀 ~ InfoThree ~ product:", product)
   const setRating = (e) => {
     e.preventDefault();
 
@@ -24,23 +26,23 @@ function InfoThree({ product }) {
 
   return (
     <Accordion adClass="accordion-plus product-details-accordion pb-2 mb-0">
-      <Card title="Description" adClass="card-box card-sm">
+      {product?.description && <Card title="Description" adClass="card-box card-sm">
         <div className="product-desc-content">
           <PortableText
             value={product?.description}
             components={RichTextComponents}
           />
         </div>
-      </Card>
-      <Card title="Additional information" adClass="card-box card-sm">
+      </Card>}
+      {product?.additionalInfo && <Card title="Additional information" adClass="card-box card-sm">
         <div className="product-desc-content">
           <PortableText
             value={product?.additionalInfo}
             components={RichTextComponents}
           />
         </div>
-      </Card>
-      <Card
+      </Card>}
+      {product?.shippingDetails && <Card
         title="Shipping & Returns"
         expanded={true}
         adClass="card-box card-sm"
@@ -51,95 +53,57 @@ function InfoThree({ product }) {
             components={RichTextComponents}
           />
         </div>
-      </Card>
+      </Card>}
       <Card title={`Reviews (${product?.reviews?.length})`} adClass="card-box card-sm">
         <div className="reviews">
-          <div className="review">
+          {product?.reviews?.map((review, index) => (
+
+          <div className={`review ${index === product?.reviews?.length-1 ? 'border-0' : ''}`}>
             <div className="row no-gutters">
               <div className="col-auto">
                 <h4>
-                  <Link href="#">Samanta J.</Link>
+                  <Link href="#">{review?.name}</Link>
                 </h4>
                 <div className="ratings-container">
                   <div className="ratings">
                     <div
                       className="ratings-val"
-                      style={{ width: product?.ratings * 20 + "%" }}
+                      style={{ width: review?.stars * 20 + "%" }}
                     ></div>
                     <span className="tooltip-text">
-                      {product?.ratings?.toFixed(2)}
+                      {product?.stars?.toFixed(2)}
                     </span>
                   </div>
                 </div>
-                <span className="review-date mb-1">6 days ago</span>
+                <span className="review-date mb-1">
+                {/* {new Date(review?.createdAt).toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric",
+                  })} */}
+                  {calculateDaysAgo(review?.createdAt)}
+                </span>
               </div>
               <div className="col">
-                <h4>Good, perfect size</h4>
+                <h4>{review.title}</h4>
 
                 <div className="review-content">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Ducimus cum dolores assumenda asperiores facilis porro
-                    reprehenderit animi culpa atque blanditiis commodi
-                    perspiciatis doloremque, possimus, explicabo, autem fugit
-                    beatae quae voluptas!
-                  </p>
+                  <p>{review.description}</p>
                 </div>
 
-                <div className="review-action">
+                {/* <div className="review-action">
                   <Link href="#">
                     <i className="icon-thumbs-up"></i>Helpful (2)
                   </Link>
                   <Link href="#">
                     <i className="icon-thumbs-down"></i>Unhelpful (0)
                   </Link>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
+          ))}
 
-          <div className="review border-0">
-            <div className="row no-gutters">
-              <div className="col-auto">
-                <h4>
-                  <Link href="#">John Doe</Link>
-                </h4>
-                <div className="ratings-container">
-                  <div className="ratings">
-                    <div
-                      className="ratings-val"
-                      style={{ width: product?.ratings * 20 + "%" }}
-                    ></div>
-                    <span className="tooltip-text">
-                      {product?.ratings.toFixed(2)}
-                    </span>
-                  </div>
-                </div>
-                <span className="review-date mb-1">5 days ago</span>
-              </div>
-              <div className="col">
-                <h4>Very good</h4>
-
-                <div className="review-content">
-                  <p>
-                    Sed, molestias, tempore? Ex dolor esse iure hic veniam
-                    laborum blanditiis laudantium iste amet. Cum non voluptate
-                    eos enim, ab cumque nam, modi, quas iure illum repellendus,
-                    blanditiis perspiciatis beatae!
-                  </p>
-                </div>
-
-                <div className="review-action">
-                  <Link href="#">
-                    <i className="icon-thumbs-up"></i>Helpful (0)
-                  </Link>
-                  <Link href="#">
-                    <i className="icon-thumbs-down"></i>Unhelpful (0)
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* <div className="reply">

@@ -178,7 +178,7 @@ function ProductSix(props) {
                   {product?.ratings.toFixed(2)}
                 </span>
               </div>
-              <span className="ratings-text">( {product?.review} Reviews )</span>
+              <span className="ratings-text">( {product?.reviews?.length} Reviews )</span>
             </div>
 
             <div className="product-action">

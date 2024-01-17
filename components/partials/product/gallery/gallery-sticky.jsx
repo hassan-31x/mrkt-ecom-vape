@@ -71,9 +71,9 @@ function GallerySticky(props) {
             style={{ backgroundColor: "#f4f4f4" }}
           >
             <Magnifier
-              imageSrc={urlFor(item?.img)?.url()}
+              imageSrc={urlFor(item)?.url()}
               imageAlt="product"
-              largeImageSrc={urlFor(item?.img)?.url()} // Optional
+              largeImageSrc={urlFor(item)?.url()} // Optional
               dragToMove={false}
               mouseActivation="hover"
               className="zoom-image position-relative overflow-hidden"

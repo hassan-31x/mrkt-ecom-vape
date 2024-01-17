@@ -1,12 +1,11 @@
-
-
 import Card from "@/components/features/accordion/card";
 import Accordion from "@/components/features/accordion/accordion";
 import Link from "next/link";
 
-function InfoThree(props) {
-  const { product } = props;
+import { PortableText } from "@portabletext/react";
+import { RichTextComponents } from "@/components/features/rich-text-component";
 
+function InfoThree({ product }) {
   const setRating = (e) => {
     e.preventDefault();
 
@@ -27,51 +26,18 @@ function InfoThree(props) {
     <Accordion adClass="accordion-plus product-details-accordion pb-2 mb-0">
       <Card title="Description" adClass="card-box card-sm">
         <div className="product-desc-content">
-          <p className="pb-1">
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-            odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-            Suspendisse urna viverra non, semper suscipit, posuere a, pede.
-            Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-            mauris sit amet orci.
-          </p>
-          <ul>
-            <li>
-              Nunc nec porttitor turpis. In eu risus enim. In vitae mollis elit.{" "}
-            </li>
-            <li>Vivamus finibus vel mauris ut vehicula.</li>
-            <li>
-              Nullam a magna porttitor, dictum risus nec, faucibus sapien.
-            </li>
-          </ul>
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-            odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-            Suspendisse urna viverra non, semper suscipit, posuere a, pede.
-          </p>
+          <PortableText
+            value={product?.description}
+            components={RichTextComponents}
+          />
         </div>
       </Card>
       <Card title="Additional information" adClass="card-box card-sm">
         <div className="product-desc-content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-            odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-            Suspendisse urna viverra non, semper suscipit, posuere a, pede.
-            Donec nec justo eget felis facilisis fermentum. Aliquam porttitor
-            mauris sit amet orci.
-          </p>
-
-          <h3 className="pt-2">Fabric & care</h3>
-          <ul>
-            <li>100% Polyester</li>
-            <li>Do not iron</li>
-            <li>Do not wash</li>
-            <li>Do not bleach</li>
-            <li>Do not tumble dry</li>
-            <li>Professional dry clean only</li>
-          </ul>
-
-          <h3>Size</h3>
-          <p>S, M, L, XL</p>
+          <PortableText
+            value={product?.additionalInfo}
+            components={RichTextComponents}
+          />
         </div>
       </Card>
       <Card
@@ -80,19 +46,13 @@ function InfoThree(props) {
         adClass="card-box card-sm"
       >
         <div className="product-desc-content">
-          <p>
-            We deliver to over 100 countries around the world. For full details
-            of the delivery options we offer, please view our{" "}
-            <Link href="#">Delivery information</Link>
-            <br />
-            We hope you’ll love every purchase, but if you ever need to return
-            an item you can do so within a month of receipt. For full details of
-            how to make a return, please view our{" "}
-            <Link href="#">Returns information</Link>
-          </p>
+          <PortableText
+            value={product?.shippingDetails}
+            components={RichTextComponents}
+          />
         </div>
       </Card>
-      <Card title={`Reviews (${product?.review})`} adClass="card-box card-sm">
+      <Card title={`Reviews (${product?.reviews?.length})`} adClass="card-box card-sm">
         <div className="reviews">
           <div className="review">
             <div className="row no-gutters">
@@ -107,7 +67,7 @@ function InfoThree(props) {
                       style={{ width: product?.ratings * 20 + "%" }}
                     ></div>
                     <span className="tooltip-text">
-                      {product?.ratings.toFixed(2)}
+                      {product?.ratings?.toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -182,7 +142,7 @@ function InfoThree(props) {
           </div>
         </div>
 
-        <div className="reply">
+        {/* <div className="reply">
           <div className="title-wrapper text-left">
             <h3 className="title title-simple text-left text-normal">
               Add a Review
@@ -273,7 +233,7 @@ function InfoThree(props) {
               Submit
             </button>
           </form>
-        </div>
+        </div> */}
       </Card>
     </Accordion>
   );

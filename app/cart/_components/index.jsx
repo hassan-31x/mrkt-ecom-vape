@@ -12,10 +12,6 @@ function CartPageComponent(props) {
   const [cartList, setCartList] = useState([]);
   const [shippingCost, setShippingCost] = useState(0);
 
-  useEffect(() => {
-    setCartList(props.cartItems);
-  }, [props.cartItems]);
-
   function onChangeShipping(value) {
     setShippingCost(value);
   }
@@ -55,10 +51,7 @@ function CartPageComponent(props) {
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link href="/shop/sidebar/list">Shop</Link>
-            </li>
-            <li className="breadcrumb-item active">Shopping Cart</li>
+            <li className="breadcrumb-item active">Cart</li>
           </ol>
         </div>
       </nav>

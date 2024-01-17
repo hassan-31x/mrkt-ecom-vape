@@ -273,7 +273,7 @@ function DetailOne(props) {
           ></div>
           <span className="tooltip-text">{product?.ratings.toFixed(2)}</span>
         </div>
-        <span className="ratings-text">( {product?.review} Reviews )</span>
+        <span className="ratings-text">( {product?.reviews?.length} Reviews )</span>
       </div>
 
       {product?.stock == 0 ? (

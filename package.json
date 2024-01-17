@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
+    "@portabletext/react": "^3.0.11",
     "@reduxjs/toolkit": "^2.0.1",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.24.1",

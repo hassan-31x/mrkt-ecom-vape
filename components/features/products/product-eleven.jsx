@@ -6,28 +6,8 @@ import Link from "next/link";
 import Image from "next/image";
 import urlFor from "@/sanity/lib/image";
 
-function ProductEleven(props) {
+function ProductEleven({ product, wishlist }) {
   const router = useRouter();
-  const { product, wishlist } = props;
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [minPrice, setMinPrice] = useState(99999);
-
-  useEffect(() => {
-    let min = minPrice;
-    let max = maxPrice;
-    product?.variants?.map((item) => {
-      if (min > item.price) min = item.price;
-      if (max < item.price) max = item.price;
-    }, []);
-
-    if (product?.nicotinePercentage?.length == 0) {
-      min = product?.sale_price ? product?.sale_price : product?.price;
-      max = product?.price;
-    }
-
-    setMinPrice(min);
-    setMaxPrice(max);
-  }, []);
 
   function onCartClick(e) {
     e.preventDefault();
@@ -228,7 +208,7 @@ function ProductEleven(props) {
             ></div>
             <span className="tooltip-text">{product?.ratings.toFixed(2)}</span>
           </div>
-          <span className="ratings-text">( {product?.review} Reviews )</span>
+          <span className="ratings-text">( {product?.reviews?.length} Reviews )</span>
         </div>
 
         {/* {product?.nicotinePercentage?.length > 0 ? (

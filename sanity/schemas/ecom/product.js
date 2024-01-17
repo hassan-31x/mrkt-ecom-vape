@@ -43,16 +43,11 @@ export const product = {
       type: "number",
     },
     {
-      name: "review",
-      title: "Reviews Received",
-      description: "Number of reviewss received",
-      type: "number",
-    },
-    {
       name: "ratings",
       title: "Ratings",
       description: "Average review score 1-5",
       type: "number",
+      validation: (Rule) => Rule.min(1).max(5),
     },
     {
       name: "until",
@@ -114,6 +109,53 @@ export const product = {
       name: "shippingDetails",
       title: "Shipping Details",
       type: "blockContent",
+    },
+    {
+      name: "reviews",
+      title: "Reviews",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "name",
+              title: "Name",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "title",
+              title: "Title",
+              type: "string",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "description",
+              title: "Description",
+              type: "text",
+              validation: (Rule) => Rule.required(),
+            },
+            {
+              name: "stars",
+              title: "Stars",
+              type: "number",
+              validation: (Rule) => Rule.min(1).max(5),
+            },
+            {
+              name: "createdAt",
+              title: "Created At",
+              type: "datetime",
+              options: {
+                dateFormat: "YYYY-MM-DD",
+                timeFormat: "HH:mm",
+                calendarTodayLabel: "Today",
+              },
+              validation: (Rule) => Rule.required(),
+            },
+          ],
+        },
+      ],
     },
     {
       name: "relatedProducts",

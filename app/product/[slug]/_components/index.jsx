@@ -19,7 +19,7 @@ function ProductPageComponent(props) {
 
   return (
     <div className="main">
-      <Breadcrumb prev={prev} next={next} current={product.slug.current} />
+      <Breadcrumb prev={prev} next={next} current={product.name} />
       <div className="page-content">
         <div className="container skeleton-body">
           <div className="product-details-top">
@@ -46,7 +46,7 @@ function ProductPageComponent(props) {
                   {!loading ? (
                     <>
                       {/* <DetailOne product={product} /> */}
-                      {/* <InfoThree product={product} /> */}
+                      <InfoThree product={product} />
                     </>
                   ) : (
                     ""

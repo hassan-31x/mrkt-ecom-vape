@@ -15,16 +15,16 @@ import data from "@/data/products.json";
 import Link from "next/link";
 
 function CategoryPageComponent({ products }) {
+  const [firstLoading, setFirstLoading] = useState(false);
+  const [toggle, setToggle] = useState(false);
+
   const router = useRouter();
   const type = "2cols";
   const query = router?.query;
 
   const loading = false;
   const error = null;
-  const [firstLoading, setFirstLoading] = useState(false);
-  const pageTitle = ""
-  const perPage = 6
-  const [toggle, setToggle] = useState(false);
+  const perPage = 6;
   const totalCount = products?.length;
 
   useEffect(() => {
@@ -64,7 +64,6 @@ function CategoryPageComponent({ products }) {
     if (products) setFirstLoading(true);
   }, [products]);
 
-
   function onSortByChange(e) {
     let queryObject = router.query;
     let url = router.pathname.replace("[type]", "2cols") + "?";
@@ -97,17 +96,14 @@ function CategoryPageComponent({ products }) {
 
   return (
     <main className="main shop">
-      <PageHeader title={pageTitle} subTitle="Shop" />
+      <PageHeader title="Category" subTitle="Shop" />
       <nav className="breadcrumb-nav mb-2">
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link href="/shop/sidebar/list">Shop</Link>
-            </li>
-            <li className="breadcrumb-item active">{pageTitle}</li>
+            <li className="breadcrumb-item active">Category</li>
             {query?.search ? (
               <li className="breadcrumb-item">
                 <span>Search - {query?.searchTerm}</span>

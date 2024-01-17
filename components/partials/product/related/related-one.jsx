@@ -4,14 +4,12 @@ import OwlCarousel from "@/components/features/owl-carousel";
 
 import { mainSlider8 } from "@/utils/data";
 
-function RelatedProductsOne(props) {
-  const { products } = props;
-
+function RelatedProductsOne({ products, loading }) {
   return (
     <>
       <h2 className="title text-center mb-4">You May Also Like</h2>
 
-      {props.loading ? (
+      {loading ? (
         <OwlCarousel
           adClass="owl-simple carousel-equal-height carousel-with-shadow cols-xl-5 cols-lg-4 cols-md-3 cols-2"
           isTheme={false}

@@ -1,36 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useRouter } from "next/navigation";
 
 import { isInWishlist, isInCompare } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
+import urlFor from "@/sanity/lib/image.js";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { toast } from "react-toastify";
 
-function ProductSix(props) {
+function ProductSix({ product, wishlist }) {
   const router = useRouter();
-  const { product, wishlist } = props;
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [minPrice, setMinPrice] = useState(99999);
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    let min = minPrice;
-    let max = maxPrice;
-    product?.variants.map((item) => {
-      if (min > item.price) min = item.price;
-      if (max < item.price) max = item.price;
-    }, []);
-
-    if (product?.variants.length == 0) {
-      min = product?.sale_price ? product?.sale_price : product?.price;
-      max = product?.price;
-    }
-
-    setMinPrice(min);
-    setMaxPrice(max);
-  }, []);
 
   function onCartClick(e) {
     e.preventDefault();
-    props.addToCart(product);
+    
+    dispatch(addToCart(product))
+    toast.success("Product added to cart");
   }
 
   function onWishlistClick(e) {
@@ -57,8 +45,8 @@ function ProductSix(props) {
   return (
     <div className="product product-5 text-center">
       <figure className="product-media">
-        {product?.new ? (
-          <span className="product-label label-new">New</span>
+        {product?.hot ? (
+          <span className="product-label label-new">Hot</span>
         ) : (
           ""
         )}
@@ -69,8 +57,8 @@ function ProductSix(props) {
           ""
         )}
 
-        {product?.top ? (
-          <span className="product-label label-top">Top</span>
+        {product?.featured ? (
+          <span className="product-label label-top">Feat</span>
         ) : (
           ""
         )}
@@ -81,17 +69,17 @@ function ProductSix(props) {
           ""
         )}
 
-        <Link href={`/product/default/${product?.slug}`}>
+        <Link href={`/product/${product?.slug.current}`}>
           <Image
             alt="product"
-            src={product?.sm_pictures?.[0]?.url}
+            src={urlFor(product?.pictures?.[0])?.url()}
             className="product-image"
             fill
           />
-          {product?.sm_pictures.length >= 2 ? (
+          {product?.pictures?.length >= 2 ? (
             <Image
               alt="product"
-              src={product?.sm_pictures?.[1]?.url}
+              src={urlFor(product?.pictures?.[1])?.url()}
               className="product-image-hover"
               fill
             />
@@ -172,9 +160,9 @@ function ProductSix(props) {
 
         {product?.stock && product?.stock !== 0 ? (
           <div className="product-action">
-            {product?.variants.length > 0 ? (
+            {product?.nicotinePercentage?.length > 0 ? (
               <Link
-                href={`/product/default/${product?.slug}`}
+                href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span>select options</span>
@@ -192,7 +180,7 @@ function ProductSix(props) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
+          <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
         {product?.stock < 1 ? (

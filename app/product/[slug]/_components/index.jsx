@@ -56,7 +56,7 @@ function ProductPageComponent(props) {
             </div>
           </div>
 
-          {/* <RelatedProductsOne products={related} loading={loading} /> */}
+          <RelatedProductsOne products={related} loading={loading} />
         </div>
       </div>
     </div>

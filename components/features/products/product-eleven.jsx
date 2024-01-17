@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { isInWishlist, isInCompare } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
+import urlFor from "@/sanity/lib/image";
 
 function ProductEleven(props) {
   const router = useRouter();
@@ -14,12 +15,12 @@ function ProductEleven(props) {
   useEffect(() => {
     let min = minPrice;
     let max = maxPrice;
-    product?.variants.map((item) => {
+    product?.variants?.map((item) => {
       if (min > item.price) min = item.price;
       if (max < item.price) max = item.price;
     }, []);
 
-    if (product?.variants.length == 0) {
+    if (product?.variants?.length == 0) {
       min = product?.sale_price ? product?.sale_price : product?.price;
       max = product?.price;
     }
@@ -51,14 +52,14 @@ function ProductEleven(props) {
 
   function onQuickView(e) {
     e.preventDefault();
-    props.showQuickView(product?.slug);
+    props.showQuickView(product.slug.current);
   }
 
   return (
     <div className="product product-7 text-center w-100">
       <figure className="product-media">
-        {product?.new ? (
-          <span className="product-label label-new">New</span>
+        {product?.hot ? (
+          <span className="product-label label-new">Hot</span>
         ) : (
           ""
         )}
@@ -69,8 +70,8 @@ function ProductEleven(props) {
           ""
         )}
 
-        {product?.top ? (
-          <span className="product-label label-top">Top</span>
+        {product?.featured ? (
+          <span className="product-label label-top">Feat</span>
         ) : (
           ""
         )}
@@ -81,17 +82,17 @@ function ProductEleven(props) {
           ""
         )}
 
-        <Link href={`/product/default/${product?.slug}`}>
+        <Link href={`/product/${product.slug.current}`}>
           <Image
             alt="product"
-            src={product?.sm_pictures?.[0].url}
+            src={urlFor(product.pictures?.[0]?.img)?.url()}
             fill
             className="product-image"
           />
-          {product?.sm_pictures?.length >= 2 ? (
+          {product?.pictures?.length >= 2 ? (
             <Image
               alt="product"
-              src={product?.sm_pictures[1].url}
+              src={urlFor(product.pictures?.[1]?.img)?.url()}
               fill
               className="product-image-hover"
             />
@@ -165,9 +166,9 @@ function ProductEleven(props) {
 
         {product?.stock && product?.stock !== 0 ? (
           <div className="product-action">
-            {product?.variants.length > 0 ? (
+            {product?.variants?.length > 0 ? (
               <Link
-                href={`/product/default/${product?.slug}`}
+                href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span>select options</span>
@@ -183,9 +184,9 @@ function ProductEleven(props) {
         )}
       </figure>
 
-      <div className="product-body">
+      {/* <div className="product-body">
         <div className="product-cat">
-          {product?.category.map((item, index) => (
+          {product?.category?.map((item, index) => (
             <React.Fragment key={item.slug + "-" + index}>
               <Link
                 href={{
@@ -195,29 +196,27 @@ function ProductEleven(props) {
               >
                 {item.name}
               </Link>
-              {index < product?.category.length - 1 ? ", " : ""}
+              {index < product?.category?.length - 1 ? ", " : ""}
             </React.Fragment>
           ))}
-        </div>
+        </div> */}
 
         <h3 className="product-title">
-          <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
+          <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
-        {!product?.stock || product?.stock == 0 ? (
+        {product?.stock < 1 ? (
           <div className="product-price">
-            <span className="out-price">${product?.price.toFixed(2)}</span>
+            <span className="out-price">${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
           </div>
-        ) : minPrice == maxPrice ? (
-          <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product?.variants.length == 0 ? (
+        ) : product?.sale_price ? (
           <div className="product-price">
-            <span className="new-price">${minPrice.toFixed(2)}</span>
-            <span className="old-price">${maxPrice.toFixed(2)}</span>
+            <span className="old-price">${product.sale_price.toFixed(2)}</span>
+            <span className="new-price">${product.price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
-            ${minPrice.toFixed(2)}&ndash;${maxPrice.toFixed(2)}
+            <span className="out-price">${product.price?.toFixed(2)}</span>
           </div>
         )}
 
@@ -232,10 +231,10 @@ function ProductEleven(props) {
           <span className="ratings-text">( {product?.review} Reviews )</span>
         </div>
 
-        {product?.variants.length > 0 ? (
+        {/* {product?.variants?.length > 0 ? (
           <div className="product-nav product-nav-dots">
             <div className="row no-gutters">
-              {product?.variants.map((item, index) => (
+              {product?.variants?.map((item, index) => (
                 <Link
                   href="#"
                   style={{ backgroundColor: item.color }}
@@ -248,8 +247,7 @@ function ProductEleven(props) {
           </div>
         ) : (
           ""
-        )}
-      </div>
+        )} */}
     </div>
   );
 }

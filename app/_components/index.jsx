@@ -25,6 +25,7 @@ import Image from "next/image";
 function HomePageComponent({ products, bestSellers, hotProducts }) {
 
   const loading = !!!products?.length;
+  
 
   return (
     <div

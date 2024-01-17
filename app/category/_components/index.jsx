@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import StickyBox from "react-sticky-box";
 
-import PageHeader from '@/components/features/page-header';
-import ShopListOne from '@/components/partials/shop/list/shop-list-one'
+import PageHeader from "@/components/features/page-header";
+import ShopListOne from "@/components/partials/shop/list/shop-list-one";
 import Pagination from "@/components/features/pagination";
 import ShopSidebarOne from "@/components/partials/shop/sidebar/shop-sidebar-one";
 
@@ -14,7 +14,7 @@ import { scrollToPageContent } from "@/utils";
 import data from "@/data/products.json";
 import Link from "next/link";
 
-function CategoryPageComponent() {
+function CategoryPageComponent({ products }) {
   const router = useRouter();
   const type = "2cols";
   const query = router?.query;
@@ -22,11 +22,10 @@ function CategoryPageComponent() {
   const loading = false;
   const error = null;
   const [firstLoading, setFirstLoading] = useState(false);
-  const [perPage, setPerPage] = useState(5);
-  const [pageTitle, setPageTitle] = useState("List");
+  const pageTitle = ""
+  const perPage = 6
   const [toggle, setToggle] = useState(false);
-  const products = data && data.products;
-  const totalCount = data && data.products.length;
+  const totalCount = products?.length;
 
   useEffect(() => {
     window.addEventListener("resize", resizeHandle);
@@ -65,14 +64,10 @@ function CategoryPageComponent() {
     if (products) setFirstLoading(true);
   }, [products]);
 
-  useEffect(() => {
-      setPageTitle("Grid 2 Columns");
-      setPerPage(6);
-  }, []);
 
   function onSortByChange(e) {
     let queryObject = router.query;
-    let url = router.pathname.replace("[type]", '2cols') + "?";
+    let url = router.pathname.replace("[type]", "2cols") + "?";
     for (let key in queryObject) {
       if (key !== "type" && key !== "sortBy") {
         url += key + "=" + queryObject[key] + "&";
@@ -139,7 +134,7 @@ function CategoryPageComponent() {
                       Showing
                       <span>
                         {" "}
-                        {products.length} of {totalCount}
+                        {products?.length} of {totalCount}
                       </span>{" "}
                       Products
                     </div>

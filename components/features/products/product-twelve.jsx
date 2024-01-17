@@ -161,7 +161,11 @@ function ProductTwelve(props) {
           <Link href={`/product/default/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
-        {product?.sale_price ? (
+        {product?.stock < 1 ? (
+          <div className="product-price">
+            <span className="out-price">${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
+          </div>
+        ) : product?.sale_price ? (
           <div className="product-price">
             <span className="old-price">${product.sale_price.toFixed(2)}</span>
             <span className="new-price">${product.price.toFixed(2)}</span>

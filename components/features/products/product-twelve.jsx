@@ -77,14 +77,14 @@ function ProductTwelve(props) {
         <Link href={`/product/${product.slug.current}`}>
           <Image
             alt="product"
-            src={urlFor(product?.pictures?.[0]?.img)?.url()}
+            src={urlFor(product?.pictures?.[0])?.url()}
             fill
             className="product-image"
           />
           {product?.pictures?.length >= 2 ? (
             <Image
               alt="product"
-              src={urlFor(product?.pictures[1]?.img)?.url()}
+              src={urlFor(product?.pictures[1])?.url()}
               fill
               className="product-image-hover"
             />

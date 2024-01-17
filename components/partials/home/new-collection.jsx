@@ -10,11 +10,12 @@ import Link from "next/link";
 import OwlCarousel from "@/components/features/owl-carousel";
 
 function NewCollection({ products }) {
+  console.log("🚀 ~ NewCollection ~ products:", products)
   return (
     <section className="product-section new-arrivals mb-8">
       <div className="container text-center">
         <div className="heading heading-center">
-          <h2 className="title pt-5">New Arrivals</h2>
+          <h2 className="title pt-5">Hot Products</h2>
           <p className="title-desc">More Flavors For You</p>
         </div>
 

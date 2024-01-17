@@ -23,7 +23,6 @@ const HomePage = async () => {
   const bestSellers = products.filter(product => product?.showInTrendy === true)
   const hotProducts = products.filter(product => product?.hot === true)
 
-
   return <HomePageComponent products={products} bestSellers={bestSellers} hotProducts={hotProducts} />
 }
 

@@ -99,16 +99,16 @@ function GallerySticky(props) {
       {isOpen ? (
         <LightBox
           mainSrc={
-            urlFor(product?.pictures?.[photoIndex]?.img).url()
+            urlFor(product?.pictures?.[photoIndex]).url()
           }
           nextSrc={
-            urlFor(product?.pictures?.[(photoIndex + 1) % product?.pictures.length]?.img).url()
+            urlFor(product?.pictures?.[(photoIndex + 1) % product?.pictures.length]).url()
           }
           prevSrc={
             urlFor(product?.pictures[
               (photoIndex + product?.pictures.length - 1) %
                 product?.pictures.length
-            ]?.img).url()
+            ]).url()
           }
           onCloseRequest={closeLightBox}
           onMovePrevRequest={moveNextPhoto}

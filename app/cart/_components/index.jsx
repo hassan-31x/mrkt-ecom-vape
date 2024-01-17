@@ -92,7 +92,7 @@ function CartPageComponent(props) {
                                     className="product-image"
                                   >
                                     <img
-                                      src={item.sm_pictures?.[0]?.url}
+                                      src={item.sm_pictures?.[0]}
                                       alt="product"
                                     />
                                   </Link>

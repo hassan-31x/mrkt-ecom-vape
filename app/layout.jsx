@@ -9,6 +9,7 @@ import "@/public/scss/plugins/owl-carousel/owl.carousel.scss";
 import "@/public/scss/style.scss";
 import Layout from "@/components/custom-layout";
 import Script from "next/script";
+import { ReduxProvider } from "@/redux/provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Layout>{children}</Layout>
+      <ReduxProvider>
+          <Layout>{children}</Layout>
+        </ReduxProvider>
 
         <Script src="/js/jquery.min.js" />
       </body>

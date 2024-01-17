@@ -12,12 +12,9 @@ import { addToCart } from "@/redux/slice/cartSlice";
 import { toast } from "react-toastify";
 
 
-function ProductTwelve(props) {
+function ProductTwelve({ wishlist, product }) {
   const router = useRouter();
   const dispatch = useDispatch()
-
-  const { wishlist } = props;
-  const { product } = props
 
   function onCartClick(e) {
     e.preventDefault();
@@ -146,7 +143,7 @@ function ProductTwelve(props) {
         </div>
 
         <h3 className="product-title">
-          <Link href={`/product/${product.slug.current}`}>{product?.name}</Link>
+          <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
         {product?.stock < 1 ? (

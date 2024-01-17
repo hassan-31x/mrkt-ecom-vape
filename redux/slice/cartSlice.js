@@ -13,31 +13,23 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      // const idx = state.items.findIndex(
-      //   (item) => item.id === action.payload.id
-      // );
+      const idx = state.items.findIndex(
+        (item) => item.id === action.payload.id
+      );
 
-      // if (idx === -1) {
+      if (idx === -1) {
         state.items.push({
           ...action.payload,
-          cartId: state.items.length + 1,
           qty: 1,
           sum: action.payload.sale_price ?? action.payload.price,
-          warrantyId: 0,  // 0 means no warranty
-          warrantyPrice: 0,
-          discountApplied: false,
-          discountAmount: 0,
         });
-      // } else {
-      //   state.items[idx].qty += 1;
-      //   state.items[idx].sum += state.items[idx].sale_price ?? action.payload.price;
-      // }
+      } else {
+        state.items[idx].qty += 1;
+        state.items[idx].sum += action.payload.sale_price ?? action.payload.price;
+      }
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((item) => item.cartId !== action.payload.cartId);
-      state.items.forEach((item, idx) => {
-        item.cartId = idx + 1;
-      })
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     emptyCart: (state) => {
       state.items = [];

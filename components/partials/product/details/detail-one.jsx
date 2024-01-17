@@ -393,7 +393,7 @@ function DetailOne(props) {
         <div className="details-action-wrapper">
           {isInWishlist(props.wishlist, product) ? (
             <Link
-              href="/shop/wishlist"
+              href="/wishlist"
               className="btn-product btn-wishlist added-to-wishlist"
             >
               <span>Go to Wishlist</span>
@@ -506,7 +506,7 @@ function DetailOne(props) {
                 </a>
                 {isInWishlist(props.wishlist, product) ? (
                   <Link
-                    href="/shop/wishlist"
+                    href="/wishlist"
                     className="btn-product btn-wishlist added-to-wishlist"
                   >
                     <span>Go to Wishlist</span>

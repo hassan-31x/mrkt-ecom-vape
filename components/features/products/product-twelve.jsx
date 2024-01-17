@@ -7,35 +7,21 @@ import { isInWishlist, isInCompare } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import urlFor from "@/sanity/lib/image";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/slice/cartSlice";
 
 
 function ProductTwelve(props) {
   const router = useRouter();
+  const dispatch = useDispatch()
+
   const { wishlist } = props;
   const { product } = props
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [minPrice, setMinPrice] = useState(99999);
-
-  useEffect(() => {
-    let min = minPrice;
-    let max = maxPrice;
-    product?.variants?.map((item) => {
-      if (min > item.price) min = item.price;
-      if (max < item.price) max = item.price;
-    }, []);
-
-    if (product?.variants?.length == 0) {
-      min = product?.sale_price ? product?.sale_price : product?.price;
-      max = product?.price;
-    }
-
-    setMinPrice(min);
-    setMaxPrice(max);
-  }, []);
 
   function onCartClick(e) {
     e.preventDefault();
-    props.addToCart(product);
+
+    dispatch(addToCart(product))
   }
 
   function onWishlistClick(e) {
@@ -110,7 +96,7 @@ function ProductTwelve(props) {
         <div className="product-action-vertical">
           {isInWishlist(wishlist, product) ? (
             <Link
-              href="/shop/wishlist"
+              href="/wishlist"
               className="btn-product-icon btn-wishlist btn-expandable added-to-wishlist"
             >
               <span>go to wishlist</span>
@@ -128,9 +114,9 @@ function ProductTwelve(props) {
 
         {product?.stock && product?.stock !== 0 ? (
           <div className="product-action">
-            {product?.variants?.length > 0 ? (
+            {product?.nicotinePercentage?.length > 0 ? (
               <Link
-                href={`/product/default/${product.slug.current}`}
+                href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span className="border-bottom-0">SELECT OPTIONS</span>
@@ -158,7 +144,7 @@ function ProductTwelve(props) {
         </div>
 
         <h3 className="product-title">
-          <Link href={`/product/default/${product.slug.current}`}>{product?.name}</Link>
+          <Link href={`/product/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
         {product?.stock < 1 ? (

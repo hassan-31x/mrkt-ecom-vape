@@ -191,7 +191,7 @@ function ProductSix(props) {
               </button>
               {isInWishlist(wishlist, product) ? (
                 <Link
-                  href="/shop/wishlist"
+                  href="/wishlist"
                   className="btn-product btn-wishlist added-to-wishlist"
                 >
                   <span>wishlist</span>

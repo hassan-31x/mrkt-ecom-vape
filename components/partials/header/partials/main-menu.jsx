@@ -622,7 +622,7 @@ function MainMenu() {
                             path?.indexOf("shop/wishlist") > -1 ? "active" : ""
                           }
                         >
-                          <Link href="/shop/wishlist">Wishlist</Link>
+                          <Link href="/wishlist">Wishlist</Link>
                         </li>
                         <li
                           className={

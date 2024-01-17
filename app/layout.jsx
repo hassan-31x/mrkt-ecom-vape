@@ -21,15 +21,15 @@ export const metadata = {
 
 const jost = Jost({
   subsets: ["latin-ext"],
-  variable: 'font-family',
-  display: 'swap',
-})
+  variable: "font-family",
+  display: "swap",
+});
 
 const manrope = Manrope({
   subsets: ["latin-ext"],
-  variable: 'second-font-family',
-  display: 'swap',
-})
+  variable: "second-font-family",
+  display: "swap",
+});
 
 export default function RootLayout({ children }) {
   return (
@@ -40,7 +40,6 @@ export default function RootLayout({ children }) {
         </ReduxProvider>
 
         <Script src="/js/jquery.min.js" />
-        
       </body>
     </html>
   );

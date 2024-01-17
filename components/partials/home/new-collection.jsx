@@ -15,7 +15,7 @@ function NewCollection({ products }) {
       <div className="container text-center">
         <div className="heading heading-center">
           <h2 className="title pt-5">New Arrivals</h2>
-          <p className="title-desc">More Beauty For You</p>
+          <p className="title-desc">More Flavors For You</p>
         </div>
 
         <div className="product-wrapper">
@@ -35,7 +35,7 @@ function NewCollection({ products }) {
         </div>
 
         <Link
-          href="/shop/sidebar/list"
+          href="/category"
           className="btn btn-link btn-link-primary"
         >
           VIEW MORE<i className="icon-angle-right"></i>

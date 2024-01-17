@@ -17,7 +17,6 @@ import {
   blurIn,
   zoomInShorter,
 } from "@/utils/data";
-import { attrFilter } from "@/utils";
 
 import Link from "next/link";
 import Image from "next/image";

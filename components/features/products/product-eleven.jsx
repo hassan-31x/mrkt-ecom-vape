@@ -105,7 +105,7 @@ function ProductEleven(props) {
           <div className="product-action-vertical">
             {isInWishlist(wishlist, product) ? (
               <Link
-                href="/shop/wishlist"
+                href="/wishlist"
                 className="btn-product-icon btn-wishlist btn-expandable added-to-wishlist"
               >
                 <span>go to wishlist</span>
@@ -139,7 +139,7 @@ function ProductEleven(props) {
           <div className="product-action-vertical">
             {isInWishlist(wishlist, product) ? (
               <Link
-                href="/shop/wishlist"
+                href="/wishlist"
                 className="btn-product-icon btn-wishlist btn-expandable added-to-wishlist"
               >
                 <span>go to wishlist</span>

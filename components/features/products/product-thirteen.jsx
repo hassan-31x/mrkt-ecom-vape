@@ -1,35 +1,23 @@
 'use client'
 
+import { addToCart } from "@/redux/slice/cartSlice";
 import urlFor from "@/sanity/lib/image.js";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 function ProductThirteen(props) {
   const { product } = props;
-  const [maxPrice, setMaxPrice] = useState(0);
-  const [minPrice, setMinPrice] = useState(99999);
 
-  useEffect(() => {
-    let min = minPrice;
-    let max = maxPrice;
-    product?.variants?.map((item) => {
-      if (min > item.price) min = item.price;
-      if (max < item.price) max = item.price;
-    }, []);
-
-    if (product?.variants?.length == 0) {
-      min = product?.sale_price ? product?.sale_price : product?.price;
-      max = product?.price;
-    }
-
-    setMinPrice(min);
-    setMaxPrice(max);
-  }, []);
+  const dispatch = useDispatch()
 
   function onCartClick(e) {
     e.preventDefault();
-    props.addToCart(product);
+    
+    dispatch(addToCart(product))
+    toast.success("Item added to cart")
   }
 
   return (
@@ -57,7 +45,7 @@ function ProductThirteen(props) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/default/${product.slug.current}`}>{product?.name}</Link>
+          <Link href={`/product/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
         {product?.stock < 1 ? (
@@ -76,7 +64,7 @@ function ProductThirteen(props) {
         )}
 
         {product?.stock && product?.stock !== 0 ? (
-          product?.variants?.length > 0 ? (
+          product?.nicotinePercentage?.length > 0 ? (
             <Link
               href={`/product/${product?.slug.current}`}
               className="btn btn-link btn-link-secondary-dark"

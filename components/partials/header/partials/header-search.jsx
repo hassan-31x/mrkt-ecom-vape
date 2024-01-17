@@ -33,7 +33,7 @@
 //                     if ( max < item.price ) max = item.price;
 //                 }, [] );
 
-//                 if ( product?.variants?.length == 0 ) {
+//                 if ( product?.nicotinePercentage?.length == 0 ) {
 //                     min = product?.sale_price
 //                         ? product?.sale_price
 //                         : product?.price;
@@ -143,7 +143,7 @@
 //                                                 product?.minPrice == product?.maxPrice ?
 //                                                     <div className="product-price mb-0">${ product?.minPrice.toFixed( 2 ) }</div>
 //                                                     :
-//                                                     product?.variants?.length == 0 ?
+//                                                     product?.nicotinePercentage?.length == 0 ?
 //                                                         <div className="product-price mb-0">
 //                                                             <span className="new-price">${ product?.minPrice.toFixed( 2 ) }</span>
 //                                                             <span className="old-price">${ product?.maxPrice.toFixed( 2 ) }</span>

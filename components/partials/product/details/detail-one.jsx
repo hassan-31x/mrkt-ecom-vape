@@ -57,7 +57,7 @@ function DetailOne(props) {
       }, [])
     );
 
-    if (product?.variants?.length == 0) {
+    if (product?.nicotinePercentage?.length == 0) {
       min = product?.sale_price ? product?.sale_price : product?.price;
       max = product?.price;
     }
@@ -242,7 +242,7 @@ function DetailOne(props) {
     if (e.currentTarget.classList.contains("btn-disabled")) return;
 
     let newProduct = { ...product };
-    if (product?.variants?.length > 0) {
+    if (product?.nicotinePercentage?.length > 0) {
       newProduct = {
         ...product,
         name:
@@ -290,7 +290,7 @@ function DetailOne(props) {
         </div>
       ) : minPrice == maxPrice ? (
         <div className="product-price">${minPrice.toFixed(2)}</div>
-      ) : product?.variants?.length == 0 ? (
+      ) : product?.nicotinePercentage?.length == 0 ? (
         <div className="product-price">
           <span className="new-price">${minPrice.toFixed(2)}</span>
           <span className="old-price">${maxPrice.toFixed(2)}</span>
@@ -305,7 +305,7 @@ function DetailOne(props) {
         <p>{product?.short_desc}</p>
       </div>
 
-      {product?.variants?.length > 0 ? (
+      {product?.nicotinePercentage?.length > 0 ? (
         <>
           <div className="details-filter-row details-row-size">
             <label>Color:</label>
@@ -382,7 +382,7 @@ function DetailOne(props) {
           href="#"
           className={`btn-product btn-cart ${
             !canAddToCart(props.cartlist, product, qty) ||
-            (product?.variants?.length > 0 && !showVariationPrice)
+            (product?.nicotinePercentage?.length > 0 && !showVariationPrice)
               ? "btn-disabled"
               : ""
           }`}
@@ -476,7 +476,7 @@ function DetailOne(props) {
                 </div>
               ) : minPrice == maxPrice ? (
                 <div className="product-price">${minPrice.toFixed(2)}</div>
-              ) : product?.variants?.length == 0 ? (
+              ) : product?.nicotinePercentage?.length == 0 ? (
                 <div className="product-price">
                   <span className="new-price">${minPrice.toFixed(2)}</span>
                   <span className="old-price">${maxPrice.toFixed(2)}</span>
@@ -496,7 +496,7 @@ function DetailOne(props) {
                   href="#"
                   className={`btn-product btn-cart ${
                     !canAddToCart(props.cartlist, product, qty) ||
-                    (product?.variants?.length > 0 && !showVariationPrice)
+                    (product?.nicotinePercentage?.length > 0 && !showVariationPrice)
                       ? "btn-disabled"
                       : ""
                   }`}

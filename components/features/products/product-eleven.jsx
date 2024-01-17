@@ -20,7 +20,7 @@ function ProductEleven(props) {
       if (max < item.price) max = item.price;
     }, []);
 
-    if (product?.variants?.length == 0) {
+    if (product?.nicotinePercentage?.length == 0) {
       min = product?.sale_price ? product?.sale_price : product?.price;
       max = product?.price;
     }
@@ -166,7 +166,7 @@ function ProductEleven(props) {
 
         {product?.stock && product?.stock !== 0 ? (
           <div className="product-action">
-            {product?.variants?.length > 0 ? (
+            {product?.nicotinePercentage?.length > 0 ? (
               <Link
                 href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
@@ -231,7 +231,7 @@ function ProductEleven(props) {
           <span className="ratings-text">( {product?.review} Reviews )</span>
         </div>
 
-        {/* {product?.variants?.length > 0 ? (
+        {/* {product?.nicotinePercentage?.length > 0 ? (
           <div className="product-nav product-nav-dots">
             <div className="row no-gutters">
               {product?.variants?.map((item, index) => (

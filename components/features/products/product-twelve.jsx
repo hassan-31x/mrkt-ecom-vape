@@ -9,6 +9,7 @@ import Link from "next/link";
 import urlFor from "@/sanity/lib/image";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
+import { toast } from "react-toastify";
 
 
 function ProductTwelve(props) {
@@ -22,6 +23,7 @@ function ProductTwelve(props) {
     e.preventDefault();
 
     dispatch(addToCart(product))
+    toast.success("Item added to cart")
   }
 
   function onWishlistClick(e) {

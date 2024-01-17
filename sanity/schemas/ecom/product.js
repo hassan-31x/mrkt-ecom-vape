@@ -96,13 +96,7 @@ export const product = {
       name: "pictures",
       title: "Pictures",
       type: "array",
-      of: [
-        {
-          name: "img",
-          title: "Image",
-          type: "image",
-        },
-      ],
+      of: [{ type: "image" }],
       validation: (Rule) =>
         Rule.min(1).error("At least one picture must be added"),
     },

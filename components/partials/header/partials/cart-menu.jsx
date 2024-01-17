@@ -1,9 +1,13 @@
 import Link from "next/link";
 
 import { cartQtyTotal, cartPriceTotal } from "@/utils/index";
+import { useDispatch, useSelector } from "react-redux";
+import urlFor from "@/sanity/lib/image";
+import { removeFromCart } from "@/redux/slice/cartSlice";
 
-function CartMenu(props) {
-  const { cartlist } = props;
+function CartMenu() {
+  const dispatch = useDispatch();
+  const { items: cartlist } = useSelector((state) => state.cart);
 
   return (
     <div className="dropdown cart-dropdown">
@@ -32,18 +36,18 @@ function CartMenu(props) {
         ) : (
           <>
             <div className="dropdown-cart-products">
-              {cartlist?.map((item, index) => (
-                <div className="product justify-content-between" key={index}>
+              {cartlist?.map((item) => (
+                <div className="product justify-content-between" key={item.id}>
                   <div className="product-cart-details">
                     <h4 className="product-title">
-                      <Link href={`/product/default/${item.slug}`}>
+                      <Link href={`/product/${item.slug.current}`}>
                         {item.name}
                       </Link>
                     </h4>
 
                     <span className="cart-product-info">
                       <span className="cart-product-qty">{item.qty} </span>x $
-                      {item.sale_price
+                      {item?.sale_price
                         ? item.sale_price.toFixed(2)
                         : item.price.toFixed(2)}
                     </span>
@@ -51,13 +55,11 @@ function CartMenu(props) {
 
                   <figure className="product-image-container ml-2">
                     <Link
-                      href={`/product/default/${item.slug}`}
+                      href={`/product/${item.slug.current}`}
                       className="product-image"
                     >
                       <img
-                        src={
-                          item.sm_pictures[0].url
-                        }
+                        src={urlFor(item.pictures?.[0])?.url()}
                         alt="product"
                       />
                     </Link>
@@ -65,7 +67,7 @@ function CartMenu(props) {
                   <button
                     className="btn-remove"
                     title="Remove Product"
-                    onClick={() => props.removeFromCart(item)}
+                    onClick={() => dispatch(removeFromCart(item.id))}
                   >
                     <i className="icon-close"></i>
                   </button>
@@ -85,13 +87,13 @@ function CartMenu(props) {
             </div>
 
             <div className="dropdown-cart-action">
-              <Link href="/shop/cart" className="btn btn-primary">
+              <Link href="/cart" className="btn btn-primary w-full">
                 View Cart
               </Link>
-              <Link href="/shop/checkout" className="btn btn-outline-primary-2">
+              {/* <Link href="/shop/checkout" className="btn btn-outline-primary-2">
                 <span>Checkout</span>
                 <i className="icon-long-arrow-right"></i>
-              </Link>
+              </Link> */}
             </div>
           </>
         )}

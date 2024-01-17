@@ -4,11 +4,13 @@
     .Toastify__toast--success {
         background-color: $primary-color;
         border-radius: .5rem;
+        color: white
     }
-
+    
     .Toastify__toast--error {
         background-color: $primary-color;
         border-radius: .5rem;
+        color: white
     }
 
     .Toastify__toast-body{

@@ -119,7 +119,7 @@ function Header(props) {
                     </a>
                   </li>
                   <li>
-                    <Link href="/wishlist">
+                    <Link href="/shop/wishlist">
                       <i className="icon-heart-o"></i>My Wishlist{" "}
                       <span className="text-secondary">
                         ({props?.wishlist?.length})

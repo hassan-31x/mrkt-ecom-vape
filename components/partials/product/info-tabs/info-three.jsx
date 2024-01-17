@@ -54,7 +54,7 @@ function InfoThree({ product }) {
           />
         </div>
       </Card>}
-      <Card title={`Reviews (${product?.reviews?.length})`} adClass="card-box card-sm">
+      <Card title={`Reviews (${product?.reviews?.length || 0})`} adClass="card-box card-sm">
         <div className="reviews">
           {product?.reviews?.map((review, index) => (
 

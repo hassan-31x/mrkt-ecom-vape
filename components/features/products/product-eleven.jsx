@@ -208,7 +208,7 @@ function ProductEleven({ product, wishlist }) {
             ></div>
             <span className="tooltip-text">{product?.ratings.toFixed(2)}</span>
           </div>
-          <span className="ratings-text">( {product?.reviews?.length} Reviews )</span>
+          {product?.reviews?.length && <span className="ratings-text">( {product?.reviews?.length} Reviews )</span>}
         </div>
 
         {/* {product?.nicotinePercentage?.length > 0 ? (

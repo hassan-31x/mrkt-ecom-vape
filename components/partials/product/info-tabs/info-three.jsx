@@ -106,7 +106,7 @@ function InfoThree({ product }) {
 
         </div>
 
-        {/* <div className="reply">
+        <div className="reply">
           <div className="title-wrapper text-left">
             <h3 className="title title-simple text-left text-normal">
               Add a Review
@@ -197,7 +197,7 @@ function InfoThree({ product }) {
               Submit
             </button>
           </form>
-        </div> */}
+        </div>
       </Card>
     </Accordion>
   );

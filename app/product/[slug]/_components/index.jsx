@@ -45,7 +45,7 @@ function ProductPageComponent(props) {
                   </div>
                   {!loading ? (
                     <>
-                      {/* <DetailOne product={product} /> */}
+                      <DetailOne product={product} />
                       <InfoThree product={product} />
                     </>
                   ) : (

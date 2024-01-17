@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 
-function ErrorPage() {
+function NotFound() {
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
@@ -9,9 +9,6 @@ function ErrorPage() {
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link href="#">Pages</Link>
             </li>
             <li className="breadcrumb-item active">404</li>
           </ol>
@@ -39,4 +36,4 @@ function ErrorPage() {
   );
 }
 
-export default ErrorPage;
+export default NotFound;

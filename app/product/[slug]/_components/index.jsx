@@ -8,31 +8,18 @@ import DetailOne from "@/components/partials/product/details/detail-one";
 import InfoThree from "@/components/partials/product/info-tabs/info-three";
 import RelatedProductsOne from "@/components/partials/product/related/related-one";
 
-import data from "@/data/products.json";
-
 function ProductPageComponent(props) {
-  const { slug } = props;
-  if (!slug) return <div></div>;
+  const { product } = props;
 
-  const loading = false;
-  const error = null;
+  const loading = false
 
-  const product = data?.products?.find((item) => item.slug === slug);
-  const related = [data?.products?.find((item) => item.slug === slug)];
-  const prev = data?.products?.find((item) => item.slug === slug);
-  const next = data?.products?.find((item) => item.slug === slug);
-  // const product = data && data.product?.single;
-  // const related = data && data.product?.related;
-  // const prev = data && data.product?.prev;
-  // const next = data && data.product?.next;
-
-  if (error) {
-    return <div></div>;
-  }
+  const related = product.relatedProducts;
+  const prev = product
+  const next = product
 
   return (
     <div className="main">
-      <Breadcrumb prev={prev} next={next} current="Sticky Info" />
+      <Breadcrumb prev={prev} next={next} current={product.slug.current} />
       <div className="page-content">
         <div className="container skeleton-body">
           <div className="product-details-top">
@@ -58,8 +45,8 @@ function ProductPageComponent(props) {
                   </div>
                   {!loading ? (
                     <>
-                      <DetailOne product={product} />
-                      <InfoThree product={product} />
+                      {/* <DetailOne product={product} /> */}
+                      {/* <InfoThree product={product} /> */}
                     </>
                   ) : (
                     ""
@@ -69,7 +56,7 @@ function ProductPageComponent(props) {
             </div>
           </div>
 
-          <RelatedProductsOne products={related} loading={loading} />
+          {/* <RelatedProductsOne products={related} loading={loading} /> */}
         </div>
       </div>
     </div>

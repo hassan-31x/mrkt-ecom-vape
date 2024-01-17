@@ -195,20 +195,18 @@ function ProductSix(props) {
           <Link href={`/product/default/${product?.slug}`}>{product?.name}</Link>
         </h3>
 
-        {!product?.stock || product?.stock == 0 ? (
+        {product?.stock < 1 ? (
           <div className="product-price">
-            <span className="out-price">${product?.price.toFixed(2)}</span>
+            <span className="out-price">${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
           </div>
-        ) : minPrice == maxPrice ? (
-          <div className="product-price">${minPrice.toFixed(2)}</div>
-        ) : product?.variants.length == 0 ? (
+        ) : product?.sale_price ? (
           <div className="product-price">
-            <span className="new-price">${minPrice.toFixed(2)}</span>
-            <span className="old-price">${maxPrice.toFixed(2)}</span>
+            <span className="old-price">${product.sale_price.toFixed(2)}</span>
+            <span className="new-price">${product.price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
-            ${minPrice.toFixed(2)}&ndash;${maxPrice.toFixed(2)}
+            <span className="out-price">${product.price?.toFixed(2)}</span>
           </div>
         )}
       </div>

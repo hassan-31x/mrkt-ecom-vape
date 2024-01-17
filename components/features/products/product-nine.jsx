@@ -153,22 +153,20 @@ function ProductSix(props) {
 
         <div className="col-md-3 col-6 order-md-last order-lg-last">
           <div className="product-list-action">
-            {!product?.stock || product?.stock == 0 ? (
-              <div className="product-price">
-                <span className="out-price">${product?.price.toFixed(2)}</span>
-              </div>
-            ) : minPrice == maxPrice ? (
-              <div className="product-price">${minPrice.toFixed(2)}</div>
-            ) : product?.variants.length == 0 ? (
-              <div className="product-price">
-                <span className="new-price">${minPrice.toFixed(2)}</span>
-                <span className="old-price">${maxPrice.toFixed(2)}</span>
-              </div>
-            ) : (
-              <div className="product-price">
-                ${minPrice.toFixed(2)}&ndash;${maxPrice.toFixed(2)}
-              </div>
-            )}
+          {product?.stock < 1 ? (
+          <div className="product-price">
+            <span className="out-price">${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
+          </div>
+        ) : product?.sale_price ? (
+          <div className="product-price">
+            <span className="old-price">${product.sale_price.toFixed(2)}</span>
+            <span className="new-price">${product.price.toFixed(2)}</span>
+          </div>
+        ) : (
+          <div className="product-price">
+            <span className="out-price">${product.price?.toFixed(2)}</span>
+          </div>
+        )}
 
             <div className="ratings-container">
               <div className="ratings">

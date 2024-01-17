@@ -1,6 +1,7 @@
 import { Magnifier } from "react-image-magnifiers";
 import React, { useState, useEffect } from "react";
 import LightBox from "react-image-lightbox";
+import urlFor from "@/sanity/lib/image";
 
 function GallerySticky(props) {
   const { product } = props;
@@ -40,8 +41,8 @@ function GallerySticky(props) {
   return (
     <>
       <div className="product-gallery product-gallery-separated">
-        {product?.new ? (
-          <span className="product-label label-new">New</span>
+        {product?.hot ? (
+          <span className="product-label label-new">Hot</span>
         ) : (
           ""
         )}
@@ -52,8 +53,8 @@ function GallerySticky(props) {
           ""
         )}
 
-        {product?.top ? (
-          <span className="product-label label-top">Top</span>
+        {product?.featured ? (
+          <span className="product-label label-top">Feat</span>
         ) : (
           ""
         )}
@@ -63,28 +64,24 @@ function GallerySticky(props) {
         ) : (
           ""
         )}
-        {product?.pictures.map((item, index) => (
+        {product?.pictures?.map((item, index) => (
           <figure
             className="product-main-image"
             key={index}
             style={{ backgroundColor: "#f4f4f4" }}
           >
             <Magnifier
-              imageSrc={item.url}
+              imageSrc={urlFor(item?.img)?.url()}
               imageAlt="product"
-              largeImageSrc={item.url} // Optional
+              largeImageSrc={urlFor(item?.img)?.url()} // Optional
               dragToMove={false}
               mouseActivation="hover"
               className="zoom-image position-relative overflow-hidden"
               cursorStyleActive="crosshair"
-              width={product?.pictures[index].width}
-              height={product?.pictures[index].height}
+              width={264}
+              height={270}
               style={{
-                paddingTop: `${
-                  (product?.pictures[index].height /
-                    product?.pictures[index].width) *
-                  100
-                }%`,
+                paddingTop: '100%',
               }}
             />
 
@@ -102,16 +99,16 @@ function GallerySticky(props) {
       {isOpen ? (
         <LightBox
           mainSrc={
-            product?.pictures[photoIndex].url
+            urlFor(product?.pictures?.[photoIndex]?.img).url()
           }
           nextSrc={
-            product?.pictures[(photoIndex + 1) % product?.pictures.length].url
+            urlFor(product?.pictures?.[(photoIndex + 1) % product?.pictures.length]?.img).url()
           }
           prevSrc={
-            product?.pictures[
+            urlFor(product?.pictures[
               (photoIndex + product?.pictures.length - 1) %
                 product?.pictures.length
-            ].url
+            ]?.img).url()
           }
           onCloseRequest={closeLightBox}
           onMovePrevRequest={moveNextPhoto}

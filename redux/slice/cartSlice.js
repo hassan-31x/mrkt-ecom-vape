@@ -36,11 +36,9 @@ export const cartSlice = createSlice({
       state.shippingCost = 0
     },
     updateCart: (state, action) => {
-      const idx = state.items.findIndex(
-        (item) => item.cartId === action.payload.cartId
-      );
-      state.items[idx].warrantyId = action.payload.warrantyId;
-      state.items[idx].warrantyPrice = action.payload.warrantyPrice;
+      const idx = state.items.findIndex((item) => item.id === action.payload.id);
+      state.items[idx].qty = action.payload.qty;
+      state.items[idx].sum = action.payload.qty * state.items[idx]?.sale_price || state.items[idx]?.price;
     },
     addShippingCost: (state, action) => {
       state.shippingCost = action.payload;

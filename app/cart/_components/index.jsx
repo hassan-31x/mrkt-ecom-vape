@@ -7,39 +7,31 @@ import PageHeader from "@/components/features/page-header";
 
 import { cartPriceTotal } from "@/utils/index";
 import Link from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { emptyCart } from "@/redux/slice/cartSlice";
+import urlFor from "@/sanity/lib/image";
 
 function CartPageComponent(props) {
-  const [cartList, setCartList] = useState([]);
   const [shippingCost, setShippingCost] = useState(0);
+
+  const dispatch = useDispatch()
+  const cart = useSelector((state) => state.cart);
+  const { items } = cart;
 
   function onChangeShipping(value) {
     setShippingCost(value);
   }
 
   function changeQty(value, index) {
-    setCartList(
-      cartList?.map((item, ind) => {
-        if (ind == index)
-          return {
-            ...item,
-            qty: value,
-            sum: (item.sale_price ? item.sale_price : item.price) * value,
-          };
-        return item;
-      })
-    );
+    console.log("🚀 ~ changeQty ~ value:", value)
+    
   }
 
   function updateCart(e) {
     let button = e.currentTarget;
     button.querySelector(".icon-refresh").classList.add("load-more-rotating");
 
-    setTimeout(() => {
-      props.updateCart(cartList);
-      button
-        .querySelector(".icon-refresh")
-        .classList.remove("load-more-rotating");
-    }, 400);
+    dispatch(emptyCart())
   }
 
   return (
@@ -59,7 +51,7 @@ function CartPageComponent(props) {
       <div className="page-content pb-5">
         <div className="cart">
           <div className="container">
-            {cartList?.length > 0 ? (
+            {items?.length > 0 ? (
               <div className="row">
                 <div className="col-lg-9">
                   <table className="table table-cart table-mobile">
@@ -74,25 +66,25 @@ function CartPageComponent(props) {
                     </thead>
 
                     <tbody>
-                      {cartList?.length > 0 ? (
-                        cartList?.map((item, index) => (
+                      {items?.length > 0 ? (
+                        items?.map((item, index) => (
                           <tr key={index}>
                             <td className="product-col">
                               <div className="product">
                                 <figure className="product-media">
                                   <Link
-                                    href={`/product/default/${item.slug}`}
+                                    href={`/product/${item.slug.current}`}
                                     className="product-image"
                                   >
                                     <img
-                                      src={item.sm_pictures?.[0]}
+                                      src={urlFor(item.pictures?.[0]).url()}
                                       alt="product"
                                     />
                                   </Link>
                                 </figure>
 
                                 <h4 className="product-title">
-                                  <Link href={`/product/default/${item.slug}`}>
+                                  <Link href={`/product/${item.slug.current}`}>
                                     {item.name}
                                   </Link>
                                 </h4>
@@ -194,7 +186,7 @@ function CartPageComponent(props) {
                           <td>Subtotal:</td>
                           <td>
                             $
-                            {cartPriceTotal(props.cartItems).toLocaleString(
+                            {cartPriceTotal(items).toLocaleString(
                               undefined,
                               {
                                 minimumFractionDigits: 2,

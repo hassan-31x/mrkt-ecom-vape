@@ -5,14 +5,13 @@ export const discount = {
     fields: [
       {
         name: "name",
-        title: "Code Name",
-        description: "optional",
+        title: "Discount Code Name",
         type: "string",
         validation: (Rule) => Rule.required(),
       },
       {
         name: "code",
-        title: "Code",
+        title: "Discount Code",
         description: "Any code of your choice",
         type: "string",
         validation: (Rule) => Rule.required(),

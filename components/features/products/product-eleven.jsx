@@ -5,13 +5,19 @@ import { isInWishlist, isInCompare } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 import urlFor from "@/sanity/lib/image";
+import { useDispatch } from "react-redux";
+import { addToCart } from "@/redux/slice/cartSlice";
+import { toast } from "react-toastify";
 
 function ProductEleven({ product, wishlist }) {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   function onCartClick(e) {
     e.preventDefault();
-    props.addToCart(product);
+
+    dispatch(addToCart(product));
+    toast.success("Product added to cart");
   }
 
   function onWishlistClick(e) {

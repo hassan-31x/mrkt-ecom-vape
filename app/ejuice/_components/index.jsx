@@ -5,17 +5,13 @@ import React, { useState, useEffect } from "react";
 import StickyBox from "react-sticky-box";
 
 import PageHeader from "@/components/features/page-header";
-import ShopListOne from "@/components/partials/list/shop-list-one";
+import ShopListOne from "@/components/partials/shop/list/shop-list-one";
 import Pagination from "@/components/features/pagination";
-import ShopSidebarOne from "@/components/partials/sidebar/shop-sidebar-one";
+import ShopSidebarOne from "@/components/partials/shop/sidebar/shop-sidebar-one";
 
-import { scrollToPageContent } from "@/utils";
-
-import data from "@/data/products.json";
 import Link from "next/link";
 
 function CategoryPageComponent({ products }) {
-  const [firstLoading, setFirstLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
 
   const router = useRouter();
@@ -40,29 +36,6 @@ function CategoryPageComponent({ products }) {
     else setToggle(false);
   }
 
-  // useEffect( () => {
-  //     getProducts( {
-  //         variables: {
-  //             searchTerm: query?.searchTerm,
-  //             color: query?.color ? query?.color.split( ',' ) : [],
-  //             size: query?.size ? query?.size.split( ',' ) : [],
-  //             brand: query?.brand ? query?.brand.split( ',' ) : [],
-  //             minPrice: parseInt( query?.minPrice ),
-  //             maxPrice: parseInt( query?.maxPrice ),
-  //             category: query?.category,
-  //             sortBy: query?.sortBy ? query?.sortBy : 'default',
-  //             page: query?.page ? parseInt( query?.page ) : 1,
-  //             perPage: perPage,
-  //             list: true
-  //         }
-  //     } );
-
-  //     scrollToPageContent();
-  // }, [ query, perPage ] )
-
-  useEffect(() => {
-    if (products) setFirstLoading(true);
-  }, [products]);
 
   function onSortByChange(e) {
     let queryObject = router.query;
@@ -157,71 +130,6 @@ function CategoryPageComponent({ products }) {
                       </select>
                     </div>
                   </div>
-                  <div className="toolbox-layout">
-                    <Link
-                      href="/sidebar/list"
-                      className={`btn-layout ${type == "list" ? "active" : ""}`}
-                      scroll={false}
-                    >
-                      <svg width="16" height="10">
-                        <rect x="0" y="0" width="4" height="4" />
-                        <rect x="6" y="0" width="10" height="4" />
-                        <rect x="0" y="6" width="4" height="4" />
-                        <rect x="6" y="6" width="10" height="4" />
-                      </svg>
-                    </Link>
-
-                    <Link
-                      href="/sidebar/2cols"
-                      className={`btn-layout ${
-                        type == "2cols" ? "active" : ""
-                      }`}
-                      scroll={false}
-                    >
-                      <svg width="10" height="10">
-                        <rect x="0" y="0" width="4" height="4" />
-                        <rect x="6" y="0" width="4" height="4" />
-                        <rect x="0" y="6" width="4" height="4" />
-                        <rect x="6" y="6" width="4" height="4" />
-                      </svg>
-                    </Link>
-
-                    <Link
-                      href="/sidebar/3cols"
-                      className={`btn-layout ${
-                        type == "3cols" ? "active" : ""
-                      }`}
-                      scroll={false}
-                    >
-                      <svg width="16" height="10">
-                        <rect x="0" y="0" width="4" height="4" />
-                        <rect x="6" y="0" width="4" height="4" />
-                        <rect x="12" y="0" width="4" height="4" />
-                        <rect x="0" y="6" width="4" height="4" />
-                        <rect x="6" y="6" width="4" height="4" />
-                        <rect x="12" y="6" width="4" height="4" />
-                      </svg>
-                    </Link>
-
-                    <Link
-                      href="/sidebar/4cols"
-                      className={`btn-layout ${
-                        type == "4cols" ? "active" : ""
-                      }`}
-                      scroll={false}
-                    >
-                      <svg width="22" height="10">
-                        <rect x="0" y="0" width="4" height="4" />
-                        <rect x="6" y="0" width="4" height="4" />
-                        <rect x="12" y="0" width="4" height="4" />
-                        <rect x="18" y="0" width="4" height="4" />
-                        <rect x="0" y="6" width="4" height="4" />
-                        <rect x="6" y="6" width="4" height="4" />
-                        <rect x="12" y="6" width="4" height="4" />
-                        <rect x="18" y="6" width="4" height="4" />
-                      </svg>
-                    </Link>
-                  </div>
                 </div>
               </div>
 
@@ -240,7 +148,7 @@ function CategoryPageComponent({ products }) {
 
             <aside
               className={`col-lg-3 skel-shop-sidebar order-lg-first skeleton-body ${
-                !loading || firstLoading ? "loaded" : ""
+                !loading ? "loaded" : ""
               }`}
             >
               <div className="skel-widget"></div>

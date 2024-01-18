@@ -6,8 +6,6 @@ import ProductEleven from "@/components/features/products/product-eleven";
 function ShopListOne(props) {
   const { loading, products = [], perPage } = props;
   const [fakeArray, setFakeArray] = useState([]);
-  const gridClass = "col-6";
-  const type = "2cols";
 
   useEffect(() => {
     let temp = [];
@@ -27,12 +25,12 @@ function ShopListOne(props) {
             <div className="row">
               {loading
                 ? fakeArray.map((item, index) => (
-                    <div className={gridClass} key={index}>
+                    <div className="col-6" key={index}>
                       <div className="skel-pro"></div>
                     </div>
                   ))
                 : products.map((product, index) => (
-                    <div className={gridClass} key={index}>
+                    <div className="col-6" key={index}>
                       <ProductEleven product={product} />
                     </div>
                   ))}

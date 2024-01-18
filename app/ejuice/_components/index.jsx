@@ -15,7 +15,6 @@ function CategoryPageComponent({ products }) {
   const [toggle, setToggle] = useState(false);
 
   const router = useRouter();
-  const type = "2cols";
   const query = router?.query;
 
   const loading = false;

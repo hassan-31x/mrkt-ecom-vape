@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+
+import urlFor from "@/sanity/lib/image";
 
 function Breadcrumb(props) {
-  const router = useRouter();
   const { prev, next, current, fullWidth = false } = props;
 
   return (
@@ -28,7 +28,7 @@ function Breadcrumb(props) {
         <nav className="product-pager ml-auto">
           {prev ? (
             <Link
-              href={{ pathname: router?.pathname, query: { slug: prev.slug } }}
+            href={`/product/${prev.slug.current}`}
               className={`product-pager-link product-pager-prev ${
                 !next ? "prev-only" : ""
               }`}
@@ -38,12 +38,10 @@ function Breadcrumb(props) {
               <div className="product-detail">
                 <figure>
                   <img
-                    src={
-                      prev.sm_pictures?.[0]?.url
-                    }
+                    src={urlFor(prev.pictures?.[0])?.url()}
                     alt="product"
-                    width={prev.sm_pictures?.[0]?.width}
-                    height={prev.sm_pictures?.[0]?.height}
+                    width={376}
+                    height={500}
                   />
                 </figure>
                 <h3 className="product-name mb-0">{prev.name}</h3>
@@ -55,7 +53,7 @@ function Breadcrumb(props) {
 
           {next ? (
             <Link
-              href={{ pathname: router.pathname, query: { slug: next.slug } }}
+              href={`/product/${next.slug.current}`}
               className="product-pager-link product-pager-next"
             >
               <span>Next</span>
@@ -63,9 +61,7 @@ function Breadcrumb(props) {
               <div className="product-detail">
                 <figure>
                   <img
-                    src={
-                      next.sm_pictures?.[0]?.url
-                    }
+                    src={urlFor(next.pictures?.[0])?.url()}
                     alt="product"
                     width={next.sm_pictures?.[0]?.width}
                     height={next.sm_pictures?.[0]?.height}

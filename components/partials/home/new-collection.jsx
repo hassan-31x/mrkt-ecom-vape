@@ -36,7 +36,7 @@ function NewCollection({ products }) {
         </div>
 
         <Link
-          href="/category"
+          href="/ejuice"
           className="btn btn-link btn-link-primary"
         >
           VIEW MORE<i className="icon-angle-right"></i>

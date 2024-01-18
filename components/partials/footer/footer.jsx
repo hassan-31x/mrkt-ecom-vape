@@ -230,7 +230,7 @@ function Footer() {
                     <Link href="/pages/login">Sign In</Link>
                   </li>
                   <li>
-                    <Link href="/shop/cart">View Cart</Link>
+                    <Link href="/cart">View Cart</Link>
                   </li>
                   <li>
                     <Link href="/wishlist">My Wishlist</Link>

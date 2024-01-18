@@ -276,7 +276,7 @@ function CartPageComponent(props) {
                           <td>
                             Estimate for Your Country
                             <br />{" "}
-                            <Link href="/shop/dashboard">Change address</Link>
+                            <Link href="/dashboard">Change address</Link>
                           </td>
                           <td>&nbsp;</td>
                         </tr>
@@ -298,14 +298,14 @@ function CartPageComponent(props) {
 
                     <Link
                       className="btn btn-outline-primary-2 btn-order btn-block"
-                      href="/shop/checkout"
+                      href="/checkout"
                     >
                       PROCEED TO CHECKOUT
                     </Link>
                   </div>
 
                   <Link
-                    href="/shop/sidebar/list"
+                    href="/sidebar/list"
                     className="btn btn-outline-dark-2 btn-block mb-3"
                   >
                     <span>CONTINUE SHOPPING</span>
@@ -326,7 +326,7 @@ function CartPageComponent(props) {
                     </p>
                     <p className="return-to-shop mb-0">
                       <Link
-                        href="/shop/sidebar/list"
+                        href="/sidebar/list"
                         className="btn btn-primary"
                       >
                         RETURN TO SHOP

@@ -22,7 +22,7 @@ function MobileMenu () {
     function onSubmitSearchForm ( e ) {
         e.preventDefault();
         router?.push( {
-            pathname: '/shop/sidebar/list',
+            pathname: '/sidebar/list',
             query: {
                 searchTerm: searchTerm,
                 category: ""
@@ -90,25 +90,25 @@ function MobileMenu () {
                         <SlideToggle collapsed={ true }>
                             { ( { onToggle, setCollapsibleElement, toggleState } ) => (
                                 <li className={ toggleState.toLowerCase() == 'expanded' ? 'open' : '' }>
-                                    <Link href="/shop/sidebar/list">
+                                    <Link href="/sidebar/list">
                                         Shop
                                                     <span className="mmenu-btn" onClick={ ( e ) => { onToggle( e ); e.preventDefault() } }></span>
                                     </Link>
 
                                     <ul ref={ setCollapsibleElement }>
-                                        <li><Link href="/shop/sidebar/list">Shop List</Link></li>
-                                        <li><Link href="/shop/sidebar/2cols">Shop Grid 2 Columns</Link></li>
-                                        <li><Link href="/shop/sidebar/3cols">Shop Grid 3 Columns</Link></li>
-                                        <li><Link href="/shop/sidebar/4cols">Shop Grid 4 Columns</Link></li>
-                                        <li><Link href="/shop/market"><span>Shop Market<span className="tip tip-new">New</span></span></Link></li>
-                                        <li><Link href="/shop/nosidebar/boxed"><span>Shop Boxed No Sidebar<span className="tip tip-hot">Hot</span></span></Link></li>
-                                        <li><Link href="/shop/nosidebar/fullwidth">Shop Fullwidth No Sidebar</Link></li>
-                                        <li><Link href="/shop/category/boxed">Product Category Boxed</Link></li>
-                                        <li><Link href="/shop/category/fullwidth"><span>Product Category Fullwidth<span className="tip tip-new">New</span></span></Link></li>
-                                        <li><Link href="/shop/cart">Cart</Link></li>
-                                        <li><Link href="/shop/checkout">Checkout</Link></li>
-                                        <li><Link href="/shop/wishlist">Wishlist</Link></li>
-                                        <li><Link href="/shop/dashboard">My Account</Link></li>
+                                        <li><Link href="/sidebar/list">Shop List</Link></li>
+                                        <li><Link href="/sidebar/2cols">Shop Grid 2 Columns</Link></li>
+                                        <li><Link href="/sidebar/3cols">Shop Grid 3 Columns</Link></li>
+                                        <li><Link href="/sidebar/4cols">Shop Grid 4 Columns</Link></li>
+                                        <li><Link href="/market"><span>Shop Market<span className="tip tip-new">New</span></span></Link></li>
+                                        <li><Link href="/nosidebar/boxed"><span>Shop Boxed No Sidebar<span className="tip tip-hot">Hot</span></span></Link></li>
+                                        <li><Link href="/nosidebar/fullwidth">Shop Fullwidth No Sidebar</Link></li>
+                                        <li><Link href="/category/boxed">Product Category Boxed</Link></li>
+                                        <li><Link href="/category/fullwidth"><span>Product Category Fullwidth<span className="tip tip-new">New</span></span></Link></li>
+                                        <li><Link href="/cart">Cart</Link></li>
+                                        <li><Link href="/checkout">Checkout</Link></li>
+                                        <li><Link href="/wishlist">Wishlist</Link></li>
+                                        <li><Link href="/dashboard">My Account</Link></li>
                                         <li><Link href="#">Lookbook</Link></li>
                                     </ul>
                                 </li>

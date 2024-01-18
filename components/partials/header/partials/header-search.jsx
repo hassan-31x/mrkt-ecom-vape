@@ -101,7 +101,7 @@
 //     function onSubmitSearchForm ( e ) {
 //         e.preventDefault();
 //         router?.push( {
-//             pathname: '/shop/sidebar/list',
+//             pathname: '/sidebar/list',
 //             query: {
 //                 searchTerm: searchTerm
 //             }

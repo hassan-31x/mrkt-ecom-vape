@@ -110,7 +110,7 @@ function ProductSix(props) {
                 <React.Fragment key={item.slug + "-" + index}>
                   <Link
                     href={{
-                      pathname: "/shop/sidebar/list",
+                      pathname: "/sidebar/list",
                       query: { category: item.slug },
                     }}
                   >

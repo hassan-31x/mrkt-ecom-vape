@@ -70,7 +70,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
 
                 <Reveal keyframes={fadeInUpShorter} delay={500} duration={1000}>
                   <Link
-                    href="/shop/sidebar/list"
+                    href="/sidebar/list"
                     className="btn btn-outline-secondary"
                   >
                     SHOP NOW<i className="icon-angle-right"></i>
@@ -111,7 +111,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
 
                 <Reveal keyframes={fadeInUpShorter} delay={500} duration={1000}>
                   <Link
-                    href="/shop/sidebar/list"
+                    href="/sidebar/list"
                     className="btn btn-outline-secondary"
                   >
                     SHOP NOW<i className="icon-angle-right"></i>
@@ -154,7 +154,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
 
                 <Reveal keyframes={fadeInUpShorter} delay={900} duration={1000}>
                   <Link
-                    href="/shop/sidebar/list"
+                    href="/sidebar/list"
                     className="btn btn-outline-secondary"
                   >
                     SHOP NOW<i className="icon-angle-right"></i>
@@ -293,7 +293,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                   <div className="banner-content content-bottom">
                     <Link
                       href={{
-                        pathname: "/shop/sidebar/list",
+                        pathname: "/sidebar/list",
                         query: { category: "beauty" },
                       }}
                       className="btn btn-link btn-link-primary"
@@ -328,7 +328,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
 
                   <Link
                     href={{
-                      pathname: "/shop/sidebar/list",
+                      pathname: "/sidebar/list",
                       query: { category: "face" },
                     }}
                     className="btn btn-link d-inline-block btn-link-primary"
@@ -378,7 +378,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                     </p>
                     <Link
                       href={{
-                        pathname: "/shop/sidebar/list",
+                        pathname: "/sidebar/list",
                         query: { category: "gift" },
                       }}
                       className="btn btn-outline-primary-2"
@@ -504,7 +504,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                     </p>
                     <Link
                       href={{
-                        pathname: "/shop/sidebar/list",
+                        pathname: "/sidebar/list",
                         query: { category: "face" },
                       }}
                       className="btn btn-link btn-link-primary"
@@ -544,7 +544,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                     </p>
                     <Link
                       href={{
-                        pathname: "/shop/sidebar/list",
+                        pathname: "/sidebar/list",
                         query: { category: "bath-and-body" },
                       }}
                       className="btn btn-link btn-link-primary"
@@ -584,7 +584,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
                     </p>
                     <Link
                       href={{
-                        pathname: "/shop/sidebar/list",
+                        pathname: "/sidebar/list",
                         query: { category: "hair-styling" },
                       }}
                       className="btn btn-link btn-link-primary"

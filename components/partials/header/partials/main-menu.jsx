@@ -466,7 +466,7 @@ function MainMenu() {
           </div>
         </li>
         <li className={path?.indexOf("/shop") > -1 ? "active" : ""}>
-          <Link href="/shop/sidebar/list" className="sf-with-ul" scroll={false}>
+          <Link href="/sidebar/list" className="sf-with-ul" scroll={false}>
             Shop
           </Link>
 
@@ -486,7 +486,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/sidebar/list" scroll={false}>
+                          <Link href="/sidebar/list" scroll={false}>
                             Shop List
                           </Link>
                         </li>
@@ -498,7 +498,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/sidebar/2cols" scroll={false}>
+                          <Link href="/sidebar/2cols" scroll={false}>
                             Shop Grid 2 Columns
                           </Link>
                         </li>
@@ -510,7 +510,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/sidebar/3cols" scroll={false}>
+                          <Link href="/sidebar/3cols" scroll={false}>
                             Shop Grid 3 Columns
                           </Link>
                         </li>
@@ -522,7 +522,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/sidebar/4cols" scroll={false}>
+                          <Link href="/sidebar/4cols" scroll={false}>
                             Shop Grid 4 Columns
                           </Link>
                         </li>
@@ -531,7 +531,7 @@ function MainMenu() {
                             path?.indexOf("shop/market") > -1 ? "active" : ""
                           }
                         >
-                          <Link href="/shop/market">
+                          <Link href="/market">
                             <span>
                               Shop Market
                               <span className="tip tip-new">New</span>
@@ -550,7 +550,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/nosidebar/boxed" scroll={false}>
+                          <Link href="/nosidebar/boxed" scroll={false}>
                             <span>
                               Shop Boxed No Sidebar
                               <span className="tip tip-hot">Hot</span>
@@ -565,7 +565,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/nosidebar/fullwidth" scroll={false}>
+                          <Link href="/nosidebar/fullwidth" scroll={false}>
                             Shop Fullwidth No Sidebar
                           </Link>
                         </li>
@@ -582,7 +582,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/category/boxed" scroll={false}>
+                          <Link href="/category/boxed" scroll={false}>
                             Product Category Boxed
                           </Link>
                         </li>
@@ -593,7 +593,7 @@ function MainMenu() {
                               : ""
                           }
                         >
-                          <Link href="/shop/category/fullwidth" scroll={false}>
+                          <Link href="/category/fullwidth" scroll={false}>
                             <span>
                               Product Category Fullwidth
                               <span className="tip tip-new">New</span>
@@ -608,14 +608,14 @@ function MainMenu() {
                             path?.indexOf("shop/cart") > -1 ? "active" : ""
                           }
                         >
-                          <Link href="/shop/cart">Cart</Link>
+                          <Link href="/cart">Cart</Link>
                         </li>
                         <li
                           className={
                             path?.indexOf("shop/checkout") > -1 ? "active" : ""
                           }
                         >
-                          <Link href="/shop/checkout">Checkout</Link>
+                          <Link href="/checkout">Checkout</Link>
                         </li>
                         <li
                           className={
@@ -629,7 +629,7 @@ function MainMenu() {
                             path?.indexOf("shop/dashboard") > -1 ? "active" : ""
                           }
                         >
-                          <Link href="/shop/dashboard">My Account</Link>
+                          <Link href="/dashboard">My Account</Link>
                         </li>
                         <li
                           className={
@@ -647,7 +647,7 @@ function MainMenu() {
               <div className="col-md-4">
                 <div className="banner banner-overlay">
                   <Link
-                    href="/shop/sidebar/list"
+                    href="/sidebar/list"
                     className="banner banner-menu"
                   >
                     <img src="/images/menu/banner-1.jpg" alt="Banner" />

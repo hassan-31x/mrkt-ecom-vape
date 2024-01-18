@@ -5,9 +5,9 @@ import React, { useState, useEffect } from "react";
 import StickyBox from "react-sticky-box";
 
 import PageHeader from "@/components/features/page-header";
-import ShopListOne from "@/components/partials/shop/list/shop-list-one";
+import ShopListOne from "@/components/partials/list/shop-list-one";
 import Pagination from "@/components/features/pagination";
-import ShopSidebarOne from "@/components/partials/shop/sidebar/shop-sidebar-one";
+import ShopSidebarOne from "@/components/partials/sidebar/shop-sidebar-one";
 
 import { scrollToPageContent } from "@/utils";
 
@@ -159,7 +159,7 @@ function CategoryPageComponent({ products }) {
                   </div>
                   <div className="toolbox-layout">
                     <Link
-                      href="/shop/sidebar/list"
+                      href="/sidebar/list"
                       className={`btn-layout ${type == "list" ? "active" : ""}`}
                       scroll={false}
                     >
@@ -172,7 +172,7 @@ function CategoryPageComponent({ products }) {
                     </Link>
 
                     <Link
-                      href="/shop/sidebar/2cols"
+                      href="/sidebar/2cols"
                       className={`btn-layout ${
                         type == "2cols" ? "active" : ""
                       }`}
@@ -187,7 +187,7 @@ function CategoryPageComponent({ products }) {
                     </Link>
 
                     <Link
-                      href="/shop/sidebar/3cols"
+                      href="/sidebar/3cols"
                       className={`btn-layout ${
                         type == "3cols" ? "active" : ""
                       }`}
@@ -204,7 +204,7 @@ function CategoryPageComponent({ products }) {
                     </Link>
 
                     <Link
-                      href="/shop/sidebar/4cols"
+                      href="/sidebar/4cols"
                       className={`btn-layout ${
                         type == "4cols" ? "active" : ""
                       }`}

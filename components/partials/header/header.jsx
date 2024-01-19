@@ -122,15 +122,15 @@ function Header(props) {
                     <Link href="/wishlist">
                       <i className="icon-heart-o"></i>My Wishlist{" "}
                       <span className="text-secondary">
-                        ({props?.wishlist?.length})
+                        ({props?.wishlist?.length || 0})
                       </span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/pages/about">About Us</Link>
+                    <Link href="/about">About Us</Link>
                   </li>
                   <li>
-                    <Link href="/pages/contact">Contact Us</Link>
+                    <Link href="/contact">Contact Us</Link>
                   </li>
                   <LoginModal />
                 </ul>

@@ -1,11 +1,11 @@
 export const faq = {
-  name: "faq",
+  name: "faq", 
   title: "Misc - FAQ",
   type: "document",
   fields: [
     {
-      name: "categoryName",
-      title: "Category Name",
+      name: "sectionName",
+      title: "Section Name",
       type: "string",
       validation: (Rule) => Rule.required(),
     },
@@ -26,8 +26,7 @@ export const faq = {
             {
               name: "answer",
               title: "Answer",
-              type: "array",
-              of: [{ type: "block" }],
+              type: "blockContent",
               validation: (Rule) => Rule.required(),
             },
             {

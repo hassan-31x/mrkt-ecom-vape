@@ -1,7 +1,8 @@
+import { client } from "@/sanity/lib/client"
+
 import PageHeader from "@/components/features/page-header";
 import Link from "next/link";
 import FaqAccordion from "./_components/faq-accordion.jsx";
-import { client } from "@/sanity/lib/client"
 
 const fetchData = async (slug) => {
   try {

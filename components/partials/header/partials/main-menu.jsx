@@ -46,7 +46,7 @@ function MainMenu() {
         </li>
         <li className={path?.indexOf("/about") > -1 ? "active" : ""}>
           <Link href="/about" className="sf">
-            About
+            FAQ
           </Link>
         </li>
       </ul>

@@ -34,10 +34,10 @@ function Footer() {
           <div className="row align-items-center">
             <div className="col-lg-6 col-xl-5 offset-xl-1">
               <h3 className="cta-title text-white font-weight-normal mb-1 mb-lg-0">
-                Join Our Newsletter
+                Get Amazing Discount!
               </h3>
               <p className="cta-desc font-weight-normal text-white">
-                Subcribe to get information about products and coupons
+                Refer a friend to get amazing discount on your next order.
               </p>
             </div>
 
@@ -56,7 +56,7 @@ function Footer() {
                       className="btn btn-white font-weight-lighter"
                       type="submit"
                     >
-                      SUBSCRIBE
+                      Refer
                     </button>
                   </div>
                 </div>
@@ -118,31 +118,15 @@ function Footer() {
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
                 <h4 className="widget-title text-white font-weight-lighter">
-                  Information
+                  Customer Service
                 </h4>
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/pages/about">About Molla</Link>
+                    <Link href="/">Home</Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      How to shop on Molla
-                    </a>
-                  </li>
-                  <li>
-                    <Link href="/pages/faq">FAQ</Link>
-                  </li>
-                  <li>
-                    <Link href="/pages/contact">Contact us</Link>
-                  </li>
-                  <li>
-                    <Link href="/pages/login">Log in</Link>
+                    <Link href="/ejucie">Ejuices</Link>
                   </li>
                 </ul>
               </div>
@@ -151,69 +135,26 @@ function Footer() {
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
                 <h4 className="widget-title text-white font-weight-lighter">
-                  Customer Service
+                  Information
                 </h4>
 
                 <ul className="widget-list">
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Payment Methods
-                    </a>
+                    <Link href="/about">About Molla</Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Money-back guarantee!
-                    </a>
+                    <Link href="/faq">FAQ</Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Returns
-                    </a>
+                    <Link href="/contact">Contact us</Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Shipping
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
+                    <Link href="/terms-and=condition">
                       Terms and conditions
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Privacy Policy
-                    </a>
+                    <Link href="/privacy-policy">Privacy Policy</Link>
                   </li>
                 </ul>
               </div>
@@ -227,33 +168,13 @@ function Footer() {
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/pages/login">Sign In</Link>
+                    <Link href="/login">Login</Link>
                   </li>
                   <li>
                     <Link href="/cart">View Cart</Link>
                   </li>
                   <li>
                     <Link href="/wishlist">My Wishlist</Link>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Track My Order
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Help
-                    </a>
                   </li>
                 </ul>
               </div>

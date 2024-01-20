@@ -208,30 +208,6 @@ function SingleBlogPageComponent(props) {
                         </Link>
                       </figure>
 
-                      <div className="author-body">
-                        <div className="author-header row no-gutters flex-column flex-md-row">
-                          <div className="col">
-                            <h4>
-                              <Link href="#">John Doe</Link>
-                            </h4>
-                          </div>
-
-                          <div className="col-auto mt-1 mt-md-0">
-                            <Link href="#" className="author-link">
-                              View all posts by John Doe
-                              <i className="icon-long-arrow-right"></i>
-                            </Link>
-                          </div>
-                        </div>
-
-                        <div className="author-content">
-                          <p>
-                            Praesent dapibus, neque id cursus faucibus, tortor
-                            neque egestas auguae, eu vulputate magna eros eu
-                            erat. Aliquam erat volutpat.
-                          </p>
-                        </div>
-                      </div>
                     </div>
                   </article>
 

@@ -34,9 +34,9 @@ function MainMenu() {
           </Link>
 
         </li>
-        <li className={path?.includes("/benefits") ? "active" : ""}>
+        <li className={path?.includes("/blog") ? "active" : ""}>
           <Link
-            href="/benefits"
+            href="/blog"
             className="sf"
           >
             Benefits

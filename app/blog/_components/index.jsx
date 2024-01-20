@@ -9,11 +9,11 @@ import PostOne from "@/components/features/posts/post-one";
 import data from "@/data/blog-page.json";
 import Link from "next/link";
 
-function BlogPageComponent() {
+function BlogPageComponent({ posts }) {
   const loading = false;
   const error = null;
   const ref = useRef();
-  const posts = data && data.blog;
+  // const posts = data && data.blog;
   let iso;
 
   useEffect(() => {
@@ -61,10 +61,7 @@ function BlogPageComponent() {
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item">
-              <Link href="/blog/classic">Blog</Link>
-            </li>
-            <li className="breadcrumb-item active">Masonry 2 Columns</li>
+            <li className="breadcrumb-item active">Benefits</li>
           </ol>
         </div>
       </nav>
@@ -81,7 +78,7 @@ function BlogPageComponent() {
             </div>
           ) : (
             <>
-              <nav className="blog-nav">
+              {/* <nav className="blog-nav">
                 <ul className="menu-cat entry-filter justify-content-center">
                   <li className="active">
                     <a href="#" onClick={(e) => isoFilter(e, "")}>
@@ -120,8 +117,8 @@ function BlogPageComponent() {
                     </a>
                   </li>
                 </ul>
-              </nav>
-              {posts.length == 0 ? (
+              </nav> */}
+              {posts?.length == 0 ? (
                 <div className="row">
                   <p className="blogs-info">
                     No posts were found matching your selection.
@@ -129,9 +126,17 @@ function BlogPageComponent() {
                 </div>
               ) : (
                 <div className="row" ref={ref}>
-                  {posts.map((post, index) => (
+                  {/* {posts?.map((post, index) => (
                     <div
                       className={`col-sm-6 grid-item${getPostCategory(post)}`}
+                      key={index}
+                    >
+                      <PostOne post={post} adClass="text-center" />
+                    </div>
+                  ))} */}
+                  {posts?.map((post, index) => (
+                    <div
+                      className={`col-sm-6 grid-item`}
                       key={index}
                     >
                       <PostOne post={post} adClass="text-center" />

@@ -6,7 +6,7 @@ import Link from "next/link";
 
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
-import { calculateDaysAgo } from "@/utils/daysAgo.js";
+import { calculateDaysAgo } from "@/utils/daysAgo";
 
 function InfoThree({ product }) {
   console.log("🚀 ~ InfoThree ~ product:", product)

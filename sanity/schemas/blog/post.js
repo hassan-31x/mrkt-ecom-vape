@@ -47,15 +47,39 @@ export const post = {
       of: [{ type: "reference", to: { type: "category" } }],
     },
     {
-      name: "publishedAt",
-      title: "Published at",
-      type: "datetime",
+      name: "tags",
+      title: "Tags",
+      type: "array",
+      of: [{ type: "string" }],
+    },
+    {
+      name: "summary",
+      title: "Short Summary",
+      type: "string",
     },
     {
       name: "body",
       title: "Body",
       type: "blockContent",
       validation: (Rule) => Rule.required(),
+    },
+    {
+      name: "popular",
+      title: "Popular",
+      type: "boolean",
+    },
+    {
+      name: "publishedAt",
+      title: "Published at",
+      type: "datetime",
+      validation: (Rule) => Rule.required(),
+    },
+    
+    {
+      name: "relatedBlogs",
+      title: "Related Blogs",
+      type: "array",
+      of: [{ type: "reference", to: { type: "post" } }],
     },
   ],
 

@@ -129,7 +129,7 @@ function Footer() {
                     <Link href="/ejucie">Ejuices</Link>
                   </li>
                   <li>
-                    <Link href="/benefits">Benefits</Link>
+                    <Link href="/blog">Benefits</Link>
                   </li>
                 </ul>
               </div>

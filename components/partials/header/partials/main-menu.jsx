@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 function MainMenu() {
   const router = useRouter();
-  let path = router?.asPath;
-  let query = router?.query;
+  let path = usePathname()
+  console.log("🚀 ~ MainMenu ~ path:", path)
 
   function showAllDemos(e) {
     let demoItems = document.querySelectorAll(".demo-item.hidden");
@@ -30,13 +30,21 @@ function MainMenu() {
             Home
           </Link>
         </li>
-        <li className={path?.indexOf("/ejuice") > -1 ? "active" : ""}>
+        <li className={path?.includes("/ejuice") ? "active" : ""}>
           <Link href="/ejuice" className="sf" scroll={false}>
             Ejuices
           </Link>
 
         </li>
-        <li className={path?.indexOf("/about") > -1 ? "active" : ""}>
+        <li className={path?.includes("/benefits") ? "active" : ""}>
+          <Link
+            href="/benefits"
+            className="sf"
+          >
+            Benefits
+          </Link>
+        </li>
+        <li className={path?.includes("/about") ? "active" : ""}>
           <Link
             href="/about"
             className="sf"
@@ -44,8 +52,8 @@ function MainMenu() {
             About
           </Link>
         </li>
-        <li className={path?.indexOf("/about") > -1 ? "active" : ""}>
-          <Link href="/about" className="sf">
+        <li className={path?.includes("/faq") ? "active" : ""}>
+          <Link href="/faq" className="sf">
             FAQ
           </Link>
         </li>

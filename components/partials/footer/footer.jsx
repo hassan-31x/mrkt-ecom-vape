@@ -128,6 +128,9 @@ function Footer() {
                   <li>
                     <Link href="/ejucie">Ejuices</Link>
                   </li>
+                  <li>
+                    <Link href="/benefits">Benefits</Link>
+                  </li>
                 </ul>
               </div>
             </div>

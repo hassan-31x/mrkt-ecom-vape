@@ -5,6 +5,8 @@ import OwlCarousel from "@/components/features/owl-carousel";
 import { mainSlider8 } from "@/utils/data";
 
 function RelatedProductsOne({ products, loading }) {
+  if (!products?.length) return null;
+
   return (
     <>
       <h2 className="title text-center mb-4">You May Also Like</h2>

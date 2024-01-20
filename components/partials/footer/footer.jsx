@@ -143,7 +143,7 @@ function Footer() {
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/about">About Molla</Link>
+                    <Link href="/about">About Us</Link>
                   </li>
                   <li>
                     <Link href="/faq">FAQ</Link>

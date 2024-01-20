@@ -21,14 +21,18 @@ export const RichTextComponents = {
     },
   },
   list: {
-    bullet: ({ children }) => <ul className="">{children}</ul>,
-    number: ({ children }) => <ol className="">{children}</ol>,
+    bullet: ({ children }) => (
+      <ul className="ml-10 py-5 list-disc space-y-5">{children}</ul>
+    ),
+    number: ({ children }) => (
+      <ol className="mt-lg list-decimal">{children}</ol>
+    ),
   },
   block: {
-    h1: ({ children }) => <h1 className="">{children}</h1>,
-    h2: ({ children }) => <h2 className="">{children}</h2>,
-    h3: ({ children }) => <h3 className="">{children}</h3>,
-    h4: ({ children }) => <h4 className="">{children}</h4>,
+    h1: ({ children }) => <h1 className="text-6xl pt-8 font-extrabold">{children}</h1>,
+    h2: ({ children }) => <h2 className="text-5xl pt-6 font-bold">{children}</h2>,
+    h3: ({ children }) => <h3 className="text-4xl pt-4 font-semibold">{children}</h3>,
+    h4: ({ children }) => <h4 className="text-3xl pt-2 font-medium">{children}</h4>,
 
     blockquote: ({ children }) => (
       <blockquote className="border-l-[#f05970] border-l-2 pl-3">

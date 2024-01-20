@@ -1,8 +1,8 @@
+import Link from "next/link";
 import { client } from "@/sanity/lib/client"
 
 import PageHeader from "@/components/features/page-header";
-import Link from "next/link";
-import FaqAccordion from "./_components/faq-accordion.jsx";
+import FaqAccordion from "./_components/faq-accordion";
 
 const fetchData = async (slug) => {
   try {
@@ -23,7 +23,7 @@ async function FaqPage() {
 
   return (
     <div className="main">
-      <PageHeader title="F.A.Q" subTitle="Pages" />
+      <PageHeader title="F.A.Q" subTitle="Frequently Asked Questions" />
 
       <nav className="breadcrumb-nav">
         <div className="container">
@@ -38,7 +38,6 @@ async function FaqPage() {
 
       <div className="page-content">
         {data?.map((item, index) => (
-
           <FaqAccordion data={item} key={index} />
         ))}
       </div>
@@ -63,10 +62,7 @@ async function FaqPage() {
                 </div>
 
                 <div className="col-auto">
-                  <Link
-                    href="/contact"
-                    className="btn btn-outline-white"
-                  >
+                  <Link href="/contact" className="btn btn-outline-white">
                     <span>CONTACT US</span>
                     <i className="icon-long-arrow-right"></i>
                   </Link>

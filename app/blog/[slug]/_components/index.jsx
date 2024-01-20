@@ -66,7 +66,7 @@ function SingleBlogPageComponent(props) {
 
   return (
     <div className="main">
-      <PageHeader title="Default With Sidebar" subTitle="Single Post" />
+      <PageHeader title="Benefits" subTitle={post.title} />
       <nav className="breadcrumb-nav">
         <div className="container">
           <ol className="breadcrumb">
@@ -235,7 +235,7 @@ function SingleBlogPageComponent(props) {
                 </>
               )}
 
-              <RelatedPosts related={related} loading={loading} />
+              {related?.length ? <RelatedPosts related={related} loading={loading} /> : null}
             </div>
             <div className="col-lg-3">
               <StickyBox className="sticky-content" offsetTop={70}>

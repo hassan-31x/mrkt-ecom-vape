@@ -6,8 +6,8 @@ import DetailOne from "@/components/partials/product/details/detail-one";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import data from "@/data/products.json";
 import OwlCarousel from "../owl-carousel";
+import urlFor from "@/sanity/lib/image";
 
 const customStyles = {
   overlay: {
@@ -18,16 +18,16 @@ const customStyles = {
 
 Modal.setAppElement("body");
 
-function QuickViewModal(props) {
-  const { slug } = props;
-  if (!slug) {
+function QuickViewModal({ product }) {
+  const [carouselRef, setCarouselRef] = useState(null);
+  const router = useRouter();
+
+  if (!product) {
     return <div></div>;
   }
+
   const loading = false;
   const error = null;
-  const product = data && data.product?.single;
-  const router = useRouter();
-  const [carouselRef, setCarouselRef] = useState(null);
 
   const events = {
     onTranslate: function (e) {
@@ -74,9 +74,6 @@ function QuickViewModal(props) {
     carouselRef.current.goTo(index);
   }
 
-  if (!slug || error) {
-    return <div></div>;
-  }
   return (
     <>
       <Modal
@@ -103,8 +100,8 @@ function QuickViewModal(props) {
                 {!loading ? (
                   <>
                     <div className="product-lg mb-1 position-relative">
-                      {product?.new ? (
-                        <span className="product-label label-new">New</span>
+                      {product?.hot ? (
+                        <span className="product-label label-new">Hot</span>
                       ) : (
                         ""
                       )}
@@ -115,8 +112,8 @@ function QuickViewModal(props) {
                         ""
                       )}
 
-                      {product?.top ? (
-                        <span className="product-label label-top">Top</span>
+                      {product?.featured ? (
+                        <span className="product-label label-top">Feat</span>
                       ) : (
                         ""
                       )}
@@ -128,21 +125,26 @@ function QuickViewModal(props) {
                       ) : (
                         ""
                       )}
-                      {/* <OwlCarousel adClass="product-gallery-carousel owl-full owl-nav-dark cols-1 cols-md-2 cols-lg-3" onChangeRef={ setCarouselRef } events={ events } options={ { 'dots': false, 'nav': false } }>
-                                                    { product?.pictures.map( ( item, index ) =>
-                                                        <Magnifier
-                                                            imageSrc={ item.url }
-                                                            imageAlt="product"
-                                                            largeImageSrc={ item.url } // Optional
-                                                            dragToMove={ false }
-                                                            mouseActivation="hover"
-                                                            cursorStyleActive="crosshair"
-                                                            className="product-gallery-image"
-                                                            style={ { paddingTop: `${product?.pictures[ 0 ].height / product?.pictures[ 0 ].width * 100}%` } }
-                                                            key={ "gallery-" + index }
-                                                        />
-                                                    ) }
-                                                </OwlCarousel> */}
+                      <OwlCarousel
+                        adClass="product-gallery-carousel owl-full owl-nav-dark cols-1 cols-md-2 cols-lg-3"
+                        onChangeRef={setCarouselRef}
+                        events={events}
+                        options={{ dots: false, nav: false }}
+                      >
+                        {product?.pictures?.map((item, index) => (
+                          <Magnifier
+                            imageSrc={urlFor(item).url()}
+                            imageAlt="product"
+                            largeImageSrc={urlFor(item).url()} // Optional
+                            dragToMove={false}
+                            mouseActivation="hover"
+                            cursorStyleActive="crosshair"
+                            className="product-gallery-image"
+                            style={{ paddingTop: "100%" }}
+                            key={"gallery-" + index}
+                          />
+                        ))}
+                      </OwlCarousel>
                     </div>
 
                     <div className="product-sm row px-2" id="owl-dots">
@@ -159,9 +161,7 @@ function QuickViewModal(props) {
                               <div className="lazy-overlay"></div>
                               <Image
                                 alt="Thumbnail"
-                                src={
-                                  product?.sm_pictures[index].url
-                                }
+                                src={urlFor(product?.pictures?.[index])?.url()}
                                 fill
                                 className="d-block"
                               />

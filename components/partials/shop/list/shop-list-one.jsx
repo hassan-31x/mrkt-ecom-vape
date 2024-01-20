@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
-import ProductNine from "@/components/features/products/product-nine";
 import ProductEleven from "@/components/features/products/product-eleven";
 
 function ShopListOne(props) {
@@ -15,26 +14,25 @@ function ShopListOne(props) {
     setFakeArray(temp);
   }, [perPage]);
 
-
   return (
     <div className="products mb-3">
       {products?.length == 0 && !loading ? (
         <p className="no-results">No products matching your selection.</p>
       ) : (
         <>
-            <div className="row">
-              {loading
-                ? fakeArray.map((item, index) => (
-                    <div className="col-6" key={index}>
-                      <div className="skel-pro"></div>
-                    </div>
-                  ))
-                : products.map((product, index) => (
-                    <div className="col-6" key={index}>
-                      <ProductEleven product={product} />
-                    </div>
-                  ))}
-            </div>
+          <div className="row">
+            {loading
+              ? fakeArray.map((item, index) => (
+                  <div className="col-6" key={index}>
+                    <div className="skel-pro"></div>
+                  </div>
+                ))
+              : products.map((product, index) => (
+                  <div className="col-6" key={index}>
+                    <ProductEleven product={product} />
+                  </div>
+                ))}
+          </div>
         </>
       )}
     </div>

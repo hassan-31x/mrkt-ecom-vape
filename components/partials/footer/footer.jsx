@@ -47,7 +47,7 @@ function Footer() {
                   <input
                     type="email"
                     className="form-control mr-0 border-0 font-weight-normal"
-                    placeholder="Enter your Email Address"
+                    placeholder="Enter your friend's Email Address"
                     aria-label="Email Adress"
                     required
                   />

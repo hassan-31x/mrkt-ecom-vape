@@ -9,7 +9,10 @@ const fetchData = async (slug) => {
       `*[_type == 'post' && slug.current == $slug] {
         ...,
         categories[]->,
-        relatedBlogs[]->
+        relatedBlogs[] {
+          ...,
+          categories[]->
+        }->
       }`,
       { slug }
     );

@@ -5,6 +5,7 @@ import urlFor from "@/sanity/lib/image";
 
 function PostOne(props) {
   const { post, adClass = "", isContent = true, isAuthor = true } = props;
+  
   const openVideoModal = (e) => {
     e.preventDefault();
     props.showVideo();
@@ -57,7 +58,7 @@ function PostOne(props) {
           <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
         </h2>
 
-        <div className="entry-cats">
+        {/* {post?.categories?.length ? <div className="entry-cats">
           in&nbsp;
           {post?.categories?.map((cat, index) => (
             <span key={index}>
@@ -65,7 +66,7 @@ function PostOne(props) {
               {index < post?.categories?.length - 1 ? ", " : ""}
             </span>
           ))}
-        </div>
+        </div> : null} */}
         {isContent ? (
           <div className="entry-content">
             <p className="line-clamp-2">{post?.summary}</p>

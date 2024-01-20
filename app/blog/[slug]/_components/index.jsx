@@ -20,7 +20,6 @@ function SingleBlogPageComponent(props) {
   const error = null;
 
   const { post } = props;
-  console.log("🚀 ~ SingleBlogPageComponent ~ post:", post);
   const related = post?.relatedBlogs;
   const prev = post;
   const next = post;

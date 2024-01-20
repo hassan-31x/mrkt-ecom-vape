@@ -1,6 +1,7 @@
+"use client"
+
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-// import SlideToggle from 'react-slide-toggle';
 
 import Qty from "@/components/features/qty";
 

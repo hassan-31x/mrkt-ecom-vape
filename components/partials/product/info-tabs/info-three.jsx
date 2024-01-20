@@ -1,3 +1,5 @@
+"use client"
+
 import Card from "@/components/features/accordion/card";
 import Accordion from "@/components/features/accordion/accordion";
 import Link from "next/link";

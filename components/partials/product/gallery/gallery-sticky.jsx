@@ -1,3 +1,5 @@
+"use client"
+
 import { Magnifier } from "react-image-magnifiers";
 import React, { useState, useEffect } from "react";
 import LightBox from "react-image-lightbox";

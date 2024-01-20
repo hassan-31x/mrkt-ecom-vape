@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+
 import { useRouter } from "next/navigation";
 
 import { isInWishlist, isInCompare } from "@/utils";
@@ -26,7 +27,7 @@ function ProductSix({ product, wishlist }) {
     if (!isInWishlist(props.wishlist, product)) {
       props.addToWishlist(product);
     } else {
-      router.push("/pages/wishlist");
+      router.push("/wishlist");
     }
   }
 

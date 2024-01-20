@@ -5,7 +5,7 @@ import urlFor from "@/sanity/lib/image";
 
 function BlogSidebar(props) {
   const { categories = [], popular, tags, summary, toggle = false } = props;
-  
+
   const options = {
     year: "numeric",
     month: "short",
@@ -25,10 +25,7 @@ function BlogSidebar(props) {
         <ul>
           {categories.map((category, index) => (
             <li key={category?._id || index}>
-              <Link
-                    href="#"
-                scroll={false}
-              >
+              <Link href="#" scroll={false}>
                 {category.title}
               </Link>
             </li>
@@ -36,54 +33,61 @@ function BlogSidebar(props) {
         </ul>
       </div>
 
-      {popular?.length ? <div className="widget">
-        <h3 className="widget-title">Popular Posts</h3>
+      {popular?.length ? (
+        <div className="widget">
+          <h3 className="widget-title">Popular Posts</h3>
 
-        <ul className="posts-list">
+          <ul className="posts-list">
             {popular.map((post) => (
+              <li key={post?._id}>
+                <figure className="position-relative">
+                  <Link href={`/blog/${post.slug.current}`} className="w-100">
+                    {/* <div className="lazy-overlay"></div> */}
 
-          <li key={post?._id}>
-            <figure className="position-relative">
-              <Link
-                href={`/blog/${post.slug.current}`}
-                className="w-100"
-              >
-                <div className="lazy-overlay"></div>
+                    <Image
+                      src={urlFor(post?.mainImage)?.url()}
+                      alt="Post"
+                      height={80}
+                      width={120}
+                    />
+                  </Link>
+                </figure>
 
-                <Image
-                  src={urlFor(post?.mainImage)?.url()}
-                  alt="Post"
-                  height={80}
-                  width={120}
-                />
-              </Link>
-            </figure>
-
-            <div>
-              <span>{new Date(post?.publishedAt)?.toLocaleDateString("en-US", options)}</span>
-              <h4>
-                <Link className="line-clamp-1" href={`/blog/${post.slug.current}`}>
-                  {post?.title}
-                </Link>
-              </h4>
-            </div>
-          </li>
+                <div>
+                  <span>
+                    {new Date(post?.publishedAt)?.toLocaleDateString(
+                      "en-US",
+                      options
+                    )}
+                  </span>
+                  <h4>
+                    <Link
+                      className="line-clamp-1"
+                      href={`/blog/${post.slug.current}`}
+                    >
+                      {post?.title}
+                    </Link>
+                  </h4>
+                </div>
+              </li>
             ))}
-
-        </ul>
-      </div> : null}
-
-
-      {tags?.length ? <div className="widget">
-        <h3 className="widget-title">Browse Tags</h3>
-
-        <div className="tagcloud">
-          {tags.map((tag) => (
-
-              <Link href="#" key={tag}>{tag}</Link>
-          ))}
+          </ul>
         </div>
-      </div> : null}
+      ) : null}
+
+      {tags?.length ? (
+        <div className="widget">
+          <h3 className="widget-title">Browse Tags</h3>
+
+          <div className="tagcloud">
+            {tags.map((tag) => (
+              <Link href="#" key={tag}>
+                {tag}
+              </Link>
+            ))}
+          </div>
+        </div>
+      ) : null}
 
       <div className="widget widget-text">
         <h3 className="widget-title">About Blog</h3>

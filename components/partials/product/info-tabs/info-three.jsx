@@ -9,7 +9,6 @@ import { RichTextComponents } from "@/components/features/rich-text-component";
 import { calculateDaysAgo } from "@/utils/daysAgo";
 
 function InfoThree({ product }) {
-  console.log("🚀 ~ InfoThree ~ product:", product)
   const setRating = (e) => {
     e.preventDefault();
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Qty from "@/components/features/qty";
 import PageHeader from "@/components/features/page-header";
@@ -8,11 +8,15 @@ import PageHeader from "@/components/features/page-header";
 import { cartPriceTotal } from "@/utils/index";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { emptyCart } from "@/redux/slice/cartSlice";
+import { applyDiscount, emptyCart } from "@/redux/slice/cartSlice";
 import urlFor from "@/sanity/lib/image";
+import { client } from "@/sanity/lib/client";
+import { toast } from "react-toastify";
 
 function CartPageComponent(props) {
   const [shippingCost, setShippingCost] = useState(0);
+  const [code, setCode] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch()
   const cart = useSelector((state) => state.cart);
@@ -27,11 +31,40 @@ function CartPageComponent(props) {
     
   }
 
-  function updateCart(e) {
-    let button = e.currentTarget;
-    button.querySelector(".icon-refresh").classList.add("load-more-rotating");
+  const handleDiscount = async () => {
+    try {
+      setLoading(true);
 
-    dispatch(emptyCart())
+      const res =
+        await client.fetch(`*[_type == 'discount' && code=='${code}'] {
+        ...,
+        "products": products[]->.id
+      }`);
+
+      if (!res?.length) {
+        toast.error("Invalid Code");
+        return;
+      }
+
+      dispatch(applyDiscount(res[0]));
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+      setCode("");
+    }
+  };
+
+    function updateCart(e) {
+      let button = e.currentTarget;
+      button.querySelector(".icon-refresh").classList.add("load-more-rotating");
+  
+      setTimeout(() => {
+        dispatch(emptyCart());
+        button
+          .querySelector(".icon-refresh")
+          .classList.remove("load-more-rotating");
+      }, 400);
   }
 
   return (
@@ -147,7 +180,7 @@ function CartPageComponent(props) {
 
                   <div className="cart-bottom">
                     <div className="cart-discount">
-                      <form action="#">
+                      <form>
                         <div className="input-group">
                           <input
                             type="text"
@@ -156,11 +189,18 @@ function CartPageComponent(props) {
                             placeholder="coupon code"
                           />
                           <div className="input-group-append">
-                            <button
-                              className="btn btn-outline-primary-2"
-                              type="submit"
-                            >
-                              <i className="icon-long-arrow-right"></i>
+                          <button
+                            className="btn btn-outline-primary-2"
+                            onClick={handleDiscount}
+                            type="button"
+                          >
+                            <i
+                              className={
+                                loading
+                                  ? "icon-times-circle-o"
+                                  : "icon-long-arrow-right"
+                              }
+                            ></i>
                             </button>
                           </div>
                         </div>

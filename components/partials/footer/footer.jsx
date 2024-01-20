@@ -152,7 +152,7 @@ function Footer() {
                     <Link href="/contact">Contact us</Link>
                   </li>
                   <li>
-                    <Link href="/terms-and=condition">
+                    <Link href="/terms-and-conditions">
                       Terms and conditions
                     </Link>
                   </li>

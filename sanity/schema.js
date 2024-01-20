@@ -7,9 +7,10 @@ import { discount } from "./schemas/ecom/discount";
 
 import { faq } from "./schemas/misc/faq";
 import { privacyPolicy } from "./schemas/misc/privacy-policy";
+import { termsCondition } from "./schemas/misc/terms-condition";
 
 import { blockContent } from "./schemas/blockContent";
 
 export const schema = {
-  types: [product, discount, post, author, category, faq, privacyPolicy, blockContent],
+  types: [product, discount, post, author, category, faq, termsCondition, privacyPolicy, blockContent],
 };

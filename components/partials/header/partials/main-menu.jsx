@@ -1,10 +1,8 @@
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 function MainMenu() {
-  const router = useRouter();
   let path = usePathname()
-  console.log("🚀 ~ MainMenu ~ path:", path)
 
   function showAllDemos(e) {
     let demoItems = document.querySelectorAll(".demo-item.hidden");

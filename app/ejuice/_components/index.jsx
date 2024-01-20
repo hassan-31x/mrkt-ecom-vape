@@ -75,14 +75,7 @@ function CategoryPageComponent({ products }) {
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item active">Category</li>
-            {query?.search ? (
-              <li className="breadcrumb-item">
-                <span>Search - {query?.searchTerm}</span>
-              </li>
-            ) : (
-              ""
-            )}
+            <li className="breadcrumb-item active">Ejuice</li>
           </ol>
         </div>
       </nav>
@@ -91,7 +84,7 @@ function CategoryPageComponent({ products }) {
         <div className="container">
           <div className="row skeleton-body">
             <div
-              className={`col-lg-9 skel-shop-products ${
+              className={`w-full skel-shop-products ${
                 !loading ? "loaded" : ""
               }`}
             >
@@ -145,7 +138,7 @@ function CategoryPageComponent({ products }) {
               )}
             </div>
 
-            <aside
+            {/* <aside
               className={`col-lg-3 skel-shop-sidebar order-lg-first skeleton-body ${
                 !loading ? "loaded" : ""
               }`}
@@ -171,7 +164,7 @@ function CategoryPageComponent({ products }) {
                 className="sidebar-filter-overlay"
                 onClick={hideSidebar}
               ></div>
-            </aside>
+            </aside> */}
           </div>
         </div>
       </div>

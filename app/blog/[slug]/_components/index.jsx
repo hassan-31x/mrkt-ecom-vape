@@ -1,24 +1,26 @@
-import { useQuery } from "@apollo/react-hooks";
-import { useRouter } from "next/router";
-import React, { useState, useEffect } from "react";
+"use client"
+
+import { useState, useEffect } from "react";
 import StickyBox from "react-sticky-box";
 
-import ALink from "@/components/features/alink";
 import PageHeader from "@/components/features/page-header";
 import BlogSidebar from "@/components/partials/blog/sidebar/blog-sidebar";
 import OwlCarousel from "@/components/features/owl-carousel";
 import RelatedPosts from "@/components/partials/blog/related/related-posts";
-import Image from "next/image.js";
+import Image from "next/image";
+import Link from "next/link";
 
-function BlogPageComponent(props) {
-  const slug = useRouter().query.slug;
-  const { data, loading, error } = useQuery(GET_POST, { variables: { slug } });
+function SingleBlogPageComponent(props) {
   const [toggle, setToggle] = useState(false);
-  const post = data && data.post.single;
-  const categories = data && data.post.categories;
-  const related = data && data.post.related;
-  const prev = data && data.post.prev;
-  const next = data && data.post.next;
+
+  const loading = false
+  const error = null
+
+  const { post } = props;
+  console.log("🚀 ~ SingleBlogPageComponent ~ post:", post)
+  const related = post?.relatedBlogs;
+  const prev = post;
+  const next = post;
   const options = {
     year: "numeric",
     month: "short",
@@ -59,10 +61,6 @@ function BlogPageComponent(props) {
     document.querySelector("body").classList.remove("sidebar-filter-active");
   }
 
-  if (error) {
-    return <div></div>;
-  }
-
   return (
     <div className="main">
       <PageHeader title="Default With Sidebar" subTitle="Single Post" />
@@ -70,19 +68,19 @@ function BlogPageComponent(props) {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <ALink href="/">Home</ALink>
+              <Link href="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <ALink href="/blog/classic">Blog</ALink>
+              <Link href="/blog">Benefits</Link>
             </li>
-            <li className="breadcrumb-item active">Default With Sidebar</li>
+            <li className="breadcrumb-item active">{post.slug.current}</li>
           </ol>
         </div>
       </nav>
       <div className="page-content">
         <div className="container">
           <div className={`row skeleton-body ${!loading ? "loaded" : ""}`}>
-            <div className="col-lg-9">
+            {/* <div className="col-lg-9">
               {loading ? (
                 <div className="skel-single-post"></div>
               ) : (
@@ -145,17 +143,17 @@ function BlogPageComponent(props) {
                     <div className="entry-body">
                       <div className="entry-meta">
                         <span className="entry-author">
-                          by <ALink href="#">{post.author}</ALink>
+                          by <Link href="#">{post.author}</Link>
                         </span>
                         <span className="meta-separator">|</span>
-                        <ALink href="#">
+                        <Link href="#">
                           {new Date(post.date).toLocaleDateString(
                             "en-US",
                             options
                           )}
-                        </ALink>
+                        </Link>
                         <span className="meta-separator">|</span>
-                        <ALink href="#">{post.comments} Comments</ALink>
+                        <Link href="#">{post.comments} Comments</Link>
                       </div>
 
                       <h2 className="entry-title">{post.title}</h2>
@@ -164,14 +162,14 @@ function BlogPageComponent(props) {
                         in&nbsp;
                         {post.blog_categories.map((cat, index) => (
                           <span key={index}>
-                            <ALink
+                            <Link
                               href={{
                                 pathname: "/blog/classic",
                                 query: { category: cat.slug },
                               }}
                             >
                               {cat.name}
-                            </ALink>
+                            </Link>
                             {index < post.blog_categories.length - 1
                               ? ", "
                               : ""}
@@ -220,7 +218,7 @@ function BlogPageComponent(props) {
                           Phasellus hendrerit. Pellentesque aliquet nibh nec
                           urna. In nisi neque, aliquet vel, dapibus id, mattis
                           vel, nisi. Sed pretium, ligula &nbsp;
-                          <ALink href="#">sollicitudin laoreet</ALink> viverra,
+                          <Link href="#">sollicitudin laoreet</Link> viverra,
                           tortor libero sodales leo, eget blandit nunc tortor eu
                           nibh. Nullam mollis. Ut justo. Suspendisse potenti.
                           Sed egestas, ante et vulputate volutpat, eros pede
@@ -268,7 +266,7 @@ function BlogPageComponent(props) {
                           semper est, vitae luctus metus libero eu augue. Morbi
                           purus libero, faucibus adipiscing, commodo quis,
                           gravida id, est. Sed lectus. Praesent &nbsp;
-                          <ALink href="#">elementum hendrerit</ALink> tortor.
+                          <Link href="#">elementum hendrerit</Link> tortor.
                           Sed semper lorem at felis. Vestibulum volutpat, lacus
                           a ultrices sagittis, mi neque euismod dui, eu pulvinar
                           nunc sapien ornare nisl. Phasellus pede arcu, dapibus
@@ -296,8 +294,8 @@ function BlogPageComponent(props) {
                         <div className="col-md">
                           <div className="entry-tags">
                             <span>Tags:</span>
-                            <ALink href="#">photography</ALink>
-                            <ALink href="#">style</ALink>
+                            <Link href="#">photography</Link>
+                            <Link href="#">style</Link>
                           </div>
                         </div>
 
@@ -306,34 +304,34 @@ function BlogPageComponent(props) {
                             <span className="social-label">
                               Share this post:
                             </span>
-                            <ALink
+                            <Link
                               href="#"
                               className="social-icon social-facebook"
                               title="Facebook"
                             >
                               <i className="icon-facebook-f"></i>
-                            </ALink>
-                            <ALink
+                            </Link>
+                            <Link
                               href="#"
                               className="social-icon social-twitter"
                               title="Twitter"
                             >
                               <i className="icon-twitter"></i>
-                            </ALink>
-                            <ALink
+                            </Link>
+                            <Link
                               href="#"
                               className="social-icon social-pinterest"
                               title="Pinterest"
                             >
                               <i className="icon-pinterest"></i>
-                            </ALink>
-                            <ALink
+                            </Link>
+                            <Link
                               href="#"
                               className="social-icon social-linkedin"
                               title="Linkedin"
                             >
                               <i className="icon-linkedin"></i>
-                            </ALink>
+                            </Link>
                           </div>
                         </div>
                       </div>
@@ -341,27 +339,27 @@ function BlogPageComponent(props) {
 
                     <div className="entry-author-details">
                       <figure className="author-media">
-                        <ALink href="#">
+                        <Link href="#">
                           <img
                             src="images/blog/single/author.jpg"
                             alt="User name"
                           />
-                        </ALink>
+                        </Link>
                       </figure>
 
                       <div className="author-body">
                         <div className="author-header row no-gutters flex-column flex-md-row">
                           <div className="col">
                             <h4>
-                              <ALink href="#">John Doe</ALink>
+                              <Link href="#">John Doe</Link>
                             </h4>
                           </div>
 
                           <div className="col-auto mt-1 mt-md-0">
-                            <ALink href="#" className="author-link">
+                            <Link href="#" className="author-link">
                               View all posts by John Doe
                               <i className="icon-long-arrow-right"></i>
-                            </ALink>
+                            </Link>
                           </div>
                         </div>
 
@@ -378,34 +376,34 @@ function BlogPageComponent(props) {
 
                   <nav className="pager-nav">
                     {prev ? (
-                      <ALink
+                      <Link
                         className="pager-link pager-link-prev"
                         href={`/blog/single/default/${prev.slug}`}
                       >
                         Previous Post
                         <span className="pager-link-title">{prev.title}</span>
-                      </ALink>
+                      </Link>
                     ) : (
-                      <ALink href="#" className="pager-link">
+                      <Link href="#" className="pager-link">
                         <span className="page-link-title ml-4">
                           This is the first blog.
                         </span>
-                      </ALink>
+                      </Link>
                     )}
                     {next ? (
-                      <ALink
+                      <Link
                         className="pager-link pager-link-next"
                         href={`/blog/single/default/${next.slug}`}
                       >
                         Next Post
                         <span className="pager-link-title">{next.title}</span>
-                      </ALink>
+                      </Link>
                     ) : (
-                      <ALink href="#" className="pager-link">
+                      <Link href="#" className="pager-link">
                         <span className="page-link-title mr-4">
                           This is the last blog.
                         </span>
-                      </ALink>
+                      </Link>
                     )}
                   </nav>
                 </>
@@ -420,21 +418,21 @@ function BlogPageComponent(props) {
                   <li>
                     <div className="comment">
                       <figure className="comment-media">
-                        <ALink href="#">
+                        <Link href="#">
                           <img
                             src="images/blog/comments/1.jpg"
                             alt="User name"
                           />
-                        </ALink>
+                        </Link>
                       </figure>
 
                       <div className="comment-body">
-                        <ALink href="#" className="comment-reply">
+                        <Link href="#" className="comment-reply">
                           Reply
-                        </ALink>
+                        </Link>
                         <div className="comment-user">
                           <h4>
-                            <ALink href="#">Jimmy Pearson</ALink>
+                            <Link href="#">Jimmy Pearson</Link>
                           </h4>
                           <span className="comment-date">
                             November 9, 2018 at 2:19 pm
@@ -456,21 +454,21 @@ function BlogPageComponent(props) {
                       <li>
                         <div className="comment">
                           <figure className="comment-media">
-                            <ALink href="#">
+                            <Link href="#">
                               <img
                                 src="images/blog/comments/2.jpg"
                                 alt="User name"
                               />
-                            </ALink>
+                            </Link>
                           </figure>
 
                           <div className="comment-body">
-                            <ALink href="#" className="comment-reply">
+                            <Link href="#" className="comment-reply">
                               Reply
-                            </ALink>
+                            </Link>
                             <div className="comment-user">
                               <h4>
-                                <ALink href="#">Lena Knight</ALink>
+                                <Link href="#">Lena Knight</Link>
                               </h4>
                               <span className="comment-date">
                                 November 9, 2018 at 2:19 pm
@@ -489,21 +487,21 @@ function BlogPageComponent(props) {
                   <li>
                     <div className="comment">
                       <figure className="comment-media">
-                        <ALink href="#">
+                        <Link href="#">
                           <img
                             src="images/blog/comments/3.jpg"
                             alt="User name"
                           />
-                        </ALink>
+                        </Link>
                       </figure>
 
                       <div className="comment-body">
-                        <ALink href="#" className="comment-reply">
+                        <Link href="#" className="comment-reply">
                           Reply
-                        </ALink>
+                        </Link>
                         <div className="comment-user">
                           <h4>
-                            <ALink href="#">Johnathan Castillo</ALink>
+                            <Link href="#">Johnathan Castillo</Link>
                           </h4>
                           <span className="comment-date">
                             November 9, 2018 at 2:19 pm
@@ -584,10 +582,10 @@ function BlogPageComponent(props) {
                   </button>
                 </form>
               </div>
-            </div>
+            </div> */}
             <div className="col-lg-3">
               <StickyBox className="sticky-content" offsetTop={70}>
-                <BlogSidebar categories={categories} toggle={toggle} />
+                <BlogSidebar categories={post?.categories} summary={post?.summary || ''} tags={post?.tags} toggle={toggle} popular={props?.popular} />
                 {toggle ? (
                   <button
                     className="sidebar-fixed-toggler right"
@@ -611,4 +609,4 @@ function BlogPageComponent(props) {
   );
 }
 
-export default BlogPageComponent;
+export default SingleBlogPageComponent;

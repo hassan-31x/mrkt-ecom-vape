@@ -10,8 +10,8 @@ function PostOne(props) {
     props.showVideo();
   };
 
-  let date = new Date(post?.publishedAt);
-  let options = {
+  const date = new Date(post?.publishedAt);
+  const options = {
     year: "numeric",
     month: "short",
     day: "2-digit",

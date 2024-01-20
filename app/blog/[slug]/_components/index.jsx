@@ -198,17 +198,6 @@ function SingleBlogPageComponent(props) {
                       </div>
                     </div>
 
-                    <div className="entry-author-details">
-                      <figure className="author-media">
-                        <Link href="#">
-                          <img
-                            src="/images/blog/single/author.jpg"
-                            alt="User name"
-                          />
-                        </Link>
-                      </figure>
-
-                    </div>
                   </article>
 
                   {/* <nav className="pager-nav">

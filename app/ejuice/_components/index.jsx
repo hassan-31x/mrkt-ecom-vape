@@ -68,7 +68,7 @@ function CategoryPageComponent({ products }) {
 
   return (
     <main className="main shop">
-      <PageHeader title="Category" subTitle="Shop" />
+      <PageHeader title="Shop" subTitle="Ejuice" />
       <nav className="breadcrumb-nav mb-2">
         <div className="container">
           <ol className="breadcrumb">

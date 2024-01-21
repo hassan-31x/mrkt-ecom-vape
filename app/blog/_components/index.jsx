@@ -54,7 +54,7 @@ function BlogPageComponent({ posts }) {
 
   return (
     <div className="main">
-      <PageHeader title="Blog Masonry 2 Columns" subTitle="Blog" />
+      <PageHeader title="Benefits" subTitle="Blog" />
       <nav className="breadcrumb-nav">
         <div className="container">
           <ol className="breadcrumb">

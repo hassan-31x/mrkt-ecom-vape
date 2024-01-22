@@ -1433,7 +1433,7 @@
 			color: $secondary-color; 
 		}
 
-		.fixed & {
+		.lg-fixed & {
 			margin-top: 2px;
 		}
     }
@@ -1483,7 +1483,7 @@
         }
     }
     
-	.sticky-header.fixed { 
+	.sticky-header.lg-fixed { 
 		border-bottom: 0;
 		background-color: $primary-color; 
 	}

@@ -29,7 +29,7 @@ function MobileMenu() {
           <i className="icon-close"></i>
         </span>
 
-        <form
+        {/* <form
           action="#"
           method="get"
           onSubmit={onSubmitSearchForm}
@@ -51,7 +51,7 @@ function MobileMenu() {
           <button className="btn btn-primary" type="submit">
             <i className="icon-search"></i>
           </button>
-        </form>
+        </form> */}
 
         <nav className="mobile-nav">
           <ul className="mobile-menu">
@@ -65,7 +65,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              className={path?.includes("/ejuice") ? "active" : ""}
+              // className={path?.includes("/ejuice") ? "active" : ""}
             >
               <Link href="/ejuice" className="sf" scroll={false}>
                 Ejuices
@@ -73,7 +73,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              className={path?.includes("/blog") ? "active" : ""}
+              // className={path?.includes("/blog") ? "active" : ""}
             >
               <Link href="/blog" className="sf">
                 Benefits
@@ -81,7 +81,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              className={path?.includes("/about") ? "active" : ""}
+              // className={path?.includes("/about") ? "active" : ""}
             >
               <Link href="/about" className="sf">
                 About
@@ -89,7 +89,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              className={path?.includes("/faq") ? "active" : ""}
+              // className={path?.includes("/faq") ? "active" : ""}
             >
               <Link href="/faq" className="sf">
                 FAQ

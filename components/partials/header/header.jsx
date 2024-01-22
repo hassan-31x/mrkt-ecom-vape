@@ -140,7 +140,7 @@ function Header(props) {
         </div>
       </div>
 
-      <StickyHeader>
+      <StickyHeader> 
         <div className="header-middle sticky-header border-bottom-0">
           <div className={containerClass}>
             <div className="d-flex w-100 position-relative">

@@ -13,7 +13,6 @@ import { sanityAdminClient } from "@/sanity/lib/client";
 import { useRouter } from "next/navigation";
 
 function InfoThree({ product }) {
-  console.log("🚀 ~ InfoThree ~ product:", product)
   const [review, setReview] = useState({
     title: '',
     comment: '',

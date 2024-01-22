@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import StickyBox from "react-sticky-box";
 
@@ -11,11 +11,16 @@ import ShopSidebarOne from "@/components/partials/shop/sidebar/shop-sidebar-one"
 
 import Link from "next/link";
 
-function CategoryPageComponent({ products }) {
+function CategoryPageComponent({ products: data }) {
   const [toggle, setToggle] = useState(false);
+  const [products, setProducts] = useState(data);
+
 
   const router = useRouter();
-  const query = router?.query;
+
+  const path = usePathname()
+  const searchParams = useSearchParams()
+  const sortBy = searchParams.get('sortBy')
 
   const loading = false;
   const error = null;
@@ -30,6 +35,20 @@ function CategoryPageComponent({ products }) {
     };
   }, []);
 
+  useEffect(() => {
+    if (!sortBy) setProducts(data)
+
+    if (sortBy === "rating") {
+      setProducts(data.sort((a, b) => b?.ratings - a?.ratings))
+    }
+
+    if (sortBy === "new") {
+      setProducts(data.sort((a, b) => new Date(b?._createdAt) - new Date(a?._createdAt)))
+    }
+
+  }, [sortBy])
+
+  
   function resizeHandle() {
     if (document.querySelector("body").offsetWidth < 992) setToggle(true);
     else setToggle(false);
@@ -37,15 +56,15 @@ function CategoryPageComponent({ products }) {
 
 
   function onSortByChange(e) {
-    let queryObject = router.query;
-    let url = router.pathname.replace("[type]", "2cols") + "?";
-    for (let key in queryObject) {
-      if (key !== "type" && key !== "sortBy") {
-        url += key + "=" + queryObject[key] + "&";
-      }
+    const url = path + "?"
+    const query = e.target.value
+
+    if (query === "default") {
+      router.push(url)
+      return
     }
 
-    router.push(url + "sortBy=" + e.target.value);
+    router.push(url + "sortBy=" + query);
   }
 
   function toggleSidebar() {
@@ -113,10 +132,9 @@ function CategoryPageComponent({ products }) {
                         id="sortby"
                         className="form-control"
                         onChange={onSortByChange}
-                        value={query?.sortBy ? query?.sortBy : "default"}
+                        value={sortBy ? sortBy : "default"}
                       >
                         <option value="default">Default</option>
-                        <option value="featured">Most Popular</option>
                         <option value="rating">Most Rated</option>
                         <option value="new">Date</option>
                       </select>

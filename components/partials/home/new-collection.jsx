@@ -10,7 +10,6 @@ import Link from "next/link";
 import OwlCarousel from "@/components/features/owl-carousel";
 
 function NewCollection({ products }) {
-  console.log("🚀 ~ NewCollection ~ products:", products)
   return (
     <section className="product-section new-arrivals mb-8">
       <div className="container text-center">

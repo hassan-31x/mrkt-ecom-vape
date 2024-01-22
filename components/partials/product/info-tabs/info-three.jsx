@@ -7,8 +7,22 @@ import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 import { calculateDaysAgo } from "@/utils/daysAgo";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import { sanityAdminClient } from "@/sanity/lib/client";
+import { useRouter } from "next/navigation";
 
 function InfoThree({ product }) {
+  console.log("🚀 ~ InfoThree ~ product:", product)
+  const [review, setReview] = useState({
+    title: '',
+    comment: '',
+    name: '',
+    email: '',
+  })
+
+  const router = useRouter()
+
   const setRating = (e) => {
     e.preventDefault();
 
@@ -20,6 +34,65 @@ function InfoThree({ product }) {
 
     e.currentTarget.classList.add("active");
   };
+
+  function generateUniqueKey() {
+    // Generate a random string of characters
+    const randomString = Math.random().toString(36).substring(2, 10);
+    
+    // Append a timestamp to ensure uniqueness
+    const timestamp = Date.now();
+  
+    // Combine the random string and timestamp to create a unique key
+    const uniqueKey = `${randomString}_${timestamp}`;
+  
+    return uniqueKey;
+  }
+  
+  const addReview = async () => {
+    try {
+
+    const stars = document.querySelectorAll('.star.active')?.[0]?.classList?.[0] * 1
+
+    if (!stars) {
+      toast.error('Please select a rating')
+      return
+    }
+
+    const tempReview = {
+      _key: generateUniqueKey(),
+      stars,
+      title: review.title,
+      description: review.comment,
+      name: review.name,
+      createdAt: new Date()
+    }
+    const updatedProduct = {
+      _type: 'product',
+      ...product,
+      reviews: [...product.reviews, tempReview],
+      relatedProducts: product?.relatedProducts?.map((ref) => ({
+        ...ref,
+        _key: generateUniqueKey(), // You need to generate a unique key for each reference
+      })),
+    };
+
+    const res = await sanityAdminClient.createOrReplace(updatedProduct);
+    console.log("🚀 ~ addReview ~ res:", res)
+
+    toast.success('Review added!')
+    setReview({
+      title: '',
+      comment: '',
+      name: '',
+      email: '',
+    })
+    router.refresh()
+  }
+  catch (err) {
+    console.log("🚀 ~ addReview ~ err:", err)
+    toast.error(err)
+  }
+  }
 
   if (!product) {
     return <div></div>;
@@ -124,7 +197,7 @@ function InfoThree({ product }) {
             <span className="rating-stars selected">
               {[1, 2, 3, 4, 5].map((num, index) => (
                 <a
-                  className={`star-${num}`}
+                  className={`${num} star star-${num}`}
                   href="#"
                   onClick={setRating}
                   key={"star-" + index}
@@ -134,21 +207,20 @@ function InfoThree({ product }) {
               ))}
             </span>
 
-            <select
-              name="rating"
-              id="rating"
-              required=""
-              style={{ display: "none" }}
-            >
-              <option value="">Rate…</option>
-              <option value="5">Perfect</option>
-              <option value="4">Good</option>
-              <option value="3">Average</option>
-              <option value="2">Not that bad</option>
-              <option value="1">Very poor</option>
-            </select>
           </div>
-          <form action="#">
+          <form>
+          <div className="">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="reply-title"
+                  name="reply-title"
+                  placeholder="Title *"
+                  required
+                  value={review.title}
+                  onChange={(e) => setReview({...review, title: e.target.value})}
+                />
+              </div>
             <textarea
               id="reply-message"
               cols="30"
@@ -156,6 +228,8 @@ function InfoThree({ product }) {
               className="form-control mb-2"
               placeholder="Comment *"
               required
+              value={review.comment}
+              onChange={(e) => setReview({...review, comment: e.target.value})}
             ></textarea>
             <div className="row">
               <div className="col-md-6">
@@ -166,6 +240,8 @@ function InfoThree({ product }) {
                   name="reply-name"
                   placeholder="Name *"
                   required
+                  value={review.name}
+                  onChange={(e) => setReview({...review, name: e.target.value})}
                 />
               </div>
               <div className="col-md-6">
@@ -176,10 +252,12 @@ function InfoThree({ product }) {
                   name="reply-email"
                   placeholder="Email *"
                   required
+                  value={review.email}
+                  onChange={(e) => setReview({...review, email: e.target.value})}
                 />
               </div>
             </div>
-            <div className="form-checkbox mb-2">
+            {/* <div className="form-checkbox mb-2">
               <input
                 type="checkbox"
                 className="custom-checkbox"
@@ -193,8 +271,8 @@ function InfoThree({ product }) {
                 Save my name, email, and website in this browser for the next
                 time I comment.
               </label>
-            </div>
-            <button type="submit" className="btn btn-primary">
+            </div> */}
+            <button onClick={addReview} type="button" className="btn btn-primary">
               Submit
             </button>
           </form>

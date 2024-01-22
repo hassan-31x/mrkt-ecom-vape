@@ -70,9 +70,10 @@ function InfoThree({ product }) {
       _type: 'product',
       ...product,
       reviews: [...product.reviews, tempReview],
-      relatedProducts: product?.relatedProducts?.map((ref) => ({
-        ...ref,
-        _key: generateUniqueKey(), // You need to generate a unique key for each reference
+      relatedProducts: product?.relatedProducts?.map((prod) => ({
+        ...prod,
+        _type: 'product',
+        _key: prod._id,
       })),
     };
 

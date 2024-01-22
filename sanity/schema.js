@@ -6,11 +6,12 @@ import { product } from "./schemas/ecom/product";
 import { discount } from "./schemas/ecom/discount";
 
 import { faq } from "./schemas/misc/faq";
+import { home } from "./schemas/misc/home";
 import { privacyPolicy } from "./schemas/misc/privacy-policy";
 import { termsCondition } from "./schemas/misc/terms-condition";
 
 import { blockContent } from "./schemas/blockContent";
 
 export const schema = {
-  types: [product, discount, post, author, category, faq, termsCondition, privacyPolicy, blockContent],
+  types: [product, discount, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent],
 };

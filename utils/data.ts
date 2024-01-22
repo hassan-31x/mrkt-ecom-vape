@@ -887,7 +887,8 @@ export const brandSlider = {
     nav: false,
     dots: false,
     margin: 20,
-    loop: false,
+    autoplay: true,
+    loop: true,
     responsive: {
         0: {
             items: 2
@@ -908,7 +909,7 @@ export const brandSlider = {
             items: 6,
             nav: true
         }
-    }
+    },
 }
 
 export const productSlider = {

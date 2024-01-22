@@ -172,7 +172,7 @@ function HomePageComponent({ products, bestSellers, hotProducts }) {
         <section className="brand-section">
           <div className="container">
             <div className="heading heading-center">
-              <h2 className="title font-weight-normal text-secondary-dark mb-3">
+              <h2 className="title font-weigowht-normal text-secondary-dark mb-3">
                 Shop by Brands
               </h2>
             </div>

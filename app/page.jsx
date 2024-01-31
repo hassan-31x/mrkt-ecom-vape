@@ -1,6 +1,8 @@
 import HomePageComponent from './_components'
 
 import { client } from '@/sanity/lib/client'
+import { signUp } from 'next-auth-sanity/client';
+import SignUpForm from './test/page';
 
 const fetchData = async () => {
   try {
@@ -33,6 +35,8 @@ const fetchHomeData = async () => {
 export const revalidate = 60
 
 const HomePage = async () => {
+  // return <SignUpForm />
+
   const homePageData = await fetchHomeData()
 
   const products = await fetchData()

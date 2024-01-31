@@ -12,6 +12,10 @@ import { termsCondition } from "./schemas/misc/terms-condition";
 
 import { blockContent } from "./schemas/blockContent";
 
+import { user } from "./schemas/auth/user";
+import { account } from "./schemas/auth/account";
+import { verificationToken } from "./schemas/auth/verification-token";
+
 export const schema = {
-  types: [product, discount, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent],
+  types: [product, discount, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent, user, account, verificationToken],
 };

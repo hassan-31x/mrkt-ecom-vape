@@ -28,8 +28,6 @@ function HomePageComponent({
   bestSellers,
   hotProducts,
 }) {
-  console.log("🚀 ~ HomePageComponent ~ homePageData:", homePageData);
-
   const loading = !!!products?.length;
 
   return (

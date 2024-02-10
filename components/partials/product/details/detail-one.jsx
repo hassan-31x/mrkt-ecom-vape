@@ -26,7 +26,7 @@ function DetailOne(props) {
     if (!isInWishlist(props.wishlist, product)) {
       props.addToWishlist(product);
     } else {
-      router?.push("/pages/wishlist");
+      router?.push("/wishlist");
     }
   }
 

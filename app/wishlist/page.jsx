@@ -1,30 +1,26 @@
-import WishlistPageComponent from "./_componenets/index"
+import Link from "next/link";
+
+import PageHeader from "@/components/features/page-header";
+import WishlistPageComponent from "./_componenets/index";
 
 const WishlistPage = () => {
   return (
     <main className="main">
-            <PageHeader
-                title="Wishlist"
-                subTitle="Shop"
-            />
-            <nav className="breadcrumb-nav">
-                <div className="container">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item">
-                            <Link href="/">Home</Link>
-                        </li>
-                        <li className="breadcrumb-item">
-                            <Link href="/shop/sidebar/list">Shop</Link>
-                        </li>
-                        <li className="breadcrumb-item active">Wishlist</li>
-                    </ol>
-                </div>
-            </nav>
+      <PageHeader title="Wishlist" subTitle="Shop" />
+      <nav className="breadcrumb-nav">
+        <div className="container">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link href="/">Home</Link>
+            </li>
+            <li className="breadcrumb-item active">Wishlist</li>
+          </ol>
+        </div>
+      </nav>
 
-            <WishlistPageComponent />
-        </main>
+      <WishlistPageComponent />
+    </main>
+  );
+};
 
-  )
-}
-
-export default WishlistPage
+export default WishlistPage;

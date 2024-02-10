@@ -1,31 +1,23 @@
-import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 import LoginModal from "@/components/features/modals/login-modal";
 import HeaderSearch from "@/components/partials/header/partials/header-search";
 import CartMenu from "@/components/partials/header/partials/cart-menu";
 import MainMenu from "@/components/partials/header/partials/main-menu";
 import StickyHeader from "@/components/features/sticky-header";
-import Link from "next/link";
 
-function Header(props) {
-  const router = useRouter();
-  const [containerClass, setContainerClass] = useState("container");
+function Header() {
+  const wishlist = useSelector((state) => state.wishlist.items);
 
   function openMobileMenu() {
     document.querySelector("body").classList.add("mmenu-active");
   }
 
-  useEffect(() => {
-    setContainerClass(
-      router?.aspath?.includes("fullwidth") ? "container-fluid" : "container"
-    );
-  }, [router?.asPath]);
-
   return (
     <header className="header header-35 bg-primary">
       <div className="header-top">
-        <div className={containerClass}>
+        <div className="container">
           <div className="header-left">
             <div className="header-dropdown">
               <a
@@ -122,7 +114,7 @@ function Header(props) {
                     <Link href="/wishlist">
                       <i className="icon-heart-o"></i>My Wishlist{" "}
                       <span className="text-secondary">
-                        ({props?.wishlist?.length || 0})
+                        ({wishlist?.length || 0})
                       </span>
                     </Link>
                   </li>
@@ -142,7 +134,7 @@ function Header(props) {
 
       <StickyHeader> 
         <div className="header-middle sticky-header border-bottom-0">
-          <div className={containerClass}>
+          <div className="container">
             <div className="d-flex w-100 position-relative">
               <div className="header-left">
                 <button

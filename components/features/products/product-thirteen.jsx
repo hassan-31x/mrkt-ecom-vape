@@ -8,9 +8,7 @@ import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-function ProductThirteen(props) {
-  const { product } = props;
-
+function ProductThirteen({ product }) {
   const dispatch = useDispatch()
 
   function onCartClick(e) {

@@ -5,15 +5,17 @@ import { isInWishlist, isInCompare } from "@/utils";
 import Link from "next/link";
 import Image from "next/image";
 import urlFor from "@/sanity/lib/image";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { toast } from "react-toastify";
 import { nicotinePercentage } from "@/utils/constants";
+import { addToWishlist } from "@/redux/slice/wishlistSlice";
 
 
-function ProductEleven({ product, wishlist }) {
+function ProductEleven({ product }) {
   const router = useRouter();
   const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.wishlist.items);
 
   function onCartClick(e) {
     e.preventDefault();
@@ -24,8 +26,8 @@ function ProductEleven({ product, wishlist }) {
 
   function onWishlistClick(e) {
     e.preventDefault();
-    if (!isInWishlist(props.wishlist, product)) {
-      props.addToWishlist(product);
+    if (!isInWishlist(wishlist, product)) {
+      dispatch(addToWishlist(product));
     } else {
       router.push("/wishlist");
     }

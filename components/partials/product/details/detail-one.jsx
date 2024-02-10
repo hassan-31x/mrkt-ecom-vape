@@ -8,23 +8,25 @@ import Qty from "@/components/features/qty";
 import { isInWishlist } from "@/utils";
 import Link from "next/link";
 import { addToCart } from "@/redux/slice/cartSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { nicotinePercentage } from "@/utils/constants";
+import { addToWishlist } from "@/redux/slice/wishlistSlice";
 
 function DetailOne(props) {
   const { product } = props;
   const [qty, setQty] = useState(1);
   const [nicotine, setNicotine] = useState();
 
+  const ref = useRef(null);
   const router = useRouter();
   const dispatch = useDispatch();
-  const ref = useRef(null);
+  const wishlist = useSelector((state) => state.wishlist.items);
 
   function onWishlistClick(e) {
     e.preventDefault();
-    if (!isInWishlist(props.wishlist, product)) {
-      props.addToWishlist(product);
+    if (!isInWishlist(wishlist, product)) {
+      dispatch(addToWishlist(product));
     } else {
       router?.push("/wishlist");
     }
@@ -133,7 +135,7 @@ function DetailOne(props) {
           <span>add to cart</span>
         </button>
         <div className="details-action-wrapper">
-          {isInWishlist(props.wishlist, product) ? (
+          {isInWishlist(wishlist, product) ? (
             <Link
               href="/wishlist"
               className="btn-product btn-wishlist added-to-wishlist"

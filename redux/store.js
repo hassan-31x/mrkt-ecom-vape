@@ -16,14 +16,22 @@ import {
 import storage from "redux-persist/lib/storage";
 
 import cartReducer from "./slice/cartSlice";
+import wishlistReducer from "./slice/wishlistSlice";
 
 const reducers = combineReducers({
   cart: persistReducer(
     {
-      key: "root",
+      key: "root-mrkt-cart",
       storage,
     },
     cartReducer
+  ),
+  wishlist: persistReducer(
+    {
+      key: "root-mrkt-wishlist",
+      storage,
+    },
+    wishlistReducer
   ),
 });
 

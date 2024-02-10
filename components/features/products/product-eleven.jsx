@@ -8,6 +8,8 @@ import urlFor from "@/sanity/lib/image";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/redux/slice/cartSlice";
 import { toast } from "react-toastify";
+import { nicotinePercentage } from "@/utils/constants";
+
 
 function ProductEleven({ product, wishlist }) {
   const router = useRouter();
@@ -152,7 +154,7 @@ function ProductEleven({ product, wishlist }) {
 
         {product?.stock && product?.stock !== 0 ? (
           <div className="product-action">
-            {product?.nicotinePercentage?.length > 0 ? (
+            {nicotinePercentage?.length > 0 ? (
               <Link
                 href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"

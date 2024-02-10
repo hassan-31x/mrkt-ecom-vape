@@ -2,9 +2,9 @@
 
 import { addToCart } from "@/redux/slice/cartSlice";
 import urlFor from "@/sanity/lib/image.js";
+import { nicotinePercentage } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
@@ -64,7 +64,7 @@ function ProductThirteen(props) {
         )}
 
         {product?.stock && product?.stock !== 0 ? (
-          product?.nicotinePercentage?.length > 0 ? (
+          nicotinePercentage?.length > 0 ? (
             <Link
               href={`/product/${product?.slug.current}`}
               className="btn btn-link btn-link-secondary-dark"

@@ -66,13 +66,6 @@ export const product = {
       validation: (Rule) => Rule.required().min(0),
     },
     {
-      name: "nicotinePercentage",
-      title: "Available Nicotine Percentage",
-      type: "array",
-      of: [{ type: "number" }],
-    },
-
-    {
       name: "hot",
       title: "Hot",
       type: "boolean",

@@ -7,9 +7,10 @@ import Qty from "@/components/features/qty";
 
 import { isInWishlist } from "@/utils";
 import Link from "next/link";
-import { addToCart } from "@/redux/slice/cartSlice.js";
+import { addToCart } from "@/redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { nicotinePercentage } from "@/utils/constants";
 
 function DetailOne(props) {
   const { product } = props;
@@ -40,7 +41,7 @@ function DetailOne(props) {
       return;
     }
 
-    if (product?.nicotinePercentage?.length > 0 && !nicotine) {
+    if (nicotinePercentage?.length > 0 && !nicotine) {
       toast.error("Please select Nicotine Percentage");
       return;
     }
@@ -94,7 +95,7 @@ function DetailOne(props) {
         <p>{product?.short_desc}</p>
       </div>
 
-      {product?.nicotinePercentage?.length > 0 ? (
+      {nicotinePercentage?.length > 0 ? (
         <div className="details-filter-row details-row-size">
           <label htmlFor="size">Nicotine:</label>
           <div className="select-custom">
@@ -105,7 +106,7 @@ function DetailOne(props) {
               onChange={(e) => setNicotine(e.target.value)}
             >
               <option value="">Select Nicotine Percentage</option>
-              {product.nicotinePercentage?.map((percentage, index) => (
+              {nicotinePercentage?.map((percentage, index) => (
                 <option value={percentage} key={index}>
                   {percentage}%
                 </option>

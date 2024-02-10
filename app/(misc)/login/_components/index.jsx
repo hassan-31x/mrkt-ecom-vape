@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import { signIn } from "next-auth/react";
+import { signUp } from "next-auth-sanity/client";
 
 function LoginPageComponent() {
   return (
@@ -95,22 +97,22 @@ function LoginPageComponent() {
                         <p className="text-center">or sign in with</p>
                         <div className="row">
                           <div className="col-sm-6">
-                            <Link
-                              href="/pages/login"
-                              className="btn btn-login btn-g"
+                            <button
+                              className="btn btn-login btn-g w-full"
+                              onClick={() => signIn("google")}
                             >
                               <i className="icon-google"></i>
                               Login With Google
-                            </Link>
+                            </button>
                           </div>
                           <div className="col-sm-6">
-                            <Link
-                              href="/pages/login"
-                              className="btn btn-login btn-f"
+                            <button
+                              className="btn btn-login btn-f w-full"
+                              onClick={() => signIn("facebook")}
                             >
                               <i className="icon-facebook-f"></i>
                               Login With Facebook
-                            </Link>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -172,22 +174,22 @@ function LoginPageComponent() {
                       <p className="text-center">or sign in with</p>
                       <div className="row">
                         <div className="col-sm-6">
-                          <Link
-                            href="/pages/login"
-                            className="btn btn-login btn-g"
+                          <button
+                            className="btn btn-login btn-g w-full"
+                            onClick={() => signIn("google")}
                           >
                             <i className="icon-google"></i>
                             Login With Google
-                          </Link>
+                          </button>
                         </div>
                         <div className="col-sm-6">
-                          <Link
-                            href="/pages/login"
-                            className="btn btn-login  btn-f"
+                          <button
+                            className="btn btn-login btn-f w-full"
+                            onClick={() => signIn("facebook")}
                           >
                             <i className="icon-facebook-f"></i>
                             Login With Facebook
-                          </Link>
+                          </button>
                         </div>
                       </div>
                     </div>

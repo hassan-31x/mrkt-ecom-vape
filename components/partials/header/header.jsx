@@ -6,8 +6,10 @@ import HeaderSearch from "@/components/partials/header/partials/header-search";
 import CartMenu from "@/components/partials/header/partials/cart-menu";
 import MainMenu from "@/components/partials/header/partials/main-menu";
 import StickyHeader from "@/components/features/sticky-header";
+import { signOut, useSession } from "next-auth/react";
 
 function Header() {
+  const { data: session } = useSession()
   const wishlist = useSelector((state) => state.wishlist.items);
 
   function openMobileMenu() {
@@ -126,9 +128,9 @@ function Header() {
                   </li>
                   {/* <LoginModal /> */}
                   <li>
-                    <Link href="/login">
+                    {session ? <span onClick={() => signOut()}><i className="icon-user"></i>Logout</span> : <Link href="/login">
                       <i className="icon-user"></i>Login
-                    </Link>
+                    </Link>}
                   </li>
                 </ul>
               </li>

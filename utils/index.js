@@ -9,6 +9,10 @@ export const cartPriceTotal = cartItems => {
     }, 0 );
 }
 
+export const cartPriceTotalDiscount = (total, discount) => {
+    return total - (total * discount / 100);
+}
+
 /**
  * get number of products in cart
  * @param { Array } cartItems 

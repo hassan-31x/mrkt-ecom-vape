@@ -5,10 +5,10 @@ import React, { useState } from "react";
 import Qty from "@/components/features/qty";
 import PageHeader from "@/components/features/page-header";
 
-import { cartPriceTotal } from "@/utils/index";
+import { cartPriceTotal, cartPriceTotalDiscount } from "@/utils/index";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { applyDiscount, emptyCart } from "@/redux/slice/cartSlice";
+import { applyDiscount, emptyCart, removeFromCart } from "@/redux/slice/cartSlice";
 import urlFor from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
@@ -101,7 +101,7 @@ function CartPageComponent(props) {
                     <tbody>
                       {items?.length > 0 ? (
                         items?.map((item, index) => (
-                          <tr key={index}>
+                          <tr key={item?.cartId}>
                             <td className="product-col">
                               <div className="product">
                                 <figure className="product-media">
@@ -120,6 +120,9 @@ function CartPageComponent(props) {
                                   <Link href={`/product/${item.slug.current}`}>
                                     {item.name}
                                   </Link>
+                                  <span className="capitalize text-xl text-neutral-700/60">
+                                      {item?.nicotinePercentage}% Nicotine
+                                    </span>
                                 </h4>
                               </div>
                             </td>
@@ -158,7 +161,7 @@ function CartPageComponent(props) {
                             <td className="remove-col">
                               <button
                                 className="btn-remove"
-                                onClick={() => props.removeFromCart(item)}
+                                onClick={() => dispatch(removeFromCart(item.cartId))}
                               >
                                 <i className="icon-close"></i>
                               </button>
@@ -222,11 +225,37 @@ function CartPageComponent(props) {
 
                     <table className="table table-summary">
                       <tbody>
-                        <tr className="summary-subtotal">
-                          <td>Subtotal:</td>
-                          <td>
+                        <tr className="summary-shipping">
+                          <td className="!pb-0">Subtotal:</td>
+                          <td className="pb-0">
                             $
                             {cartPriceTotal(items).toLocaleString(
+                              undefined,
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )}
+                          </td>
+                        </tr>
+                        <tr className="summary-shipping">
+                          <td className="py-0">Discount (10%):</td>
+                          <td className="text-[#f05970] py-0">
+                            - $
+                            {(cartPriceTotal(items) * 10 / 100).toLocaleString(
+                              undefined,
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )}
+                          </td>
+                        </tr>
+                        <tr className="summary-subtotal">
+                          <td>Subtotal After Discount:</td>
+                          <td>
+                            $
+                            {cartPriceTotalDiscount(cartPriceTotal(items), 10).toLocaleString(
                               undefined,
                               {
                                 minimumFractionDigits: 2,
@@ -317,12 +346,13 @@ function CartPageComponent(props) {
                           <td>Total:</td>
                           <td>
                             $
-                            {(
-                              cartPriceTotal(props.cartItems) + shippingCost
-                            ).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
-                            })}
+                            {(cartPriceTotalDiscount(cartPriceTotal(items), 10) + shippingCost).toLocaleString(
+                              undefined,
+                              {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                              }
+                            )}
                           </td>
                         </tr>
                       </tbody>

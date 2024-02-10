@@ -1,5 +1,6 @@
 "use client";
 
+import { getRandomId } from "@/utils/idGenerator";
 import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -14,24 +15,24 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const idx = state.items.findIndex(
-        (item) => item.id === action.payload.id
+        (item) => item.id === action.payload.id && item.nicotinePercentage === action.payload.nicotinePercentage
       );
 
       if (idx === -1) {
         state.items.push({
           ...action.payload,
           qty: 1,
+          cartId: getRandomId(),
           discountApplied: false,
-          sum: action.payload.sale_price ?? action.payload.price,
+          sum: action.payload?.sale_price ?? action.payload.price,
         });
       } else {
         state.items[idx].qty += 1;
-        state.items[idx].sum +=
-          action.payload.sale_price ?? action.payload.price;
+        state.items[idx].sum += action.payload?.sale_price ?? action.payload.price;
       }
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => item.cartId !== action.payload);
     },
     emptyCart: (state) => {
       state.items = [];

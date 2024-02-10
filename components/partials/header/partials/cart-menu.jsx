@@ -8,6 +8,7 @@ import { removeFromCart } from "@/redux/slice/cartSlice";
 function CartMenu() {
   const dispatch = useDispatch();
   const { items: cartlist } = useSelector((state) => state.cart);
+  console.log("🚀 ~ CartMenu ~ cartlist:", cartlist)
 
   return (
     <div className="dropdown cart-dropdown">
@@ -37,7 +38,7 @@ function CartMenu() {
           <>
             <div className="dropdown-cart-products">
               {cartlist?.map((item) => (
-                <div className="product justify-content-between" key={item.id}>
+                <div className="product justify-content-between" key={item.cartId}>
                   <div className="product-cart-details">
                     <h4 className="product-title">
                       <Link href={`/product/${item.slug.current}`}>

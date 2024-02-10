@@ -33,20 +33,21 @@ function CartPageComponent(props) {
 
   const handleDiscount = async () => {
     try {
-      setLoading(true);
+      // setLoading(true);
 
-      const res =
-        await client.fetch(`*[_type == 'discount' && code=='${code}'] {
-        ...,
-        "products": products[]->.id
-      }`);
+      // const res =
+      //   await client.fetch(`*[_type == 'discount' && code=='${code}'] {
+      //   ...,
+      //   "products": products[]->.id
+      // }`);
 
-      if (!res?.length) {
-        toast.error("Invalid Code");
-        return;
-      }
+      // if (!res?.length) {
+      //   toast.error("Invalid Code");
+      //   return;
+      // }
 
-      dispatch(applyDiscount(res[0]));
+      // dispatch(applyDiscount(res[0]));
+      console.log('applied')
     } catch (err) {
       console.log(err);
     } finally {
@@ -64,6 +65,7 @@ function CartPageComponent(props) {
         button
           .querySelector(".icon-refresh")
           .classList.remove("load-more-rotating");
+          dispatch(emptyCart())
       }, 400);
   }
 
@@ -239,10 +241,10 @@ function CartPageComponent(props) {
                           </td>
                         </tr>
                         <tr className="summary-shipping">
-                          <td className="py-0">Discount (10%):</td>
+                          <td className="py-0">Discount <br />{cart?.discount && `(${cart?.discount?.name} - ${cart?.discount?.percentage}%)`}:</td>
                           <td className="text-[#f05970] py-0">
                             - $
-                            {(cartPriceTotal(items) * 10 / 100).toLocaleString(
+                            {(cartPriceTotal(items) * cart?.discount?.percentage / 100).toLocaleString(
                               undefined,
                               {
                                 minimumFractionDigits: 2,
@@ -255,7 +257,7 @@ function CartPageComponent(props) {
                           <td>Subtotal After Discount:</td>
                           <td>
                             $
-                            {cartPriceTotalDiscount(cartPriceTotal(items), 10).toLocaleString(
+                            {cartPriceTotalDiscount(cartPriceTotal(items), cart?.discount?.percentage).toLocaleString(
                               undefined,
                               {
                                 minimumFractionDigits: 2,
@@ -346,7 +348,7 @@ function CartPageComponent(props) {
                           <td>Total:</td>
                           <td>
                             $
-                            {(cartPriceTotalDiscount(cartPriceTotal(items), 10) + shippingCost).toLocaleString(
+                            {(cartPriceTotalDiscount(cartPriceTotal(items), cart?.discount?.percentage) + shippingCost).toLocaleString(
                               undefined,
                               {
                                 minimumFractionDigits: 2,

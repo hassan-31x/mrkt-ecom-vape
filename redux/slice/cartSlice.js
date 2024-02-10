@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 const initialState = {
   items: [],
   shippingCost: 0,
+  discount: null
 };
 
 export const cartSlice = createSlice({
@@ -50,6 +51,9 @@ export const cartSlice = createSlice({
     addShippingCost: (state, action) => {
       state.shippingCost = action.payload;
     },
+    updateDiscount: (state, action) => {
+      state.discount = action.payload;
+    },
     applyDiscount: (state, action) => {
       state.items?.forEach((item) => {
         if (
@@ -78,6 +82,7 @@ export const {
   emptyCart,
   updateCart,
   addShippingCost,
+  updateDiscount,
   applyDiscount,
 } = cartSlice.actions;
 

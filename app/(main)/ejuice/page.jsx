@@ -4,7 +4,6 @@ import { client } from '@/sanity/lib/client'
 
 const fetchData = async () => {
   try {
-
     const res = await client.fetch(`*[_type == 'product'] {
       ...,
       relatedProducts[]->,

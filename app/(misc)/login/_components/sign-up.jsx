@@ -86,9 +86,9 @@ const SignUpComponent = () => {
         password: formData.password,
       });
 
-      if (!res1.ok) {
+      // if (!res1.ok) {
         toast.error(res1?.error || "Error Registering");
-      } else {
+      // } else {
         const res2 = await signIn("sanity-login", {
           redirect: false,
           email: formData.email,
@@ -101,7 +101,7 @@ const SignUpComponent = () => {
         } else {
           toast.error(res2?.error || "Error Logging In");
         }
-      }
+      // }
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");

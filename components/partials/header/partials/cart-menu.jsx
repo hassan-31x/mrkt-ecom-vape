@@ -1,14 +1,37 @@
+import { useEffect } from "react";
 import Link from "next/link";
 
-import { cartQtyTotal, cartPriceTotal } from "@/utils/index";
+import { cartQtyTotal, cartPriceTotal, cartPriceTotalDiscount } from "@/utils/index";
 import { useDispatch, useSelector } from "react-redux";
 import urlFor from "@/sanity/lib/image";
-import { removeFromCart } from "@/redux/slice/cartSlice";
+import { removeFromCart, updateDiscount } from "@/redux/slice/cartSlice";
+import { useSession } from "next-auth/react";
+import { sanityAdminClient } from "@/sanity/lib/client";
 
 function CartMenu() {
+  const { data: session } = useSession()
   const dispatch = useDispatch();
-  const { items: cartlist } = useSelector((state) => state.cart);
-  console.log("🚀 ~ CartMenu ~ cartlist:", cartlist)
+  const { items: cartlist, discount } = useSelector((state) => state.cart);
+
+  const fetchDiscounts = async () => {
+    try {
+      const email = session?.user?.email
+      if (session) {
+        const res = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email] {
+          ...,
+          discountsAvailable[]->
+        }`, { email })
+
+        dispatch(updateDiscount(res?.[0]?.discountsAvailable?.[0]))
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  useEffect(() => {
+    fetchDiscounts()
+  }, [session?.user?.email])
 
   return (
     <div className="dropdown cart-dropdown">
@@ -68,23 +91,34 @@ function CartMenu() {
                   <button
                     className="btn-remove"
                     title="Remove Product"
-                    onClick={() => dispatch(removeFromCart(item.id))}
+                    onClick={() => dispatch(removeFromCart(item.cartId))}
                   >
                     <i className="icon-close"></i>
                   </button>
                 </div>
               ))}
             </div>
-            <div className="dropdown-cart-total">
+            <div className="dropdown-cart-total flex justify-between w-full">
               <span>Total</span>
+              <div>
 
-              <span className="cart-total-price">
+
+              <span className="cart-total-price !text-[1.45rem] line-through pr-1">
                 $
                 {cartPriceTotal(cartlist)?.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
               </span>
+              <span className="cart-total-price !text-[1.6rem] text-[#f05970]">
+                $
+                {cartPriceTotalDiscount(cartPriceTotal(cartlist), discount?.percentage)?.toLocaleString(undefined, {
+                  minimumFractionDigits: 2,
+                  maximumFractionDigits: 2,
+                })}
+              </span>
+              </div>
+
             </div>
 
             <div className="dropdown-cart-action">

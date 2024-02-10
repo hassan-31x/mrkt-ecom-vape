@@ -27,7 +27,6 @@ const fetchHomeData = async () => {
     console.log(err)
     return []
   }
-
 }
 
 export const revalidate = 60

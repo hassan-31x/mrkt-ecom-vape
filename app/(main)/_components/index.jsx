@@ -111,7 +111,7 @@ function HomePageComponent({
               </h2>
             </div>
 
-            <OwlCarousel adClass="owl-brand" options={brandSlider}>
+            <OwlCarousel adClass="owl-brand" options={{ ...brandSlider, autoplay: true, loop: true }}>
               {homePageData?.benefits?.map((benefit, index) => (
                 <a
                   href="#"

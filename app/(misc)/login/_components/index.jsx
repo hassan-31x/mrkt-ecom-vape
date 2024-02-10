@@ -1,9 +1,9 @@
-"use client"
+"use client";
 
 import Link from "next/link";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import { signIn } from "next-auth/react";
-import { signUp } from "next-auth-sanity/client";
+import SignInComponent from "./sign-in";
+import SignUpComponent from "./sign-up";
 
 function LoginPageComponent() {
   return (
@@ -21,7 +21,7 @@ function LoginPageComponent() {
 
       <div
         className="login-page bg-image pt-8 pb-8 pt-md-12 pb-md-12 pt-lg-17 pb-lg-17"
-        style={{ backgroundImage: `url(images/backgrounds/login-bg.jpg)` }}
+        style={{ backgroundImage: `url(/images/backgrounds/login-bg.jpg)` }}
       >
         <div className="container">
           <div className="form-box">
@@ -39,160 +39,11 @@ function LoginPageComponent() {
 
                 <div className="tab-content">
                   <TabPanel style={{ paddingTop: "2rem" }}>
-                    <div>
-                      <form action="#">
-                        <div className="form-group">
-                          <label htmlFor="singin-email-2">
-                            Username or email address *
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="singin-email-2"
-                            name="singin-email"
-                            required
-                          />
-                        </div>
-
-                        <div className="form-group">
-                          <label htmlFor="singin-password-2">Password *</label>
-                          <input
-                            type="password"
-                            className="form-control"
-                            id="singin-password-2"
-                            name="singin-password"
-                            required
-                          />
-                        </div>
-
-                        <div className="form-footer">
-                          <button
-                            type="submit"
-                            className="btn btn-outline-primary-2"
-                          >
-                            <span>LOG IN</span>
-                            <i className="icon-long-arrow-right"></i>
-                          </button>
-
-                          <div className="custom-control custom-checkbox">
-                            <input
-                              type="checkbox"
-                              className="custom-control-input"
-                              id="signin-remember-2"
-                            />
-                            <label
-                              className="custom-control-label"
-                              htmlFor="signin-remember-2"
-                            >
-                              Remember Me
-                            </label>
-                          </div>
-
-                          <Link href="/pages/login" className="forgot-link">
-                            Forgot Your Password?
-                          </Link>
-                        </div>
-                      </form>
-                      <div className="form-choice">
-                        <p className="text-center">or sign in with</p>
-                        <div className="row">
-                          <div className="col-sm-6">
-                            <button
-                              className="btn btn-login btn-g w-full"
-                              onClick={() => signIn("google")}
-                            >
-                              <i className="icon-google"></i>
-                              Login With Google
-                            </button>
-                          </div>
-                          <div className="col-sm-6">
-                            <button
-                              className="btn btn-login btn-f w-full"
-                              onClick={() => signIn("facebook")}
-                            >
-                              <i className="icon-facebook-f"></i>
-                              Login With Facebook
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <SignInComponent />
                   </TabPanel>
 
                   <TabPanel>
-                    <form action="#">
-                      <div className="form-group">
-                        <label htmlFor="register-email-2">
-                          Your email address *
-                        </label>
-                        <input
-                          type="email"
-                          className="form-control"
-                          id="register-email-2"
-                          name="register-email"
-                          required
-                        />
-                      </div>
-
-                      <div className="form-group">
-                        <label htmlFor="register-password-2">Password *</label>
-                        <input
-                          type="password"
-                          className="form-control"
-                          id="register-password-2"
-                          name="register-password"
-                          required
-                        />
-                      </div>
-
-                      <div className="form-footer">
-                        <button
-                          type="submit"
-                          className="btn btn-outline-primary-2"
-                        >
-                          <span>SIGN UP</span>
-                          <i className="icon-long-arrow-right"></i>
-                        </button>
-
-                        <div className="custom-control custom-checkbox">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="register-policy-2"
-                            required
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="register-policy-2"
-                          >
-                            I agree to the privacy policy *
-                          </label>
-                        </div>
-                      </div>
-                    </form>
-                    <div className="form-choice">
-                      <p className="text-center">or sign in with</p>
-                      <div className="row">
-                        <div className="col-sm-6">
-                          <button
-                            className="btn btn-login btn-g w-full"
-                            onClick={() => signIn("google")}
-                          >
-                            <i className="icon-google"></i>
-                            Login With Google
-                          </button>
-                        </div>
-                        <div className="col-sm-6">
-                          <button
-                            className="btn btn-login btn-f w-full"
-                            onClick={() => signIn("facebook")}
-                          >
-                            <i className="icon-facebook-f"></i>
-                            Login With Facebook
-                          </button>
-                        </div>
-                      </div>
-                    </div>
+                    <SignUpComponent />
                   </TabPanel>
                 </div>
               </Tabs>

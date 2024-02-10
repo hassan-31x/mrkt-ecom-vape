@@ -9,7 +9,7 @@ import StickyHeader from "@/components/features/sticky-header";
 import { signOut, useSession } from "next-auth/react";
 
 function Header() {
-  const { data: session } = useSession()
+  const { data: session } = useSession();
   const wishlist = useSelector((state) => state.wishlist.items);
 
   function openMobileMenu() {
@@ -128,9 +128,18 @@ function Header() {
                   </li>
                   {/* <LoginModal /> */}
                   <li>
-                    {session ? <span onClick={() => signOut()}><i className="icon-user"></i>Logout</span> : <Link href="/login">
-                      <i className="icon-user"></i>Login
-                    </Link>}
+                    {session ? (
+                      <span
+                        onClick={() => signOut()}
+                        className="!text-[#999999] cursor-pointer"
+                      >
+                        <i className="icon-user"></i>Logout
+                      </span>
+                    ) : (
+                      <Link href="/login">
+                        <i className="icon-user"></i>Login
+                      </Link>
+                    )}
                   </li>
                 </ul>
               </li>

@@ -1,4 +1,4 @@
-import LoginPageComponent from './_components/index.jsx'
+import LoginPageComponent from './_components/index'
 
 const LoginPage = () => {
   return <LoginPageComponent />

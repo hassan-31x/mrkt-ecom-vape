@@ -52,8 +52,8 @@ function ProductThirteen({ product }) {
           </div>
         ) : product?.sale_price ? (
           <div className="product-price">
-            <span className="old-price">${product.sale_price.toFixed(2)}</span>
-            <span className="new-price">${product.price.toFixed(2)}</span>
+            <span className="old-price">${product.price.toFixed(2)}</span>
+            <span className="new-price">${product.sale_price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">

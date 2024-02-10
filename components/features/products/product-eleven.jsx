@@ -191,7 +191,7 @@ function ProductEleven({ product }) {
           ))}
         </div> */}
 
-        <h3 className="product-title">
+        <h3 className="product-title pt-3">
           <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
@@ -201,8 +201,8 @@ function ProductEleven({ product }) {
           </div>
         ) : product?.sale_price ? (
           <div className="product-price">
-            <span className="old-price">${product.sale_price.toFixed(2)}</span>
-            <span className="new-price">${product.price.toFixed(2)}</span>
+            <span className="old-price pr-2">${product.price.toFixed(2)}</span>
+            <span className="new-price">${product.sale_price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
@@ -210,7 +210,7 @@ function ProductEleven({ product }) {
           </div>
         )}
 
-        <div className="ratings-container">
+        <div className="ratings-container pb-2">
           <div className="ratings">
             <div
               className="ratings-val"

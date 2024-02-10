@@ -71,10 +71,10 @@ function WishlistPageComponent() {
                     ) : product?.sale_price ? (
                       <div className="product-price !flex-col !items-start !justify-center">
                         <span className="old-price">
-                          ${product.sale_price.toFixed(2)}
+                          ${product.price.toFixed(2)}
                         </span>
                         <span className="new-price">
-                          ${product.price.toFixed(2)}
+                          ${product.sale_price.toFixed(2)}
                         </span>
                       </div>
                     ) : (

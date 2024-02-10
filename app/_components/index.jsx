@@ -7,7 +7,7 @@ import OwlCarousel from "@/components/features/owl-carousel";
 import NewCollection from "@/components/partials/home/new-collection";
 import ProductThirteen from "@/components/features/products/product-thirteen";
 import TopCollection from "@/components/partials/home/top-collection";
-import NewsletterModal from "@/components/features/modals/newsletter-modal";
+import ReferFriendModal from "@/components/features/modals/refer-friend";
 
 // Import Utils
 import {
@@ -416,7 +416,7 @@ function HomePageComponent({
         </section>
       </Reveal>
 
-      <NewsletterModal />
+      <ReferFriendModal />
     </div>
   );
 }

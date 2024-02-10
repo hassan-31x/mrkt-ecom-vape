@@ -14,16 +14,16 @@ const customStyles = {
 
 Modal.setAppElement("body");
 
-function NewsletterModal() {
+function ReferFriendModal() {
   const [open, setOpen] = useState(false);
   const [doNotShow, setDoNotShow] = useState(false);
 
   useEffect(() => {
     let timer;
-    Cookie.get(`hideNewsletter-mrkt`) ||
+    (Cookie.get(`hideNewsletter-mrkt`) || !Cookie.get(`hideConfirm-mrkt`)) ||
       (timer = setTimeout(() => {
         setOpen(true);
-      }, 5000));
+      }, 10000));
 
     return () => {
       timer && clearTimeout(timer);
@@ -70,10 +70,10 @@ function NewsletterModal() {
               <div className="col-xl-3-5col col-lg-7 banner-content-wrap">
                 <div className="banner-content text-center">
                   <img
-                    src="/images/popup/newsletter/logo.png"
+                    src="/images/home/header-logo-t.png"
                     alt="logo"
                     className="logo"
-                    width="60"
+                    width="100"
                     height="15"
                   />
                   <h2 className="banner-title">
@@ -147,4 +147,4 @@ function NewsletterModal() {
   );
 }
 
-export default NewsletterModal;
+export default ReferFriendModal;

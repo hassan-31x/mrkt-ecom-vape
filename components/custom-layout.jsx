@@ -16,6 +16,7 @@ import MobileMenu from "./features/mobile-menu";
 
 import { isSafariBrowser, isEdgeBrowser } from "@/utils";
 import SessionProvider from "./session-provider";
+import AgeConfirmModal from "./features/modals/age-confirm.jsx";
 
 function Layout({ children, hideQuick, hideVideo }) {
   const router = useRouter("");
@@ -91,6 +92,7 @@ function Layout({ children, hideQuick, hideVideo }) {
         draggable={false}
       />
 
+      <AgeConfirmModal />
       <QuickViewModal />
 
       <VideoModal />

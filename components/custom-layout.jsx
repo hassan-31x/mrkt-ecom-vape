@@ -15,6 +15,7 @@ import QuickViewModal from "./features/modals/quickview-modal";
 import MobileMenu from "./features/mobile-menu";
 
 import { isSafariBrowser, isEdgeBrowser } from "@/utils";
+import SessionProvider from "./session-provider";
 
 function Layout({ children, hideQuick, hideVideo }) {
   const router = useRouter("");
@@ -66,7 +67,7 @@ function Layout({ children, hideQuick, hideVideo }) {
   }
 
   return (
-    <>
+    <SessionProvider>
       <div className="page-wrapper">
         <Header />
         {children}
@@ -93,7 +94,7 @@ function Layout({ children, hideQuick, hideVideo }) {
       <QuickViewModal />
 
       <VideoModal />
-    </>
+    </SessionProvider>
   );
 }
 

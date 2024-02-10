@@ -4,8 +4,17 @@ import Link from "next/link";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import SignInComponent from "./sign-in";
 import SignUpComponent from "./sign-up";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function LoginPageComponent() {
+  const { data: session } = useSession();
+  const router = useRouter()
+
+  if (session) {
+    router.push("/");
+  }
+
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">

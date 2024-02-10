@@ -80,23 +80,31 @@ const SignUpComponent = () => {
     }
 
     try {
-      await signUp({
+      const res1 = await signUp({
         name: formData.name,
         email: formData.email,
         password: formData.password,
       });
 
-      await signIn("sanity-login", {
-        redirect: false,
-        email: formData.email,
-        password: formData.password,
-      });
-      toast.success("Successfully Registered!");
-        setFormData(initialState);
-        router.push('/');
+      if (!res1.ok) {
+        toast.error(res1?.error || "Error Registering");
+      } else {
+        const res2 = await signIn("sanity-login", {
+          redirect: false,
+          email: formData.email,
+          password: formData.password,
+        });
+        if (res2?.ok) {
+          toast.success("Successfully Registered!");
+          setFormData(initialState);
+          router.push("/");
+        } else {
+          toast.error(res2?.error || "Error Logging In");
+        }
+      }
     } catch (error) {
       console.error("Signup error:", error);
-      toast.error('Error Registering')
+      toast.error("Error Registering");
     } finally {
       setLoading(false);
     }

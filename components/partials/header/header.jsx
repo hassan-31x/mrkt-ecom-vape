@@ -124,7 +124,12 @@ function Header() {
                   <li>
                     <Link href="/contact">Contact Us</Link>
                   </li>
-                  <LoginModal />
+                  {/* <LoginModal /> */}
+                  <li>
+                    <Link href="/login">
+                      <i className="icon-user"></i>Login
+                    </Link>
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -132,7 +137,7 @@ function Header() {
         </div>
       </div>
 
-      <StickyHeader> 
+      <StickyHeader>
         <div className="header-middle sticky-header border-bottom-0">
           <div className="container">
             <div className="d-flex w-100 position-relative">

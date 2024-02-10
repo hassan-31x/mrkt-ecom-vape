@@ -6,14 +6,12 @@ import imagesLoaded from "imagesloaded";
 import PageHeader from "@/components/features/page-header";
 import PostOne from "@/components/features/posts/post-one";
 
-import data from "@/data/blog-page.json";
 import Link from "next/link";
 
 function BlogPageComponent({ posts }) {
   const loading = false;
   const error = null;
   const ref = useRef();
-  // const posts = data && data.blog;
   let iso;
 
   useEffect(() => {

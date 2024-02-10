@@ -79,7 +79,7 @@
 
 		&:before {
 			color: #ebebeb;
-			content: '\f10e';
+			// content: '\f10e';
 			font-weight: normal;
 			font-size: 3rem;
 			line-height: 1;
@@ -98,7 +98,7 @@
 
 		&:before {
 			display: inline-block;
-			content: '•';
+			// content: '•';
 			font-size: 1.8rem;
 			line-height: 1;
 			margin-right: 1rem;
@@ -682,7 +682,7 @@
 
 			&:before {
 				left: 4rem;
-				top: 50%;
+				top: 10%;
 			}
 		}
 	}

@@ -1,11 +1,17 @@
+import React, { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useState, useEffect } from "react";
+import { sanityAdminClient } from "@/sanity/lib/client";
+import { toast } from "react-toastify";
 
 function Footer() {
   const router = useRouter("");
   const [isBottomSticky, setIsBottomSticky] = useState(false);
   const [containerClass, setContainerClass] = useState("container");
+  const [email, setEmail] = useState("");
+
+  const { data: session } = useSession();
 
   useEffect(() => {
     handleBottomSticky();
@@ -26,6 +32,31 @@ function Footer() {
       router?.pathname?.includes("product/default") && window.innerWidth > 991
     );
   }
+
+  const handleFormSubmit = async (e) => {
+    try {
+
+      e.preventDefault();
+      if (!email) {
+        return;
+    }
+    if (!session) {
+      router.push("/login");
+    } else {
+      const res = await sanityAdminClient.create({
+        _type: "referral",
+        referralEmail: session.user.email,
+        referredEmail: email,
+        dateOfReferral: new Date(),
+      });
+      toast.success("Referral sent successfully");
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setEmail("")
+  }
+  };
 
   return (
     <footer className="footer footer-1 bg-primary">
@@ -49,12 +80,13 @@ function Footer() {
                     className="form-control mr-0 border-0 font-weight-normal"
                     placeholder="Enter your friend's Email Address"
                     aria-label="Email Adress"
-                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <div className="input-group-append">
                     <button
                       className="btn btn-white font-weight-lighter"
-                      type="submit"
+                      type="button" onClick={handleFormSubmit}
                     >
                       Refer
                     </button>

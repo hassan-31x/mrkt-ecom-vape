@@ -4,6 +4,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Cookie from "js-cookie";
 import Image from "next/image";
+import { sanityAdminClient } from "@/sanity/lib/client";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 const customStyles = {
   overlay: {
@@ -17,10 +21,15 @@ Modal.setAppElement("body");
 function ReferFriendModal() {
   const [open, setOpen] = useState(false);
   const [doNotShow, setDoNotShow] = useState(false);
+  const [email, setEmail] = useState("");
+
+  const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     let timer;
-    (Cookie.get(`hideNewsletter-mrkt`) || !Cookie.get(`hideConfirm-mrkt`)) ||
+    Cookie.get(`hideNewsletter-mrkt`) ||
+      !Cookie.get(`hideConfirm-mrkt`) ||
       (timer = setTimeout(() => {
         setOpen(true);
       }, 10000));
@@ -47,6 +56,32 @@ function ReferFriendModal() {
         });
     }, 350);
   }
+
+  const handleFormSubmit = async (e) => {
+    try {
+
+      e.preventDefault();
+      if (!email) {
+        return;
+      }
+      if (!session) {
+      router.push("/login");
+    } else {
+      const res = await sanityAdminClient.create({
+        _type: "referral",
+        referralEmail: session.user.email,
+        referredEmail: email,
+        dateOfReferral: new Date(),
+      });
+      toast.success("Referral sent successfully");
+    }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setEmail("");
+      closeModal();
+    }
+  };
 
   function handleChange(e) {
     setDoNotShow(e.target.checked);
@@ -77,27 +112,29 @@ function ReferFriendModal() {
                     height="15"
                   />
                   <h2 className="banner-title">
-                    get{" "}
+                    get upto{" "}
                     <span>
                       25<span style={{ fontWeight: "400" }}>%</span>
                     </span>{" "}
                     off
                   </h2>
                   <p>
-                    Refer to a fried and get amazing discount on your next order!
+                    Refer to a fried and get amazing discount on your next
+                    order!
                   </p>
 
-                  <form action="#">
+                  <form>
                     <div className="input-group input-group-round">
                       <input
                         type="email"
                         className="form-control form-control-white"
                         placeholder="Your Friend's Email Address"
                         aria-label="Email Adress"
-                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                       <div className="input-group-append">
-                        <button className="btn" type="submit">
+                        <button className="btn" type="button" onClick={handleFormSubmit}>
                           <span>go</span>
                         </button>
                       </div>

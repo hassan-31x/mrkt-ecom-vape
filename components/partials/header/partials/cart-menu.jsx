@@ -45,7 +45,7 @@ function CartMenu() {
         aria-expanded="false"
         data-display="static"
       >
-        <i className="icon-shopping-cart"></i>
+        <i className="icon-shopping-cart text-black"></i>
         <span className="cart-count font-weight-bolder bg-secondary">
           {cartQtyTotal(cartlist)}
         </span>

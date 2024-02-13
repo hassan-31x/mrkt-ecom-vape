@@ -1331,7 +1331,8 @@
     .header-top a {
         font-family: $second-font-family;
         font-weight: 400;
-        color: $light-text;
+        color: $dark-text;
+        // color: $light-text;
 		letter-spacing: .05em;
 		
         &:hover,
@@ -1372,7 +1373,7 @@
         > a {
             padding: 3.95rem 3rem 3.75rem;
             font-family: $font-family;
-            color: $white-text;
+            color: $dark-text;
         }
     
         &:hover, &.active, &.show {
@@ -1485,7 +1486,8 @@
     
 	.sticky-header.lg-fixed { 
 		border-bottom: 0;
-		background-color: $primary-color; 
+		// background-color: $primary-color; 
+		font-weight: 300;
 	}
 
     .menu ul, .menu .megamenu { margin-top: 0; }

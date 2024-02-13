@@ -18,7 +18,8 @@ function Header() {
   }
 
   return (
-    <header className="header header-35 bg-primary">
+    <header className="header header-35 bg-[#FCFCFC]">
+    {/* <header className="header header-35 bg-primary"> */}
       <div className="header-top">
         <div className="container">
           <div className="header-left">
@@ -166,8 +167,8 @@ function Header() {
                   <Image
                     src="/images/home/header-logo-t.png"
                     alt="Molla Logo"
-                    width="82"
-                    height="31"
+                    width={100}
+                    height={31}
                   />
                 </Link>
 

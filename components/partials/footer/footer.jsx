@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { sanityAdminClient } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { sendReferFriendEmail } from "@/utils/referFriend";
 
 function Footer() {
   const router = useRouter("");
@@ -14,6 +15,7 @@ function Footer() {
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
+  console.log("🚀 ~ Footer ~ session:", session)
 
   useEffect(() => {
     handleBottomSticky();
@@ -37,20 +39,29 @@ function Footer() {
 
   const handleRefer = async (e) => {
     e.preventDefault();
-    setLoading(true);
     try {
       if (!email) {
         return;
       }
+      if (email == session.user.email) {
+        toast.error("You cannot refer yourself");
+        return;
+      }
       if (!session) {
         router.push("/login");
+        return
       } else {
-        const res = await sanityAdminClient.create({
-          _type: "referral",
-          referralEmail: session.user.email,
-          referredEmail: email,
-          dateOfReferral: new Date(),
-        });
+        setLoading(true);
+        const firstName = session.user.name.split(" ")?.[0]
+        const lastName = session.user.name.split(" ")?.[1] || ''
+
+        await sendReferFriendEmail(
+          session.user.email,
+          email,
+          firstName,
+          lastName,
+          process.env.NEXT_PUBLIC_SITE_URL
+        )
         toast.success("Referral sent successfully");
       }
     } catch (err) {

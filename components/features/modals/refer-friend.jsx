@@ -4,10 +4,10 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Cookie from "js-cookie";
 import Image from "next/image";
-import { sanityAdminClient } from "@/sanity/lib/client";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import { sendReferFriendEmail } from "@/utils/referFriend";
 
 const customStyles = {
   overlay: {
@@ -25,6 +25,7 @@ function ReferFriendModal() {
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
+  console.log("🚀 ~ ReferFriendModal ~ session:", session)
   const router = useRouter();
 
   useEffect(() => {
@@ -59,21 +60,30 @@ function ReferFriendModal() {
   }
 
   const handleFormSubmit = async (e) => {
-    setLoading(true);
     try {
       e.preventDefault();
       if (!email) {
         return;
       }
+    if (email == session.user.email) {
+      toast.error("You cannot refer yourself");
+      return;
+    }
       if (!session) {
         router.push("/login");
+        return
       } else {
-        const res = await sanityAdminClient.create({
-          _type: "referral",
-          referralEmail: session.user.email,
-          referredEmail: email,
-          dateOfReferral: new Date(),
-        });
+        setLoading(true);
+        const firstName = session.user.name.split(" ")?.[0]
+        const lastName = session.user.name.split(" ")?.[1] || ''
+
+        await sendReferFriendEmail(
+          session.user.email,
+          email,
+          firstName,
+          lastName,
+          process.env.NEXT_PUBLIC_SITE_URL
+        )
         toast.success("Referral sent successfully");
       }
     } catch (err) {

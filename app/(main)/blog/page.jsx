@@ -2,6 +2,10 @@ import BlogPageComponent from "./_components/index.jsx"
 
 import { client } from '@/sanity/lib/client'
 
+export const metadata = {
+  title: "Benefits",
+}
+
 const fetchData = async () => {
   try {
 

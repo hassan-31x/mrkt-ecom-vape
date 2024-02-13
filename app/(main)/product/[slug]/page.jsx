@@ -7,6 +7,9 @@ import GallerySticky from "@/components/partials/product/gallery/gallery-sticky"
 import RelatedProductsOne from "@/components/partials/product/related/related-one";
 import ProductMain from "./_components/product-main";
 
+export const metadata = {
+  title: "View Product",
+}
 
 const fetchData = async (slug) => {
   try {

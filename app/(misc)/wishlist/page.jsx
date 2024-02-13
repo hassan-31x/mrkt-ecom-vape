@@ -3,6 +3,10 @@ import Link from "next/link";
 import PageHeader from "@/components/features/page-header";
 import WishlistPageComponent from "./_componenets/index";
 
+export const metadata = {
+  title: "My Wishlist",
+};
+
 const WishlistPage = () => {
   return (
     <main className="main">

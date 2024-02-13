@@ -3,6 +3,10 @@ import { client } from "@/sanity/lib/client";
 import SingleBlogPageComponent from "./_components"
 import NotFound from "@/app/not-found";
 
+export const metadata = {
+  title: "Blog",
+};
+
 const fetchData = async (slug) => {
   try {
     const res = await client.fetch(

@@ -4,6 +4,10 @@ import { PortableText } from "@portabletext/react";
 import PageHeader from "@/components/features/page-header";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
+export const metadata = {
+  title: "Privacy Policy",
+};
+
 const fetchData = async () => {
   try {
     const res = await client.fetch(`*[_type == 'privacyPolicy'] {

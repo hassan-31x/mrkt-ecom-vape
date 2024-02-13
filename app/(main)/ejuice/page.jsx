@@ -2,6 +2,10 @@ import CategoryPageComponent from './_components'
 
 import { client } from '@/sanity/lib/client'
 
+export const metadata = {
+  title: "View Category",
+}
+
 const fetchData = async () => {
   try {
     const res = await client.fetch(`*[_type == 'product'] {

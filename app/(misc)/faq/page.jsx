@@ -4,6 +4,10 @@ import { client } from "@/sanity/lib/client"
 import PageHeader from "@/components/features/page-header";
 import FaqAccordion from "./_components/faq-accordion";
 
+export const metadata = {
+  title: "F.A.Q",
+}
+
 const fetchData = async (slug) => {
   try {
     const res = await client.fetch(`*[_type == 'faq'] {

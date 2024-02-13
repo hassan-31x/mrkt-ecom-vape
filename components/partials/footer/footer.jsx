@@ -85,7 +85,7 @@ function Footer() {
                   />
                   <div className="input-group-append">
                     <button
-                      className="btn btn-white font-weight-lighter"
+                      className="btn btn-white font-weight-lighter border-l border-l-black"
                       type="button" onClick={handleFormSubmit}
                     >
                       Refer

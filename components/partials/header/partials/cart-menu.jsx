@@ -114,7 +114,7 @@ function CartMenu() {
                   maximumFractionDigits: 2,
                 })}
               </span> : null}
-              <span className="cart-total-price !text-[1.6rem] text-[#f05970]">
+              <span className="cart-total-price !text-[1.6rem] text-[#054088]">
                 $
                 {cartPriceTotalDiscount(cartPriceTotal(cartlist), discount?.percentage)?.toLocaleString(undefined, {
                   minimumFractionDigits: 2,

@@ -3,7 +3,7 @@
 import { signIn } from "next-auth/react";
 import { signUp } from "next-auth-sanity/client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -24,6 +24,7 @@ const SignUpComponent = () => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -87,18 +88,21 @@ const SignUpComponent = () => {
         password: formData.password,
       });
 
-      const res2 = await signIn("sanity-login", {
-        redirect: false,
-        email: formData.email,
-        password: formData.password,
-      });
-      if (res2?.ok) {
-        toast.success("Registered! Login to continue.");
-        setFormData(initialState);
-        router.push("/");
-      } else {
-        toast.error(res2?.error || "Error Logging In");
+      const code = searchParams.get("code");
+      if (code) {
+        const res2 = await fetch("/api/addDiscount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            code,
+          }),
+        });
       }
+      toast.success("Registered! Login to continue.");
+      setFormData(initialState);
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");

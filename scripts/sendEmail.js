@@ -1,5 +1,5 @@
 async function sendEmailBrevo() {
-  const res = await fetch("http://localhost:3000/api/refer", {
+  const res = await fetch("/api/refer", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

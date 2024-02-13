@@ -20,8 +20,8 @@ function CartMenu() {
       if (session) {
         const res = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email] {
           ...,
-          discountsAvailable[]->
         }`, { email })
+        // discountsAvailable[]->
 
         dispatch(updateDiscount(res?.[0]?.discountsAvailable?.[0]))
       }
@@ -30,10 +30,8 @@ function CartMenu() {
     }
   }
 
-  console.log(discount?.percentage)
-
   useEffect(() => {
-    if (session) {
+    if (session?.user?.email) {
       fetchDiscounts()
     }
   }, [session?.user?.email])

@@ -25,7 +25,7 @@ export async function POST(request) {
     let apiInstance = new SibApiV3Sdk.ContactsApi();
     apiInstance.setApiKey(
       SibApiV3Sdk.ContactsApiApiKeys.apiKey,
-      process.env.NEXT_PUBLIC_BREVO_API_KEY
+      process.env.BREVO_API_KEY
     );
     let createContact = new SibApiV3Sdk.CreateContact();
     createContact.email = referredEmail;
@@ -49,7 +49,7 @@ export async function POST(request) {
     var apiInstance2 = new SibApiV3Sdk.TransactionalEmailsApi();
     apiInstance2.setApiKey(
       SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey,
-      process.env.NEXT_PUBLIC_BREVO_API_KEY
+      process.env.BREVO_API_KEY
     );
     var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
@@ -68,7 +68,7 @@ export async function POST(request) {
       headers: {
         "X-Mailin-custom":
           "custom_header_1:custom_value_1|custom_header_2:custom_value_2",
-        "api-key": process.env.NEXT_PUBLIC_BREVO_API_KEY,
+        "api-key": process.env.BREVO_API_KEY,
         "content-type": "application/json",
         accept: "application/json",
       },

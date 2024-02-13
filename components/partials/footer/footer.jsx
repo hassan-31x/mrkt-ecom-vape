@@ -15,7 +15,6 @@ function Footer() {
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
-  console.log("🚀 ~ Footer ~ session:", session)
 
   useEffect(() => {
     handleBottomSticky();
@@ -43,13 +42,13 @@ function Footer() {
       if (!email) {
         return;
       }
-      if (email == session.user.email) {
-        toast.error("You cannot refer yourself");
-        return;
-      }
       if (!session) {
         router.push("/login");
         return
+      }
+      if (email == session?.user?.email) {
+        toast.error("You cannot refer yourself");
+        return;
       } else {
         setLoading(true);
         const firstName = session.user.name.split(" ")?.[0]

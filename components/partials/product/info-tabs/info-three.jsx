@@ -76,7 +76,9 @@ function InfoThree({ product }) {
       })),
     };
 
-    const res = await sanityAdminClient.createOrReplace(updatedProduct);
+    // const res = await sanityAdminClient.createOrReplace(updatedProduct);
+    const updatedReviews = [...product.reviews, tempReview]
+    const res = await sanityAdminClient.patch(product._id).set({ reviews: updatedReviews }).commit();
     console.log("🚀 ~ addReview ~ res:", res)
 
     toast.success('Review added!')

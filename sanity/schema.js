@@ -20,5 +20,5 @@ import { referral } from "./schemas/auth/referral";
 
 
 export const schema = {
-  types: [product, discount, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent, user, referral, account, verificationToken],
+  types: [product, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent, user, referral, account, verificationToken],
 };

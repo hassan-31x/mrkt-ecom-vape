@@ -25,7 +25,6 @@ function ReferFriendModal() {
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
-  console.log("🚀 ~ ReferFriendModal ~ session:", session)
   const router = useRouter();
 
   useEffect(() => {
@@ -65,17 +64,17 @@ function ReferFriendModal() {
       if (!email) {
         return;
       }
-    if (email == session.user.email) {
-      toast.error("You cannot refer yourself");
-      return;
-    }
       if (!session) {
         router.push("/login");
-        return
+        return;
+      }
+      if (email == session?.user?.email) {
+        toast.error("You cannot refer yourself");
+        return;
       } else {
         setLoading(true);
-        const firstName = session.user.name.split(" ")?.[0]
-        const lastName = session.user.name.split(" ")?.[1] || ''
+        const firstName = session.user.name.split(" ")?.[0];
+        const lastName = session.user.name.split(" ")?.[1] || "";
 
         await sendReferFriendEmail(
           session.user.email,
@@ -83,7 +82,7 @@ function ReferFriendModal() {
           firstName,
           lastName,
           process.env.NEXT_PUBLIC_SITE_URL
-        )
+        );
         toast.success("Referral sent successfully");
       }
     } catch (err) {

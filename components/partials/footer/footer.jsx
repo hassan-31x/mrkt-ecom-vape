@@ -226,32 +226,26 @@ function Footer() {
       <div className="footer-bottom">
         <div className={containerClass}>
           <p className="footer-copyright font-weight-normal">
-            Copyright © {new Date().getFullYear()} Molla Store. All Rights
+            Copyright © {new Date().getFullYear()} Mrkt. All Rights
             Reserved.
           </p>
 
           <ul className="footer-menu">
             <li>
-              <a
-                href="#"
+              <Link
+                href="/terms-and-conditions"
                 className="font-weight-normal"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
               >
                 Terms Of Use
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/privacy-policy"
                 className="font-weight-normal"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
               >
                 Privacy Policy
-              </a>
+              </Link>
             </li>
           </ul>
 

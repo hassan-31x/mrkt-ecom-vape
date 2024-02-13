@@ -1,29 +1,40 @@
+// import "dotenv/config";
 // import { MailerSend, EmailParams, Sender, Recipient } from "mailersend";
-import SibApi from "sib-api-v3-sdk";
+// import SibApi from "sib-api-v3-sdk";
 // import { ApiClient } from "@getbrevo/brevo";
 import * as SibApiV3Sdk from '@sendinblue/client'
 
 import { NextResponse } from "next/server";
 
+
 export async function POST(request) {
   console.log("I entered")
+
+  const key = process.env.NEXT_PUBLIC_BREVO_API_KEY;
+  // console.log("🚀 ~ POST ~ key:", key)
+  // return NextResponse.json(key);
+
   const body = await request.json();
+    console.log("🚀 ~ POST ~ body:", body)
     try {
       const {
-        senderEmail,
-        receiverEmail,
+        email,
         firstName,
         lastName,
+        url
       } = body;
+      
 
+      // let defaultClient = SibApi.ApiClient.instance;
+
+      // let apiKey = defaultClient.authentications["api-key"];
+      // apiKey.apiKey = process.env.NEXT_PUBLIC_BREVO_API_KEY;
 
       let apiInstance = new SibApiV3Sdk.ContactsApi();
       apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.NEXT_PUBLIC_BREVO_API_KEY)
       let createContact = new SibApiV3Sdk.CreateContact();
-
-      console.log(receiverEmail)
-
-      createContact.email = receiverEmail;
+      console.log(email)
+      createContact.email = email ;
       createContact.attributes = {
         FIRSTNAME: firstName,
         LASTNAME: lastName,
@@ -52,19 +63,20 @@ export async function POST(request) {
       // var partnerKey = defaultClient.authentications['partner-key'];
       // partnerKey.apiKey = 'YOUR API KEY';
       var apiInstance2 = new SibApiV3Sdk.TransactionalEmailsApi();
-      apiInstance2.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.NEXT_PUBLIC_API_KEY)
+      apiInstance2.setApiKey(SibApiV3Sdk.TransactionalEmailsApiApiKeys.apiKey, process.env.NEXT_PUBLIC_BREVO_API_KEY)
       var sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail(); // SendSmtpEmail | Values to send a transactional email
 
       sendSmtpEmail = {
         to: [
           {
-            email: receiverEmailemail ,
+            email: email,
           },
         ],
         templateId: 1,
         params: {
-          firstName: firstName ,
-          lastName: lastName ,
+          firstName:  firstName ,
+          lastName:  lastName ,
+          signin_url: url
         },
         headers: {
           "X-Mailin-custom":
@@ -84,34 +96,6 @@ export async function POST(request) {
         }
       );
       console.log(res3)
-    //   if (!user) {
-    //     let apiInstance = new SibApiV3Sdk.ContactsApi();
-    //   apiInstance.setApiKey(SibApiV3Sdk.ContactsApiApiKeys.apiKey, process.env.NEXT_PUBLIC_API_KEY as string)
-    //   let createContact = new SibApiV3Sdk.CreateContact();
-    //   console.log(email)
-    //   createContact.email = email ;
-    //   createContact.attributes = {
-    //     FIRSTNAME : firstName,
-    //     LASTNAME : lastName,
-    //     ADDRESS : shippingAdress,
-    //     CITY : city,
-    //     COUNTRY : country,
-    //     POSTALCODE : postalCode
-    //   }
-    //   createContact.listIds = [2];
-
-    //   const res_cont = await apiInstance.createContact(createContact).then(
-    //     function (data: any) {
-    //       console.log(
-    //         "API called successfully. Returned data: " + JSON.stringify(data)
-    //       );
-    //     },
-    //     function (error: any) {
-    //       console.error("ERROR", error);
-    //     }
-    //   );
-    //   console.log("Contact",res_cont);;
-    //   }
       return NextResponse.json('user');
     } catch {
       console.log("error");

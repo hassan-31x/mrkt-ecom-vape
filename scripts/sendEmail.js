@@ -5,10 +5,11 @@ async function sendEmailBrevo() {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      senderEmail: "hello",
-        receiverEmail: "muhammadhassanchannel786@gmail.com",
+      // senderEmail: "hello",
+        email: "muhammadhassanchannel786@gmail.com",
         firstName: "Hassan",
         lastName: "Ali",
+        url: 'https://www.google.com/'
     }),
   });
   console.log(res); 

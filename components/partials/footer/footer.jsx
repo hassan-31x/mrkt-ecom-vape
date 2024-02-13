@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { sanityAdminClient } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 function Footer() {
   const router = useRouter("");
@@ -35,7 +36,6 @@ function Footer() {
 
   const handleFormSubmit = async (e) => {
     try {
-
       e.preventDefault();
       if (!email) {
         return;
@@ -85,7 +85,7 @@ function Footer() {
                   />
                   <div className="input-group-append">
                     <button
-                      className="btn btn-white font-weight-lighter border-l border-l-black"
+                      className="btn btn-white font-weight-lighter !border-l !border-l-black"
                       type="button" onClick={handleFormSubmit}
                     >
                       Refer
@@ -103,7 +103,7 @@ function Footer() {
           <div className="row">
             <div className="col-sm-12 col-lg-6 col-xl-2-5col">
               <div className="widget widget-about">
-                <img
+                <Image
                   src="/images/home/footer-logo.png"
                   className="footer-logo my-2"
                   alt="Footer Logo"
@@ -135,7 +135,7 @@ function Footer() {
                       Payment Method
                     </span>
                     <figure className="footer-payments">
-                      <img
+                      <Image
                         src="/images/payments.png"
                         alt="Payment methods"
                         width="272"

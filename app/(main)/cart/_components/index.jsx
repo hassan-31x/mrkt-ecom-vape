@@ -16,6 +16,7 @@ import {
 import urlFor from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 function CartPageComponent(props) {
   const [shippingCost, setShippingCost] = useState(0);
@@ -23,6 +24,7 @@ function CartPageComponent(props) {
   const [loading, setLoading] = useState(false);
 
   const dispatch = useDispatch();
+  const router = useRouter();
   const cart = useSelector((state) => state.cart);
   const { items } = cart;
 
@@ -71,6 +73,25 @@ function CartPageComponent(props) {
       dispatch(emptyCart());
     }, 400);
   }
+
+  function handleCheckout(e) {
+    e.preventDefault()
+    try {
+      if (!session) {
+        router.push("/login");
+        return;
+      }
+      if (items?.length < 1) {
+        toast.error("No products in the cart");
+        return;
+      }
+        
+      console.log('niga')
+      // dispatch(emptyCart());
+  } catch (err) {
+    console.error(err);
+  }
+}
 
   return (
     <div className="main">
@@ -371,12 +392,14 @@ function CartPageComponent(props) {
                       </tbody>
                     </table>
 
-                    <Link
+                    <button
                       className="btn btn-outline-primary-2 btn-order btn-block"
-                      href="/checkout"
+                      type="button"
+                      disabled={items?.length < 1}
+                      onClick={handleCheckout}
                     >
                       PROCEED TO CHECKOUT
-                    </Link>
+                    </button>
                   </div>
 
                   <Link

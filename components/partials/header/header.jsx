@@ -7,6 +7,7 @@ import CartMenu from "@/components/partials/header/partials/cart-menu";
 import MainMenu from "@/components/partials/header/partials/main-menu";
 import StickyHeader from "@/components/features/sticky-header";
 import { signOut, useSession } from "next-auth/react";
+import Image from "next/image";
 
 function Header() {
   const { data: session } = useSession();
@@ -162,7 +163,7 @@ function Header() {
                 </button>
 
                 <Link href="/" className="logo">
-                  <img
+                  <Image
                     src="/images/home/header-logo-t.png"
                     alt="Molla Logo"
                     width="82"

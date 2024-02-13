@@ -7,6 +7,7 @@ import urlFor from "@/sanity/lib/image";
 import { removeFromCart, updateDiscount } from "@/redux/slice/cartSlice";
 import { useSession } from "next-auth/react";
 import { sanityAdminClient } from "@/sanity/lib/client";
+import Image from "next/image";
 
 function CartMenu() {
   const { data: session } = useSession()
@@ -86,8 +87,9 @@ function CartMenu() {
                       href={`/product/${item.slug.current}`}
                       className="product-image"
                     >
-                      <img
+                      <Image
                         src={urlFor(item.pictures?.[0])?.url()}
+                        fill
                         alt="product"
                       />
                     </Link>
@@ -114,7 +116,7 @@ function CartMenu() {
                   maximumFractionDigits: 2,
                 })}
               </span> : null}
-              <span className="cart-total-price !text-[1.6rem] text-[#054088]">
+              <span className="cart-total-price !text-[1.6rem] text-[#ef837b]">
                 $
                 {cartPriceTotalDiscount(cartPriceTotal(cartlist), discount?.percentage)?.toLocaleString(undefined, {
                   minimumFractionDigits: 2,

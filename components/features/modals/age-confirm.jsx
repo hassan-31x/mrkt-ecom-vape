@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Cookie from "js-cookie";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const customStyles = {
   overlay: {
@@ -68,7 +69,7 @@ function AgeConfirmModal() {
           <div className="w-full">
             <div className="w-full flex justify-center items-center bg-white newsletter-popup-content">
               <div className="banner-content text-center">
-                <img
+                <Image
                   src="/images/home/header-logo-t.png"
                   alt="logo"
                   className="logo"

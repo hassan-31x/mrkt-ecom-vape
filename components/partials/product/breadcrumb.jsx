@@ -27,7 +27,7 @@ function Breadcrumb(props) {
           <li className="breadcrumb-item active">{current}</li>
         </ol>
 
-        <nav className="product-pager ml-auto">
+        {/* <nav className="product-pager ml-auto">
           {prev ? (
             <Link
             href={`/product/${prev.slug.current}`}
@@ -75,7 +75,7 @@ function Breadcrumb(props) {
           ) : (
             ""
           )}
-        </nav>
+        </nav> */}
       </div>
     </nav>
   );

@@ -103,7 +103,7 @@ function ReferFriendModal() {
             <div className="row no-gutters bg-white newsletter-popup-content">
               <div className="col-xl-3-5col col-lg-7 banner-content-wrap">
                 <div className="banner-content text-center">
-                  <img
+                  <Image
                     src="/images/home/header-logo-t.png"
                     alt="logo"
                     className="logo"

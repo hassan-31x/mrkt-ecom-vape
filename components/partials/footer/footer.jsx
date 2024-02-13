@@ -107,8 +107,8 @@ function Footer() {
                   src="/images/home/footer-logo.png"
                   className="footer-logo my-2"
                   alt="Footer Logo"
-                  width="83"
-                  height="31"
+                  width={83}
+                  height={31}
                 />
                 <p className="font-weight-normal mb-3">
                   Praesent dapibus, neque id cursus ucibus, tortor neque egestas
@@ -138,8 +138,8 @@ function Footer() {
                       <Image
                         src="/images/payments.png"
                         alt="Payment methods"
-                        width="272"
-                        height="20"
+                        width={272}
+                        height={20}
                       />
                     </figure>
                   </div>

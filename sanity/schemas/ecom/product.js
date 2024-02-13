@@ -10,6 +10,12 @@ export const product = {
       validation: (Rule) => Rule.required(),
     },
     {
+      name: "skuId",
+      title: "Paykings SKU ID",
+      type: "string",
+      // validation: (Rule) => Rule.required(),
+    },
+    {
       name: "name",
       title: "Name",
       type: "string",

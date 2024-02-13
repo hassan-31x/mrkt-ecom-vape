@@ -196,7 +196,7 @@ function HomePageComponent({
                   </figure>
 
                   <Link
-                    href="ejuice"
+                    href="/ejuice"
                     className="btn btn-link d-inline-block btn-link-primary"
                   >
                     SHOP NOW<i className="icon-angle-right"></i>
@@ -369,7 +369,7 @@ function HomePageComponent({
                       href={`/blog/${blog?.slug?.current}`}
                       className="btn btn-link btn-link-primary"
                     >
-                      SHOP NOW<i className="icon-angle-right"></i>
+                      READ NOW<i className="icon-angle-right"></i>
                     </Link>
                   </div>
                 </div>

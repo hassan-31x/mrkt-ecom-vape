@@ -89,6 +89,8 @@ function CartPageComponent(props) {
         
       console.log('niga')
       // dispatch(emptyCart());
+
+      //? https://paykings.transactiongateway.com/merchants/resources/integration/integration_portal.php?tid=2d391e6d61b0a85ff2c85c56b97fd9c4#cc_integration
   } catch (err) {
     console.error(err);
   } finally {

@@ -273,7 +273,6 @@ function CartPageComponent(props) {
                             Discount <br />
                             {cart?.discount &&
                               `(${cart?.discount?.name} - ${cart?.discount?.percentage}%)`}
-                            :
                           </td>
                           <td className="text-[#054088] py-0">
                             - $

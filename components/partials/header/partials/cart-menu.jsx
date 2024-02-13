@@ -30,8 +30,12 @@ function CartMenu() {
     }
   }
 
+  console.log(discount?.percentage)
+
   useEffect(() => {
-    fetchDiscounts()
+    if (session) {
+      fetchDiscounts()
+    }
   }, [session?.user?.email])
 
   return (

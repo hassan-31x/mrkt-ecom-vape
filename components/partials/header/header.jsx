@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import LoginModal from "@/components/features/modals/login-modal";
 import HeaderSearch from "@/components/partials/header/partials/header-search";
@@ -8,14 +8,21 @@ import MainMenu from "@/components/partials/header/partials/main-menu";
 import StickyHeader from "@/components/features/sticky-header";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { updateDiscount } from "@/redux/slice/cartSlice";
 
 function Header() {
   const { data: session } = useSession();
   const wishlist = useSelector((state) => state.wishlist.items);
+  const dispatch = useDispatch()
 
   function openMobileMenu() {
     document.querySelector("body").classList.add("mmenu-active");
   }
+
+  const handleLogout = () =>{
+    dispatch(updateDiscount(null))
+    signOut()
+  } 
 
   return (
     <header className="header header-35 bg-[#FCFCFC]">
@@ -132,7 +139,7 @@ function Header() {
                   <li>
                     {session ? (
                       <span
-                        onClick={() => signOut()}
+                        onClick={handleLogout}
                         className="!text-[#999999] cursor-pointer"
                       >
                         <i className="icon-user"></i>Logout

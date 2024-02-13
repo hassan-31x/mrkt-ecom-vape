@@ -89,7 +89,9 @@ function CartMenu() {
                     >
                       <Image
                         src={urlFor(item.pictures?.[0])?.url()}
-                        fill
+                        // fill
+                        height={50}
+                        width={50}
                         alt="product"
                       />
                     </Link>

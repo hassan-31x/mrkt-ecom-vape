@@ -22,6 +22,7 @@ function ReferFriendModal() {
   const [open, setOpen] = useState(false);
   const [doNotShow, setDoNotShow] = useState(false);
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
   const router = useRouter();
@@ -58,6 +59,7 @@ function ReferFriendModal() {
   }
 
   const handleFormSubmit = async (e) => {
+    setLoading(true);
     try {
       e.preventDefault();
       if (!email) {
@@ -78,6 +80,7 @@ function ReferFriendModal() {
       console.error(err);
     } finally {
       setEmail("");
+      setLoading(false);
       closeModal();
     }
   };
@@ -136,9 +139,10 @@ function ReferFriendModal() {
                         <button
                           className="btn"
                           type="button"
+                          disabled={loading}
                           onClick={handleFormSubmit}
                         >
-                          <span>go</span>
+                          <span>{loading ? "Sending" : "go"}</span>
                         </button>
                       </div>
                     </div>

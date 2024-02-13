@@ -43,7 +43,6 @@ const SignInComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     // Add your form validation logic here
     const errors = {};
@@ -63,6 +62,8 @@ const SignInComponent = () => {
       setFormErrors(errors);
       return;
     }
+
+    setLoading(true);
 
     try {
       const res = await signIn("sanity-login", {
@@ -140,6 +141,7 @@ const SignInComponent = () => {
               type="button"
               onClick={handleSubmit}
               className="btn btn-outline-primary-2"
+              disabled={loading}
             >
               <span>{loading ? "Loading" : "LOG IN"}</span>
               <i className="icon-long-arrow-right"></i>

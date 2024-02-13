@@ -157,7 +157,7 @@ function WishlistPageComponent() {
               style={{ fontSize: "15rem", lineHeight: "1" }}
             ></i>
             <span className="d-block mt-2">No products added to wishlist</span>
-            <Link href="/shop/sidebar/list" className="btn btn-primary mt-2">
+            <Link href="/ejuice" className="btn btn-primary mt-2">
               Go Shop
             </Link>
           </div>

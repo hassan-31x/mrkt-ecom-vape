@@ -11,6 +11,7 @@ function Footer() {
   const [isBottomSticky, setIsBottomSticky] = useState(false);
   const [containerClass, setContainerClass] = useState("container");
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
 
@@ -34,28 +35,30 @@ function Footer() {
     );
   }
 
-  const handleFormSubmit = async (e) => {
+  const handleRefer = async (e) => {
+    e.preventDefault();
+    setLoading(true);
     try {
-      e.preventDefault();
       if (!email) {
         return;
+      }
+      if (!session) {
+        router.push("/login");
+      } else {
+        const res = await sanityAdminClient.create({
+          _type: "referral",
+          referralEmail: session.user.email,
+          referredEmail: email,
+          dateOfReferral: new Date(),
+        });
+        toast.success("Referral sent successfully");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setEmail("");
+      setLoading(false);
     }
-    if (!session) {
-      router.push("/login");
-    } else {
-      const res = await sanityAdminClient.create({
-        _type: "referral",
-        referralEmail: session.user.email,
-        referredEmail: email,
-        dateOfReferral: new Date(),
-      });
-      toast.success("Referral sent successfully");
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setEmail("")
-  }
   };
 
   return (
@@ -86,9 +89,11 @@ function Footer() {
                   <div className="input-group-append">
                     <button
                       className="btn btn-white font-weight-lighter !border-l !border-l-black"
-                      type="button" onClick={handleFormSubmit}
+                      disabled={loading}
+                      type="button"
+                      onClick={handleRefer}
                     >
-                      Refer
+                      {loading ? "Sending" : "Refer"}
                     </button>
                   </div>
                 </div>

@@ -76,6 +76,7 @@ function CartPageComponent(props) {
 
   function handleCheckout(e) {
     e.preventDefault()
+    setLoading(true)
     try {
       if (!session) {
         router.push("/login");
@@ -90,6 +91,8 @@ function CartPageComponent(props) {
       // dispatch(emptyCart());
   } catch (err) {
     console.error(err);
+  } finally {
+    setLoading(false)
   }
 }
 
@@ -395,15 +398,15 @@ function CartPageComponent(props) {
                     <button
                       className="btn btn-outline-primary-2 btn-order btn-block"
                       type="button"
-                      disabled={items?.length < 1}
+                      disabled={items?.length < 1 || loading}
                       onClick={handleCheckout}
                     >
-                      PROCEED TO CHECKOUT
+                      {loading ? 'Loading...' : 'PROCEED TO CHECKOUT'}
                     </button>
                   </div>
 
                   <Link
-                    href="/sidebar/list"
+                    href="/ejuice"
                     className="btn btn-outline-dark-2 btn-block mb-3"
                   >
                     <span>CONTINUE SHOPPING</span>
@@ -423,7 +426,7 @@ function CartPageComponent(props) {
                       No products added to the cart
                     </p>
                     <p className="return-to-shop mb-0">
-                      <Link href="/sidebar/list" className="btn btn-primary">
+                      <Link href="/ejuice" className="btn btn-primary">
                         RETURN TO SHOP
                       </Link>
                     </p>

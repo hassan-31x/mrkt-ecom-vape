@@ -8,7 +8,11 @@ import PageHeader from "@/components/features/page-header";
 import { cartPriceTotal, cartPriceTotalDiscount } from "@/utils/index";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
-import { applyDiscount, emptyCart, removeFromCart } from "@/redux/slice/cartSlice";
+import {
+  applyDiscount,
+  emptyCart,
+  removeFromCart,
+} from "@/redux/slice/cartSlice";
 import urlFor from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
@@ -18,7 +22,7 @@ function CartPageComponent(props) {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
   const { items } = cart;
 
@@ -27,8 +31,7 @@ function CartPageComponent(props) {
   }
 
   function changeQty(value, index) {
-    console.log("🚀 ~ changeQty ~ value:", value)
-    
+    console.log("🚀 ~ changeQty ~ value:", value);
   }
 
   const handleDiscount = async () => {
@@ -47,7 +50,7 @@ function CartPageComponent(props) {
       // }
 
       // dispatch(applyDiscount(res[0]));
-      console.log('applied')
+      console.log("applied");
     } catch (err) {
       console.log(err);
     } finally {
@@ -56,17 +59,17 @@ function CartPageComponent(props) {
     }
   };
 
-    function updateCart(e) {
-      let button = e.currentTarget;
-      button.querySelector(".icon-refresh").classList.add("load-more-rotating");
-  
-      setTimeout(() => {
-        dispatch(emptyCart());
-        button
-          .querySelector(".icon-refresh")
-          .classList.remove("load-more-rotating");
-          dispatch(emptyCart())
-      }, 400);
+  function updateCart(e) {
+    let button = e.currentTarget;
+    button.querySelector(".icon-refresh").classList.add("load-more-rotating");
+
+    setTimeout(() => {
+      dispatch(emptyCart());
+      button
+        .querySelector(".icon-refresh")
+        .classList.remove("load-more-rotating");
+      dispatch(emptyCart());
+    }, 400);
   }
 
   return (
@@ -123,8 +126,8 @@ function CartPageComponent(props) {
                                     {item.name}
                                   </Link>
                                   <span className="capitalize text-xl text-neutral-700/60">
-                                      {item?.nicotinePercentage}% Nicotine
-                                    </span>
+                                    {item?.nicotinePercentage}% Nicotine
+                                  </span>
                                 </h4>
                               </div>
                             </td>
@@ -143,13 +146,15 @@ function CartPageComponent(props) {
                             </td>
 
                             <td className="quantity-col">
-                              <Qty
+                              {/* <Qty
                                 value={item.qty}
                                 changeQty={(current) =>
                                   changeQty(current, index)
                                 }
                                 adClass="cart-product-quantity"
-                              ></Qty>
+                              ></Qty> */}
+                              <span className="inline lg:hidden">x</span>
+                              {item.qty}
                             </td>
 
                             <td className="total-col">
@@ -163,7 +168,9 @@ function CartPageComponent(props) {
                             <td className="remove-col">
                               <button
                                 className="btn-remove"
-                                onClick={() => dispatch(removeFromCart(item.cartId))}
+                                onClick={() =>
+                                  dispatch(removeFromCart(item.cartId))
+                                }
                               >
                                 <i className="icon-close"></i>
                               </button>
@@ -194,18 +201,18 @@ function CartPageComponent(props) {
                             placeholder="coupon code"
                           />
                           <div className="input-group-append">
-                          <button
-                            className="btn btn-outline-primary-2"
-                            onClick={handleDiscount}
-                            type="button"
-                          >
-                            <i
-                              className={
-                                loading
-                                  ? "icon-times-circle-o"
-                                  : "icon-long-arrow-right"
-                              }
-                            ></i>
+                            <button
+                              className="btn btn-outline-primary-2"
+                              onClick={handleDiscount}
+                              type="button"
+                            >
+                              <i
+                                className={
+                                  loading
+                                    ? "icon-times-circle-o"
+                                    : "icon-long-arrow-right"
+                                }
+                              ></i>
                             </button>
                           </div>
                         </div>
@@ -231,39 +238,42 @@ function CartPageComponent(props) {
                           <td className="!pb-0">Subtotal:</td>
                           <td className="pb-0">
                             $
-                            {cartPriceTotal(items).toLocaleString(
-                              undefined,
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
-                            )}
+                            {cartPriceTotal(items).toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
                           </td>
                         </tr>
                         <tr className="summary-shipping">
-                          <td className="py-0">Discount <br />{cart?.discount && `(${cart?.discount?.name} - ${cart?.discount?.percentage}%)`}:</td>
+                          <td className="py-0">
+                            Discount <br />
+                            {cart?.discount &&
+                              `(${cart?.discount?.name} - ${cart?.discount?.percentage}%)`}
+                            :
+                          </td>
                           <td className="text-[#f05970] py-0">
                             - $
-                            {(cartPriceTotal(items) * cart?.discount?.percentage / 100).toLocaleString(
-                              undefined,
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
-                            )}
+                            {(
+                              (cartPriceTotal(items) *
+                                (cart?.discount?.percentage || 0)) /
+                              100
+                            ).toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
                           </td>
                         </tr>
                         <tr className="summary-subtotal">
                           <td>Subtotal After Discount:</td>
                           <td>
                             $
-                            {cartPriceTotalDiscount(cartPriceTotal(items), cart?.discount?.percentage).toLocaleString(
-                              undefined,
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
-                            )}
+                            {cartPriceTotalDiscount(
+                              cartPriceTotal(items),
+                              cart?.discount?.percentage
+                            ).toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
                           </td>
                         </tr>
                         <tr className="summary-shipping">
@@ -338,8 +348,7 @@ function CartPageComponent(props) {
                         <tr className="summary-shipping-estimate">
                           <td>
                             Estimate for Your Country
-                            <br />{" "}
-                            <Link href="/dashboard">Change address</Link>
+                            <br /> <Link href="/dashboard">Change address</Link>
                           </td>
                           <td>&nbsp;</td>
                         </tr>
@@ -348,13 +357,15 @@ function CartPageComponent(props) {
                           <td>Total:</td>
                           <td>
                             $
-                            {(cartPriceTotalDiscount(cartPriceTotal(items), cart?.discount?.percentage) + shippingCost).toLocaleString(
-                              undefined,
-                              {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
-                              }
-                            )}
+                            {(
+                              cartPriceTotalDiscount(
+                                cartPriceTotal(items),
+                                cart?.discount?.percentage
+                              ) + shippingCost
+                            ).toLocaleString(undefined, {
+                              minimumFractionDigits: 2,
+                              maximumFractionDigits: 2,
+                            })}
                           </td>
                         </tr>
                       </tbody>
@@ -389,10 +400,7 @@ function CartPageComponent(props) {
                       No products added to the cart
                     </p>
                     <p className="return-to-shop mb-0">
-                      <Link
-                        href="/sidebar/list"
-                        className="btn btn-primary"
-                      >
+                      <Link href="/sidebar/list" className="btn btn-primary">
                         RETURN TO SHOP
                       </Link>
                     </p>

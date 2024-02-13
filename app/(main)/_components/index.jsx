@@ -103,7 +103,7 @@ function HomePageComponent({
       </section>
 
       <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
-        <section className="brand-section">
+        {homePageData?.benefits?.length ? <section className="brand-section">
           <div className="container">
             <div className="heading heading-center">
               <h2 className="title font-weigowht-normal text-secondary-dark mb-3">
@@ -126,7 +126,7 @@ function HomePageComponent({
               ))}
             </OwlCarousel>
           </div>
-        </section>
+        </section> : null}
       </Reveal>
 
       <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>

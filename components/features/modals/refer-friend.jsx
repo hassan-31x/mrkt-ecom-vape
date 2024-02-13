@@ -59,22 +59,21 @@ function ReferFriendModal() {
 
   const handleFormSubmit = async (e) => {
     try {
-
       e.preventDefault();
       if (!email) {
         return;
       }
       if (!session) {
-      router.push("/login");
-    } else {
-      const res = await sanityAdminClient.create({
-        _type: "referral",
-        referralEmail: session.user.email,
-        referredEmail: email,
-        dateOfReferral: new Date(),
-      });
-      toast.success("Referral sent successfully");
-    }
+        router.push("/login");
+      } else {
+        const res = await sanityAdminClient.create({
+          _type: "referral",
+          referralEmail: session.user.email,
+          referredEmail: email,
+          dateOfReferral: new Date(),
+        });
+        toast.success("Referral sent successfully");
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -134,7 +133,11 @@ function ReferFriendModal() {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                       <div className="input-group-append">
-                        <button className="btn" type="button" onClick={handleFormSubmit}>
+                        <button
+                          className="btn"
+                          type="button"
+                          onClick={handleFormSubmit}
+                        >
                           <span>go</span>
                         </button>
                       </div>

@@ -69,6 +69,10 @@ function CartMenu() {
                       </Link>
                     </h4>
 
+                    <div className="cart-product-info">
+                      {item?.nicotinePercentage}% Nicotine
+                    </div>
+
                     <span className="cart-product-info">
                       <span className="cart-product-qty">{item.qty} </span>x $
                       {item?.sale_price
@@ -103,13 +107,13 @@ function CartMenu() {
               <div>
 
 
-              <span className="cart-total-price !text-[1.45rem] line-through pr-1">
+              {discount?.percentage ? <span className="cart-total-price !text-[1.45rem] line-through pr-1">
                 $
                 {cartPriceTotal(cartlist)?.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,
                 })}
-              </span>
+              </span> : null}
               <span className="cart-total-price !text-[1.6rem] text-[#f05970]">
                 $
                 {cartPriceTotalDiscount(cartPriceTotal(cartlist), discount?.percentage)?.toLocaleString(undefined, {

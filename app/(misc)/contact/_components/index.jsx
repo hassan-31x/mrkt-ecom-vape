@@ -1,6 +1,9 @@
+import urlFor from "@/sanity/lib/image";
 import Link from "next/link";
+import { PortableText } from "@portabletext/react";
+import { RichTextComponents } from "@/components/features/rich-text-component";
 
-function ContactPageComponent() {
+function ContactPageComponent({ contact }) {
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
@@ -8,9 +11,6 @@ function ContactPageComponent() {
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link href="#">Pages</Link>
             </li>
             <li className="breadcrumb-item active">Contact us</li>
           </ol>
@@ -20,7 +20,7 @@ function ContactPageComponent() {
       <div className="container">
         <div
           className="page-header page-header-big text-center"
-          style={{ backgroundImage: `url(images/contact-header-bg.jpg)` }}
+          style={{ backgroundImage: urlFor(contact?.bannerImage)?.url() }}
         >
           <h1 className="page-title text-white">
             Contact us<span className="text-white">keep in touch with us</span>
@@ -34,11 +34,12 @@ function ContactPageComponent() {
             <div className="col-lg-6 mb-2 mb-lg-0">
               <h2 className="title mb-1">Contact Information</h2>
               <p className="mb-3">
-                Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod
-                dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu,
-                dapibus eu, fermentum et, dapibus sed, urna.
+                <PortableText
+                  value={contact?.contactDescription}
+                  components={RichTextComponents}
+                />
               </p>
-              <div className="row">
+              {/* <div className="row">
                 <div className="col-sm-7">
                   <div className="contact-info">
                     <h3>The Office</h3>
@@ -80,7 +81,7 @@ function ContactPageComponent() {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
             <div className="col-lg-6">
               <h2 className="title mb-1">Got Any Questions?</h2>
@@ -156,7 +157,7 @@ function ContactPageComponent() {
                 ></textarea>
 
                 <button
-                  type="submit"
+                  type="button"
                   className="btn btn-outline-primary-2 btn-minwidth-sm"
                 >
                   <span>SUBMIT</span>
@@ -167,7 +168,6 @@ function ContactPageComponent() {
           </div>
 
           <hr className="mt-4 mb-5" />
-
         </div>
       </div>
     </div>

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import OwlCarousel from "@/components/features/owl-carousel";
 import urlFor from "@/sanity/lib/image";
@@ -14,7 +14,9 @@ function AboutPageComponent({ about }) {
     facebook: "icon-facebook-f",
     twitter: "icon-twitter",
     instagram: "icon-instagram",
-  }
+  };
+
+  console.log(urlFor(about?.bannerImage)?.url());
 
   return (
     <div className="main">
@@ -46,20 +48,20 @@ function AboutPageComponent({ about }) {
             <div className="col-lg-6 mb-3 mb-lg-0">
               <h2 className="title">{about?.heading1}</h2>
               <p>
-              <PortableText
-            value={about?.description1}
-            components={RichTextComponents}
-          />{" "}
+                <PortableText
+                  value={about?.description1}
+                  components={RichTextComponents}
+                />{" "}
               </p>
             </div>
 
             <div className="col-lg-6">
               <h2 className="title">{about?.heading2}</h2>
               <p>
-              <PortableText
-            value={about?.description2}
-            components={RichTextComponents}
-          />{" "}
+                <PortableText
+                  value={about?.description2}
+                  components={RichTextComponents}
+                />{" "}
               </p>
             </div>
           </div>
@@ -73,16 +75,16 @@ function AboutPageComponent({ about }) {
               <div className="col-lg-5 mb-3 mb-lg-0">
                 <h2 className="title">{about.heading3}</h2>
                 <p className="lead text-primary mb-3">
-                <PortableText
-            value={about?.subText2}
-            components={RichTextComponents}
-          />
+                  <PortableText
+                    value={about?.subText2}
+                    components={RichTextComponents}
+                  />
                 </p>
                 <p className="mb-2">
-                <PortableText
-            value={about?.description3}
-            components={RichTextComponents}
-          />{" "}
+                  <PortableText
+                    value={about?.description3}
+                    components={RichTextComponents}
+                  />{" "}
                 </p>
 
                 <Link
@@ -118,14 +120,12 @@ function AboutPageComponent({ about }) {
           <div className="row">
             <div className="col-lg-5">
               <div className="brands-text">
-                <h2 className="title">
-                  {about?.benefitsHeading}
-                </h2>
+                <h2 className="title">{about?.benefitsHeading}</h2>
                 <p>
-                <PortableText
-            value={about?.benefitsDescription}
-            components={RichTextComponents}
-          />
+                  <PortableText
+                    value={about?.benefitsDescription}
+                    components={RichTextComponents}
+                  />
                 </p>
               </div>
             </div>
@@ -135,7 +135,10 @@ function AboutPageComponent({ about }) {
                   {about?.benefitsLogos?.map((brand, index) => (
                     <div className="col-6 col-sm-4" key={index}>
                       <Link href="#" className="brand">
-                        <img src={urlFor(brand?.logo)?.url()} alt="Brand Name" />
+                        <img
+                          src={urlFor(brand?.logo)?.url()}
+                          alt="Brand Name"
+                        />
                       </Link>
                     </div>
                   ))}
@@ -150,47 +153,46 @@ function AboutPageComponent({ about }) {
 
           <OwlCarousel adClass="owl-simple" options={mainSlider9}>
             {about?.ourTeam?.map((team, index) => (
+              <div className="member member-anim text-center">
+                <figure className="member-media">
+                  <div className="lazy-overlay"></div>
+                  <Image
+                    alt="member"
+                    src={urlFor(team?.image)?.url()}
+                    height={500}
+                    width={376}
+                  />
 
-            <div className="member member-anim text-center">
-              <figure className="member-media">
-                <div className="lazy-overlay"></div>
-                <Image
-                  alt="member"
-                  src={urlFor(team?.image)?.url()}
-                  height={500}
-                  width={376}
-                />
-
-                <figcaption className="member-overlay">
-                  <div className="member-overlay-content">
-                    <h3 className="member-title">
-                      {team?.name}<span>{team?.role}</span>
-                    </h3>
-                    <p>
-                      {team?.description}
-                    </p>
-                    <div className="social-icons social-icons-simple">
-                      {team?.social?.map((social, index) => (
-
-                        
-                        <Link href={social?.link} className="social-icon" title={social?.icon}>
-                        <i className={socialIcons?.[social?.icon]}></i>
-                      </Link>
-                          ))}
+                  <figcaption className="member-overlay">
+                    <div className="member-overlay-content">
+                      <h3 className="member-title">
+                        {team?.name}
+                        <span>{team?.role}</span>
+                      </h3>
+                      <p>{team?.description}</p>
+                      <div className="social-icons social-icons-simple">
+                        {team?.social?.map((social, index) => (
+                          <Link
+                            href={social?.link}
+                            className="social-icon"
+                            title={social?.icon}
+                          >
+                            <i className={socialIcons?.[social?.icon]}></i>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                </figcaption>
-              </figure>
+                  </figcaption>
+                </figure>
 
-              <div className="member-content">
-                <h3 className="member-title">
-                  {team?.name}
-                  <span>{team?.role}</span>
-                </h3>
+                <div className="member-content">
+                  <h3 className="member-title">
+                    {team?.name}
+                    <span>{team?.role}</span>
+                  </h3>
+                </div>
               </div>
-            </div>
             ))}
-
           </OwlCarousel>
         </div>
 
@@ -206,32 +208,34 @@ function AboutPageComponent({ about }) {
             </h2>
 
             <OwlCarousel options={{ nav: false, dots: true }}>
-            {about?.reviews?.map((review, index) => (
-              <blockquote className="testimonial text-center">
-                <div className="ratings-container justify-content-center">
-                  <div className="ratings">
-                    <div
-                      className="ratings-val"
-                      style={{ width: review?.stars * 20 + "%" }}
-                    ></div>
-                    <span className="tooltip-text">
-                      {review?.stars?.toFixed(2)}
-                    </span>
+              {about?.reviews?.map((review, index) => (
+                <blockquote className="testimonial text-center">
+                  <div className="ratings-container justify-content-center">
+                    <div className="ratings">
+                      <div
+                        className="ratings-val"
+                        style={{ width: review?.stars * 20 + "%" }}
+                      ></div>
+                      <span className="tooltip-text">
+                        {review?.stars?.toFixed(2)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <h5 className="subtitle font-weight-lighter text-primary">
-                  {review?.heading}
-                </h5>
-                <p className="font-weight-normal text-dark">&rsquo;{review?.text}&rsquo;</p>
-                <cite className="font-weight-normal text-dark">
-                  - {review?.reviewerName}
-                </cite>
-                <p className="font-weight-normal text-dark">
-                  {review?.country}
-                </p>
-              </blockquote>
-            ))}
-          </OwlCarousel>
+                  <h5 className="subtitle font-weight-lighter text-primary">
+                    {review?.heading}
+                  </h5>
+                  <p className="font-weight-normal text-dark">
+                    &rsquo;{review?.text}&rsquo;
+                  </p>
+                  <cite className="font-weight-normal text-dark">
+                    - {review?.reviewerName}
+                  </cite>
+                  <p className="font-weight-normal text-dark">
+                    {review?.country}
+                  </p>
+                </blockquote>
+              ))}
+            </OwlCarousel>
           </div>
         </div>
       </div>

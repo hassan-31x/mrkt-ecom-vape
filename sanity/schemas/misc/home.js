@@ -78,6 +78,16 @@ export const home = {
       type: "string",
     },
     {
+      name: "blogSectionHeading",
+      title: "Blog Section - Heading",
+      type: "string",
+    },
+    {
+      name: "blogSectionSubText",
+      title: "Blog Section - Subtext",
+      type: "string",
+    },
+    {
       name: "blogs",
       title: "Related Blogs",
       type: "array",

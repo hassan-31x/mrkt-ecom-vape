@@ -235,15 +235,13 @@ function HomePageComponent({
 
                   <div className="banner-content">
                     <h3 className="banner-title font-weight-normal text-primary">
-                      It's the gift we've been waiting for all year.
+                      {homePageData?.blogSectionHeading}
                     </h3>
                     <p className="font-weight-normal">
-                      Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                      Donec odio. Quisque volutpat mattis eros. Nullam malesuada
-                      erat ut turpis.
+                      {homePageData?.blogSectionSubText}
                     </p>
                     <Link
-                      href="/ejuice"
+                      href="/blog"
                       className="btn btn-outline-primary-2"
                     >
                       READ MORE<i className="icon-angle-right"></i>

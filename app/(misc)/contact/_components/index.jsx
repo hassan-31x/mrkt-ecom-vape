@@ -1,9 +1,44 @@
+"use client"
+
 import urlFor from "@/sanity/lib/image";
 import Link from "next/link";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
+import { sanityAdminClient } from "@/sanity/lib/client";
+import { useState } from "react";
+
+const initialState = {
+  name: '',
+  email: '',
+  phone: '',
+  subject: '',
+  message: '',
+}
 
 function ContactPageComponent({ contact }) {
+  const [formData, setFormData] = useState(initialState);
+
+  const handleChange = (event) => {
+    const { id, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [id]: value,
+    }));
+  };
+
+  // Event handler for form submission (optional)
+  const handleSubmit = async () => {
+    // const { name, }
+    await sanityAdminClient.create({
+      _type: 'contactQuestions',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subject: formData.subject,
+      message: formData.message,
+    })
+    setFormData(initialState)
+  };
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
@@ -89,81 +124,92 @@ function ContactPageComponent({ contact }) {
                 Use the form below to get in touch with the sales team
               </p>
 
-              <form action="#" className="contact-form mb-3">
-                <div className="row">
-                  <div className="col-sm-6">
-                    <label htmlFor="cname" className="sr-only">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="cname"
-                      placeholder="Name *"
-                      required
-                    />
-                  </div>
+              <form className="contact-form mb-3">
+      <div className="row">
+        <div className="col-sm-6">
+          <label htmlFor="name" className="sr-only">
+            Name
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="name"
+            placeholder="Name *"
+            required
+            value={formData.name}
+            onChange={handleChange}
+          />
+        </div>
 
-                  <div className="col-sm-6">
-                    <label htmlFor="cemail" className="sr-only">
-                      Email
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      id="cemail"
-                      placeholder="Email *"
-                      required
-                    />
-                  </div>
-                </div>
+        <div className="col-sm-6">
+          <label htmlFor="email" className="sr-only">
+            Email
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            placeholder="Email *"
+            required
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
 
-                <div className="row">
-                  <div className="col-sm-6">
-                    <label htmlFor="cphone" className="sr-only">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      className="form-control"
-                      id="cphone"
-                      placeholder="Phone"
-                    />
-                  </div>
+      <div className="row">
+        <div className="col-sm-6">
+          <label htmlFor="phone" className="sr-only">
+            Phone
+          </label>
+          <input
+            type="tel"
+            className="form-control"
+            id="phone"
+            placeholder="Phone"
+            value={formData.phone}
+            onChange={handleChange}
+          />
+        </div>
 
-                  <div className="col-sm-6">
-                    <label htmlFor="csubject" className="sr-only">
-                      Subject
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="csubject"
-                      placeholder="Subject"
-                    />
-                  </div>
-                </div>
+        <div className="col-sm-6">
+          <label htmlFor="subject" className="sr-only">
+            Subject
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="subject"
+            placeholder="Subject"
+            value={formData.subject}
+            onChange={handleChange}
+          />
+        </div>
+      </div>
 
-                <label htmlFor="cmessage" className="sr-only">
-                  Message
-                </label>
-                <textarea
-                  className="form-control"
-                  cols="30"
-                  rows="4"
-                  id="cmessage"
-                  required
-                  placeholder="Message *"
-                ></textarea>
+      <label htmlFor="message" className="sr-only">
+        Message
+      </label>
+      <textarea
+        className="form-control"
+        cols="30"
+        rows="4"
+        id="message"
+        required
+        placeholder="Message *"
+        value={formData.message}
+        onChange={handleChange}
+      ></textarea>
 
-                <button
-                  type="button"
-                  className="btn btn-outline-primary-2 btn-minwidth-sm"
-                >
-                  <span>SUBMIT</span>
-                  <i className="icon-long-arrow-right"></i>
-                </button>
-              </form>
+      <button
+        type="button"
+        className="btn btn-outline-primary-2 btn-minwidth-sm"
+        onClick={handleSubmit}
+      >
+        <span>SUBMIT</span>
+        <i className="icon-long-arrow-right"></i>
+      </button>
+    </form>
             </div>
           </div>
 

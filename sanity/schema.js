@@ -11,6 +11,7 @@ import { about } from "./schemas/misc/about";
 import { contact } from "./schemas/misc/contact";
 import { privacyPolicy } from "./schemas/misc/privacy-policy";
 import { termsCondition } from "./schemas/misc/terms-condition";
+import { contactQuestions } from "./schemas/misc/contactQuestions";
 
 import { blockContent } from "./schemas/blockContent";
 
@@ -22,5 +23,5 @@ import { referral } from "./schemas/auth/referral";
 
 
 export const schema = {
-  types: [product, post, author, category, home, about, faq, contact, termsCondition, privacyPolicy, blockContent, user, referral, account, verificationToken],
+  types: [product, post, author, category, home, about, faq, contact, termsCondition, privacyPolicy, blockContent, contactQuestions, user, referral, account, verificationToken],
 };

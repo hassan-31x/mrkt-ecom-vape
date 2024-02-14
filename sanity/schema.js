@@ -7,6 +7,7 @@ import { discount } from "./schemas/ecom/discount";
 
 import { faq } from "./schemas/misc/faq";
 import { home } from "./schemas/misc/home";
+import { about } from "./schemas/misc/about";
 import { privacyPolicy } from "./schemas/misc/privacy-policy";
 import { termsCondition } from "./schemas/misc/terms-condition";
 
@@ -20,5 +21,5 @@ import { referral } from "./schemas/auth/referral";
 
 
 export const schema = {
-  types: [product, post, author, category, home, faq, termsCondition, privacyPolicy, blockContent, user, referral, account, verificationToken],
+  types: [product, post, author, category, home, about, faq, termsCondition, privacyPolicy, blockContent, user, referral, account, verificationToken],
 };

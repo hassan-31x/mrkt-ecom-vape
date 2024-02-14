@@ -1,12 +1,21 @@
 "use client"
 
 import OwlCarousel from "@/components/features/owl-carousel";
+import urlFor from "@/sanity/lib/image";
+import { PortableText } from "@portabletext/react";
+import { RichTextComponents } from "@/components/features/rich-text-component";
 
 import { homeData, mainSlider5, mainSlider9 } from "@/utils/data";
 import Image from "next/image.js";
 import Link from "next/link";
 
-function AboutPageComponent() {
+function AboutPageComponent({ about }) {
+  const socialIcons = {
+    facebook: "icon-facebook-f",
+    twitter: "icon-twitter",
+    instagram: "icon-instagram",
+  }
+
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
@@ -14,9 +23,6 @@ function AboutPageComponent() {
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
-            </li>
-            <li className="breadcrumb-item">
-              <Link href="#">Pages</Link>
             </li>
             <li className="breadcrumb-item active">About us</li>
           </ol>
@@ -26,7 +32,7 @@ function AboutPageComponent() {
       <div className="container">
         <div
           className="page-header page-header-big text-center"
-          style={{ backgroundImage: `url(images/about-header-bg.jpg)` }}
+          style={{ backgroundImage: urlFor(about?.bannerImage)?.url() }}
         >
           <h1 className="page-title text-white">
             About us<span className="text-white">Who we are</span>
@@ -38,23 +44,22 @@ function AboutPageComponent() {
         <div className="container">
           <div className="row">
             <div className="col-lg-6 mb-3 mb-lg-0">
-              <h2 className="title">Our Vision</h2>
+              <h2 className="title">{about?.heading1}</h2>
               <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi
-                neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium,
-                ligula sollicitudin laoreet viverra, tortor libero sodales leo,
-                eget blandit nunc tortor eu nibh.{" "}
+              <PortableText
+            value={about?.description1}
+            components={RichTextComponents}
+          />{" "}
               </p>
             </div>
 
             <div className="col-lg-6">
-              <h2 className="title">Our Mission</h2>
+              <h2 className="title">{about?.heading2}</h2>
               <p>
-                Sed egestas, ante et vulputate volutpat, eros pede semper est,
-                vitae luctus metus libero eu augue. Morbi purus libero, faucibus
-                adipiscing, commodo quis, gravida id, est. Sed lectus. <br />
-                Praesent elementum hendrerit tortor. Sed semper lorem at felis.{" "}
+              <PortableText
+            value={about?.description2}
+            components={RichTextComponents}
+          />{" "}
               </p>
             </div>
           </div>
@@ -66,23 +71,25 @@ function AboutPageComponent() {
           <div className="container">
             <div className="row">
               <div className="col-lg-5 mb-3 mb-lg-0">
-                <h2 className="title">Who We Are</h2>
+                <h2 className="title">{about.heading3}</h2>
                 <p className="lead text-primary mb-3">
-                  Pellentesque odio nisi, euismod pharetra a ultricies <br />
-                  in diam. Sed arcu. Cras consequat
+                <PortableText
+            value={about?.subText2}
+            components={RichTextComponents}
+          />
                 </p>
                 <p className="mb-2">
-                  Sed pretium, ligula sollicitudin laoreet viverra, tortor
-                  libero sodales leo, eget blandit nunc tortor eu nibh.
-                  Suspendisse potenti. Sed egestas, ante et vulputate volutpat,
-                  uctus metus libero eu augue.{" "}
+                <PortableText
+            value={about?.description3}
+            components={RichTextComponents}
+          />{" "}
                 </p>
 
                 <Link
-                  href="/blog/classic"
+                  href="/benefits"
                   className="btn btn-sm btn-minwidth btn-outline-primary-2"
                 >
-                  <span>VIEW OUR NEWS</span>
+                  <span>VIEW OUR BLOGS</span>
                   <i className="icon-long-arrow-right"></i>
                 </Link>
               </div>
@@ -90,14 +97,16 @@ function AboutPageComponent() {
               <div className="col-lg-6 offset-lg-1">
                 <div className="about-images">
                   <img
-                    src="/images/about/img-1.jpg"
+                    src={urlFor(about?.subImage1)?.url()}
+                    height="400px"
                     alt=""
-                    className="about-img-front"
+                    className="about-img-front !h-[400px]"
                   />
                   <img
-                    src="/images/about/img-2.jpg"
+                    src={urlFor(about?.subImage2)?.url()}
+                    height="400px"
                     alt=""
-                    className="about-img-back"
+                    className="about-img-back !h-[400px]"
                   />
                 </div>
               </div>
@@ -110,26 +119,23 @@ function AboutPageComponent() {
             <div className="col-lg-5">
               <div className="brands-text">
                 <h2 className="title">
-                  The world's premium design brands in one destination.
+                  {about?.benefitsHeading}
                 </h2>
                 <p>
-                  Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In
-                  nisi neque, aliquet vel, dapibus id, mattis vel, nis
+                <PortableText
+            value={about?.benefitsDescription}
+            components={RichTextComponents}
+          />
                 </p>
               </div>
             </div>
             <div className="col-lg-7">
               <div className="brands-display">
                 <div className="row justify-content-center">
-                  {homeData.brands.map((brand, index) => (
+                  {about?.benefitsLogos?.map((brand, index) => (
                     <div className="col-6 col-sm-4" key={index}>
                       <Link href="#" className="brand">
-                        <img
-                          src={brand.image}
-                          alt="Brand Name"
-                          width={brand.width}
-                          height={brand.height}
-                        />
+                        <img src={urlFor(brand?.logo)?.url()} alt="Brand Name" />
                       </Link>
                     </div>
                   ))}
@@ -143,12 +149,14 @@ function AboutPageComponent() {
           <h2 className="title text-center mb-4">Meet Our Team</h2>
 
           <OwlCarousel adClass="owl-simple" options={mainSlider9}>
+            {about?.ourTeam?.map((team, index) => (
+
             <div className="member member-anim text-center">
               <figure className="member-media">
                 <div className="lazy-overlay"></div>
                 <Image
                   alt="member"
-                  src="/images/team/member-1.jpg"
+                  src={urlFor(team?.image)?.url()}
                   height={500}
                   width={376}
                 />
@@ -156,22 +164,19 @@ function AboutPageComponent() {
                 <figcaption className="member-overlay">
                   <div className="member-overlay-content">
                     <h3 className="member-title">
-                      Samanta Grey<span>Founder & CEO</span>
+                      {team?.name}<span>{team?.role}</span>
                     </h3>
                     <p>
-                      Sed pretium, ligula sollicitudin viverra, tortor libero
-                      sodales leo, eget blandit nunc.
+                      {team?.description}
                     </p>
                     <div className="social-icons social-icons-simple">
-                      <Link href="#" className="social-icon" title="Facebook">
-                        <i className="icon-facebook-f"></i>
+                      {team?.social?.map((social, index) => (
+
+                        
+                        <Link href={social?.link} className="social-icon" title={social?.icon}>
+                        <i className={socialIcons?.[social?.icon]}></i>
                       </Link>
-                      <Link href="#" className="social-icon" title="Twitter">
-                        <i className="icon-twitter"></i>
-                      </Link>
-                      <Link href="#" className="social-icon" title="Instagram">
-                        <i className="icon-instagram"></i>
-                      </Link>
+                          ))}
                     </div>
                   </div>
                 </figcaption>
@@ -179,95 +184,13 @@ function AboutPageComponent() {
 
               <div className="member-content">
                 <h3 className="member-title">
-                  Samanta Grey
-                  <span>Founder & CEO</span>
+                  {team?.name}
+                  <span>{team?.role}</span>
                 </h3>
               </div>
             </div>
+            ))}
 
-            <div className="member member-anim text-center">
-              <figure className="member-media">
-                <div className="lazy-overlay"></div>
-                <Image
-                  alt="member"
-                  src="/images/team/member-2.jpg"
-                  height={500}
-                  width={376}
-                />
-
-                <figcaption className="member-overlay">
-                  <div className="member-overlay-content">
-                    <h3 className="member-title">
-                      Bruce Sutton<span>Sales & Marketing Manager</span>
-                    </h3>
-                    <p>
-                      Sed pretium, ligula sollicitudin viverra, tortor libero
-                      sodales leo, eget blandit nunc.
-                    </p>
-                    <div className="social-icons social-icons-simple">
-                      <Link href="#" className="social-icon" title="Facebook">
-                        <i className="icon-facebook-f"></i>
-                      </Link>
-                      <Link href="#" className="social-icon" title="Twitter">
-                        <i className="icon-twitter"></i>
-                      </Link>
-                      <Link href="#" className="social-icon" title="Instagram">
-                        <i className="icon-instagram"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <div className="member-content">
-                <h3 className="member-title">
-                  Bruce Sutton
-                  <span>Sales & Marketing Manager</span>
-                </h3>
-              </div>
-            </div>
-
-            <div className="member member-anim text-center">
-              <figure className="member-media">
-                <div className="lazy-overlay"></div>
-                <Image
-                  alt="member"
-                  src="/images/team/member-3.jpg"
-                  height={500}
-                  width={376}
-                />
-
-                <figcaption className="member-overlay">
-                  <div className="member-overlay-content">
-                    <h3 className="member-title">
-                      Janet Joy<span>Product Manager</span>
-                    </h3>
-                    <p>
-                      Sed pretium, ligula sollicitudin viverra, tortor libero
-                      sodales leo, eget blandit nunc.
-                    </p>
-                    <div className="social-icons social-icons-simple">
-                      <Link href="#" className="social-icon" title="Facebook">
-                        <i className="icon-facebook-f"></i>
-                      </Link>
-                      <Link href="#" className="social-icon" title="Twitter">
-                        <i className="icon-twitter"></i>
-                      </Link>
-                      <Link href="#" className="social-icon" title="Instagram">
-                        <i className="icon-instagram"></i>
-                      </Link>
-                    </div>
-                  </div>
-                </figcaption>
-              </figure>
-
-              <div className="member-content">
-                <h3 className="member-title">
-                  Janet Joy
-                  <span>Product Manager</span>
-                </h3>
-              </div>
-            </div>
           </OwlCarousel>
         </div>
 
@@ -282,42 +205,33 @@ function AboutPageComponent() {
               What Customer Say About Us
             </h2>
 
-            <OwlCarousel
-              adClass="owl-simple owl-testimonials-photo"
-              options={mainSlider5}
-            >
+            <OwlCarousel options={{ nav: false, dots: true }}>
+            {about?.reviews?.map((review, index) => (
               <blockquote className="testimonial text-center">
-                <img src="/images/testimonials/user-1.jpg" alt="user" />
-                <p>
-                  “ Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Pellentesque aliquet nibh nec urna. <br />
-                  In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed
-                  pretium, ligula sollicitudin laoreet viverra, tortor libero
-                  sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis.
-                  Ut justo. Suspendisse potenti. ”
-                </p>
-                <cite>
-                  Jenson Gregory
-                  <span>Customer</span>
+                <div className="ratings-container justify-content-center">
+                  <div className="ratings">
+                    <div
+                      className="ratings-val"
+                      style={{ width: review?.stars * 20 + "%" }}
+                    ></div>
+                    <span className="tooltip-text">
+                      {review?.stars?.toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+                <h5 className="subtitle font-weight-lighter text-primary">
+                  {review?.heading}
+                </h5>
+                <p className="font-weight-normal text-dark">&rsquo;{review?.text}&rsquo;</p>
+                <cite className="font-weight-normal text-dark">
+                  - {review?.reviewerName}
                 </cite>
-              </blockquote>
-
-              <blockquote className="testimonial text-center">
-                <img src="/images/testimonials/user-2.jpg" alt="user" />
-                <p>
-                  “ Impedit, ratione sequi, sunt incidunt magnam et. Delectus
-                  obcaecati optio eius error libero perferendis nesciunt atque
-                  dolores magni recusandae! Doloremque quidem error eum quis
-                  similique doloribus natus qui ut ipsum.Velit quos ipsa
-                  exercitationem, vel unde obcaecati impedit eveniet non. ”
+                <p className="font-weight-normal text-dark">
+                  {review?.country}
                 </p>
-
-                <cite>
-                  Victoria Ventura
-                  <span>Customer</span>
-                </cite>
               </blockquote>
-            </OwlCarousel>
+            ))}
+          </OwlCarousel>
           </div>
         </div>
       </div>

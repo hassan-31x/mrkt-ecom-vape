@@ -11,6 +11,11 @@ import "@/public/scss/style.scss";
 import Layout from "@/components/custom-layout";
 import Script from "next/script";
 import { ReduxProvider } from "@/redux/provider";
+import localFont from "next/font/local"
+
+const avenirFont = localFont({
+  src: "../public/fonts/avenir.woff2"
+})
 
 export const metadata = {
   title: {
@@ -34,7 +39,8 @@ const manrope = Manrope({
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${jost.variable} ${manrope.variable}`}>
+    // <html lang="en" className={`${jost.variable} ${manrope.variable}`}>
+    <html lang="en" className={avenirFont.className}>
       <body>
         <ReduxProvider>
           <Layout>{children}</Layout>

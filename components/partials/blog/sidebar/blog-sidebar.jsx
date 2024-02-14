@@ -23,10 +23,10 @@ function BlogSidebar(props) {
         <h3 className="widget-title">Categories</h3>
 
         <ul>
-          {categories.map((category, index) => (
+          {categories?.map((category, index) => (
             <li key={category?._id || index}>
               <Link href="#" scroll={false}>
-                {category.title}
+                {category?.title}
               </Link>
             </li>
           ))}
@@ -38,7 +38,7 @@ function BlogSidebar(props) {
           <h3 className="widget-title">Popular Posts</h3>
 
           <ul className="posts-list">
-            {popular.map((post) => (
+            {popular?.map((post) => (
               <li key={post?._id}>
                 <figure className="position-relative">
                   <Link href={`/blog/${post.slug.current}`} className="w-100">
@@ -80,7 +80,7 @@ function BlogSidebar(props) {
           <h3 className="widget-title">Browse Tags</h3>
 
           <div className="tagcloud">
-            {tags.map((tag) => (
+            {tags?.map((tag) => (
               <Link href="#" key={tag}>
                 {tag}
               </Link>

@@ -108,7 +108,7 @@ function SingleBlogPageComponent(props) {
                         </span>
                         <span className="meta-separator">|</span>
                         <Link href="#">
-                          {new Date(post.date).toLocaleDateString(
+                          {new Date(post?.publishedAt).toLocaleDateString(
                             "en-US",
                             options
                           )}

@@ -12,6 +12,7 @@ const fetchData = async (slug) => {
     const res = await client.fetch(
       `*[_type == 'post' && slug.current == $slug] {
         ...,
+        author->,
         categories[]->,
         relatedBlogs[] {
           ...,

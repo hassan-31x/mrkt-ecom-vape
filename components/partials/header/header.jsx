@@ -19,7 +19,7 @@ function Header() {
     document.querySelector("body").classList.add("mmenu-active");
   }
 
-  const handleLogout = () =>{
+  const handleLogout = () => {
     dispatch(updateDiscount(null))
     signOut()
   } 

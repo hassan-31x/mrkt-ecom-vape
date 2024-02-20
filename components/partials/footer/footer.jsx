@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { sanityAdminClient } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { sendReferFriendEmail } from "@/utils/referFriend";
+import { useDispatch } from "react-redux";
+import { updateDiscount } from "@/redux/slice/cartSlice";
 
 function Footer() {
   const router = useRouter("");
@@ -15,6 +17,7 @@ function Footer() {
   const [loading, setLoading] = useState(false);
 
   const { data: session } = useSession();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     handleBottomSticky();
@@ -29,6 +32,12 @@ function Footer() {
       window.removeEventListener("resize", handleBottomSticky);
     };
   }, []);
+
+  
+  const handleLogout = () => {
+    dispatch(updateDiscount(null))
+    signOut()
+  } 
 
   function handleBottomSticky() {
     setIsBottomSticky(
@@ -72,7 +81,7 @@ function Footer() {
   };
 
   return (
-    <footer className="footer footer-1 bg-primary">
+    <footer className="footer footer-1 bg-[#FCFCFC]">
       <div className="cta cta-horizontal bg-secondary">
         <div className={containerClass}>
           <div className="row align-items-center">
@@ -113,28 +122,25 @@ function Footer() {
         </div>
       </div>
 
-      <div className="footer-middle">
+      <div className="footer-middle text-black">
         <div className="container">
           <div className="row">
             <div className="col-sm-12 col-lg-6 col-xl-2-5col">
               <div className="widget widget-about">
                 <Image
-                  src="/images/home/footer-logo.png"
+                  src="/images/home/header-logo-t.png"
                   className="footer-logo my-2"
                   alt="Footer Logo"
-                  width={83}
+                  width={100}
                   height={31}
                 />
                 <p className="font-weight-normal mb-3">
-                  Praesent dapibus, neque id cursus ucibus, tortor neque egestas
-                  augue, eu vulputate magna eros eu erat. Aliquam erat volutpat.
-                  Nam dui mi, tincidunt quis, accumsan porttitor, facilisis
-                  luctus, metus.{" "}
+                  {/* <br />{" "} */}
                 </p>
 
                 <div className="widget-about-info">
                   <div className="tel-info">
-                    <span className="widget-about-title font-weight-normal text-white">
+                    <span className="widget-about-title font-weight-normal">
                       Got Question? Call us 24/7
                     </span>
                     <a
@@ -146,7 +152,7 @@ function Footer() {
                   </div>
 
                   <div className="payment-info">
-                    <span className="widget-about-title font-weight-normal text-white">
+                    <span className="widget-about-title font-weight-normal">
                       Payment Method
                     </span>
                     <figure className="footer-payments">
@@ -164,7 +170,7 @@ function Footer() {
 
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
-                <h4 className="widget-title text-white font-weight-lighter">
+                <h4 className="widget-titlefont-weight-lighter">
                   Customer Service
                 </h4>
 
@@ -184,7 +190,7 @@ function Footer() {
 
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
-                <h4 className="widget-title text-white font-weight-lighter">
+                <h4 className="widget-titlefont-weight-lighter">
                   Information
                 </h4>
 
@@ -212,13 +218,23 @@ function Footer() {
 
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
-                <h4 className="widget-title text-white font-weight-lighter">
+                <h4 className="widget-title font-weight-lighter">
                   My Account
                 </h4>
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/login">Login</Link>
+                  {session ? (
+                      <span
+                        onClick={handleLogout}
+                        className="!text-[#999999] cursor-pointer"
+                      >
+                        Logout
+                      </span>
+                    ) : (
+
+                      <Link href="/login">Login</Link>
+                      )}
                   </li>
                   <li>
                     <Link href="/cart">View Cart</Link>

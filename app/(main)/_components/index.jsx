@@ -146,12 +146,12 @@ function HomePageComponent({
                 <div className="banner banner-1">
                   <figure className="mb-0 lazy-media">
                     <div className="lazy-overlay"></div>
-                    <Image
+                    {homePageData?.benefitImage1 ? <Image
                       alt="banner"
                       src={urlFor(homePageData?.benefitImage1)?.url()}
                       width="700"
                       height="680"
-                    />
+                    /> : null}
                   </figure>
 
                   <div className="banner-content content-top">
@@ -187,12 +187,12 @@ function HomePageComponent({
                   </div>
                   <figure className="text-center lazy-media mb-0">
                     <div className="lazy-overlay"></div>
-                    <Image
+                    {homePageData?.benefitImage2 ? <Image
                       alt="banner"
                       src={urlFor(homePageData?.benefitImage2)?.url()}
                       width="570"
                       height="395"
-                    />
+                    /> : null}
                   </figure>
 
                   <Link
@@ -348,12 +348,12 @@ function HomePageComponent({
                 <div className="banner">
                   <figure className="lazy-media">
                     <div className="lazy-overlay"></div>
-                    <Image
+                    {blog?.mainImage ? <Image
                       alt="banner"
                       src={urlFor(blog?.mainImage)?.url()}
                       width="700"
                       height="680"
-                    />
+                    /> : null}
                   </figure>
 
                   <div className="banner-content">

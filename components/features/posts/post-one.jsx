@@ -71,7 +71,7 @@ function PostOne(props) {
           <div className="entry-content">
             <p className="line-clamp-2">{post?.summary}</p>
             <Link href={`/blog/${post.slug.current}`} className="read-more">
-              Continue Reading
+            Selengkapnya
             </Link>
           </div>
         ) : (

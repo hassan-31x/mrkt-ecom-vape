@@ -132,7 +132,7 @@ function DetailOne(props) {
           }`}
           onClick={onCartClick}
         >
-          <span>add to cart</span>
+          <span>Keranjang</span>
         </button>
         <div className="details-action-wrapper">
           {isInWishlist(wishlist, product) ? (
@@ -148,7 +148,7 @@ function DetailOne(props) {
               className="btn-product btn-wishlist"
               onClick={onWishlistClick}
             >
-              <span>Add to Wishlist</span>
+              <span>Favorit</span>
             </a>
           )}
         </div>

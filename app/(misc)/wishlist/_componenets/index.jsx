@@ -102,7 +102,7 @@ function WishlistPageComponent() {
                           className="btn btn-block btn-outline-primary-2 btn-select"
                         >
                           <i className="icon-list-alt"></i>
-                          {product.stock == "0" ? "read more" : "select"}
+                          {product.stock == "0" ? "baca lagi" : "select"}
                         </Link>
                       ) : (
                         <button
@@ -110,7 +110,7 @@ function WishlistPageComponent() {
                           onClick={(e) => moveToCart(product)}
                         >
                           <i className="icon-cart-plus"></i>
-                          add to cart
+                          Keranjang
                         </button>
                       )}
                     </div>
@@ -156,9 +156,9 @@ function WishlistPageComponent() {
               className="icon-heart-o wishlist-empty d-block"
               style={{ fontSize: "15rem", lineHeight: "1" }}
             ></i>
-            <span className="d-block mt-2">No products added to wishlist</span>
+            <span className="d-block mt-2">Tidak ada produk di favorit</span>
             <Link href="/ejuice" className="btn btn-primary mt-2">
-              Go Shop
+            Segera Beli
             </Link>
           </div>
         </div>

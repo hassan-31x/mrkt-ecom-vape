@@ -90,7 +90,7 @@ function HomePageComponent({
                     duration={1000}
                   >
                     <Link href="/ejuice" className="btn btn-outline-secondary">
-                      SHOP NOW<i className="icon-angle-right"></i>
+                    BELANJA SEKARANG<i className="icon-angle-right"></i>
                     </Link>
                   </Reveal>
                 </div>
@@ -199,7 +199,7 @@ function HomePageComponent({
                     href="/ejuice"
                     className="btn btn-link d-inline-block btn-link-primary"
                   >
-                    SHOP NOW<i className="icon-angle-right"></i>
+                    BELANJA SEKARANG<i className="icon-angle-right"></i>
                   </Link>
                 </div>
               </Reveal>
@@ -244,7 +244,7 @@ function HomePageComponent({
                       href="/blog"
                       className="btn btn-outline-primary-2"
                     >
-                      READ MORE<i className="icon-angle-right"></i>
+                      BACA LAGI<i className="icon-angle-right"></i>
                     </Link>
                   </div>
                 </div>
@@ -381,7 +381,7 @@ function HomePageComponent({
 
       <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
         <section className="testimonial-section">
-          <h2 className="title text-center">Customer Reviews</h2>
+          <h2 className="title text-center">Ulasan Pelanggan</h2>
           <OwlCarousel options={{ nav: false, dots: true }}>
             {homePageData?.reviews?.map((review, index) => (
               <blockquote className="testimonial text-center">

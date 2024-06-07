@@ -67,7 +67,7 @@ function ProductThirteen({ product }) {
               href={`/product/${product?.slug.current}`}
               className="btn btn-link btn-link-secondary-dark"
             >
-              <span>Select Options</span>
+              <span>Pilih Varian</span>
             </Link>
           ) : (
             <a
@@ -75,7 +75,7 @@ function ProductThirteen({ product }) {
               className="btn btn-link btn-link-secondary-dark"
               onClick={onCartClick}
             >
-              <span>Add to cart</span>
+              <span>Keranjang</span>
             </a>
           )
         ) : (

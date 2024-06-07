@@ -55,13 +55,13 @@ function ProductSix({ product }) {
         )}
 
         {product?.sale_price ? (
-          <span className="product-label label-sale">Sale</span>
+          <span className="product-label label-sale">Promo</span>
         ) : (
           ""
         )}
 
         {product?.featured ? (
-          <span className="product-label label-top">Feat</span>
+          <span className="product-label label-top">Viral</span>
         ) : (
           ""
         )}
@@ -168,11 +168,11 @@ function ProductSix({ product }) {
                 href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
-                <span>select options</span>
+                <span>Pilih Varian</span>
               </Link>
             ) : (
               <button className="btn-product btn-cart" onClick={onCartClick}>
-                <span>add to cart</span>
+                <span>Keranjang</span>
               </button>
             )}
           </div>

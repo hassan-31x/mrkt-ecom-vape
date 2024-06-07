@@ -123,15 +123,13 @@ function ReferFriendModal() {
                     height="15"
                   />
                   <h2 className="banner-title">
-                    get upto{" "}
+                  Dapatkan penawaran diskon terbaik hingga{" "}
                     <span>
-                      25<span style={{ fontWeight: "400" }}>%</span>
+                      30<span style={{ fontWeight: "400" }}>%</span>
                     </span>{" "}
-                    off
                   </h2>
                   <p>
-                    Refer to a fried and get amazing discount on your next
-                    order!
+                  Bagikan ke teman untuk dapatkan diskon besar untuk pesanan selanjutnya
                   </p>
 
                   <form>
@@ -151,7 +149,7 @@ function ReferFriendModal() {
                           disabled={loading}
                           onClick={handleFormSubmit}
                         >
-                          <span>{loading ? "Sending" : "go"}</span>
+                          <span>{loading ? "Keluar" : "Masuk"}</span>
                         </button>
                       </div>
                     </div>

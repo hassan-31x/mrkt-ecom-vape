@@ -14,8 +14,8 @@ function NewCollection({ products }) {
     <section className="product-section new-arrivals mb-8">
       <div className="container text-center">
         <div className="heading heading-center">
-          <h2 className="title pt-5">Hot Products</h2>
-          <p className="title-desc">More Flavors For You</p>
+          {/* <h2 className="title pt-5">Hot Products</h2> */}
+          <p className="title-desc pt-3">Produk terbaik ini khusus buat kamu</p>
         </div>
 
         <div className="product-wrapper">
@@ -38,7 +38,7 @@ function NewCollection({ products }) {
           href="/ejuice"
           className="btn btn-link btn-link-primary"
         >
-          VIEW MORE<i className="icon-angle-right"></i>
+          LIHAT LAGI<i className="icon-angle-right"></i>
         </Link>
       </div>
     </section>

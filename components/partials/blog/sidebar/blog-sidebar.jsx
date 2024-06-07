@@ -20,7 +20,7 @@ function BlogSidebar(props) {
       }`}
     >
       <div className="widget widget-cats">
-        <h3 className="widget-title">Categories</h3>
+        <h3 className="widget-title">Kategori</h3>
 
         <ul>
           {categories?.map((category, index) => (
@@ -35,7 +35,7 @@ function BlogSidebar(props) {
 
       {popular?.length ? (
         <div className="widget">
-          <h3 className="widget-title">Popular Posts</h3>
+          <h3 className="widget-title">Artikel Terkenal</h3>
 
           <ul className="posts-list">
             {popular?.map((post) => (
@@ -77,7 +77,7 @@ function BlogSidebar(props) {
 
       {tags?.length ? (
         <div className="widget">
-          <h3 className="widget-title">Browse Tags</h3>
+          <h3 className="widget-title">Cari Topik</h3>
 
           <div className="tagcloud">
             {tags?.map((tag) => (
@@ -90,7 +90,7 @@ function BlogSidebar(props) {
       ) : null}
 
       <div className="widget widget-text">
-        <h3 className="widget-title">About Blog</h3>
+        <h3 className="widget-title">Pusat Informasi</h3>
 
         <div className="widget-text-content">
           <p>{summary}</p>

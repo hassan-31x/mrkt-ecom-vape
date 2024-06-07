@@ -56,13 +56,13 @@ function ProductTwelve({ product }) {
         )}
 
         {product?.sale_price ? (
-          <span className="product-label label-circle label-sale">Sale</span>
+          <span className="product-label label-circle label-sale">Promo</span>
         ) : (
           ""
         )}
 
         {product?.featured ? (
-          <span className="product-label label-circle label-top">Feat</span>
+          <span className="product-label label-circle label-top">Viral</span>
         ) : (
           ""
         )}
@@ -120,11 +120,11 @@ function ProductTwelve({ product }) {
                 href={`/product/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
-                <span className="border-bottom-0">SELECT OPTIONS</span>
+                <span className="border-bottom-0">Pilih Varian</span>
               </Link>
             ) : (
               <button className="btn-product btn-cart" onClick={onCartClick}>
-                <span className="border-bottom-0">ADD TO CART</span>
+                <span className="border-bottom-0">Keranjang</span>
               </button>
             )}
           </div>

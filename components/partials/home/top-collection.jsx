@@ -14,9 +14,9 @@ function TopCollection({ products }) {
     <section className="product-section best-seller">
       <div className="container">
         <div className="heading heading-center">
-          <h2 className="title pt-5">The Best Sellers</h2>
+          <h2 className="title pt-5">Eliquid Unggulan Kami</h2>
           <p className="title-desc">
-            The World's Premium Brands In One Destination.
+          Rasa terpopuler yang dimiliki
           </p>
         </div>
 

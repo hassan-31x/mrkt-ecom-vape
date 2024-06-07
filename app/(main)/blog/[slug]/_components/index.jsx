@@ -162,7 +162,7 @@ function SingleBlogPageComponent(props) {
                         <div className="col-md-auto mt-2 mt-md-0">
                           <div className="social-icons social-icons-color">
                             <span className="social-label">
-                              Share this post:
+                            Bagikan artikel ini:
                             </span>
                             <Link
                               href="#"

@@ -28,87 +28,8 @@ function Header() {
     <header className="header header-35 bg-[#FCFCFC]">
     {/* <header className="header header-35 bg-primary"> */}
       <div className="header-top">
-        <div className="container">
+        <div className="container py-3">
           <div className="header-left">
-            <div className="header-dropdown">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                USD
-              </a>
-              <div className="header-menu">
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Eur
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Usd
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="header-dropdown">
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                }}
-              >
-                Eng
-              </a>
-              <div className="header-menu">
-                <ul>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      English
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      French
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                      }}
-                    >
-                      Spanish
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
 
           <div className="header-right">
@@ -116,24 +37,20 @@ function Header() {
               <li>
                 <a href="#">Links</a>
                 <ul>
-                  <li>
-                    <a href="tel:#">
-                      <i className="icon-phone"></i>Call: +0123 456 789
-                    </a>
-                  </li>
+                  
                   <li>
                     <Link href="/wishlist">
-                      <i className="icon-heart-o"></i>My Wishlist{" "}
+                      <i className="icon-heart-o"></i>Favorit{" "}
                       <span className="text-secondary">
                         ({wishlist?.length || 0})
                       </span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about">About Us</Link>
+                    <Link href="/about">Tentang Kami</Link>
                   </li>
                   <li>
-                    <Link href="/contact">Contact Us</Link>
+                    <Link href="/contact">Kontak Kami</Link>
                   </li>
                   {/* <LoginModal /> */}
                   <li>
@@ -142,11 +59,11 @@ function Header() {
                         onClick={handleLogout}
                         className="!text-[#999999] cursor-pointer"
                       >
-                        <i className="icon-user"></i>Logout
+                        <i className="icon-user"></i>Keluar
                       </span>
                     ) : (
                       <Link href="/login">
-                        <i className="icon-user"></i>Login
+                        <i className="icon-user"></i>Masuk
                       </Link>
                     )}
                   </li>

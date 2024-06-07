@@ -59,7 +59,7 @@ function CartMenu() {
         }`}
       >
         {0 === cartlist?.length ? (
-          <p>No products in the cart.</p>
+          <p>No Produk dalam keranjang.</p>
         ) : (
           <>
             <div className="dropdown-cart-products">

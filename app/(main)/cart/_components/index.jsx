@@ -100,7 +100,7 @@ function CartPageComponent(props) {
 
   return (
     <div className="main">
-      <PageHeader title="Shopping Cart" subTitle="Shop" />
+      <PageHeader title="Keranjang Belanja" subTitle="Shop" />
       <nav className="breadcrumb-nav">
         <div className="container">
           <ol className="breadcrumb">
@@ -208,7 +208,7 @@ function CartPageComponent(props) {
                           <td>
                             <p className="pl-2 pt-1 pb-1">
                               {" "}
-                              No Products in Cart{" "}
+                              No Produk dalam keranjang{" "}
                             </p>
                           </td>
                         </tr>
@@ -424,11 +424,11 @@ function CartPageComponent(props) {
                       style={{ lineHeight: 1, fontSize: "15rem" }}
                     ></i>
                     <p className="px-3 py-2 cart-empty mb-3">
-                      No products added to the cart
+                      No Produk dalam keranjang
                     </p>
                     <p className="return-to-shop mb-0">
                       <Link href="/ejuice" className="btn btn-primary">
-                        RETURN TO SHOP
+                      Kembali ke Beranda
                       </Link>
                     </p>
                   </div>

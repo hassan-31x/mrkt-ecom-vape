@@ -25,12 +25,12 @@ function MainMenu() {
           id="menu-home"
         >
           <Link href="/" className="sf">
-            Home
+          Beranda
           </Link>
         </li>
         <li className={path?.includes("/ejuice") ? "active" : ""}>
           <Link href="/ejuice" className="sf" scroll={false}>
-            Ejuices
+          E-liquid
           </Link>
 
         </li>
@@ -39,7 +39,7 @@ function MainMenu() {
             href="/blog"
             className="sf"
           >
-            Benefits
+            Informasi Penting
           </Link>
         </li>
         <li className={path?.includes("/about") ? "active" : ""}>
@@ -47,7 +47,7 @@ function MainMenu() {
             href="/about"
             className="sf"
           >
-            About
+            Tentang Kami
           </Link>
         </li>
         <li className={path?.includes("/faq") ? "active" : ""}>

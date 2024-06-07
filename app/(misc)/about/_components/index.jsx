@@ -149,7 +149,7 @@ function AboutPageComponent({ about }) {
 
           <hr className="mt-4 mb-6" />
 
-          <h2 className="title text-center mb-4">Meet Our Team</h2>
+          {/* <h2 className="title text-center mb-4">Meet Our Team</h2> */}
 
           <OwlCarousel adClass="owl-simple" options={mainSlider9}>
             {about?.ourTeam?.map((team, index) => (
@@ -204,7 +204,7 @@ function AboutPageComponent({ about }) {
         >
           <div className="container">
             <h2 className="title text-center mb-3">
-              What Customer Say About Us
+              Apa Kata Mereka Tentang Kami?
             </h2>
 
             <OwlCarousel options={{ nav: false, dots: true }}>

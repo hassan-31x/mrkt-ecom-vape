@@ -50,13 +50,13 @@ function GallerySticky(props) {
         )}
 
         {product?.sale_price ? (
-          <span className="product-label label-sale">Sale</span>
+          <span className="product-label label-sale">Promo</span>
         ) : (
           ""
         )}
 
         {product?.featured ? (
-          <span className="product-label label-top">Feat</span>
+          <span className="product-label label-top">Viral</span>
         ) : (
           ""
         )}

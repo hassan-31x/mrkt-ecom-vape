@@ -79,7 +79,6 @@ function InfoThree({ product }) {
     // const res = await sanityAdminClient.createOrReplace(updatedProduct);
     const updatedReviews = [...product.reviews, tempReview]
     const res = await sanityAdminClient.patch(product._id).set({ reviews: updatedReviews }).commit();
-    console.log("🚀 ~ addReview ~ res:", res)
 
     toast.success('Review added!')
     setReview({
@@ -102,7 +101,7 @@ function InfoThree({ product }) {
 
   return (
     <Accordion adClass="accordion-plus product-details-accordion pb-2 mb-0">
-      {product?.description && <Card title="Description" adClass="card-box card-sm">
+      {product?.description && <Card title="Deskripsi" adClass="card-box card-sm">
         <div className="product-desc-content">
           <PortableText
             value={product?.description}
@@ -110,7 +109,7 @@ function InfoThree({ product }) {
           />
         </div>
       </Card>}
-      {product?.additionalInfo && <Card title="Additional information" adClass="card-box card-sm">
+      {product?.additionalInfo && <Card title="Tambahan Informasi" adClass="card-box card-sm">
         <div className="product-desc-content">
           <PortableText
             value={product?.additionalInfo}
@@ -130,7 +129,7 @@ function InfoThree({ product }) {
           />
         </div>
       </Card>}
-      <Card title={`Reviews (${product?.reviews?.length || 0})`} adClass="card-box card-sm">
+      <Card title={`Ulasan (${product?.reviews?.length || 0})`} adClass="card-box card-sm">
         <div className="reviews">
           {product?.reviews?.map((review, index) => (
 

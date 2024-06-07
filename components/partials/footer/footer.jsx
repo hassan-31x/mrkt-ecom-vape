@@ -87,10 +87,10 @@ function Footer() {
           <div className="row align-items-center">
             <div className="col-lg-6 col-xl-5 offset-xl-1">
               <h3 className="cta-title text-white font-weight-normal mb-1 mb-lg-0">
-                Get Amazing Discount!
+              Dapatkan diskon besar!
               </h3>
               <p className="cta-desc font-weight-normal text-white">
-                Refer a friend to get amazing discount on your next order.
+              Bagikan ke teman untuk dapatkan diskon besar untuk order selanjutnya
               </p>
             </div>
 
@@ -100,7 +100,7 @@ function Footer() {
                   <input
                     type="email"
                     className="form-control mr-0 border-0 font-weight-normal"
-                    placeholder="Enter your friend's Email Address"
+                    placeholder="Masukan email teman kamu"
                     aria-label="Email Adress"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +112,7 @@ function Footer() {
                       type="button"
                       onClick={handleRefer}
                     >
-                      {loading ? "Sending" : "Refer"}
+                      {loading ? "Membagikan" : "Bagikan"}
                     </button>
                   </div>
                 </div>
@@ -139,17 +139,6 @@ function Footer() {
                 </p>
 
                 <div className="widget-about-info">
-                  <div className="tel-info">
-                    <span className="widget-about-title font-weight-normal">
-                      Got Question? Call us 24/7
-                    </span>
-                    <a
-                      href="tel:123456789"
-                      className="tel-number font-weight-lighter"
-                    >
-                      +0123 456 789
-                    </a>
-                  </div>
 
                   <div className="payment-info">
                     <span className="widget-about-title font-weight-normal">
@@ -171,18 +160,18 @@ function Footer() {
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
                 <h4 className="widget-titlefont-weight-lighter">
-                  Customer Service
+                Layanan Pelanggan
                 </h4>
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/">Home</Link>
+                    <Link href="/">Beranda</Link>
                   </li>
                   <li>
-                    <Link href="/ejucie">Ejuices</Link>
+                    <Link href="/ejucie">E-liquid</Link>
                   </li>
                   <li>
-                    <Link href="/blog">Benefits</Link>
+                    <Link href="/blog">Informasi Penting</Link>
                   </li>
                 </ul>
               </div>
@@ -191,26 +180,26 @@ function Footer() {
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
                 <h4 className="widget-titlefont-weight-lighter">
-                  Information
+                Informasi
                 </h4>
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/about">About Us</Link>
+                    <Link href="/about">Tentang Kami</Link>
                   </li>
                   <li>
                     <Link href="/faq">FAQ</Link>
                   </li>
                   <li>
-                    <Link href="/contact">Contact Us</Link>
+                    <Link href="/contact">Kontak Kami</Link>
                   </li>
                   <li>
                     <Link href="/terms-and-conditions">
-                      Terms and conditions
+                    Syarat & Ketentuan
                     </Link>
                   </li>
                   <li>
-                    <Link href="/privacy-policy">Privacy Policy</Link>
+                    <Link href="/privacy-policy">Kebijakan Privasi</Link>
                   </li>
                 </ul>
               </div>
@@ -219,7 +208,7 @@ function Footer() {
             <div className="col-sm-4 col-lg-2 col-xl-5col">
               <div className="widget">
                 <h4 className="widget-title font-weight-lighter">
-                  My Account
+                Akun Saya
                 </h4>
 
                 <ul className="widget-list">
@@ -229,18 +218,18 @@ function Footer() {
                         onClick={handleLogout}
                         className="!text-[#999999] cursor-pointer"
                       >
-                        Logout
+                        Keluar
                       </span>
                     ) : (
 
-                      <Link href="/login">Login</Link>
+                      <Link href="/login">Masuk</Link>
                       )}
                   </li>
                   <li>
-                    <Link href="/cart">View Cart</Link>
+                    <Link href="/cart">Lihat Keranjang</Link>
                   </li>
                   <li>
-                    <Link href="/wishlist">My Wishlist</Link>
+                    <Link href="/wishlist">Favorit</Link>
                   </li>
                 </ul>
               </div>
@@ -262,7 +251,7 @@ function Footer() {
                 href="/terms-and-conditions"
                 className="font-weight-normal"
               >
-                Terms Of Use
+                Syarat & Ketentuan
               </Link>
             </li>
             <li>
@@ -270,14 +259,14 @@ function Footer() {
                 href="/privacy-policy"
                 className="font-weight-normal"
               >
-                Privacy Policy
+                Kebijakan Privasi
               </Link>
             </li>
           </ul>
 
           <div className="social-icons social-icons-color">
             <span className="social-label font-weight-normal">
-              Social Media
+            Media Sosial
             </span>
             <a
               href="#"

@@ -1,17 +1,13 @@
 
 
 import Link from "next/link";
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import { useRouter } from "next/navigation";
-import SignUpComponent from "./_components/sign-up";
+import RegisterForm from "./_components/register-form.jsx";
 
-  export const metadata = {
-    title: "Register",
-  }
+export const metadata = {
+  title: "Register",
+}
 
 function RegisterPageComponent() {
-  const router = useRouter()
-
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
@@ -20,7 +16,7 @@ function RegisterPageComponent() {
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item active">Login</li>
+            <li className="breadcrumb-item active">Register</li>
           </ol>
         </div>
       </nav>
@@ -32,27 +28,7 @@ function RegisterPageComponent() {
         <div className="container">
           <div className="form-box">
             <div className="form-tab">
-              <Tabs selectedTabClassName="show" defaultIndex={0}>
-                <TabList className="nav nav-pills nav-fill">
-                  <Tab className="nav-item">
-                    <span className="nav-link">Sign In</span>
-                  </Tab>
-
-                  <Tab className="nav-item">
-                    <span className="nav-link">Register</span>
-                  </Tab>
-                </TabList>
-
-                <div className="tab-content">
-                  <TabPanel style={{ paddingTop: "2rem" }}>
-                    <SignUpComponent type="individual" />
-                  </TabPanel>
-
-                  <TabPanel>
-                    <SignUpComponent type="business" />
-                  </TabPanel>
-                </div>
-              </Tabs>
+              <RegisterForm />
             </div>
           </div>
         </div>

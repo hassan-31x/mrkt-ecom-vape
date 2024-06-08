@@ -14,6 +14,11 @@ export const user = {
       type: "string",
     },
     {
+      name: "password",
+      type: "string",
+      hidden: true,
+    },
+    {
       name: "discountsAvailable",
       title: "Discounts Available",
       type: "array",
@@ -59,11 +64,6 @@ export const user = {
       // this is only if you use credentials provider
       name: "password",
       type: "string",
-      hidden: true,
-    },
-    {
-      name: "emailVerified",
-      type: "datetime",
       hidden: true,
     },
   ],

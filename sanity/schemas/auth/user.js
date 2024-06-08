@@ -15,8 +15,8 @@ export const user = {
     },
     {
       name: "password",
+      title: "Password",
       type: "string",
-      hidden: true,
     },
     {
       name: "discountsAvailable",
@@ -61,10 +61,10 @@ export const user = {
       // ],
     },
     {
-      // this is only if you use credentials provider
-      name: "password",
-      type: "string",
-      hidden: true,
-    },
+      name: 'createdAt',
+      title: 'Created At',
+      type: 'datetime',
+      readOnly: true,
+    }
   ],
 };

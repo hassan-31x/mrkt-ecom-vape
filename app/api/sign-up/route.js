@@ -1,37 +1,38 @@
-import { sanityAdminClient } from "@/sanity/lib/client.js"
 import bcrypt from "bcryptjs"
+import { sanityAdminClient } from "@/sanity/lib/client.js"
 
 export async function POST(request) {
     try {
         const { name, email, password, accountType, discountCode } = await request.json()
-
-        const existingUser = sanityAdminClient.fetch(`*[_type == "user" && email == $email][0]`, { email })
+        const typeName = accountType === "business" ? "business" : "user"
+        const existingUser = await sanityAdminClient.fetch(`*[_type == $typeName && email == $email][0]`, { typeName, email })
+        
         if (existingUser) {
             return Response.json({
                 status: "error",
-                message: "User already exists."
+                message: `${typeName.charAt(0).toUpperCase() + typeName.slice(1)} already exists.`
             }, { status: 400 })
         }
 
         const hashedPassword = await bcrypt.hash(password, 10)
-        const user = await sanityAdminClient.create({
-            _type: "user",
+        const registeredUser = await sanityAdminClient.create({
+            _type: typeName,
             name,
             email,
             password: hashedPassword,
-            accountType
+            createdAt: new Date().toISOString(),
         })
 
         return Response.json({
             status: "success",
-            message: "User registered successfully."
+            message: `${typeName} registered successfully.`
         }, { status: 200 })
 
     } catch (err) {
         console.error(err)
         return Response.json({
             status: "error",
-            message: "Error registering user."
+            message: "Error registering."
         }, { status: 500 })
     }
 }

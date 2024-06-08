@@ -8,17 +8,13 @@ const initialState = {
   name: "",
   email: "",
   password: "",
+  confirmPassword: "",
   agreementChecked: false,
 };
 
 const SignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
-  const [formErrors, setFormErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    agreementChecked: "",
-  });
+  const [formErrors, setFormErrors] = useState(initialState);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -43,64 +39,102 @@ const SignUpComponent = ({ type }) => {
     setFormErrors({});
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Add your form validation logic here
+  const validateForm = (formData) => {
     const errors = {};
-
+    
     if (!formData.name.trim()) {
       errors.name = "Please enter your full name";
       setFormErrors(errors);
-      return;
+      return false;
     }
 
     if (!formData.email.trim()) {
       errors.email = "Please enter your email address";
       setFormErrors(errors);
-      return;
+      return false;
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Please enter a valid email address";
       setFormErrors(errors);
-      return;
+      return false;
     }
 
-    if (!formData.password.trim()) {
+    if (!formData.password?.trim()) {
       errors.password = "Please enter your password";
       setFormErrors(errors);
-      return;
+      return false;
+    }
+
+    if (!formData.confirmPassword?.trim()) {
+      errors.confirmPassword = "Please re-enter your password";
+      setFormErrors(errors);
+      return false;
+    }
+
+    if (formData.confirmPassword != formData.password) {
+      errors.confirmPassword = "Passwords do not match";
+      setFormErrors(errors);
+      return false;
     }
 
     if (!formData.agreementChecked) {
       errors.agreementChecked = "Please agree to the privacy policy";
       setFormErrors(errors);
-      return;
+      return false;
     }
+
+    return true
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm(formData)) return;
 
     setLoading(true);
 
     try {
-      const res1 = await signUp({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
+      const code = searchParams.get("code");
+      // const res1 = await signUp({
+      //   name: formData.name,
+      //   email: formData.email,
+      //   password: formData.password,
+      // });
+
+      // if (code) {
+      //   const res2 = await fetch("/api/addDiscount", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       email: formData.email,
+      //       code,
+      //     }),
+      //   });
+      // }
+      const res = await fetch('/api/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          accountType: type,
+        }),
       });
 
-      const code = searchParams.get("code");
-      if (code) {
-        const res2 = await fetch("/api/addDiscount", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            code,
-          }),
-        });
+      const data = await res.json();
+
+      if (data.status !== 'success') {
+        toast.error(data.message);
+        return
       }
-      toast.success("Registered! Login to continue.");
+      toast.success(type === 'individual' ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
       setFormData(initialState);
+      if (type === 'individual') {
+        router.push("/login");
+      }
+
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -143,17 +177,32 @@ const SignUpComponent = ({ type }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="register-password-2">Password *</label>
+          <label htmlFor="register-password-21">Password *</label>
           <input
             type="password"
             className="form-control"
-            id="register-password-2"
+            id="register-password-21"
             value={formData.password}
             onChange={handleChange}
             name="password"
           />
           {formErrors?.password && (
             <span className="text-red-600">*{formErrors.password}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="register-password-22">Confirm Password *</label>
+          <input
+            type="password"
+            className="form-control"
+            id="register-password-22"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            name="confirmPassword"
+          />
+          {formErrors?.confirmPassword && (
+            <span className="text-red-600">*{formErrors.confirmPassword}</span>
           )}
         </div>
 
@@ -194,7 +243,7 @@ const SignUpComponent = ({ type }) => {
           <div className="col-sm-6">
             <button
               className="btn btn-login btn-g w-full"
-              onClick={() => signIn("google")}
+              // onClick={() => signIn("google")}
             >
               <i className="icon-google"></i>
               Login With Google
@@ -203,7 +252,7 @@ const SignUpComponent = ({ type }) => {
           <div className="col-sm-6">
             <button
               className="btn btn-login btn-f w-full"
-              onClick={() => signIn("facebook")}
+              // onClick={() => signIn("facebook")}
             >
               <i className="icon-facebook-f"></i>
               Login With Facebook

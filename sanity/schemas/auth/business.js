@@ -15,8 +15,14 @@ export const business = {
       },
       {
         name: "password",
+        title: "Password",
         type: "string",
-        hidden: true,
+      },
+      {
+        name: "approved",
+        title: "Approved",
+        type: "boolean",
+        defaultValue: false,
       },
       {
         name: "discountsAvailable",
@@ -61,11 +67,11 @@ export const business = {
         // ],
       },
       {
-        // this is only if you use credentials provider
-        name: "password",
-        type: "string",
-        hidden: true,
-      },
+        name: 'createdAt',
+        title: 'Created At',
+        type: 'datetime',
+        readOnly: true,
+      }
     ],
   };
   

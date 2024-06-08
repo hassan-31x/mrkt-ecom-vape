@@ -1,18 +1,16 @@
-"use client";
+
 
 import Link from "next/link";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import SignInComponent from "./sign-in";
-import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import SignUpComponent from "./_components/sign-up";
 
-function LoginPageComponent() {
-  const { data: session } = useSession();
-  const router = useRouter()
-
-  if (session) {
-    router.push("/");
+  export const metadata = {
+    title: "Register",
   }
+
+function RegisterPageComponent() {
+  const router = useRouter()
 
   return (
     <div className="main">
@@ -47,11 +45,11 @@ function LoginPageComponent() {
 
                 <div className="tab-content">
                   <TabPanel style={{ paddingTop: "2rem" }}>
-                    <SignInComponent />
+                    <SignUpComponent type="individual" />
                   </TabPanel>
 
                   <TabPanel>
-                    <SignInComponent />
+                    <SignUpComponent type="business" />
                   </TabPanel>
                 </div>
               </Tabs>
@@ -63,4 +61,4 @@ function LoginPageComponent() {
   );
 }
 
-export default LoginPageComponent;
+export default RegisterPageComponent;

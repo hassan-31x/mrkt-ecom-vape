@@ -1,7 +1,5 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { signUp } from "next-auth-sanity/client";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
@@ -13,7 +11,7 @@ const initialState = {
   agreementChecked: false,
 };
 
-const SignUpComponent = () => {
+const SignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState({
     name: "",

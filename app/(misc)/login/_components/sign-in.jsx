@@ -74,7 +74,6 @@ const SignInComponent = ({ type }) => {
         password: formData.spassword,
       });
 
-      console.log("🚀 ~ res:", res);
       if (res?.ok) {
         toast.success("Login Successfull!");
         setFormData(initialState);

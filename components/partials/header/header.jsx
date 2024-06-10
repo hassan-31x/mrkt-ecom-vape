@@ -12,6 +12,7 @@ import { updateDiscount } from "@/redux/slice/cartSlice";
 
 function Header() {
   const { data: session } = useSession();
+  console.log("🚀 ~ Header ~ session:", session)
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch()
 

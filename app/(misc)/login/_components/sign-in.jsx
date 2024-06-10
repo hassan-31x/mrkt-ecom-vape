@@ -11,7 +11,7 @@ const initialState = {
   remember: false,
 };
 
-const SignInComponent = () => {
+const SignInComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState({
     semail: "",
@@ -19,6 +19,7 @@ const SignInComponent = () => {
     remember: "",
   });
   const [loading, setLoading] = useState(false);
+
 
   const router = useRouter();
 
@@ -66,11 +67,14 @@ const SignInComponent = () => {
     setLoading(true);
 
     try {
-      const res = await signIn("sanity-login", {
+      // const res = await signIn("sanity-login", {
+      const res = await signIn("credentials", {
         redirect: false,
-        email: formData.semail,
+        identifier: formData.semail,
         password: formData.spassword,
       });
+
+      console.log("🚀 ~ res:", res);
       if (res?.ok) {
         toast.success("Login Successfull!");
         setFormData(initialState);
@@ -86,7 +90,8 @@ const SignInComponent = () => {
     }
   };
   return (
-    <>
+    <div>
+      <h3 className="text-center py-2">Login</h3>
       <div>
         <form action="#">
           <div className="form-group">
@@ -172,7 +177,7 @@ const SignInComponent = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

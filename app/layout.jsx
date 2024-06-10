@@ -19,8 +19,8 @@ const avenirFont = localFont({
 
 export const metadata = {
   title: {
-    template: "%s | Mrkt",
-    default: "Mrkt",
+    template: "%s | mrkt.",
+    default: "mrkt.",
   },
   description: "The best place to buy healthy Vape Products.",
 };

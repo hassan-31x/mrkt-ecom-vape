@@ -1,5 +1,5 @@
 import bcrypt from "bcryptjs"
-import { sanityAdminClient } from "@/sanity/lib/client.js"
+import { sanityAdminClient } from "@/sanity/lib/client"
 
 export async function POST(request) {
     try {

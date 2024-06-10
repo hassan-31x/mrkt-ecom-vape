@@ -1,7 +1,7 @@
 "use client";
 
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import SignUpComponent from "./sign-up.jsx";
+import SignUpComponent from "./sign-up";
 
 const RegisterForm = () => {
   return (

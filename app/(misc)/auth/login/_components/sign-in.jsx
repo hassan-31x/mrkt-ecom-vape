@@ -1,8 +1,8 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 
 const initialState = {
@@ -41,28 +41,39 @@ const SignInComponent = ({ type }) => {
     setFormErrors({});
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // Add your form validation logic here
+  const validateForm = (formData) => {
     const errors = {};
 
     if (!formData.semail.trim()) {
       errors.semail = "Please enter your email address";
       setFormErrors(errors);
-      return;
+      return false;
     } else if (!/\S+@\S+\.\S+/.test(formData.semail)) {
       errors.semail = "Please enter a valid email address";
       setFormErrors(errors);
-      return;
+      return false;
     }
 
     if (!formData.spassword.trim()) {
       errors.spassword = "Please enter your password";
       setFormErrors(errors);
-      return;
+      return false;
     }
 
+    return true
+  }
+
+  const checkUser = async () => {
+    
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm(formData)) {
+      return;
+    }
+    
     setLoading(true);
 
     try {

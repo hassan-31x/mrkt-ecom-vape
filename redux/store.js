@@ -15,6 +15,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
+import userReducer from "./slice/userSlice";
 import cartReducer from "./slice/cartSlice";
 import wishlistReducer from "./slice/wishlistSlice";
 
@@ -32,6 +33,13 @@ const reducers = combineReducers({
       storage,
     },
     wishlistReducer
+  ),
+  user: persistReducer(
+    {
+      key: "root-mrkt-user",
+      storage,
+    },
+    userReducer
   ),
 });
 

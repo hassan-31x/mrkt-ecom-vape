@@ -1,7 +1,7 @@
 
 
 import Link from "next/link";
-import SignInComponent from "./_components/sign-in";
+import LoginForm from "./_components/login-form";
 
 export const metadata = {
   title: "Login",
@@ -28,7 +28,7 @@ function RegisterPageComponent() {
         <div className="container">
           <div className="form-box">
             <div className="form-tab">
-              <SignInComponent />
+              <LoginForm />
             </div>
           </div>
         </div>

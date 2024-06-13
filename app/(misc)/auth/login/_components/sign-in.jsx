@@ -4,6 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
+import { sanityAdminClient } from "@/sanity/lib/client.js";
+import { useDispatch } from "react-redux";
+import { setUser } from "@/redux/slice/userSlice.js";
 
 const initialState = {
   semail: "",
@@ -21,6 +24,7 @@ const SignInComponent = ({ type }) => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
+  const dispatch = useDispatch()
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -64,7 +68,13 @@ const SignInComponent = ({ type }) => {
   }
 
   const checkUser = async () => {
-    
+    const existingUser = await sanityAdminClient.fetch(`*[email == $email][0]`, { email: formData.semail })
+    if (existingUser && existingUser?.userType === type) {
+      dispatch(setUser(existingUser))
+      return true
+    } else {
+      toast.error(`${type === 'individual' ? 'User' : 'Business'} not found${type === business ? ' or approved yet.' : '.'}`);
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -77,10 +87,17 @@ const SignInComponent = ({ type }) => {
     setLoading(true);
 
     try {
+      const userValid = await checkUser()
+
+      if (!userValid) {
+        return;
+      }
+
       // const res = await signIn("credentials", {
       const res = await signIn("sanity-login", {
         redirect: false,
-        identifier: formData.semail,
+        // identifier: formData.semail,
+        email: formData.semail,
         password: formData.spassword,
       });
 
@@ -102,6 +119,12 @@ const SignInComponent = ({ type }) => {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
+      const userValid = await checkUser()
+
+      if (!userValid) {
+        return;
+      }
+      
       await signIn("google");
     } catch (error) {
       console.error("Google Login Error:", error);

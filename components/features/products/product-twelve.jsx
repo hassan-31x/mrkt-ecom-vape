@@ -144,7 +144,7 @@ function ProductTwelve({ product }) {
           </div>
         </div>
 
-        <h3 className="product-title">
+        <h3 className="product-title !text-2xl">
           <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
         </h3>
 

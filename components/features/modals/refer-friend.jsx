@@ -137,7 +137,7 @@ function ReferFriendModal() {
                       <input
                         type="email"
                         className="form-control form-control-white"
-                        placeholder="Your Friend's Email Address"
+                        placeholder="Masukan email teman kamu"
                         aria-label="Email Adress"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}

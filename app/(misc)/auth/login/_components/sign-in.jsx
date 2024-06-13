@@ -20,7 +20,6 @@ const SignInComponent = ({ type }) => {
   });
   const [loading, setLoading] = useState(false);
 
-
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -67,8 +66,8 @@ const SignInComponent = ({ type }) => {
     setLoading(true);
 
     try {
-      // const res = await signIn("sanity-login", {
-      const res = await signIn("credentials", {
+      // const res = await signIn("credentials", {
+      const res = await signIn("sanity-login", {
         redirect: false,
         identifier: formData.semail,
         password: formData.spassword,
@@ -88,6 +87,19 @@ const SignInComponent = ({ type }) => {
       setLoading(false);
     }
   };
+
+  const handleGoogleLogin = async () => {
+    setLoading(true);
+    try {
+      await signIn("google");
+    } catch (error) {
+      console.error("Google Login Error:", error);
+      toast.error("Error Logging In");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       <h3 className="text-center py-2">Login</h3>
@@ -95,58 +107,18 @@ const SignInComponent = ({ type }) => {
         <form action="#">
           <div className="form-group">
             <label htmlFor="singin-email-2">Email Address *</label>
-            <input
-              type="text"
-              className="form-control"
-              id="singin-email-2"
-              value={formData.semail}
-              onChange={handleChange}
-              name="semail"
-            />
-            {formErrors?.semail && (
-              <span className="text-red-600">*{formErrors.semail}</span>
-            )}
+            <input type="text" className="form-control" id="singin-email-2" value={formData.semail} onChange={handleChange} name="semail" />
+            {formErrors?.semail && <span className="text-red-600">*{formErrors.semail}</span>}
           </div>
 
           <div className="form-group">
             <label htmlFor="singin-password-2">Password *</label>
-            <input
-              type="password"
-              className="form-control"
-              id="singin-password-2"
-              value={formData.spassword}
-              onChange={handleChange}
-              name="spassword"
-            />
-            {formErrors?.spassword && (
-              <span className="text-red-600">*{formErrors.spassword}</span>
-            )}
+            <input type="password" className="form-control" id="singin-password-2" value={formData.spassword} onChange={handleChange} name="spassword" />
+            {formErrors?.spassword && <span className="text-red-600">*{formErrors.spassword}</span>}
           </div>
 
           <div className="form-footer flex justify-between">
-            <div className="custom-control custom-checkbox">
-              {/* <input
-                type="checkbox"
-                className="custom-control-input"
-                id="signin-remember-2"
-                name="remember"
-                checked={formData.remember}
-                onChange={handleCheckboxChange}
-              />
-              <label
-                className="custom-control-label"
-                htmlFor="signin-remember-2"
-              >
-                Remember Me
-              </label> */}
-            </div>
-
-            <button
-              type="button"
-              onClick={handleSubmit}
-              className="btn btn-outline-primary-2"
-              disabled={loading}
-            >
+            <button type="button" onClick={handleSubmit} className="btn btn-outline-primary-2" disabled={loading}>
               <span>{loading ? "Loading" : "LOG IN"}</span>
               <i className="icon-long-arrow-right"></i>
             </button>
@@ -156,19 +128,13 @@ const SignInComponent = ({ type }) => {
           <p className="text-center">or sign in with</p>
           <div className="row">
             <div className="col-sm-6">
-              <button
-                className="btn btn-login btn-g w-full"
-                onClick={() => signIn("google")}
-              >
+              <button className="btn btn-login btn-g w-full" onClick={handleGoogleLogin}>
                 <i className="icon-google"></i>
                 Login With Google
               </button>
             </div>
             <div className="col-sm-6">
-              <button
-                className="btn btn-login btn-f w-full"
-                onClick={() => signIn("facebook")}
-              >
+              <button className="btn btn-login btn-f w-full" onClick={() => signIn("facebook")}>
                 <i className="icon-facebook-f"></i>
                 Login With Facebook
               </button>

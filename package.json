@@ -23,6 +23,7 @@
     "js-cookie": "^3.0.5",
     "next": "14.0.4",
     "next-auth": "^4.24.5",
+    "next-auth-sanity": "^1.5.3",
     "next-sanity": "^7.0.10",
     "path": "^0.12.7",
     "react": "^18",

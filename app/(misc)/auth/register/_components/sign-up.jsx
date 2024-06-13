@@ -94,34 +94,35 @@ const SignUpComponent = ({ type }) => {
 
     try {
       const code = searchParams.get("code");
-      // const res1 = await signUp({
-      //   name: formData.name,
-      //   email: formData.email,
-      //   password: formData.password,
-      // });
-
-      // if (code) {
-      //   const res2 = await fetch("/api/addDiscount", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: formData.email,
-      //       code,
-      //     }),
-      //   });
-      // }
-      const res = await fetch('/api/sign-up', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ...formData,
-          accountType: type,
-        }),
+      const res1 = await signUp({
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        accountType: type,
       });
+
+      if (code) {
+        const res2 = await fetch("/api/addDiscount", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: formData.email,
+            code,
+          }),
+        });
+      }
+      // const res = await fetch('/api/sign-up', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify({
+      //     ...formData,
+      //     accountType: type,
+      //   }),
+      // });
 
       const data = await res.json();
 

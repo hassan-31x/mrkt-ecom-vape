@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
+import { signIn } from "next-auth/react";
 
 const initialState = {
   name: "",
@@ -243,7 +244,7 @@ const SignUpComponent = ({ type }) => {
           <div className="col-sm-6">
             <button
               className="btn btn-login btn-g w-full"
-              // onClick={() => signIn("google")}
+              onClick={() => signIn("google")}
             >
               <i className="icon-google"></i>
               Login With Google

@@ -19,6 +19,29 @@ export const user = {
       type: "string",
     },
     {
+      name: "image",
+      title: "Image",
+      type: "string"
+    },
+    {
+      name: "approved",
+      title: "Approved",
+      type: "boolean",
+      initialValue: false,
+    },
+    {
+      name: "accountType",
+      title: "Account Type",
+      type: 'string',
+      options: {
+        list: [
+          { title: 'User', value: 'user' },
+          { title: 'Business', value: 'business' },
+        ],
+      },
+      initialValue: "user"
+    },
+    {
       name: "discountsAvailable",
       title: "Discounts Available",
       type: "array",

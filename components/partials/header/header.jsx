@@ -63,7 +63,7 @@ function Header() {
                         <i className="icon-user"></i>Keluar
                       </span>
                     ) : (
-                      <Link href="/login">
+                      <Link href="/auth/login">
                         <i className="icon-user"></i>Masuk
                       </Link>
                     )}

@@ -133,7 +133,7 @@ const SignUpComponent = ({ type }) => {
       toast.success(type === 'individual' ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
       setFormData(initialState);
       if (type === 'individual') {
-        router.push("/login");
+        router.push("/auth/login");
       }
 
     } catch (error) {

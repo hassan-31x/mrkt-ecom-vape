@@ -65,7 +65,7 @@ function ReferFriendModal() {
         return;
       }
       if (!session) {
-        router.push("/login");
+        router.push("/auth/login");
         return;
       }
       if (email == session?.user?.email) {
@@ -76,7 +76,7 @@ function ReferFriendModal() {
         const firstName = session.user.name.split(" ")?.[0];
         const lastName = session.user.name.split(" ")?.[1] || "";
 
-        await sendReferFriendEmail(
+        const res = await sendReferFriendEmail(
           session.user.email,
           email,
           firstName,

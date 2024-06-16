@@ -16,11 +16,12 @@ export async function POST(request) {
 
         const hashedPassword = await bcrypt.hash(password, 10)
         const registeredUser = await sanityAdminClient.create({
-            _type: typeName,
             name,
             email,
             password: hashedPassword,
             createdAt: new Date().toISOString(),
+            accountType: typeName,
+            // approved:  false,
         })
 
         return Response.json({

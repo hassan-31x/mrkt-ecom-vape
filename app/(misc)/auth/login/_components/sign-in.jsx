@@ -71,6 +71,7 @@ const SignInComponent = ({ type }) => {
       const res = await signIn("credentials", {
         redirect: false,
         identifier: formData.semail,
+        type,
         password: formData.spassword,
       });
 
@@ -155,7 +156,7 @@ const SignInComponent = ({ type }) => {
         <div className="form-choice">
           <p className="text-center">or sign in with</p>
           <div className="row">
-            <div className="col-sm-6">
+            <div className="col-sm-12">
               <button
                 className="btn btn-login btn-g w-full"
                 onClick={() => signIn("google")}
@@ -164,7 +165,7 @@ const SignInComponent = ({ type }) => {
                 Login With Google
               </button>
             </div>
-            <div className="col-sm-6">
+            {/* <div className="col-sm-6">
               <button
                 className="btn btn-login btn-f w-full"
                 onClick={() => signIn("facebook")}
@@ -172,7 +173,7 @@ const SignInComponent = ({ type }) => {
                 <i className="icon-facebook-f"></i>
                 Login With Facebook
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

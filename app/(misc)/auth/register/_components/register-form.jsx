@@ -18,7 +18,7 @@ const RegisterForm = () => {
 
       <div className="tab-content">
         <TabPanel style={{ paddingTop: "2rem" }}>
-          <SignUpComponent type="individual" />
+          <SignUpComponent type="user" />
         </TabPanel>
 
         <TabPanel>

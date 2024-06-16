@@ -1,61 +1,43 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { sanityAdminClient } from "@/sanity/lib/client";
 import { SanityAdapter } from 'next-auth-sanity';
 
-// import { sanityAdminClient } from '@/sanity/lib/client';
-
-// export const authOptions = {
-//   providers: [
-//     GoogleProvider({
-//         clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-//         clientSecret: process.env.GOOGLE_CLIENT_SECRET
-//       }),
-//     FacebookProvider({
-//         clientId: process.env.NEXT_PUBLIC_FACEBOOK_CLIENT_ID,
-//         clientSecret: process.env.FACEBOOK_CLIENT_SECRET
-//       }),
-//     // SanityCredentials(sanityAdminClient), // only if you use sign in with credentials
-//   ],
-//   session: {
-//     strategy: 'jwt',
-//   },
-//   secret: "mQ46qpFwfE1BHuqMC+qlm19qBAD9fVPgh28werwe3ASFlAfnKjM=",
-//   // adapter: SanityAdapter(sanityAdminClient),
-// };
-
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      // id: "credentials",
-      // name: "Credentials",
-      // credentials: {
-      //   email: { label: "Email", type: "text" },
-      //   password: { label: "Password", type: "password" },
-      // },
       async authorize(credentials) {
         try {
-          let existingUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email][0]`, { email: credentials.identifier });
+          const existingUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email][0]`, { email: credentials.identifier });
+          
           if (!existingUser) {
-            existingUser = await sanityAdminClient.fetch(`*[_type == 'business' && email == $email][0]`, { email: credentials.identifier });
+            throw new Error(`No ${credentials.type} account found with this email`);
           }
 
-          if (!existingUser) {
-            throw new Error("No User found with this email");
+          if (credentials.type === 'user' && existingUser.accountType === 'business') {
+            throw new Error("No user account found with this email");
           }
 
+          if (credentials.type === 'business' && existingUser.accountType === 'user') {
+            throw new Error("No business account found with this email");
+          }
+          
           const isPasswordCorrect = await bcrypt.compare(credentials.password, existingUser.password);
           if (isPasswordCorrect) {
+
+            if (existingUser.accountType === 'business' && !existingUser.approved) {
+              throw new Error("Account not approved yet");
+            }
+
             return existingUser;
           } else {
             throw new Error("Password is incorrect");
           }
         } catch (err) {
           console.log(err);
-          throw new Error("Failed to authenticate");
+          throw new Error(err || "Failed to authenticate");
         }
       },
     }),
@@ -67,9 +49,6 @@ export const authOptions = {
       }),
   ],
   
-  session: {
-    strategy: 'jwt',
-  },
   adapter: SanityAdapter(sanityAdminClient),
   events: {
     async linkAccount({ user }) {
@@ -82,7 +61,7 @@ export const authOptions = {
       console.log("🚀 ~ session ~ session:", session, token)
       if (token) {
         session.user.id = token.id;
-        session.user.type = token.type || token._type;
+        session.user.type = token.type || token.accountType;
         session.user.test = token.test;
       }
       return session;
@@ -91,7 +70,7 @@ export const authOptions = {
       console.log("🚀 ~ jwt ~ user:", user)
       if (user) {
         token.id = user._id;
-        token.type = user._type;
+        token.type = user.accountType;
         } else {
           // TODO: for credentials login, make db call
           token.test = 'test'

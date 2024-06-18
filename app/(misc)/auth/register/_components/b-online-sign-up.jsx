@@ -18,11 +18,11 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState(initialState);
   const [showOther, setShowOther] = useState(false);
-  const [onlineShops, setOnlineShops] = useState([])
+  const [onlineShops, setOnlineShops] = useState([]);
   const [currentStore, setCurrentStore] = useState({
-    name: '',
-    id: '',
-  })
+    name: "",
+    id: "",
+  });
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -84,32 +84,32 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       return false;
     }
 
-    return true
-  }
+    return true;
+  };
 
   const checkSelect = (e) => {
-    if (e.target.value === 'custom') {
-      setShowOther(true)
-      return
+    if (e.target.value === "custom") {
+      setShowOther(true);
+      return;
     }
-    
-    setCurrentStore({ ...currentStore, name: e.target.value })
-  }
+
+    setCurrentStore({ ...currentStore, name: e.target.value });
+  };
 
   const handleStoreAdd = () => {
-    console.log("🚀 ~ handleStoreAdd ~ currentStore:", currentStore)
+    console.log("🚀 ~ handleStoreAdd ~ currentStore:", currentStore);
     if (!currentStore.name || !currentStore.id) {
-      return
+      return;
     }
-    setOnlineShops([...onlineShops, currentStore])
-    setCurrentStore({ name: '', id: '' })
-    setShowOther(false)
-  }
+    setOnlineShops([...onlineShops, currentStore]);
+    setCurrentStore({ name: "", id: "" });
+    setShowOther(false);
+  };
 
   const handleStoreDelete = (idx) => {
-    const newShops = onlineShops.filter((_, i) => i !== idx)
-    setOnlineShops(newShops)
-  }
+    const newShops = onlineShops.filter((_, i) => i !== idx);
+    setOnlineShops(newShops);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -138,10 +138,10 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       //     }),
       //   });
       // }
-      const res = await fetch('/api/sign-up', {
-        method: 'POST',
+      const res = await fetch("/api/sign-up", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
@@ -151,16 +151,15 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
 
       const data = await res.json();
 
-      if (data.status !== 'success') {
+      if (data.status !== "success") {
         toast.error(data.message);
-        return
+        return;
       }
-      toast.success(type === 'individual' ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
+      toast.success(type === "individual" ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
       setFormData(initialState);
-      if (type === 'individual') {
+      if (type === "individual") {
         router.push("/auth/login");
       }
-
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -172,88 +171,60 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   return (
     <div>
       <form action="#" className="mt-1">
-
         <div className="form-group">
           <label htmlFor="register-email-2">Alamat email *</label>
-          <input
-            type="email"
-            className="form-control"
-            id="register-email-2"
-            value={formData.email}
-            onChange={handleChange}
-            name="email"
-          />
-          {formErrors?.email && (
-            <span className="text-red-600">*{formErrors.email}</span>
-          )}
+          <input type="email" className="form-control" id="register-email-2" value={formData.email} onChange={handleChange} name="email" />
+          {formErrors?.email && <span className="text-red-600">*{formErrors.email}</span>}
         </div>
 
-        
         <div className="form-group">
           <label htmlFor="whatsapp">Nomor WhatsApp</label>
-          <input
-            type="password"
-            className="form-control"
-            id="whatsapp"
-            value={formData.whatsapp}
-            onChange={handleChange}
-            name="whatsapp"
-          />
-          {formErrors?.whatsapp && (
-            <span className="text-red-600">*{formErrors.whatsapp}</span>
-          )}
+          <input type="password" className="form-control" id="whatsapp" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
+          {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 
-        
         <div className="form-group">
           <label htmlFor="shop-id">
-          Toko online yang Anda miliki?
-          <span className="block w-full text-[1.2rem]">Anda dapat memilih lebih dari satu jenis e-commerce</span>
+            Toko online yang Anda miliki?
+            <span className="block w-full text-[1.2rem]">Anda dapat memilih lebih dari satu jenis e-commerce</span>
           </label>
           <div className="flex gap-4 items-center">
-
-          {!showOther ? <select
-            className="form-control flex-[3/7]"
-            value={currentStore.name}
-            onChange={e => checkSelect(e)}
-            >
-            <option value="">Select</option>
-            <option value="Shopee">Shopee</option>
-            <option value="Tokopedia">Tokopedia</option>
-            <option value="Lazada">Lazada</option>
-            <option value="Blibli">Blibli</option>
-            <option value="TikTok Shop">TikTok Shop</option>
-            <option value="YUAP ID">YUAP ID</option>
-            <option value="Vapestore.id">Vapestore.id</option>
-            <option value="Vape.id">Vape.id</option>
-            <option value="Vapemagz">Vapemagz</option>
-            <option value="Lainnya">Lainnya</option>
-            <option value="custom">Not in list? Add your own</option>
-            </select> : <input
-            type="text"
-            className="form-control flex-[3/7]"
-            value={currentStore.name}
-            onChange={e => setCurrentStore({ ...currentStore, name: e.target.value })}
-            />}
-          <input
-            type="text"
-            className="form-control flex-[3/7]"
-            id="shop-id"
-            value={currentStore.id}
-            onChange={e => setCurrentStore({ ...currentStore, id: e.target.value })}
+            {!showOther ? (
+              <select className="form-control flex-[3/7]" value={currentStore.name} onChange={(e) => checkSelect(e)}>
+                <option value="">Select</option>
+                <option value="Shopee">Shopee</option>
+                <option value="Tokopedia">Tokopedia</option>
+                <option value="Lazada">Lazada</option>
+                <option value="Blibli">Blibli</option>
+                <option value="TikTok Shop">TikTok Shop</option>
+                <option value="YUAP ID">YUAP ID</option>
+                <option value="Vapestore.id">Vapestore.id</option>
+                <option value="Vape.id">Vape.id</option>
+                <option value="Vapemagz">Vapemagz</option>
+                <option value="Lainnya">Lainnya</option>
+                <option value="custom">Not in list? Add your own</option>
+              </select>
+            ) : (
+              <input type="text" className="form-control flex-[3/7]" value={currentStore.name} onChange={(e) => setCurrentStore({ ...currentStore, name: e.target.value })} />
+            )}
+            <input
+              type="text"
+              className="form-control flex-[3/7]"
+              id="shop-id"
+              value={currentStore.id}
+              onChange={(e) => setCurrentStore({ ...currentStore, id: e.target.value })}
             />
             <span className="flex-[1/7] cursor-pointer icon-arrow-up" onClick={handleStoreAdd}></span>
           </div>
-          {formErrors?.whatsapp && (
-            <span className="text-red-600">*{formErrors.whatsapp}</span>
-          )}
+          {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 
         <div className="form-group">
           {onlineShops.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {onlineShops.map((shop, idx) => (
-                <span key={idx} className="bg-gray-200 px-4 py-2 rounded-full flex items-center">{shop.name}
+                <span key={idx} className="bg-gray-200 px-4 py-2 rounded-full flex items-center">
+                  {shop.name}
                   <Trash2 onClick={() => handleStoreDelete(idx)} size={20} className="pl-2 cursor-pointer text-red-500" />
                 </span>
               ))}
@@ -261,36 +232,16 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
           )}
         </div>
 
-          
-
         <div className="form-group">
           <label htmlFor="register-password-21">Kata sandi *</label>
-          <input
-            type="password"
-            className="form-control"
-            id="register-password-21"
-            value={formData.password}
-            onChange={handleChange}
-            name="password"
-          />
-          {formErrors?.password && (
-            <span className="text-red-600">*{formErrors.password}</span>
-          )}
+          <input type="password" className="form-control" id="register-password-21" value={formData.password} onChange={handleChange} name="password" />
+          {formErrors?.password && <span className="text-red-600">*{formErrors.password}</span>}
         </div>
 
         <div className="form-group">
           <label htmlFor="register-password-22">Konfirmasi sandi *</label>
-          <input
-            type="password"
-            className="form-control"
-            id="register-password-22"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            name="confirmPassword"
-          />
-          {formErrors?.confirmPassword && (
-            <span className="text-red-600">*{formErrors.confirmPassword}</span>
-          )}
+          <input type="password" className="form-control" id="register-password-22" value={formData.confirmPassword} onChange={handleChange} name="confirmPassword" />
+          {formErrors?.confirmPassword && <span className="text-red-600">*{formErrors.confirmPassword}</span>}
         </div>
 
         <div className="form-footer">
@@ -303,38 +254,24 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
               checked={formData.agreementChecked}
               onChange={handleCheckboxChange}
             />
-            <label
-              className={`custom-control-label ${
-                formErrors?.agreementChecked ? "text-red-600" : "text-black"
-              }`}
-              htmlFor="register-policy-2"
-            >Saya merupakan penjual tembakau elektronik berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini untuk keperluan bisnis/komersial*
+            <label className={`custom-control-label ${formErrors?.agreementChecked ? "text-red-600" : "text-black"}`} htmlFor="register-policy-2">
+              Saya merupakan penjual tembakau elektronik berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini untuk keperluan bisnis/komersial*
             </label>
           </div>
 
-
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={loading}
-            className="btn btn-outline-primary-2 mt-3"
-          >
+          <button type="button" onClick={handleSubmit} disabled={loading} className="btn btn-outline-primary-2 mt-3">
             <span>{loading ? "Loading" : "Register"}</span>
             <i className="icon-long-arrow-right"></i>
           </button>
         </div>
 
         <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt Indonesia</div>
-
       </form>
       <div className="form-choice">
         <p className="text-center">or sign in with</p>
         <div className="row">
           <div className="col-sm-12">
-            <button
-              className="btn btn-login btn-g w-full"
-              onClick={() => signIn("google")}
-            >
+            <button className="btn btn-login btn-g w-full" onClick={() => signIn("google")}>
               <i className="icon-google"></i>
               Login With Google
             </button>

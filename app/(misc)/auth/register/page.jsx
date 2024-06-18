@@ -26,7 +26,7 @@ function RegisterPageComponent() {
         style={{ backgroundImage: `url(/images/backgrounds/login-bg.jpg)` }}
       >
         <div className="container">
-          <div className="form-box">
+          <div className="form-box relative">
             <div className="form-tab">
               <RegisterForm />
             </div>

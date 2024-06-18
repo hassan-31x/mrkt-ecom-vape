@@ -79,6 +79,12 @@ const IndividualSignUpComponent = ({ type }) => {
       return false;
     }
 
+    if (!formData.whatsapp.trim()) {
+      errors.whatsapp = "Please enter your WhatsApp number";
+      setFormErrors(errors);
+      return false;
+    }
+
     if (!formData.agreementChecked) {
       errors.agreementChecked = "Please agree to the privacy policy";
       setFormErrors(errors);
@@ -227,7 +233,7 @@ const IndividualSignUpComponent = ({ type }) => {
         <div className="form-group">
           <label htmlFor="whatsapp">Nomor WhatsApp</label>
           <input
-            type="password"
+            type="text"
             className="form-control"
             id="whatsapp"
             value={formData.whatsapp}

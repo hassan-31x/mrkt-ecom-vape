@@ -146,6 +146,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         body: JSON.stringify({
           ...formData,
           accountType: type,
+          // onlineShops,
         }),
       });
 

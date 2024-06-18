@@ -6,18 +6,32 @@ import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
 
 const initialState = {
-  name: "",
+  businessName: "",
   email: "",
   password: "",
   confirmPassword: "",
   whatsapp: "",
-  dob: "",
+  toko: "",
+  store: "online",
   agreementChecked: false,
 };
 
-const BusinessWholesaleSignUpComponent = ({ type }) => {
+const initialError = {
+  businessName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  whatsapp: "",
+  toko: "",
+  store: "",
+  url: "",
+  address: "",
+  agreementChecked: "",
+}
+
+const BusinessOnlineSignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
-  const [formErrors, setFormErrors] = useState(initialState);
+  const [formErrors, setFormErrors] = useState(initialError);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -39,17 +53,17 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
       agreementChecked: e.target.checked,
     }));
 
-    setFormErrors({});
+    setFormErrors(initialError);
   };
 
   const validateForm = (formData) => {
     const errors = {};
-    
-    if (!formData.name.trim()) {
-      errors.name = "Please enter your full name";
+
+    if (!formData.businessName.trim()) {
+      errors.businessName = "Please enter your business name";
       setFormErrors(errors);
       return false;
-    }
+    } 
 
     if (!formData.email.trim()) {
       errors.email = "Please enter your email address";
@@ -79,28 +93,39 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
       return false;
     }
 
+    if (!formData.whatsapp.trim()) {
+      errors.whatsapp = "Please enter your WhatsApp number";
+      setFormErrors(errors);
+      return false;
+    }
+
+    if (!formData.toko.trim()) {
+      errors.toko = "Please enter your NPWP";
+      setFormErrors(errors);
+      return false;
+    }
+
     if (!formData.agreementChecked) {
       errors.agreementChecked = "Please agree to the privacy policy";
       setFormErrors(errors);
       return false;
     }
 
-    if (!formData.dob) {
-      errors.whatsapp = "Please enter your Date of birth";
+    if (formData.store === 'online' && !formData.url.trim()) {
+      errors.url = "Please enter your business URL";
       setFormErrors(errors);
       return false;
     }
 
-    const today = new Date();
-    const dob = new Date(formData.dob);
-    if (today.getFullYear() - dob.getFullYear() < 18) {
-      errors.dob = "You must be at least 18 years old";
+    if (formData.store === 'physical' && !formData.address.trim()) {
+      errors.address = "Please enter your business address";
       setFormErrors(errors);
       return false;
     }
 
-    return true
-  }
+    return true;
+  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -129,10 +154,10 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
       //     }),
       //   });
       // }
-      const res = await fetch('/api/sign-up', {
-        method: 'POST',
+      const res = await fetch("/api/sign-up", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
           ...formData,
@@ -142,16 +167,15 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
 
       const data = await res.json();
 
-      if (data.status !== 'success') {
+      if (data.status !== "success") {
         toast.error(data.message);
-        return
+        return;
       }
-      toast.success(type === 'individual' ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
+      toast.success(type === "individual" ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
       setFormData(initialState);
-      if (type === 'individual') {
+      if (type === "individual") {
         router.push("/auth/login");
       }
-
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -164,94 +188,65 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
     <div>
       <form action="#" className="mt-1">
         <div className="form-group">
-            <label htmlFor="register-name-2">Nama lengkap *</label>
-            <input
-              type="text"
-              className="form-control"
-              id="register-name-2"
-              value={formData.name}
-              onChange={handleChange}
-              name="name"
-            />
-            {formErrors?.name && (
-              <span className="text-red-600">*{formErrors.name}</span>
-            )}
-          </div>
+          <label htmlFor="business-name2">Nama pemilik bisnis *</label>
+          <input type="text" className="form-control" id="business-name2" value={formData.email} onChange={handleChange} name="businessName" />
+          {formErrors?.businessName && <span className="text-red-600">*{formErrors.businessName}</span>}
+        </div>
 
         <div className="form-group">
-          <label htmlFor="register-email-2">Alamat email *</label>
-          <input
-            type="email"
-            className="form-control"
-            id="register-email-2"
-            value={formData.email}
-            onChange={handleChange}
-            name="email"
-          />
-          {formErrors?.email && (
-            <span className="text-red-600">*{formErrors.email}</span>
-          )}
+          <label htmlFor="register-email-22">Alamat email *</label>
+          <input type="email" className="form-control" id="register-email-22" value={formData.email} onChange={handleChange} name="email" />
+          {formErrors?.email && <span className="text-red-600">*{formErrors.email}</span>}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="whatsapp2">Nomor WhatsApp</label>
+          <input type="text" className="form-control" id="whatsapp2" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
+          {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 
         <div className="form-group">
           <label htmlFor="register-password-21">Kata sandi *</label>
-          <input
-            type="password"
-            className="form-control"
-            id="register-password-21"
-            value={formData.password}
-            onChange={handleChange}
-            name="password"
-          />
-          {formErrors?.password && (
-            <span className="text-red-600">*{formErrors.password}</span>
-          )}
+          <input type="password" className="form-control" id="register-password-21" value={formData.password} onChange={handleChange} name="password" />
+          {formErrors?.password && <span className="text-red-600">*{formErrors.password}</span>}
         </div>
 
         <div className="form-group">
           <label htmlFor="register-password-22">Konfirmasi sandi *</label>
-          <input
-            type="password"
-            className="form-control"
-            id="register-password-22"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            name="confirmPassword"
-          />
-          {formErrors?.confirmPassword && (
-            <span className="text-red-600">*{formErrors.confirmPassword}</span>
-          )}
+          <input type="password" className="form-control" id="register-password-22" value={formData.confirmPassword} onChange={handleChange} name="confirmPassword" />
+          {formErrors?.confirmPassword && <span className="text-red-600">*{formErrors.confirmPassword}</span>}
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="toko">NPWP Toko *</label>
+          <input type="text" className="form-control" id="toko" value={formData.toko} onChange={handleChange} name="toko" />
+          {formErrors?.toko && <span className="text-red-600">*{formErrors.toko}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="whatsapp">Nomor WhatsApp</label>
-          <input
-            type="password"
-            className="form-control"
-            id="whatsapp"
-            value={formData.whatsapp}
-            onChange={handleChange}
-            name="whatsapp"
-          />
-          {formErrors?.whatsapp && (
-            <span className="text-red-600">*{formErrors.whatsapp}</span>
-          )}
+          <label htmlFor="store">
+          Toko grosir yang Anda miliki? *
+          </label>
+              <select className="form-control" name="store" id="store" value={formData.store} onChange={handleChange}>
+                <option value="online">Toko grosir online</option>
+                <option value="physical">Toko grosir fisik/konvensional</option>
+              </select>
+          {formErrors?.store && <span className="text-red-600">*{formErrors.store}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="dob">Tanggal lahir *</label>
-          <input
-            type="date"
-            className="form-control"
-            id="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            name="dob"
-          />
-          {formErrors?.dob && (
-            <span className="text-red-600">*{formErrors.dob}</span>
-          )}
+          <label htmlFor="url">Input url akun bisnis Anda{formData.store === 'online' && <span>{" "}*</span>}</label>
+          <input type="text" className="form-control" id="url" value={formData.url} onChange={handleChange} name="url" />
+          {formErrors?.url && <span className="text-red-600">*{formErrors.url}</span>}
         </div>
+
+        {formData.store === 'physical' && (
+          <div className="form-group">
+            <label htmlFor="address">Input alamat bisnis Anda *</label>
+            <input type="text" className="form-control" id="address" value={formData.address} onChange={handleChange} name="address" />
+            {formErrors?.address && <span className="text-red-600">*{formErrors.address}</span>}
+          </div>
+        ) }
 
         <div className="form-footer">
           <div className="custom-control custom-checkbox">
@@ -263,39 +258,24 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
               checked={formData.agreementChecked}
               onChange={handleCheckboxChange}
             />
-            <label
-              className={`custom-control-label ${
-                formErrors?.agreementChecked ? "text-red-600" : "text-black"
-              }`}
-              htmlFor="register-policy-2"
-            >Saya menyatakan bahwa saya adalah perokok dan/atau pengguna produk tembakau alternatif berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini
-            untuk keperluan pribadi saya sendiriI agree to the privacy policy*
+            <label className={`custom-control-label ${formErrors?.agreementChecked ? "text-red-600" : "text-black"}`} htmlFor="register-policy-2">
+              Saya merupakan penjual tembakau elektronik berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini untuk keperluan bisnis/komersial*
             </label>
           </div>
 
-
-          <button
-            type="button"
-            onClick={handleSubmit}
-            disabled={loading}
-            className="btn btn-outline-primary-2 mt-3"
-          >
+          <button type="button" onClick={handleSubmit} disabled={loading} className="btn btn-outline-primary-2 mt-3">
             <span>{loading ? "Loading" : "Register"}</span>
             <i className="icon-long-arrow-right"></i>
           </button>
         </div>
 
         <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt Indonesia</div>
-
       </form>
       <div className="form-choice">
         <p className="text-center">or sign in with</p>
         <div className="row">
           <div className="col-sm-12">
-            <button
-              className="btn btn-login btn-g w-full"
-              onClick={() => signIn("google")}
-            >
+            <button className="btn btn-login btn-g w-full" onClick={() => signIn("google")}>
               <i className="icon-google"></i>
               Login With Google
             </button>
@@ -315,4 +295,4 @@ const BusinessWholesaleSignUpComponent = ({ type }) => {
   );
 };
 
-export default BusinessWholesaleSignUpComponent;
+export default BusinessOnlineSignUpComponent;

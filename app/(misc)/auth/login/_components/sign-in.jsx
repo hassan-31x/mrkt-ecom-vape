@@ -96,8 +96,8 @@ const SignInComponent = ({ type }) => {
       // const res = await signIn("credentials", {
       const res = await signIn("sanity-login", {
         redirect: false,
-        // identifier: formData.semail,
-        email: formData.semail,
+        identifier: formData.semail,
+        type,
         password: formData.spassword,
       });
 
@@ -161,18 +161,24 @@ const SignInComponent = ({ type }) => {
         <div className="form-choice">
           <p className="text-center">or sign in with</p>
           <div className="row">
-            <div className="col-sm-6">
-              <button className="btn btn-login btn-g w-full" onClick={handleGoogleLogin}>
+            <div className="col-sm-12">
+              <button
+                className="btn btn-login btn-g w-full"
+                onClick={() => signIn("google")}
+              >
                 <i className="icon-google"></i>
                 Login With Google
               </button>
             </div>
-            <div className="col-sm-6">
-              <button className="btn btn-login btn-f w-full" onClick={() => signIn("facebook")}>
+            {/* <div className="col-sm-6">
+              <button
+                className="btn btn-login btn-f w-full"
+                onClick={() => signIn("facebook")}
+              >
                 <i className="icon-facebook-f"></i>
                 Login With Facebook
               </button>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

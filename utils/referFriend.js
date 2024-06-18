@@ -18,4 +18,5 @@ export const sendReferFriendEmail = async (
       url: `${url}login`,
     }),
   });
+  return res
 };

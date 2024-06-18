@@ -18,7 +18,7 @@ const LoginForm = () => {
 
       <div className="tab-content">
         <TabPanel style={{ paddingTop: "2rem" }}>
-          <SignInComponent type="individual" />
+          <SignInComponent type="user" />
         </TabPanel>
 
         <TabPanel>

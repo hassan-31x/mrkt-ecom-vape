@@ -12,6 +12,7 @@ import { updateDiscount } from "@/redux/slice/cartSlice";
 
 function Header() {
   const { data: session } = useSession();
+  console.log("🚀 ~ Header ~ session:", session)
   const wishlist = useSelector((state) => state.wishlist.items);
   const dispatch = useDispatch()
 
@@ -62,7 +63,7 @@ function Header() {
                         <i className="icon-user"></i>Keluar
                       </span>
                     ) : (
-                      <Link href="/login">
+                      <Link href="/auth/login">
                         <i className="icon-user"></i>Masuk
                       </Link>
                     )}

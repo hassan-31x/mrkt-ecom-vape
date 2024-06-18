@@ -4,20 +4,25 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-toastify";
 import { signIn } from "next-auth/react";
+import { Trash2 } from "lucide-react";
 
 const initialState = {
-  name: "",
   email: "",
   password: "",
   confirmPassword: "",
   whatsapp: "",
-  dob: "",
   agreementChecked: false,
 };
 
-const IndividualSignUpComponent = ({ type }) => {
+const BusinessOnlineSignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState(initialState);
+  const [showOther, setShowOther] = useState(false);
+  const [onlineShops, setOnlineShops] = useState([])
+  const [currentStore, setCurrentStore] = useState({
+    name: '',
+    id: '',
+  })
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
@@ -44,12 +49,6 @@ const IndividualSignUpComponent = ({ type }) => {
 
   const validateForm = (formData) => {
     const errors = {};
-    
-    if (!formData.name.trim()) {
-      errors.name = "Please enter your full name";
-      setFormErrors(errors);
-      return false;
-    }
 
     if (!formData.email.trim()) {
       errors.email = "Please enter your email address";
@@ -85,21 +84,31 @@ const IndividualSignUpComponent = ({ type }) => {
       return false;
     }
 
-    if (!formData.dob) {
-      errors.whatsapp = "Please enter your Date of birth";
-      setFormErrors(errors);
-      return false;
-    }
-
-    const today = new Date();
-    const dob = new Date(formData.dob);
-    if (today.getFullYear() - dob.getFullYear() < 18) {
-      errors.dob = "You must be at least 18 years old";
-      setFormErrors(errors);
-      return false;
-    }
-
     return true
+  }
+
+  const checkSelect = (e) => {
+    if (e.target.value === 'custom') {
+      setShowOther(true)
+      return
+    }
+    
+    setCurrentStore({ ...currentStore, name: e.target.value })
+  }
+
+  const handleStoreAdd = () => {
+    console.log("🚀 ~ handleStoreAdd ~ currentStore:", currentStore)
+    if (!currentStore.name || !currentStore.id) {
+      return
+    }
+    setOnlineShops([...onlineShops, currentStore])
+    setCurrentStore({ name: '', id: '' })
+    setShowOther(false)
+  }
+
+  const handleStoreDelete = (idx) => {
+    const newShops = onlineShops.filter((_, i) => i !== idx)
+    setOnlineShops(newShops)
   }
 
   const handleSubmit = async (e) => {
@@ -162,22 +171,7 @@ const IndividualSignUpComponent = ({ type }) => {
 
   return (
     <div>
-      <h3 className="text-center py-2">Registrasi Toko Online</h3>
       <form action="#" className="mt-1">
-          <div className="form-group">
-            <label htmlFor="register-name-2">Nama lengkap *</label>
-            <input
-              type="text"
-              className="form-control"
-              id="register-name-2"
-              value={formData.name}
-              onChange={handleChange}
-              name="name"
-            />
-            {formErrors?.name && (
-              <span className="text-red-600">*{formErrors.name}</span>
-            )}
-          </div>
 
         <div className="form-group">
           <label htmlFor="register-email-2">Alamat email *</label>
@@ -193,6 +187,81 @@ const IndividualSignUpComponent = ({ type }) => {
             <span className="text-red-600">*{formErrors.email}</span>
           )}
         </div>
+
+        
+        <div className="form-group">
+          <label htmlFor="whatsapp">Nomor WhatsApp</label>
+          <input
+            type="password"
+            className="form-control"
+            id="whatsapp"
+            value={formData.whatsapp}
+            onChange={handleChange}
+            name="whatsapp"
+          />
+          {formErrors?.whatsapp && (
+            <span className="text-red-600">*{formErrors.whatsapp}</span>
+          )}
+        </div>
+
+        
+        <div className="form-group">
+          <label htmlFor="shop-id">
+          Toko online yang Anda miliki?
+          <span className="block w-full text-[1.2rem]">Anda dapat memilih lebih dari satu jenis e-commerce</span>
+          </label>
+          <div className="flex gap-4 items-center">
+
+          {!showOther ? <select
+            className="form-control flex-[3/7]"
+            value={currentStore.name}
+            onChange={e => checkSelect(e)}
+            >
+            <option value="">Select</option>
+            <option value="Shopee">Shopee</option>
+            <option value="Tokopedia">Tokopedia</option>
+            <option value="Lazada">Lazada</option>
+            <option value="Blibli">Blibli</option>
+            <option value="TikTok Shop">TikTok Shop</option>
+            <option value="YUAP ID">YUAP ID</option>
+            <option value="Vapestore.id">Vapestore.id</option>
+            <option value="Vape.id">Vape.id</option>
+            <option value="Vapemagz">Vapemagz</option>
+            <option value="Lainnya">Lainnya</option>
+            <option value="custom">Not in list? Add your own</option>
+            </select> : <input
+            type="text"
+            className="form-control flex-[3/7]"
+            value={currentStore.name}
+            onChange={e => setCurrentStore({ ...currentStore, name: e.target.value })}
+            />}
+          <input
+            type="text"
+            className="form-control flex-[3/7]"
+            id="shop-id"
+            value={currentStore.id}
+            onChange={e => setCurrentStore({ ...currentStore, id: e.target.value })}
+            />
+            <span className="flex-[1/7] cursor-pointer icon-arrow-up" onClick={handleStoreAdd}></span>
+          </div>
+          {formErrors?.whatsapp && (
+            <span className="text-red-600">*{formErrors.whatsapp}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          {onlineShops.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {onlineShops.map((shop, idx) => (
+                <span key={idx} className="bg-gray-200 px-4 py-2 rounded-full flex items-center">{shop.name}
+                  <Trash2 onClick={() => handleStoreDelete(idx)} size={20} className="pl-2 cursor-pointer text-red-500" />
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+          
 
         <div className="form-group">
           <label htmlFor="register-password-21">Kata sandi *</label>
@@ -224,36 +293,6 @@ const IndividualSignUpComponent = ({ type }) => {
           )}
         </div>
 
-        <div className="form-group">
-          <label htmlFor="whatsapp">Nomor WhatsApp</label>
-          <input
-            type="password"
-            className="form-control"
-            id="whatsapp"
-            value={formData.whatsapp}
-            onChange={handleChange}
-            name="whatsapp"
-          />
-          {formErrors?.whatsapp && (
-            <span className="text-red-600">*{formErrors.whatsapp}</span>
-          )}
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="dob">Tanggal lahir *</label>
-          <input
-            type="date"
-            className="form-control"
-            id="dob"
-            value={formData.dob}
-            onChange={handleChange}
-            name="dob"
-          />
-          {formErrors?.dob && (
-            <span className="text-red-600">*{formErrors.dob}</span>
-          )}
-        </div>
-
         <div className="form-footer">
           <div className="custom-control custom-checkbox">
             <input
@@ -269,7 +308,7 @@ const IndividualSignUpComponent = ({ type }) => {
                 formErrors?.agreementChecked ? "text-red-600" : "text-black"
               }`}
               htmlFor="register-policy-2"
-            >Saya menyatakan bahwa saya adalah perokok dan/atau pengguna produk tembakau alternatif berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini untuk keperluan pribadi saya sendiri*
+            >Saya merupakan penjual tembakau elektronik berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini untuk keperluan bisnis/komersial*
             </label>
           </div>
 
@@ -315,4 +354,4 @@ const IndividualSignUpComponent = ({ type }) => {
   );
 };
 
-export default IndividualSignUpComponent;
+export default BusinessOnlineSignUpComponent;

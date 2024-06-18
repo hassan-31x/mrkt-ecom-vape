@@ -1,12 +1,14 @@
 "use client";
 
-import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import IndividualSignUpComponent from "./individual-sign-up";
-import BusinessOnlineSignUpComponent from "./business-online-sign-up";
 import { useState } from "react";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+
+import IndividualSignUpComponent from "./individual-sign-up";
+import BusinessOnlineSignUpComponent from "./b-online-sign-up";
+import BusinessWholesaleSignUpComponent from "./b-wholesale-sign-up";
 
 const RegisterForm = () => {
-  const [step, setStep] = useState(1);
+  const [step, setStep] = useState(2);
 
   return (
     <div>
@@ -28,29 +30,35 @@ const RegisterForm = () => {
       {step === 1 &&
         <IndividualSignUpComponent />
       }
+      {step === 2 && 
+<div>
+
+<h3 className="text-center py-2">Registrasi untuk bisnis</h3>
+
+    <Tabs selectedTabClassName="show" defaultIndex={0}>
+      <TabList className="nav nav-pills nav-fill">
+        <Tab className="nav-item">
+          <span className="nav-link">Toko online</span>
+        </Tab>
+
+        <Tab className="nav-item">
+          <span className="nav-link">Pedagang grosir</span>
+        </Tab>
+      </TabList>
+
+      <div className="tab-content">
+        <TabPanel style={{ paddingTop: "2rem" }}>
+          <BusinessOnlineSignUpComponent type="online" />
+        </TabPanel>
+
+        <TabPanel>
+          <BusinessWholesaleSignUpComponent type="wholesale" />
+        </TabPanel>
+      </div>
+    </Tabs>
+</div>
+    }
     </div>
-
-    // <Tabs selectedTabClassName="show" defaultIndex={0}>
-    //   <TabList className="nav nav-pills nav-fill">
-    //     <Tab className="nav-item">
-    //       <span className="nav-link">Individual</span>
-    //     </Tab>
-
-    //     <Tab className="nav-item">
-    //       <span className="nav-link">Business</span>
-    //     </Tab>
-    //   </TabList>
-
-    //   <div className="tab-content">
-    //     <TabPanel style={{ paddingTop: "2rem" }}>
-    //       <BusinessOnlineSignUpComponent type="user" />
-    //     </TabPanel>
-
-    //     <TabPanel>
-    //       <BusinessOnlineSignUpComponent type="business" />
-    //     </TabPanel>
-    //   </div>
-    // </Tabs>
   );
 };
 

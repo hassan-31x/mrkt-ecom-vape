@@ -10,10 +10,12 @@ const initialState = {
   email: "",
   password: "",
   confirmPassword: "",
+  whatsapp: "",
+  dob: "",
   agreementChecked: false,
 };
 
-const BusinessOnlineSignUpComponent = ({ type }) => {
+const BusinessWholesaleSignUpComponent = ({ type }) => {
   const [formData, setFormData] = useState(initialState);
   const [formErrors, setFormErrors] = useState(initialState);
   const [loading, setLoading] = useState(false);
@@ -59,8 +61,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       return false;
     }
 
-    if (!formData.password?.trim()) {
-      errors.password = "Please enter your password";
+    if (formData.password?.trim()?.length < 6) {
+      errors.password = "Kata sandi harus mengandung enam karakter";
       setFormErrors(errors);
       return false;
     }
@@ -79,6 +81,20 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
 
     if (!formData.agreementChecked) {
       errors.agreementChecked = "Please agree to the privacy policy";
+      setFormErrors(errors);
+      return false;
+    }
+
+    if (!formData.dob) {
+      errors.whatsapp = "Please enter your Date of birth";
+      setFormErrors(errors);
+      return false;
+    }
+
+    const today = new Date();
+    const dob = new Date(formData.dob);
+    if (today.getFullYear() - dob.getFullYear() < 18) {
+      errors.dob = "You must be at least 18 years old";
       setFormErrors(errors);
       return false;
     }
@@ -145,11 +161,10 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   };
 
   return (
-    <>
-      <form action="#">
+    <div>
+      <form action="#" className="mt-1">
         <div className="form-group">
-          <div className="form-group">
-            <label htmlFor="register-name-2">Full Name *</label>
+            <label htmlFor="register-name-2">Nama lengkap *</label>
             <input
               type="text"
               className="form-control"
@@ -163,7 +178,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
             )}
           </div>
 
-          <label htmlFor="register-email-2">Your email address *</label>
+        <div className="form-group">
+          <label htmlFor="register-email-2">Alamat email *</label>
           <input
             type="email"
             className="form-control"
@@ -178,7 +194,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="register-password-21">Password *</label>
+          <label htmlFor="register-password-21">Kata sandi *</label>
           <input
             type="password"
             className="form-control"
@@ -193,7 +209,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="register-password-22">Confirm Password *</label>
+          <label htmlFor="register-password-22">Konfirmasi sandi *</label>
           <input
             type="password"
             className="form-control"
@@ -207,7 +223,37 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
           )}
         </div>
 
-        <div className="form-footer flex justify-between">
+        <div className="form-group">
+          <label htmlFor="whatsapp">Nomor WhatsApp</label>
+          <input
+            type="password"
+            className="form-control"
+            id="whatsapp"
+            value={formData.whatsapp}
+            onChange={handleChange}
+            name="whatsapp"
+          />
+          {formErrors?.whatsapp && (
+            <span className="text-red-600">*{formErrors.whatsapp}</span>
+          )}
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="dob">Tanggal lahir *</label>
+          <input
+            type="date"
+            className="form-control"
+            id="dob"
+            value={formData.dob}
+            onChange={handleChange}
+            name="dob"
+          />
+          {formErrors?.dob && (
+            <span className="text-red-600">*{formErrors.dob}</span>
+          )}
+        </div>
+
+        <div className="form-footer">
           <div className="custom-control custom-checkbox">
             <input
               type="checkbox"
@@ -222,26 +268,30 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
                 formErrors?.agreementChecked ? "text-red-600" : "text-black"
               }`}
               htmlFor="register-policy-2"
-            >
-              I agree to the privacy policy*
+            >Saya menyatakan bahwa saya adalah perokok dan/atau pengguna produk tembakau alternatif berusia di atas 18 tahun, bertujuan menggunakan produk yang ada di website ini
+            untuk keperluan pribadi saya sendiriI agree to the privacy policy*
             </label>
           </div>
+
 
           <button
             type="button"
             onClick={handleSubmit}
             disabled={loading}
-            className="btn btn-outline-primary-2"
+            className="btn btn-outline-primary-2 mt-3"
           >
             <span>{loading ? "Loading" : "Register"}</span>
             <i className="icon-long-arrow-right"></i>
           </button>
         </div>
+
+        <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt Indonesia</div>
+
       </form>
       <div className="form-choice">
         <p className="text-center">or sign in with</p>
         <div className="row">
-          <div className="col-sm-6">
+          <div className="col-sm-12">
             <button
               className="btn btn-login btn-g w-full"
               onClick={() => signIn("google")}
@@ -250,7 +300,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
               Login With Google
             </button>
           </div>
-          <div className="col-sm-6">
+          {/* <div className="col-sm-6">
             <button
               className="btn btn-login btn-f w-full"
               // onClick={() => signIn("facebook")}
@@ -258,11 +308,11 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
               <i className="icon-facebook-f"></i>
               Login With Facebook
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default BusinessOnlineSignUpComponent;
+export default BusinessWholesaleSignUpComponent;

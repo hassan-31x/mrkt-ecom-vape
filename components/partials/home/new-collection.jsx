@@ -15,7 +15,8 @@ function NewCollection({ products }) {
       <div className="container text-center">
         <div className="heading heading-center">
           {/* <h2 className="title pt-5">Hot Products</h2> */}
-          <p className="title-desc pt-3">Produk terbaik ini khusus buat kamu</p>
+          {/* <p className="title-desc pt-3">Produk terbaik ini khusus buat kamu</p> */}
+          <h2 className="title pt-5">Produk terbaik ini khusus buat kamu</h2>
         </div>
 
         <div className="product-wrapper">

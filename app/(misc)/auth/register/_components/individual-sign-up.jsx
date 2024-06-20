@@ -169,7 +169,7 @@ const IndividualSignUpComponent = ({ type }) => {
 
   return (
     <div>
-      <h3 className="text-center py-2">Registrasi Toko Online</h3>
+      <h3 className="text-center py-2">Registrasi Personal</h3>
       <form action="#" className="mt-1">
           <div className="form-group">
             <label htmlFor="register-name-2">Nama lengkap *</label>

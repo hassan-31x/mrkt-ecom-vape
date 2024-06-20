@@ -129,7 +129,7 @@ function Footer() {
               <div className="widget widget-about">
                 <Image
                   src="/images/home/header-logo-t.png"
-                  className="footer-logo my-2"
+                  className="footer-logo my-2 !w-[130px]"
                   alt="Footer Logo"
                   width={100}
                   height={31}

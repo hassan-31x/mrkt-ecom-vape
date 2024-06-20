@@ -136,24 +136,24 @@ const SignInComponent = ({ type }) => {
 
   return (
     <div>
-      <h3 className="text-center py-2">Login</h3>
+      <h3 className="text-center py-2">Masuk</h3>
       <div>
         <form action="#">
           <div className="form-group">
-            <label htmlFor="singin-email-2">Email Address *</label>
+            <label htmlFor="singin-email-2">Alamat email *</label>
             <input type="text" className="form-control" id="singin-email-2" value={formData.semail} onChange={handleChange} name="semail" />
             {formErrors?.semail && <span className="text-red-600">*{formErrors.semail}</span>}
           </div>
 
           <div className="form-group">
-            <label htmlFor="singin-password-2">Password *</label>
+            <label htmlFor="singin-password-2">Kata sandi *</label>
             <input type="password" className="form-control" id="singin-password-2" value={formData.spassword} onChange={handleChange} name="spassword" />
             {formErrors?.spassword && <span className="text-red-600">*{formErrors.spassword}</span>}
           </div>
 
           <div className="form-footer flex justify-between">
             <button type="button" onClick={handleSubmit} className="btn btn-outline-primary-2" disabled={loading}>
-              <span>{loading ? "Loading" : "LOG IN"}</span>
+              <span>{loading ? "Memuat" : "Masuk"}</span>
               <i className="icon-long-arrow-right"></i>
             </button>
           </div>

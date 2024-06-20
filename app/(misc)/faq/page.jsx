@@ -46,7 +46,7 @@ async function FaqPage() {
         ))}
       </div>
 
-      <div
+      {/* <div
         className="cta cta-display bg-image pt-4 pb-4"
         style={{ backgroundImage: `url(images/backgrounds/cta/bg-7.jpg)` }}
       >
@@ -75,7 +75,7 @@ async function FaqPage() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

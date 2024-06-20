@@ -67,7 +67,7 @@ function ContactPageComponent({ contact }) {
         <div className="container">
           <div className="row">
             <div className="col-lg-6 mb-2 mb-lg-0">
-              <h2 className="title mb-1">Contact Information</h2>
+              <h2 className="title mb-1">Informasi Kontak</h2>
               <p className="mb-3">
                 <PortableText
                   value={contact?.contactDescription}
@@ -119,22 +119,22 @@ function ContactPageComponent({ contact }) {
               </div> */}
             </div>
             <div className="col-lg-6">
-              <h2 className="title mb-1">Got Any Questions?</h2>
+              <h2 className="title mb-1">Ada pertanyaan?</h2>
               <p className="mb-2">
-                Use the form below to get in touch with the sales team
+              Isi form ini untuk berkomunikasi dengan tim kami
               </p>
 
               <form className="contact-form mb-3">
       <div className="row">
         <div className="col-sm-6">
           <label htmlFor="name" className="sr-only">
-            Name
+          Nama
           </label>
           <input
             type="text"
             className="form-control"
             id="name"
-            placeholder="Name *"
+            placeholder="Nama *"
             required
             value={formData.name}
             onChange={handleChange}
@@ -160,13 +160,13 @@ function ContactPageComponent({ contact }) {
       <div className="row">
         <div className="col-sm-6">
           <label htmlFor="phone" className="sr-only">
-            Phone
+            Nomor WhatsApp
           </label>
           <input
             type="tel"
             className="form-control"
             id="phone"
-            placeholder="Phone"
+            placeholder="Nomor WhatsApp"
             value={formData.phone}
             onChange={handleChange}
           />
@@ -174,13 +174,13 @@ function ContactPageComponent({ contact }) {
 
         <div className="col-sm-6">
           <label htmlFor="subject" className="sr-only">
-            Subject
+            Subjek
           </label>
           <input
             type="text"
             className="form-control"
             id="subject"
-            placeholder="Subject"
+            placeholder="Subjek"
             value={formData.subject}
             onChange={handleChange}
           />
@@ -188,7 +188,7 @@ function ContactPageComponent({ contact }) {
       </div>
 
       <label htmlFor="message" className="sr-only">
-        Message
+        Pesan
       </label>
       <textarea
         className="form-control"
@@ -196,7 +196,7 @@ function ContactPageComponent({ contact }) {
         rows="4"
         id="message"
         required
-        placeholder="Message *"
+        placeholder="Pesan *"
         value={formData.message}
         onChange={handleChange}
       ></textarea>

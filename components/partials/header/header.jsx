@@ -91,6 +91,7 @@ function Header() {
                 <Link href="/" className="logo">
                   <Image
                     src="/images/home/header-logo-t.png"
+                    className="w-[130px]"
                     alt="Molla Logo"
                     width={100}
                     height={31}

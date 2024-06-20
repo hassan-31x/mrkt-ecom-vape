@@ -287,7 +287,7 @@ const IndividualSignUpComponent = ({ type }) => {
             disabled={loading}
             className="btn btn-outline-primary-2 mt-3"
           >
-            <span>{loading ? "Loading" : "Register"}</span>
+            <span>{loading ? "Memuat" : "Register"}</span>
             <i className="icon-long-arrow-right"></i>
           </button>
         </div>

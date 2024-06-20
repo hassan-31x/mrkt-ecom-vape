@@ -16,7 +16,7 @@ function RegisterPageComponent() {
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item active">Login</li>
+            <li className="breadcrumb-item active">Masuk</li>
           </ol>
         </div>
       </nav>

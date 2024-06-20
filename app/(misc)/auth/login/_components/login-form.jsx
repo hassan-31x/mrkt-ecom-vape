@@ -8,11 +8,11 @@ const LoginForm = () => {
     <Tabs selectedTabClassName="show" defaultIndex={0}>
       <TabList className="nav nav-pills nav-fill">
         <Tab className="nav-item">
-          <span className="nav-link">Individual</span>
+          <span className="nav-link">Personal</span>
         </Tab>
 
         <Tab className="nav-item">
-          <span className="nav-link">Business</span>
+          <span className="nav-link">Bisnis</span>
         </Tab>
       </TabList>
 

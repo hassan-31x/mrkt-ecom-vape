@@ -40,12 +40,18 @@ export const product = {
       name: "price",
       title: "Price",
       type: "number",
-      validation: (Rule) => Rule.required(),
+      // validation: (Rule) => Rule.required(),
     },
     {
       name: "sale_price",
       title: "Sale Price",
       description: "Only if there's a sale on this product",
+      type: "number",
+    },
+    {
+      name: "business_price",
+      title: "Business Price",
+      description: "Price for business accounts",
       type: "number",
     },
     {

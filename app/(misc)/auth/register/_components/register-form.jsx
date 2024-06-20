@@ -14,7 +14,7 @@ const RegisterForm = () => {
     <>
       {step === 0 ? (
         <div className="w-full">
-          <h3 className="">Bersiaplah berkelana rasa bersama mrkt Indonesia</h3>
+          <h3 className="">Bersiaplah berkelana rasa bersama mrkt. Indonesia</h3>
           <p>Tujuan Anda menggunakan produk mrkt?</p>
           <div className="flex flex-col gap-5 mt-4">
             <button

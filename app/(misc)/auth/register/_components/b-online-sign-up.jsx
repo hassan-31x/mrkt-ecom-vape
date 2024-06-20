@@ -180,7 +180,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
 
         <div className="form-group">
           <label htmlFor="whatsapp">Nomor WhatsApp</label>
-          <input type="password" className="form-control" id="whatsapp" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
+          <input type="text" className="form-control" id="whatsapp" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
           {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 
@@ -202,8 +202,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
                 <option value="Vapestore.id">Vapestore.id</option>
                 <option value="Vape.id">Vape.id</option>
                 <option value="Vapemagz">Vapemagz</option>
-                <option value="Lainnya">Lainnya</option>
-                <option value="custom">Not in list? Add your own</option>
+                <option value="custom">Lainnya</option>
               </select>
             ) : (
               <input type="text" className="form-control flex-[3/7]" value={currentStore.name} onChange={(e) => setCurrentStore({ ...currentStore, name: e.target.value })} />
@@ -212,6 +211,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
               type="text"
               className="form-control flex-[3/7]"
               id="shop-id"
+              placeholder="Ketik nama/link akun Anda"
               value={currentStore.id}
               onChange={(e) => setCurrentStore({ ...currentStore, id: e.target.value })}
             />
@@ -266,7 +266,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
           </button>
         </div>
 
-        <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt Indonesia</div>
+        <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt. Indonesia</div>
       </form>
       <div className="form-choice">
         <p className="text-center">or sign in with</p>

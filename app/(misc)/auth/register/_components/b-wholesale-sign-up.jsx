@@ -269,7 +269,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
           </button>
         </div>
 
-        <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt Indonesia</div>
+        <div className="text-gray-600 text-center py-3">Data Anda aman dan dijamin oleh mrkt. Indonesia</div>
       </form>
       <div className="form-choice">
         <p className="text-center">or sign in with</p>

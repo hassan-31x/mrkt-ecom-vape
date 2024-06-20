@@ -76,12 +76,9 @@ function AgeConfirmModal() {
                   width="100"
                   height="15"
                 />
-                <h2 className="banner-title">Confirm that you are 18+</h2>
+                <h2 className="banner-title">Yuk konfirmasi bahwa umurmu diatas 18+</h2>
                 <p>
-                  Welcome to Mrkt, curated for a mature audience. To proceed,
-                  please verify that you are 18 years or older. This
-                  confirmation ensures a responsible and age-appropriate
-                  engagement with our vape products.
+                Mrkt. hanya bisa diakses oleh pengguna berusia 18 tahun ke atas.
                 </p>
                 <div className="w-full flex flex-col-reverse md:flex-row items-center">
                   <button onClick={cancelConfirm} className="hover:underline transition-all duration-300 ease-in py-4 w-full rounded-lg text-2xl">

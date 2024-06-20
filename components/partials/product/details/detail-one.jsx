@@ -38,20 +38,20 @@ function DetailOne(props) {
 
 
   function onCartClick() {
-    if (qty > product?.stock) {
+    if (product?.stock && qty > product?.stock) {
       toast.error("Insufficient stock");
       return;
     }
 
-    if (nicotinePercentage?.length > 0 && !nicotine) {
-      toast.error("Please select Nicotine Percentage");
-      return;
-    }
+    // if (nicotinePercentage?.length > 0 && !nicotine) {
+    //   toast.error("Please select Nicotine Percentage");
+    //   return;
+    // }
 
     for (let i = 0; i < qty; i++) {
       dispatch(addToCart({
         ...product,
-        nicotinePercentage: nicotine,
+        // nicotinePercentage: nicotine,
       }));
     }
     toast.success("Product added to cart");
@@ -61,7 +61,7 @@ function DetailOne(props) {
     <div className="product-details" ref={ref}>
       <h1 className="product-title">{product.name}</h1>
 
-      <div className="ratings-container">
+      <div className="raRp ings-container">
         <div className="ratings">
           <div
             className="ratings-val"
@@ -76,20 +76,20 @@ function DetailOne(props) {
         )}
       </div>
 
-      {product?.stock < 1 ? (
+      {product?.stock && product?.stock < 1 ? (
         <div className="product-price">
           <span className="out-price">
-            ${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}
+            ${product?.sale_price?.toFixed(3) || product.price.toFixed(3)}
           </span>
         </div>
       ) : product?.sale_price ? (
         <div className="product-price">
-          <span className="old-price pr-2">${product.price.toFixed(2)}</span>
-          <span className="new-price">${product.sale_price.toFixed(2)}</span>
+          <span className="old-price pr-2">Rp {product.price.toFixed(3)}</span>
+          <span className="new-price">Rp {product.sale_price.toFixed(3)}</span>
         </div>
       ) : (
         <div className="product-price">
-          <span className="out-price">${product.price?.toFixed(2)}</span>
+          <span className="out-price">Rp {product.price?.toFixed(3)}</span>
         </div>
       )}
 
@@ -97,7 +97,7 @@ function DetailOne(props) {
         <p>{product?.short_desc}</p>
       </div>
 
-      {nicotinePercentage?.length > 0 ? (
+      {/* {nicotinePercentage?.length > 0 ? (
         <div className="details-filter-row details-row-size">
           <label htmlFor="size">Nicotine:</label>
           <div className="select-custom">
@@ -118,7 +118,7 @@ function DetailOne(props) {
         </div>
       ) : (
         ""
-      )}
+      )} */}
 
       <div className="details-filter-row details-row-size">
         <label htmlFor="qty">Qty:</label>
@@ -128,7 +128,7 @@ function DetailOne(props) {
       <div className="product-details-action">
         <button
           className={`btn-product btn-cart ${
-            product?.stock < 1 ? "btn-disabled" : ""
+            product?.stock && product?.stock < 1 ? "btn-disabled" : ""
           }`}
           onClick={onCartClick}
         >

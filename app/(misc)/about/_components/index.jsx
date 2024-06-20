@@ -69,7 +69,7 @@ function AboutPageComponent({ about }) {
           <div className="mb-5"></div>
         </div>
 
-        <div className="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
+        {/* <div className="bg-light-2 pt-6 pb-5 mb-6 mb-lg-8">
           <div className="container">
             <div className="row">
               <div className="col-lg-5 mb-3 mb-lg-0">
@@ -114,7 +114,7 @@ function AboutPageComponent({ about }) {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="container">
           <div className="row">

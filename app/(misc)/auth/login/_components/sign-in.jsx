@@ -167,7 +167,7 @@ const SignInComponent = ({ type }) => {
                 onClick={() => signIn("google")}
               >
                 <i className="icon-google"></i>
-                Login With Google
+                Masuk dengan Google
               </button>
             </div>
             {/* <div className="col-sm-6">

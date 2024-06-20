@@ -274,7 +274,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
           <div className="col-sm-12">
             <button className="btn btn-login btn-g w-full" onClick={() => signIn("google")}>
               <i className="icon-google"></i>
-              Login With Google
+              Masuk dengan Google
             </button>
           </div>
           {/* <div className="col-sm-6">

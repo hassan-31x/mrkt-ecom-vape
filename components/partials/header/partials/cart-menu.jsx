@@ -72,15 +72,15 @@ function CartMenu() {
                       </Link>
                     </h4>
 
-                    <div className="cart-product-info">
+                    {/* <div className="cart-product-info">
                       {item?.nicotinePercentage}% Nicotine
-                    </div>
+                    </div> */}
 
                     <span className="cart-product-info">
-                      <span className="cart-product-qty">{item.qty} </span>x $
+                      <span className="cart-product-qty">{item.qty} </span>x Rp{" "}
                       {item?.sale_price
-                        ? item.sale_price.toFixed(2)
-                        : item.price.toFixed(2)}
+                        ? item.sale_price.toFixed(3)
+                        : item.price.toFixed(3)}
                     </span>
                   </div>
 
@@ -114,17 +114,17 @@ function CartMenu() {
 
 
               {discount?.percentage ? <span className="cart-total-price !text-[1.45rem] line-through pr-1">
-                $
+                Rp{" "}
                 {cartPriceTotal(cartlist)?.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 3,
+                  maximumFractionDigits: 3,
                 })}
               </span> : null}
               <span className="cart-total-price !text-[1.6rem] text-[#ef837b]">
-                $
+                Rp{" "}
                 {cartPriceTotalDiscount(cartPriceTotal(cartlist), discount?.percentage)?.toLocaleString(undefined, {
-                  minimumFractionDigits: 2,
-                  maximumFractionDigits: 2,
+                  minimumFractionDigits: 3,
+                  maximumFractionDigits: 3,
                 })}
               </span>
               </div>

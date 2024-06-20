@@ -167,7 +167,7 @@ function HomePageComponent({
                       href="/ejuice"
                       className="btn btn-link btn-link-primary"
                     >
-                      SHOP NOW<i className="icon-angle-right"></i>
+                      Berbelanja sekarang<i className="icon-angle-right"></i>
                     </Link>
                   </div>
                 </div>
@@ -263,7 +263,7 @@ function HomePageComponent({
                     <div className="lazy-overlay"></div>
                     <Image
                       alt="banner"
-                      src="/images/home/banner/2-2.jpg"
+                      src="/images/home/banner/2-2.png"
                       width="700"
                       height="680"
                     />
@@ -367,7 +367,7 @@ function HomePageComponent({
                       href={`/blog/${blog?.slug?.current}`}
                       className="btn btn-link btn-link-primary"
                     >
-                      READ NOW<i className="icon-angle-right"></i>
+                      BACA LAGA<i className="icon-angle-right"></i>
                     </Link>
                   </div>
                 </div>

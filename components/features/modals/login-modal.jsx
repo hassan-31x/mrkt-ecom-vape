@@ -141,7 +141,7 @@ export default function LoginModal() {
                               <div className="col-sm-6">
                                 <Link href="#" className="btn btn-login btn-g">
                                   <i className="icon-google"></i>
-                                  Login With Google
+                                  Masuk dengan Google
                                 </Link>
                               </div>
                               <div className="col-sm-6">
@@ -214,7 +214,7 @@ export default function LoginModal() {
                             <div className="col-md-6">
                               <Link href="#" className="btn btn-login btn-g">
                                 <i className="icon-google"></i>
-                                Login With Google
+                                Masuk dengan Google
                               </Link>
                             </div>
                             <div className="col-md-6 mt-1 mt-md-0">

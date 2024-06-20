@@ -151,23 +151,23 @@ function CartPageComponent(props) {
                                   <Link href={`/product/${item.slug.current}`}>
                                     {item.name}
                                   </Link>
-                                  <span className="capitalize text-xl text-neutral-700/60">
+                                  {/* <span className="capitalize text-xl text-neutral-700/60">
                                     {item?.nicotinePercentage}% Nicotine
-                                  </span>
+                                  </span> */}
                                 </h4>
                               </div>
                             </td>
 
                             <td className="price-col">
-                              $
+                              Rp{" "}
                               {item.sale_price
                                 ? item.sale_price.toLocaleString(undefined, {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2,
+                                    minimumFractionDigits: 3,
+                                    maximumFractionDigits: 3,
                                   })
                                 : item.price.toLocaleString(undefined, {
-                                    minimumFractionDigits: 2,
-                                    maximumFractionDigits: 2,
+                                    minimumFractionDigits: 3,
+                                    maximumFractionDigits: 3,
                                   })}
                             </td>
 
@@ -184,10 +184,10 @@ function CartPageComponent(props) {
                             </td>
 
                             <td className="total-col">
-                              $
+                              Rp{" "}
                               {item.sum.toLocaleString(undefined, {
-                                minimumFractionDigits: 2,
-                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 3,
+                                maximumFractionDigits: 3,
                               })}
                             </td>
 
@@ -263,10 +263,10 @@ function CartPageComponent(props) {
                         <tr className="summary-shipping">
                           <td className="!pb-0">Subtotal:</td>
                           <td className="pb-0">
-                            $
+                            Rp{" "}
                             {cartPriceTotal(items).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 3,
+                              maximumFractionDigits: 3,
                             })}
                           </td>
                         </tr>
@@ -277,27 +277,27 @@ function CartPageComponent(props) {
                               `(${cart?.discount?.name} - ${cart?.discount?.percentage}%)`}
                           </td>
                           <td className="text-[#ef837b] py-0">
-                            - $
+                            - Rp{" "}
                             {(
                               (cartPriceTotal(items) *
                                 (cart?.discount?.percentage || 0)) /
                               100
                             ).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 3,
+                              maximumFractionDigits: 3,
                             })}
                           </td>
                         </tr>
                         <tr className="summary-subtotal">
                           <td>Subtotal After Discount:</td>
                           <td>
-                            $
+                            Rp{" "}
                             {cartPriceTotalDiscount(
                               cartPriceTotal(items),
                               cart?.discount?.percentage
                             ).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 3,
+                              maximumFractionDigits: 3,
                             })}
                           </td>
                         </tr>
@@ -325,7 +325,7 @@ function CartPageComponent(props) {
                               </label>
                             </div>
                           </td>
-                          <td>$0.00</td>
+                          <td>Rp 0.000</td>
                         </tr>
 
                         <tr className="summary-shipping-row">
@@ -346,7 +346,7 @@ function CartPageComponent(props) {
                               </label>
                             </div>
                           </td>
-                          <td>$10.00</td>
+                          <td>Rp 10.000</td>
                         </tr>
 
                         <tr className="summary-shipping-row">
@@ -367,29 +367,22 @@ function CartPageComponent(props) {
                               </label>
                             </div>
                           </td>
-                          <td>$20.00</td>
+                          <td>Rp 20.000</td>
                         </tr>
 
-                        <tr className="summary-shipping-estimate">
-                          <td>
-                            Estimate for Your Country
-                            <br /> <Link href="/dashboard">Change address</Link>
-                          </td>
-                          <td>&nbsp;</td>
-                        </tr>
 
                         <tr className="summary-total">
                           <td>Total:</td>
                           <td>
-                            $
+                            Rp{" "}
                             {(
                               cartPriceTotalDiscount(
                                 cartPriceTotal(items),
                                 cart?.discount?.percentage
                               ) + shippingCost
                             ).toLocaleString(undefined, {
-                              minimumFractionDigits: 2,
-                              maximumFractionDigits: 2,
+                              minimumFractionDigits: 3,
+                              maximumFractionDigits: 3,
                             })}
                           </td>
                         </tr>

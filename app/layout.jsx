@@ -14,7 +14,8 @@ import { ReduxProvider } from "@/redux/provider";
 import localFont from "next/font/local"
 
 const avenirFont = localFont({
-  src: "../public/fonts/avenir.woff2"
+  // src: "../public/fonts/avenir.woff2"
+  src: "../public/fonts/noir.woff2"
 })
 
 export const metadata = {

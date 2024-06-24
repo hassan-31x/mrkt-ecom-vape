@@ -19,6 +19,11 @@ export const user = {
       type: "string",
     },
     {
+      name: "whatsapp",
+      title: "Whatsapp Number",
+      type: "string",
+    },
+    {
       name: "image",
       title: "Image",
       type: "string"
@@ -40,6 +45,18 @@ export const user = {
         ],
       },
       initialValue: "user"
+    },
+    {
+      name: "businessType",
+      title: "Business Type",
+      type: 'string',
+      description: 'If account is business',
+      options: {
+        list: [
+          { title: 'Online', value: 'online' },
+          { title: 'Physical', value: 'physical' },
+        ],
+      },
     },
     {
       name: "discountsAvailable",
@@ -88,6 +105,66 @@ export const user = {
       title: 'Created At',
       type: 'datetime',
       readOnly: true,
-    }
+    },
+    {
+      name: "dob",
+      title: "Date of Birth",
+      description: 'If account is individual',
+      type: "string",
+    },
+    {
+      name: "onlineLinks",
+      title: "Online Store Link",
+      description: 'If account is business online',
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "name",
+              title: "Website Name",
+              type: "string",
+            },
+            {
+              name: "id",
+              title: "Account ID",
+              type: "string",
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: "toko",
+      title: "Toko",
+      description: 'If account is business physical',
+      type: "string",
+    },
+    {
+      name: "storeType",
+      title: "Store Type",
+      description: 'If account is business physical',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Online', value: 'online' },
+          { title: 'Physical', value: 'physical' },
+        ],
+      },
+      initialValue: "user"
+    },
+    {
+      name: "businessUrl",
+      title: "Business Account Link",
+      description: 'If account is business physical',
+      type: "string",
+    },
+    {
+      name: "businessAddress",
+      title: "Business Address",
+      description: 'If account is business physical',
+      type: "string",
+    },
   ],
 };

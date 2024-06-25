@@ -13,6 +13,8 @@ const initialState = {
   whatsapp: "",
   toko: "",
   store: "online",
+  url: "",
+  address: "",
   agreementChecked: false,
 };
 
@@ -161,7 +163,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         },
         body: JSON.stringify({
           ...formData,
-          accountType: type,
+          accountType: 'business',
+          businessType: 'physical'
         }),
       });
 
@@ -171,11 +174,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         toast.error(data.message);
         return;
       }
-      toast.success(type === "individual" ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
+      toast.success("Business Registered! Please wait for approval.");
       setFormData(initialState);
-      if (type === "individual") {
-        router.push("/auth/login");
-      }
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -189,7 +189,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       <form action="#" className="mt-1">
         <div className="form-group">
           <label htmlFor="business-name2">Nama pemilik bisnis *</label>
-          <input type="text" className="form-control" id="business-name2" value={formData.email} onChange={handleChange} name="businessName" />
+          <input type="text" className="form-control" id="business-name2" value={formData.businessName} onChange={handleChange} name="businessName" />
           {formErrors?.businessName && <span className="text-red-600">*{formErrors.businessName}</span>}
         </div>
 
@@ -200,8 +200,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="whatsapp2">Nomor WhatsApp</label>
-          <input type="text" className="form-control" id="whatsapp2" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
+          <label htmlFor="whatsapp3">Nomor WhatsApp</label>
+          <input type="text" className="form-control" id="whatsapp3" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
           {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 

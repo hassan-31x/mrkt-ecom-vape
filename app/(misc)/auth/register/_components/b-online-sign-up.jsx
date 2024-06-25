@@ -145,8 +145,9 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         },
         body: JSON.stringify({
           ...formData,
-          accountType: type,
-          // onlineShops,
+          accountType: 'business',
+          businessType: 'online',
+          onlineShops,
         }),
       });
 
@@ -156,11 +157,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         toast.error(data.message);
         return;
       }
-      toast.success(type === "individual" ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
+      toast.success("Business Registered! Please wait for approval.");
       setFormData(initialState);
-      if (type === "individual") {
-        router.push("/auth/login");
-      }
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -179,8 +177,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="whatsapp">Nomor WhatsApp</label>
-          <input type="text" className="form-control" id="whatsapp" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
+          <label htmlFor="whatsapp2">Nomor WhatsApp</label>
+          <input type="text" className="form-control" id="whatsapp2" value={formData.whatsapp} onChange={handleChange} name="whatsapp" />
           {formErrors?.whatsapp && <span className="text-red-600">*{formErrors.whatsapp}</span>}
         </div>
 

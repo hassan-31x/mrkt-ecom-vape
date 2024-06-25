@@ -113,7 +113,7 @@ export const user = {
       type: "string",
     },
     {
-      name: "onlineLinks",
+      name: "onlineShops",
       title: "Online Store Link",
       description: 'If account is business online',
       type: "array",
@@ -136,6 +136,12 @@ export const user = {
       ],
     },
     {
+      name: "businessName",
+      title: "Business Name",
+      description: 'If account is business physical',
+      type: "string",
+    },
+    {
       name: "toko",
       title: "Toko",
       description: 'If account is business physical',
@@ -152,7 +158,6 @@ export const user = {
           { title: 'Physical', value: 'physical' },
         ],
       },
-      initialValue: "user"
     },
     {
       name: "businessUrl",

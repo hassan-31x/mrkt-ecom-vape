@@ -117,47 +117,46 @@ const IndividualSignUpComponent = ({ type }) => {
 
     try {
       const code = searchParams.get("code");
-      const res1 = await signUp({
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-        accountType: type,
-      });
-
-      if (code) {
-        const res2 = await fetch("/api/addDiscount", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: formData.email,
-            code,
-          }),
-        });
-      }
-      // const res = await fetch('/api/sign-up', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     ...formData,
-      //     accountType: type,
-      //   }),
+      // const res1 = await signUp({
+      //   name: formData.name,
+      //   email: formData.email,
+      //   password: formData.password,
+      //   accountType: type,
       // });
+
+      // if (code) {
+      //   const res2 = await fetch("/api/addDiscount", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       email: formData.email,
+      //       code,
+      //     }),
+      //   });
+      // }
+      const res = await fetch('/api/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          accountType: 'user',
+        }),
+      });
 
       const data = await res.json();
 
       if (data.status !== 'success') {
-        toast.error(data.message);
+        toast.error(data.message || 'Error Registering. Try again');
         return
       }
-      toast.success(type === 'individual' ? "User Registered! Login to continue." : "Business Registered! Please wait for approval.");
+
+      toast.success("User Registered! Login to continue.");
       setFormData(initialState);
-      if (type === 'individual') {
-        router.push("/auth/login");
-      }
+      router.push("/auth/login");
 
     } catch (error) {
       console.error("Signup error:", error);

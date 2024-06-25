@@ -52,7 +52,7 @@ export default function RootLayout({ children }) {
         <Script src="/js/jquery.min.js" />
       </body>
       {/* <GoogleAnalytics gaId="GTM-NZVHDSM7" /> */}
-      <GoogleAnalytics gaId="G-V0HVRL4WJZ" />
+      <GoogleAnalytics gaId="G-ZK0F60HHVF" />
     </html>
   );
 }

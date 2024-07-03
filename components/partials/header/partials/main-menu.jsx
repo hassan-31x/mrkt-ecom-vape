@@ -47,7 +47,7 @@ function MainMenu() {
             href="/auth/register"
             className="sf"
           >
-            Workflow
+            Daftar
           </Link>
         </li>
         <li className={path?.includes("/about") ? "active" : ""}>

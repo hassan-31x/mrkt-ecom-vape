@@ -42,6 +42,14 @@ function MainMenu() {
             Informasi Penting
           </Link>
         </li>
+        <li className={path?.includes("/register") ? "active" : ""}>
+          <Link
+            href="/auth/register"
+            className="sf"
+          >
+            Workflow
+          </Link>
+        </li>
         <li className={path?.includes("/about") ? "active" : ""}>
           <Link
             href="/about"

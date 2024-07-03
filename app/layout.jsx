@@ -25,7 +25,7 @@ export const metadata = {
     template: "%s | mrkt.",
     default: "mrkt.",
   },
-  description: "Rasa Riang Hanya Dari mrkt.",
+  description: "Rasa riang hanya dari mrkt.",
 };
 
 const jost = Jost({

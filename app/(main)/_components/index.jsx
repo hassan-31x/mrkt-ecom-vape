@@ -412,7 +412,7 @@ function HomePageComponent({
         </section>
       </Reveal>
 
-      <ReferFriendModal />
+{/*       <ReferFriendModal /> */}
     </div>
   );
 }

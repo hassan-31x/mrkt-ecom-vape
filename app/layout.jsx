@@ -25,7 +25,7 @@ export const metadata = {
     template: "%s | mrkt.",
     default: "mrkt.",
   },
-  description: "The best place to buy healthy Vape Products.",
+  description: "Rasa Riang Hanya Dari mrkt.",
 };
 
 const jost = Jost({

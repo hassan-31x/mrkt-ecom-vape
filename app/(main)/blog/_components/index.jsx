@@ -52,14 +52,14 @@ function BlogPageComponent({ posts }) {
 
   return (
     <div className="main">
-      <PageHeader title="Benefits" subTitle="Blog" />
+      <PageHeader title="Informasi Penting" subTitle="" />
       <nav className="breadcrumb-nav">
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
               <Link href="/">Home</Link>
             </li>
-            <li className="breadcrumb-item active">Benefits</li>
+            <li className="breadcrumb-item active">Informasi Penting</li>
           </ol>
         </div>
       </nav>

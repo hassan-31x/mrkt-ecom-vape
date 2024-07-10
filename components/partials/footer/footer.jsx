@@ -171,7 +171,7 @@ function Footer() {
                     <Link href="/ejucie">E-liquid</Link>
                   </li>
                   <li>
-                    <Link href="/blog">Informasi Penting</Link>
+                    <Link href="/informasi-penting">Informasi Penting</Link>
                   </li>
                 </ul>
               </div>

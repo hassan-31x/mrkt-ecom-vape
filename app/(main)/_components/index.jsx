@@ -241,7 +241,7 @@ function HomePageComponent({
                       {homePageData?.blogSectionSubText}
                     </p>
                     <Link
-                      href="/blog"
+                      href="/informasi-penting"
                       className="btn btn-outline-primary-2"
                     >
                       BACA LAGI<i className="icon-angle-right"></i>
@@ -364,7 +364,7 @@ function HomePageComponent({
                       {blog?.summary}
                     </p>
                     <Link
-                      href={`/blog/${blog?.slug?.current}`}
+                      href={`/informasi-penting/${blog?.slug?.current}`}
                       className="btn btn-link btn-link-primary"
                     >
                       BACA LAGA<i className="icon-angle-right"></i>

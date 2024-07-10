@@ -41,7 +41,7 @@ function BlogSidebar(props) {
             {popular?.map((post) => (
               <li key={post?._id}>
                 <figure className="position-relative">
-                  <Link href={`/blog/${post.slug.current}`} className="w-100">
+                  <Link href={`/informasi-penting/${post.slug.current}`} className="w-100">
                     {/* <div className="lazy-overlay"></div> */}
 
                     <Image
@@ -63,7 +63,7 @@ function BlogSidebar(props) {
                   <h4>
                     <Link
                       className="line-clamp-1"
-                      href={`/blog/${post.slug.current}`}
+                      href={`/informasi-penting/${post.slug.current}`}
                     >
                       {post?.title}
                     </Link>

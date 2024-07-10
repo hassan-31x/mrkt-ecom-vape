@@ -73,7 +73,7 @@ function SingleBlogPageComponent(props) {
               <Link href="/">Home</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link href="/blog">Benefits</Link>
+              <Link href="/informasi-penting">Benefits</Link>
             </li>
             <li className="breadcrumb-item active">{post.slug.current}</li>
           </ol>

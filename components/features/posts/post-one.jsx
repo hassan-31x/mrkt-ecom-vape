@@ -27,7 +27,7 @@ function PostOne(props) {
           paddingTop: "100%",
         }}
       >
-        <Link href={`/blog/${post.slug.current}`}>
+        <Link href={`/informasi-penting/${post.slug.current}`}>
           <div className="lazy-overlay"></div>
 
           <Image alt="Post" src={urlFor(post?.mainImage)?.url()} fill />
@@ -39,7 +39,7 @@ function PostOne(props) {
             <>
               <span className="entry-author">
                 by{" "}
-                <Link href={`/blog/${post.slug.current}`}>
+                <Link href={`/informasi-penting/${post.slug.current}`}>
                   {post?.author?.name}
                 </Link>
               </span>
@@ -48,14 +48,14 @@ function PostOne(props) {
           ) : (
             ""
           )}
-          <Link href={`/blog/${post.slug.current}`}>
+          <Link href={`/informasi-penting/${post.slug.current}`}>
             {date.toLocaleDateString("en-US", options)}
           </Link>
           <span className="meta-separator">|</span>
         </div>
 
         <h2 className="entry-title">
-          <Link href={`/blog/${post.slug.current}`}>{post.title}</Link>
+          <Link href={`/informasi-penting/${post.slug.current}`}>{post.title}</Link>
         </h2>
 
         {/* {post?.categories?.length ? <div className="entry-cats">
@@ -70,7 +70,7 @@ function PostOne(props) {
         {isContent ? (
           <div className="entry-content">
             <p className="line-clamp-2">{post?.summary}</p>
-            <Link href={`/blog/${post.slug.current}`} className="read-more">
+            <Link href={`/informasi-penting/${post.slug.current}`} className="read-more">
             Selengkapnya
             </Link>
           </div>

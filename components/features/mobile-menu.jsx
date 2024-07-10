@@ -65,7 +65,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              // className={path?.includes("/ejuice") ? "active" : ""}
+              className={path?.includes("/ejuice") ? "active" : ""}
             >
               <Link href="/ejuice" className="sf" scroll={false}>
                 Ejuices
@@ -73,15 +73,15 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              // className={path?.includes("/blog") ? "active" : ""}
+              className={path?.includes("/informasi-penting") ? "active" : ""}
             >
-              <Link href="/blog" className="sf">
+              <Link href="/informasi-penting" className="sf">
                 Benefits
               </Link>
             </li>
             <li
               onClick={hideMobileMenu}
-              // className={path?.includes("/about") ? "active" : ""}
+              className={path?.includes("/about") ? "active" : ""}
             >
               <Link href="/about" className="sf">
                 About
@@ -89,7 +89,7 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              // className={path?.includes("/faq") ? "active" : ""}
+              className={path?.includes("/faq") ? "active" : ""}
             >
               <Link href="/faq" className="sf">
                 FAQ

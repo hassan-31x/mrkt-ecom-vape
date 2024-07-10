@@ -48,10 +48,10 @@ function Header() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/about">Tentang Kami</Link>
+                    <Link href="/tentang-kami">Tentang Kami</Link>
                   </li>
                   <li>
-                    <Link href="/contact">Kontak Kami</Link>
+                    <Link href="/kontak-kami">Kontak Kami</Link>
                   </li>
                   {/* <LoginModal /> */}
                   <li>

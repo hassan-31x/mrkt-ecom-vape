@@ -50,9 +50,9 @@ function MainMenu() {
             Daftar
           </Link>
         </li>
-        <li className={path?.includes("/about") ? "active" : ""}>
+        <li className={path?.includes("/tentang-kami") ? "active" : ""}>
           <Link
-            href="/about"
+            href="/tentang-kami"
             className="sf"
           >
             Tentang Kami

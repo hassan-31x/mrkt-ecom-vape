@@ -168,7 +168,7 @@ function Footer() {
                     <Link href="/">Beranda</Link>
                   </li>
                   <li>
-                    <Link href="/ejucie">E-liquid</Link>
+                    <Link href="/ejuice">E-liquid</Link>
                   </li>
                   <li>
                     <Link href="/informasi-penting">Informasi Penting</Link>
@@ -185,21 +185,21 @@ function Footer() {
 
                 <ul className="widget-list">
                   <li>
-                    <Link href="/about">Tentang Kami</Link>
+                    <Link href="/tentang-kami">Tentang Kami</Link>
                   </li>
                   <li>
                     <Link href="/faq">FAQ</Link>
                   </li>
                   <li>
-                    <Link href="/contact">Kontak Kami</Link>
+                    <Link href="/kontak-kami">Kontak Kami</Link>
                   </li>
                   <li>
-                    <Link href="/terms-and-conditions">
+                    <Link href="/syarat-and-ketentuan">
                     Syarat & Ketentuan
                     </Link>
                   </li>
                   <li>
-                    <Link href="/privacy-policy">Kebijakan Privasi</Link>
+                    <Link href="/kebijakan-privasi">Kebijakan Privasi</Link>
                   </li>
                 </ul>
               </div>
@@ -248,7 +248,7 @@ function Footer() {
           <ul className="footer-menu">
             <li>
               <Link
-                href="/terms-and-conditions"
+                href="/syarat-and-ketentuan"
                 className="font-weight-normal"
               >
                 Syarat & Ketentuan
@@ -256,7 +256,7 @@ function Footer() {
             </li>
             <li>
               <Link
-                href="/privacy-policy"
+                href="/kebijakan-privasi"
                 className="font-weight-normal"
               >
                 Kebijakan Privasi

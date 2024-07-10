@@ -66,7 +66,7 @@ async function FaqPage() {
                 </div>
 
                 <div className="col-auto">
-                  <Link href="/contact" className="btn btn-outline-white">
+                  <Link href="/kontak-kami" className="btn btn-outline-white">
                     <span>CONTACT US</span>
                     <i className="icon-long-arrow-right"></i>
                   </Link>

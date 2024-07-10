@@ -81,9 +81,9 @@ function MobileMenu() {
             </li>
             <li
               onClick={hideMobileMenu}
-              className={path?.includes("/about") ? "active" : ""}
+              className={path?.includes("/tentang-kami") ? "active" : ""}
             >
-              <Link href="/about" className="sf">
+              <Link href="/tentang-kami" className="sf">
                 About
               </Link>
             </li>

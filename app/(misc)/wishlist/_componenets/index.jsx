@@ -40,7 +40,7 @@ function WishlistPageComponent() {
                     <div className="product">
                       <figure className="product-media">
                         <Link
-                          href={`/product/${product.slug.current}`}
+                          href={`/produk/${product.slug.current}`}
                           className="product-image"
                         >
                           <Image
@@ -53,7 +53,7 @@ function WishlistPageComponent() {
                       </figure>
 
                       <h4 className="product-title">
-                        <Link href={`/product/${product.slug.current}`}>
+                        <Link href={`/produk/${product.slug.current}`}>
                           {product.name}
                         </Link>
                       </h4>
@@ -98,7 +98,7 @@ function WishlistPageComponent() {
                     <div className="dropdown">
                       {nicotinePercentage?.length || product.stock == 0 ? (
                         <Link
-                          href={`/product/${product.slug.current}`}
+                          href={`/produk/${product.slug.current}`}
                           className="btn btn-block btn-outline-primary-2 btn-select"
                         >
                           <i className="icon-list-alt"></i>

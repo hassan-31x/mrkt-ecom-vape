@@ -5,12 +5,12 @@ import PageHeader from "@/components/features/page-header";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
 export const metadata = {
-  title: "Privacy Policy",
+  title: "Terms & Conditions",
 };
 
 const fetchData = async () => {
   try {
-    const res = await client.fetch(`*[_type == 'privacyPolicy'] {
+    const res = await client.fetch(`*[_type == 'termsCondition'] {
         ...,
       }`);
     return res?.[0];
@@ -22,15 +22,15 @@ const fetchData = async () => {
 
 export const revalidate = 60;
 
-const PrivacyPolicyPage = async () => {
+const termsAndConditionsPage = async () => {
   const data = await fetchData();
 
   return (
     <div className="main">
-      <PageHeader title="Privacy Policy" subTitle="" />
+      <PageHeader title="Syarat & Ketentuan" subTitle="" />
       <div className="w-[95%] md:w-[85%] max-w-[1000px] mx-auto py-20">
         <PortableText
-          value={data?.privacyPolicyText || ""}
+          value={data?.termsConditionText || ""}
           components={RichTextComponents}
         />
       </div>
@@ -38,4 +38,4 @@ const PrivacyPolicyPage = async () => {
   );
 };
 
-export default PrivacyPolicyPage;
+export default termsAndConditionsPage;

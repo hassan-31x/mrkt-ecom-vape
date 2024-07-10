@@ -17,11 +17,11 @@ function Breadcrumb(props) {
       >
         <ol className="breadcrumb">
           <li className="breadcrumb-item">
-            <Link href="/">Home</Link>
+            <Link href="/">Beranda</Link>
           </li>
           <li className="breadcrumb-item">
-            <Link href="/product/default/dark-yellow-lace-cut-out-swing-dress">
-              Product
+            <Link href="/produk/default/dark-yellow-lace-cut-out-swing-dress">
+              Produk
             </Link>
           </li>
           <li className="breadcrumb-item active">{current}</li>
@@ -30,7 +30,7 @@ function Breadcrumb(props) {
         {/* <nav className="product-pager ml-auto">
           {prev ? (
             <Link
-            href={`/product/${prev.slug.current}`}
+            href={`/produk/${prev.slug.current}`}
               className={`product-pager-link product-pager-prev ${
                 !next ? "prev-only" : ""
               }`}
@@ -55,7 +55,7 @@ function Breadcrumb(props) {
 
           {next ? (
             <Link
-              href={`/product/${next.slug.current}`}
+              href={`/produk/${next.slug.current}`}
               className="product-pager-link product-pager-next"
             >
               <span>Next</span>

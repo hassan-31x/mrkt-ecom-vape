@@ -15,7 +15,7 @@ const WishlistPage = () => {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Beranda</Link>
             </li>
             <li className="breadcrumb-item active">Wishlist</li>
           </ol>

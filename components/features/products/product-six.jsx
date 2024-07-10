@@ -72,7 +72,7 @@ function ProductSix({ product }) {
           ""
         )}
 
-        <Link href={`/product/${product?.slug.current}`}>
+        <Link href={`/produk/${product?.slug.current}`}>
           <Image
             alt="product"
             src={urlFor(product?.pictures?.[0])?.url()}
@@ -165,7 +165,7 @@ function ProductSix({ product }) {
           <div className="product-action">
             {nicotinePercentage?.length > 0 ? (
               <Link
-                href={`/product/${product.slug.current}`}
+                href={`/produk/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span>Pilih Varian</span>
@@ -183,7 +183,7 @@ function ProductSix({ product }) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
+          <Link href={`/produk/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
         {product?.stock < 1 ? (

@@ -105,9 +105,9 @@ function CartPageComponent(props) {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Beranda</Link>
             </li>
-            <li className="breadcrumb-item active">Cart</li>
+            <li className="breadcrumb-item active">Keranjang Belanja</li>
           </ol>
         </div>
       </nav>
@@ -137,7 +137,7 @@ function CartPageComponent(props) {
                               <div className="product">
                                 <figure className="product-media">
                                   <Link
-                                    href={`/product/${item.slug.current}`}
+                                    href={`/produk/${item.slug.current}`}
                                     className="product-image"
                                   >
                                     <img
@@ -148,7 +148,7 @@ function CartPageComponent(props) {
                                 </figure>
 
                                 <h4 className="product-title">
-                                  <Link href={`/product/${item.slug.current}`}>
+                                  <Link href={`/produk/${item.slug.current}`}>
                                     {item.name}
                                   </Link>
                                   {/* <span className="capitalize text-xl text-neutral-700/60">

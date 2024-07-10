@@ -75,7 +75,7 @@ function ProductTwelve({ product }) {
           ""
         )}
 
-        <Link href={`/product/${product.slug.current}`}>
+        <Link href={`/produk/${product.slug.current}`}>
           <Image
             alt="product"
             src={urlFor(product?.pictures?.[0])?.url()}
@@ -117,7 +117,7 @@ function ProductTwelve({ product }) {
           <div className="product-action">
             {nicotinePercentage?.length > 0 ? (
               <Link
-                href={`/product/${product.slug.current}`}
+                href={`/produk/${product.slug.current}`}
                 className="btn-product btn-cart btn-select"
               >
                 <span className="border-bottom-0">Pilih Varian</span>
@@ -145,7 +145,7 @@ function ProductTwelve({ product }) {
         </div>
 
         <h3 className="product-title !text-2xl">
-          <Link href={`/product/${product.slug.current}`}>{product.name}</Link>
+          <Link href={`/produk/${product.slug.current}`}>{product.name}</Link>
         </h3>
 
         {product?.stock && product?.stock < 1 ? (

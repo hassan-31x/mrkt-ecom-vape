@@ -1,10 +1,10 @@
 
 
 import Link from "next/link";
-import RegisterForm from "./_components/register-form";
+import LoginForm from "./_components/login-form";
 
 export const metadata = {
-  title: "Register",
+  title: "Login",
 }
 
 function RegisterPageComponent() {
@@ -14,9 +14,9 @@ function RegisterPageComponent() {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Beranda</Link>
             </li>
-            <li className="breadcrumb-item active">Register</li>
+            <li className="breadcrumb-item active">Masuk</li>
           </ol>
         </div>
       </nav>
@@ -26,9 +26,9 @@ function RegisterPageComponent() {
         style={{ backgroundImage: `url(/images/backgrounds/login-bg.jpg)` }}
       >
         <div className="container">
-          <div className="form-box relative">
+          <div className="form-box">
             <div className="form-tab">
-              <RegisterForm />
+              <LoginForm />
             </div>
           </div>
         </div>

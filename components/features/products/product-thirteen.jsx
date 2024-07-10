@@ -21,7 +21,7 @@ function ProductThirteen({ product }) {
   return (
     <div className="tooltip">
       <figure className="product-media">
-        <Link href={`/product/${product.slug.current}`}>
+        <Link href={`/produk/${product.slug.current}`}>
           <Image
             alt="product"
             src={urlFor(product?.pictures?.[0])?.url()}
@@ -43,7 +43,7 @@ function ProductThirteen({ product }) {
 
       <div className="product-body">
         <h3 className="product-title">
-          <Link href={`/product/${product.slug.current}`}>{product?.name}</Link>
+          <Link href={`/produk/${product.slug.current}`}>{product?.name}</Link>
         </h3>
 
         {product?.stock && product?.stock < 1 ? (
@@ -64,7 +64,7 @@ function ProductThirteen({ product }) {
         {product?.stock && product?.stock !== 0 ? (
           nicotinePercentage?.length > 0 ? (
             <Link
-              href={`/product/${product?.slug.current}`}
+              href={`/produk/${product?.slug.current}`}
               className="btn btn-link btn-link-secondary-dark"
             >
               <span>Pilih Varian</span>

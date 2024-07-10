@@ -16,17 +16,15 @@ function AboutPageComponent({ about }) {
     instagram: "icon-instagram",
   };
 
-  console.log(urlFor(about?.bannerImage)?.url());
-
   return (
     <div className="main">
       <nav className="breadcrumb-nav border-0 mb-0">
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Beranda</Link>
             </li>
-            <li className="breadcrumb-item active">About us</li>
+            <li className="breadcrumb-item active">Tentang Kami</li>
           </ol>
         </div>
       </nav>

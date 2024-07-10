@@ -45,9 +45,9 @@ function ContactPageComponent({ contact }) {
         <div className="container">
           <ol className="breadcrumb">
             <li className="breadcrumb-item">
-              <Link href="/">Home</Link>
+              <Link href="/">Beranda</Link>
             </li>
-            <li className="breadcrumb-item active">Contact us</li>
+            <li className="breadcrumb-item active">Kontak Kami</li>
           </ol>
         </div>
       </nav>

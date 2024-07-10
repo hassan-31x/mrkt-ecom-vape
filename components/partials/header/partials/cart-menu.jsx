@@ -67,7 +67,7 @@ function CartMenu() {
                 <div className="product justify-content-between" key={item.cartId}>
                   <div className="product-cart-details">
                     <h4 className="product-title">
-                      <Link href={`/product/${item.slug.current}`}>
+                      <Link href={`/produk/${item.slug.current}`}>
                         {item.name}
                       </Link>
                     </h4>
@@ -86,7 +86,7 @@ function CartMenu() {
 
                   <figure className="product-image-container ml-2">
                     <Link
-                      href={`/product/${item.slug.current}`}
+                      href={`/produk/${item.slug.current}`}
                       className="product-image"
                     >
                       <Image

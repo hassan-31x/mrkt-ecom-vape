@@ -42,9 +42,9 @@ function MainMenu() {
             Informasi Penting
           </Link>
         </li>
-        <li className={path?.includes("/register") ? "active" : ""}>
+        <li className={path?.includes("/daftar") ? "active" : ""}>
           <Link
-            href="/auth/register"
+            href="/auth/daftar"
             className="sf"
           >
             Daftar

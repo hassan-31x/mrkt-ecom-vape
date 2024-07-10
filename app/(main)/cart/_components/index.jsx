@@ -79,7 +79,7 @@ function CartPageComponent(props) {
     setLoading(true)
     try {
       if (!session) {
-        router.push("/login");
+        router.push("/masuk");
         return;
       }
       if (items?.length < 1) {

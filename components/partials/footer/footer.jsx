@@ -52,7 +52,7 @@ function Footer() {
         return;
       }
       if (!session) {
-        router.push("/auth/login");
+        router.push("/auth/masuk");
         return
       }
       if (email == session?.user?.email) {
@@ -222,7 +222,7 @@ function Footer() {
                       </span>
                     ) : (
 
-                      <Link href="/auth/login">Masuk</Link>
+                      <Link href="/auth/masuk">Masuk</Link>
                       )}
                   </li>
                   <li>

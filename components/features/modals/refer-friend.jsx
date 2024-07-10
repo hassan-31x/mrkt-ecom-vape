@@ -65,7 +65,7 @@ function ReferFriendModal() {
         return;
       }
       if (!session) {
-        router.push("/auth/login");
+        router.push("/auth/masuk");
         return;
       }
       if (email == session?.user?.email) {

@@ -43,7 +43,7 @@ export default function LoginModal() {
 
   return (
     <li>
-      <a href="/auth/login" onClick={openModal}>
+      <a href="/auth/masuk" onClick={openModal}>
         <i className="icon-user"></i>Login
       </a>
       {open ? (

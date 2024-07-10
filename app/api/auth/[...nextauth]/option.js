@@ -88,7 +88,7 @@ export const authOptions = {
     }
   },
   pages: {
-    signIn: "/auth/login",
+    signIn: "/auth/masuk",
   },
   session: {
     strategy: 'jwt',

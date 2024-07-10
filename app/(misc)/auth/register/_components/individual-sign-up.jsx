@@ -156,7 +156,7 @@ const IndividualSignUpComponent = ({ type }) => {
 
       toast.success("User Registered! Login to continue.");
       setFormData(initialState);
-      router.push("/auth/login");
+      router.push("/auth/masuk");
 
     } catch (error) {
       console.error("Signup error:", error);

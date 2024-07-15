@@ -47,7 +47,7 @@ export async function POST(request) {
                         return {
                             _key: Math.random().toString(36).substring(7),
                             name: shop.name,
-                            url: shop.url
+                            accountId: shop.accountId
                         }
                     })
                 })

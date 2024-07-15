@@ -87,14 +87,9 @@ const SignInComponent = ({ type }) => {
     setLoading(true);
 
     try {
-      const userValid = await checkUser()
 
-      if (!userValid) {
-        return;
-      }
-
-      // const res = await signIn("credentials", {
-      const res = await signIn("sanity-login", {
+      const res = await signIn("credentials", {
+      // const res = await signIn("sanity-login", {
         redirect: false,
         identifier: formData.semail,
         type,
@@ -138,7 +133,7 @@ const SignInComponent = ({ type }) => {
     <div>
       <h3 className="text-center py-2">Masuk</h3>
       <div>
-        <form action="#">
+        <form>
           <div className="form-group">
             <label htmlFor="singin-email-2">Alamat email *</label>
             <input type="text" className="form-control" id="singin-email-2" value={formData.semail} onChange={handleChange} name="semail" />
@@ -164,7 +159,7 @@ const SignInComponent = ({ type }) => {
             <div className="col-sm-12">
               <button
                 className="btn btn-login btn-g w-full"
-                onClick={() => signIn("google")}
+                onClick={handleGoogleLogin}
               >
                 <i className="icon-google"></i>
                 Masuk dengan Google

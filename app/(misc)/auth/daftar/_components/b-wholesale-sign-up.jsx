@@ -36,7 +36,6 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   const [formErrors, setFormErrors] = useState(initialError);
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const handleChange = (e) => {
@@ -138,24 +137,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
 
     try {
       const code = searchParams.get("code");
-      // const res1 = await signUp({
-      //   name: formData.name,
-      //   email: formData.email,
-      //   password: formData.password,
-      // });
 
-      // if (code) {
-      //   const res2 = await fetch("/api/addDiscount", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: formData.email,
-      //       code,
-      //     }),
-      //   });
-      // }
       const res = await fetch("/api/sign-up", {
         method: "POST",
         headers: {
@@ -164,7 +146,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         body: JSON.stringify({
           ...formData,
           accountType: 'business',
-          businessType: 'physical'
+          businessType: 'physical',
+          code,
         }),
       });
 
@@ -183,6 +166,37 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       setLoading(false);
     }
   };
+
+  const handleGoogleSignIn = async () => {
+    
+    try {
+      setLoading(true);
+      
+      const code = searchParams.get("code");
+
+      // if (code) {
+      //   const res2 = await fetch("/api/addDiscount", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       email: formData.email,
+      //       code,
+      //     }),
+      //   });
+      // }
+      await signIn("google", {
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      console.error("Google Signin error:", error);
+      toast.error("Error signing in with Google");
+    } finally {
+      setLoading(false);
+    }
+  }
+    
 
   return (
     <div>

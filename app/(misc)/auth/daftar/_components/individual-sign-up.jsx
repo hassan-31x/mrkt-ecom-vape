@@ -117,25 +117,6 @@ const IndividualSignUpComponent = ({ type }) => {
 
     try {
       const code = searchParams.get("code");
-      // const res1 = await signUp({
-      //   name: formData.name,
-      //   email: formData.email,
-      //   password: formData.password,
-      //   accountType: type,
-      // });
-
-      // if (code) {
-      //   const res2 = await fetch("/api/addDiscount", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({
-      //       email: formData.email,
-      //       code,
-      //     }),
-      //   });
-      // }
       const res = await fetch('/api/sign-up', {
         method: 'POST',
         headers: {
@@ -144,6 +125,7 @@ const IndividualSignUpComponent = ({ type }) => {
         body: JSON.stringify({
           ...formData,
           accountType: 'user',
+          code,
         }),
       });
 
@@ -165,6 +147,35 @@ const IndividualSignUpComponent = ({ type }) => {
       setLoading(false);
     }
   };
+
+  const handleGoogleSignin = async () => {
+    try {
+      setLoading(true);
+      
+      const code = searchParams.get("code");
+
+      // if (code) {
+      //   const res2 = await fetch("/api/addDiscount", {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //     body: JSON.stringify({
+      //       email: formData.email,
+      //       code,
+      //     }),
+      //   });
+      // }
+      await signIn("google", {
+        callbackUrl: "/",
+      });
+    } catch (error) {
+      console.error("Google Signin error:", error);
+      toast.error("Error signing in with Google");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div>
@@ -300,7 +311,7 @@ const IndividualSignUpComponent = ({ type }) => {
           <div className="col-sm-12">
             <button
               className="btn btn-login btn-g w-full"
-              onClick={() => signIn("google")}
+              onClick={handleGoogleSignin}
             >
               <i className="icon-google"></i>
               Masuk dengan Google

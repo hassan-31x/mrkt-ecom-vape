@@ -1,10 +1,11 @@
 import bcrypt from "bcryptjs"
 import { sanityAdminClient } from "@/sanity/lib/client"
+import { FIRST_ORDER_DISCOUNT, REFER_FRIEND_DISCOUNT_BUS, REFER_FRIEND_DISCOUNT_IND } from "@/utils/discountValue.js"
 
 export async function POST(request) {
     try {
         const body = await request.json()
-        const { email, password, whatsapp, accountType } = body
+        const { email, password, whatsapp, accountType, code } = body
         const existingUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email][0]`, { email })
 
         if (existingUser) {
@@ -16,6 +17,26 @@ export async function POST(request) {
         
         const hashedPassword = await bcrypt.hash(password, 10)
 
+        let discountValid = false
+        let discount = null
+        let referalUserEmail
+        let referalUser
+
+        if (code) {
+            discount = await sanityAdminClient.fetch(`*[_type == 'referral' && referredEmail == $email && referralCode == $code && referAvailed == false]`, { email, code })
+            
+            console.log("🚀 ~ POST ~ discount:", discount)
+            
+            if (discount?.length) {
+                referalUserEmail = discount[0].referralEmail
+                referalUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $referalUserEmail]{..., discountAvailable}[0]`, { referalUserEmail })
+                
+                if (accountType === referalUser?.accountType) {
+                    discountValid = true
+                }
+            }
+        }
+        
         if (accountType === 'user') {
             const { name, dob } = body
 
@@ -28,7 +49,20 @@ export async function POST(request) {
                 accountType,
                 approved:  true,
                 whatsapp,
-                dob
+                dob,
+                discountsAvailable: discountValid ? 
+                [{
+                    _key: Math.random().toString(36).substring(7),
+                    name: "Refer Friend Discount",
+                    code: code,
+                    percentage: REFER_FRIEND_DISCOUNT_IND,
+                }] :
+                [{
+                    _key: Math.random().toString(36).substring(7),
+                    name: "First Order Discount",
+                    code: code,
+                    percentage: FIRST_ORDER_DISCOUNT,
+                }]
             })
         } else if (accountType === 'business') {
             const { businessType } = body
@@ -49,7 +83,15 @@ export async function POST(request) {
                             name: shop.name,
                             accountId: shop.accountId
                         }
-                    })
+                    }),
+                    discountsAvailable: discountValid ?
+                    [{
+                        _key: Math.random().toString(36).substring(7),
+                        name: "Refer Friend Discount",
+                        code: code,
+                        percentage: REFER_FRIEND_DISCOUNT_BUS,
+                    }] :
+                    []
                 })
             } else {
                 const { businessName, toko, store, url, address } = body
@@ -66,9 +108,32 @@ export async function POST(request) {
                     toko,
                     storeType: store,
                     businessUrl: url || '',
-                    businessAddress: address || ''
+                    businessAddress: address || '',
+                    discountsAvailable: discountValid ?
+                    [{
+                        _key: Math.random().toString(36).substring(7),
+                        name: "Refer Friend Discount",
+                        code: code,
+                        percentage: REFER_FRIEND_DISCOUNT_BUS,
+                    }] :
+                    []
                 })
             }
+        }
+
+
+        if (discountValid) {
+            const res = await sanityAdminClient.patch(referalUser._id).set({ discountsAvailable: [
+                ...(referalUser.discountsAvailable || []),
+                {
+                    _key: Math.random().toString(36).substring(7),
+                    name: "Refer Friend Discount",
+                    code: code,
+                    percentage: REFER_FRIEND_DISCOUNT_IND,
+                }
+            ] }).commit()
+
+            const res2 = await sanityAdminClient.patch(discount[0]._id).set({ referAvailed: true }).commit()
         }
 
         return Response.json({

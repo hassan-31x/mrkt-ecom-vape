@@ -21,11 +21,10 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   const [onlineShops, setOnlineShops] = useState([]);
   const [currentStore, setCurrentStore] = useState({
     name: "",
-    id: "",
+    accountId: "",
   });
   const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const handleChange = (e) => {
@@ -97,12 +96,11 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   };
 
   const handleStoreAdd = () => {
-    console.log("🚀 ~ handleStoreAdd ~ currentStore:", currentStore);
-    if (!currentStore.name || !currentStore.id) {
+    if (!currentStore.name || !currentStore.accountId) {
       return;
     }
     setOnlineShops([...onlineShops, currentStore]);
-    setCurrentStore({ name: "", id: "" });
+    setCurrentStore({ name: "", accountId: "" });
     setShowOther(false);
   };
 
@@ -159,6 +157,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       }
       toast.success("Business Registered! Please wait for approval.");
       setFormData(initialState);
+      setOnlineShops([]);
     } catch (error) {
       console.error("Signup error:", error);
       toast.error("Error Registering");
@@ -169,7 +168,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
 
   return (
     <div>
-      <form action="#" className="mt-1">
+      <form className="mt-1">
         <div className="form-group">
           <label htmlFor="register-email-2">Alamat email *</label>
           <input type="email" className="form-control" id="register-email-2" value={formData.email} onChange={handleChange} name="email" />
@@ -210,8 +209,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
               className="form-control flex-[3/7]"
               id="shop-id"
               placeholder="Ketik nama/link akun Anda"
-              value={currentStore.id}
-              onChange={(e) => setCurrentStore({ ...currentStore, id: e.target.value })}
+              value={currentStore.accountId}
+              onChange={(e) => setCurrentStore({ ...currentStore, accountId: e.target.value })}
             />
             <span className="flex-[1/7] cursor-pointer icon-arrow-up" onClick={handleStoreAdd}></span>
           </div>

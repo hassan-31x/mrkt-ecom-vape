@@ -127,7 +127,7 @@ export const user = {
               type: "string",
             },
             {
-              name: "id",
+              name: "accountId",
               title: "Account ID",
               type: "string",
             },

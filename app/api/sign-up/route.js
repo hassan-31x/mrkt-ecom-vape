@@ -25,8 +25,6 @@ export async function POST(request) {
         if (code) {
             discount = await sanityAdminClient.fetch(`*[_type == 'referral' && referredEmail == $email && referralCode == $code && referAvailed == false]`, { email, code })
             
-            console.log("🚀 ~ POST ~ discount:", discount)
-            
             if (discount?.length) {
                 referalUserEmail = discount[0].referralEmail
                 referalUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $referalUserEmail]{..., discountAvailable}[0]`, { referalUserEmail })

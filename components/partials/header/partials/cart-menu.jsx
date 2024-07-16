@@ -39,7 +39,7 @@ function CartMenu() {
   return (
     <div className="dropdown cart-dropdown">
       <Link
-        href="/cart"
+        href="/keranjang"
         className="dropdown-toggle"
         role="button"
         data-toggle="dropdown"
@@ -132,7 +132,7 @@ function CartMenu() {
             </div>
 
             <div className="dropdown-cart-action">
-              <Link href="/cart" className="btn btn-primary w-full">
+              <Link href="/keranjang" className="btn btn-primary w-full">
                 View Cart
               </Link>
               {/* <Link href="/checkout" className="btn btn-outline-primary-2">

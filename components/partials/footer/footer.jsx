@@ -226,7 +226,7 @@ function Footer() {
                       )}
                   </li>
                   <li>
-                    <Link href="/cart">Lihat Keranjang</Link>
+                    <Link href="/keranjang">Lihat Keranjang</Link>
                   </li>
                   <li>
                     <Link href="/wishlist">Favorit</Link>

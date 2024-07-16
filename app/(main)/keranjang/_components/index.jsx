@@ -40,6 +40,10 @@ function CartPageComponent(props) {
 
   const handleDiscount = async () => {
     try {
+      if (cart?.discount) {
+        toast.error("1 Discount allowed per checkout");
+        return;
+      }
       // setLoading(true);
 
       // const res =
@@ -162,7 +166,7 @@ function CartPageComponent(props) {
 
                             <td className="price-col">
                               Rp{" "}
-                              {session && session?.user?.type === 'business' ? product?.business_price?.toLocaleString(undefined, {
+                              {session && session?.user?.type === 'business' ? item?.business_price?.toLocaleString(undefined, {
                                     minimumFractionDigits: 3,
                                     maximumFractionDigits: 3,
                                   }) : item.sale_price
@@ -223,7 +227,7 @@ function CartPageComponent(props) {
 
                   <div className="cart-bottom">
                     <div className="cart-discount">
-                      <form>
+                      {!session || session?.user?.type === 'user' && <form>
                         <div className="input-group">
                           <input
                             type="text"
@@ -247,7 +251,7 @@ function CartPageComponent(props) {
                             </button>
                           </div>
                         </div>
-                      </form>
+                      </form>}
                     </div>
 
                     <button

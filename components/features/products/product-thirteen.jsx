@@ -52,7 +52,7 @@ function ProductThirteen({ product }) {
           <div className="product-price">
             <span className="out-price">Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
           </div>
-        ) : product?.sale_price && (!session && !session?.user?.type === 'business') ? (
+        ) : product?.sale_price && (!session || session?.user?.type === 'user') ? (
           <div className="product-price">
             <span className="old-price">Rp {product.price.toFixed(2)}</span>
             <span className="new-price">Rp {product.sale_price.toFixed(2)}</span>

@@ -70,7 +70,7 @@ function WishlistPageComponent() {
                             product.price.toFixed(2)}
                         </span>
                       </div>
-                    ) : product?.sale_price && (!session && !session?.user?.type === 'business') ? (
+                    ) : product?.sale_price && (!session || session?.user?.type === 'user') ? (
                       <div className="product-price !flex-col !items-start !justify-center">
                         <span className="old-price">
                           Rp {product.price.toFixed(2)}

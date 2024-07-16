@@ -86,10 +86,10 @@ function DetailOne(props) {
             Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product?.sale_price?.toFixed(3) || product.price.toFixed(3)}
           </span>
         </div>
-      ) : product?.sale_price ? (
+      ) : product?.sale_price && (!session || session?.user?.type === 'user') ? (
         <div className="product-price">
           <span className="old-price pr-2">Rp {product.price.toFixed(3)}</span>
-          {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : <span className="new-price">Rp {product.sale_price.toFixed(3)}</span>}
+          <span className="new-price">Rp {product.sale_price.toFixed(3)}</span>
         </div>
       ) : (
         <div className="product-price">

@@ -78,7 +78,7 @@ function CartMenu() {
 
                     <span className="cart-product-info">
                       <span className="cart-product-qty">{item.qty} </span>x Rp{" "}
-                      {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : item?.sale_price
+                      {session && session?.user?.type === 'business' ? item?.business_price?.toFixed(3) : item?.sale_price
                         ? item.sale_price.toFixed(3)
                         : item.price.toFixed(3)}
                     </span>

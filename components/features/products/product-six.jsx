@@ -11,11 +11,13 @@ import { addToCart } from "@/redux/slice/cartSlice";
 import { toast } from "react-toastify";
 import { nicotinePercentage } from "@/utils/constants";
 import { addToWishlist } from "@/redux/slice/wishlistSlice";
+import { useSession } from "next-auth/react";
 
 function ProductSix({ product }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.wishlist.items);
+  const { data: session } = useSession();
 
   function onCartClick(e) {
     e.preventDefault();
@@ -188,16 +190,16 @@ function ProductSix({ product }) {
 
         {product?.stock < 1 ? (
           <div className="product-price">
-            <span className="out-price">${product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
+            <span className="out-price">Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product?.sale_price?.toFixed(2) || product.price.toFixed(2)}</span>
           </div>
-        ) : product?.sale_price ? (
+        ) : product?.sale_price && (!session && !session?.user?.type === 'business') ? (
           <div className="product-price">
-            <span className="old-price">${product.price.toFixed(2)}</span>
-            <span className="new-price">${product.sale_price.toFixed(2)}</span>
+            <span className="old-price">Rp {product.price.toFixed(2)}</span>
+            <span className="new-price">Rp {product.sale_price.toFixed(2)}</span>
           </div>
         ) : (
           <div className="product-price">
-            <span className="out-price">${product.price?.toFixed(2)}</span>
+            <span className="out-price">Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product.price?.toFixed(2)}</span>
           </div>
         )}
       </div>

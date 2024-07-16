@@ -17,6 +17,7 @@ import urlFor from "@/sanity/lib/image";
 import { client } from "@/sanity/lib/client";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 function CartPageComponent(props) {
   const [shippingCost, setShippingCost] = useState(0);
@@ -26,6 +27,7 @@ function CartPageComponent(props) {
   const dispatch = useDispatch();
   const router = useRouter();
   const cart = useSelector((state) => state.cart);
+  const { data: session } = useSession();
   const { items } = cart;
 
   function onChangeShipping(value) {
@@ -160,7 +162,10 @@ function CartPageComponent(props) {
 
                             <td className="price-col">
                               Rp{" "}
-                              {item.sale_price
+                              {session && session?.user?.type === 'business' ? product?.business_price?.toLocaleString(undefined, {
+                                    minimumFractionDigits: 3,
+                                    maximumFractionDigits: 3,
+                                  }) : item.sale_price
                                 ? item.sale_price.toLocaleString(undefined, {
                                     minimumFractionDigits: 3,
                                     maximumFractionDigits: 3,

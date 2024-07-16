@@ -8,10 +8,12 @@ import { addToCart } from "@/redux/slice/cartSlice";
 
 import urlFor from "@/sanity/lib/image";
 import { nicotinePercentage } from "@/utils/constants";
+import { useSession } from "next-auth/react";
 
 function WishlistPageComponent() {
   const dispatch = useDispatch();
   const wishItems = useSelector((state) => state.wishlist.items);
+  const { data: session } = useSession();
 
   function moveToCart(product) {
     dispatch(removeFromWishlist(product.id));
@@ -63,24 +65,24 @@ function WishlistPageComponent() {
                     {product?.stock < 1 ? (
                       <div className="product-price">
                         <span className="out-price">
-                          $
-                          {product?.sale_price?.toFixed(2) ||
+                          Rp
+                          {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product?.sale_price?.toFixed(2) ||
                             product.price.toFixed(2)}
                         </span>
                       </div>
-                    ) : product?.sale_price ? (
+                    ) : product?.sale_price && (!session && !session?.user?.type === 'business') ? (
                       <div className="product-price !flex-col !items-start !justify-center">
                         <span className="old-price">
-                          ${product.price.toFixed(2)}
+                          Rp {product.price.toFixed(2)}
                         </span>
                         <span className="new-price">
-                          ${product.sale_price.toFixed(2)}
+                          Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product.sale_price.toFixed(2)}
                         </span>
                       </div>
                     ) : (
                       <div className="product-price">
                         <span className="out-price">
-                          ${product.price?.toFixed(2)}
+                          Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product.price?.toFixed(2)}
                         </span>
                       </div>
                     )}

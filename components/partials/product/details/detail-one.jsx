@@ -12,11 +12,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { nicotinePercentage } from "@/utils/constants";
 import { addToWishlist } from "@/redux/slice/wishlistSlice";
+import { useSession } from "next-auth/react";
 
 function DetailOne(props) {
   const { product } = props;
   const [qty, setQty] = useState(1);
   const [nicotine, setNicotine] = useState();
+
+  const { data: session } = useSession();
+  console.log("🚀 ~ DetailOne ~ session:", session)
 
   const ref = useRef(null);
   const router = useRouter();
@@ -79,17 +83,17 @@ function DetailOne(props) {
       {product?.stock && product?.stock < 1 ? (
         <div className="product-price">
           <span className="out-price">
-            ${product?.sale_price?.toFixed(3) || product.price.toFixed(3)}
+            Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product?.sale_price?.toFixed(3) || product.price.toFixed(3)}
           </span>
         </div>
       ) : product?.sale_price ? (
         <div className="product-price">
           <span className="old-price pr-2">Rp {product.price.toFixed(3)}</span>
-          <span className="new-price">Rp {product.sale_price.toFixed(3)}</span>
+          {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : <span className="new-price">Rp {product.sale_price.toFixed(3)}</span>}
         </div>
       ) : (
         <div className="product-price">
-          <span className="out-price">Rp {product.price?.toFixed(3)}</span>
+          <span className="out-price">Rp {session && session?.user?.type === 'business' ? product?.business_price?.toFixed(3) : product.price?.toFixed(3)}</span>
         </div>
       )}
 

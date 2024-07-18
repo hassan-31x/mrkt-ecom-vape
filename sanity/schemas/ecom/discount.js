@@ -15,6 +15,24 @@ export const discount = {
         description: "Any code of your choice (optional)",
         type: "string",
       },
+      {
+        name: "email",
+        title: "Email",
+        description: "Email ID of User (only applicable if it is an affiliate code)",
+        type: "string",
+      },
+      {
+        name: "type",
+        title: "Code Type",
+        type: 'string',
+        options: {
+          list: [
+            { title: 'Simple', value: 'simple' },
+            { title: 'Affiliate', value: 'affiliate' },
+          ],
+        },
+        defaultValue: 'simple',
+      },
       // {
       //   name: "amount",
       //   title: "Discount Amount",

@@ -29,6 +29,12 @@ export const user = {
       type: "string"
     },
     {
+      name: "balance",
+      title: "Balance",
+      type: "number",
+      defaultValue: 0,
+    },
+    {
       name: "approved",
       title: "Approved",
       type: "boolean",

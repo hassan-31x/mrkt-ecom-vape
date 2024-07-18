@@ -75,6 +75,7 @@ export const authOptions = {
         if (token.accountType === 'user') {
           session.user.name = token.name;
           session.user.whatsapp = token.whatsapp;
+          session.user.balance = token.balance;
         } else {
           session.user.approved = token.approved;
           session.user.storeType = token.storeType;
@@ -101,6 +102,7 @@ export const authOptions = {
           if (user.accountType === 'user') {
             token.name = user?.name;
             token.whatsapp = user?.whatsapp;
+            token.balance = user?.balance;
           } else {
             token.approved = user?.approved;
             token.storeType = user?.storeType;

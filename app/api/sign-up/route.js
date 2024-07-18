@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs"
 import { sanityAdminClient } from "@/sanity/lib/client"
-import { FIRST_ORDER_DISCOUNT, REFER_FRIEND_DISCOUNT_BUS, REFER_FRIEND_DISCOUNT_IND } from "@/utils/discountValue.js"
+import { AFFILIATE_DISCOUNT, FIRST_ORDER_DISCOUNT, REFER_FRIEND_DISCOUNT_BUS, REFER_FRIEND_DISCOUNT_IND } from "@/utils/discountValue.js"
 
 export async function POST(request) {
     try {
@@ -61,6 +61,15 @@ export async function POST(request) {
                     code: code,
                     percentage: FIRST_ORDER_DISCOUNT,
                 }]
+            })
+
+            const discount = await sanityAdminClient.create({
+                _type: 'discount',
+                name: `Affiliate Discount Code for ${email}`,
+                email,
+                code: Array.from({length: Math.floor(Math.random() * 2) + 5}, () => "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".charAt(Math.floor(Math.random() * 36))).join(''),
+                type: 'affiliate',
+                percentage: AFFILIATE_DISCOUNT
             })
         } else if (accountType === 'business') {
             const { businessType } = body

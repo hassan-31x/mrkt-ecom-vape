@@ -72,7 +72,7 @@ export const authOptions = {
         session.user.type = token.type;
         session.user.email = token.email;
 
-        if (token.accountType === 'user') {
+        if (token.type === 'user') {
           session.user.name = token.name;
           session.user.whatsapp = token.whatsapp;
           session.user.balance = token.balance;

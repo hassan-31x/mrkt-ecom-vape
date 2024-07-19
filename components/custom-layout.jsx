@@ -11,12 +11,13 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "./partials/header/header";
 import Footer from "./partials/footer/footer";
 import VideoModal from "./features/modals/video-modal";
-import QuickViewModal from "./features/modals/quickview-modal";
 import MobileMenu from "./features/mobile-menu";
 
 import { isSafariBrowser, isEdgeBrowser } from "@/utils";
 import SessionProvider from "./session-provider";
-import AgeConfirmModal from "./features/modals/age-confirm.jsx";
+import PrivacyModal from './features/modals/privacy-modal'
+import AgeConfirmModal from "./features/modals/age-confirm";
+import QuickViewModal from "./features/modals/quickview-modal";
 
 function Layout({ children, hideQuick, hideVideo }) {
   const router = useRouter("");
@@ -94,6 +95,7 @@ function Layout({ children, hideQuick, hideVideo }) {
 
       <AgeConfirmModal />
       <QuickViewModal />
+      <PrivacyModal />
 
       <VideoModal />
     </SessionProvider>

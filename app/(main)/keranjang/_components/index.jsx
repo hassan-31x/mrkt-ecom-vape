@@ -96,11 +96,12 @@ function CartPageComponent(props) {
     setLoading(true)
 
     try {
-      const cartItems = [...items]?.map((item) => ({
-        ...item,
-        name: `${item?.name}${item?.color ? ` - ${item?.color}` : ''}`,
-        desc: `Product Price: $${item?.sale_price?.toLocaleString() || item.price?.toLocaleString()}${item?.warrantyPrice ? ` + Warranty Price: $${item?.warrantyPrice?.toLocaleString()}` : ''}`
-      }))  
+      const cartItems = items
+      // [...items]?.map((item) => ({
+      //   ...item,
+      //   name: `${item?.name}${item?.color ? ` - ${item?.color}` : ''}`,
+      //   desc: `Product Price: $${item?.sale_price?.toLocaleString() || item.price?.toLocaleString()}${item?.warrantyPrice ? ` + Warranty Price: $${item?.warrantyPrice?.toLocaleString()}` : ''}`
+      // }))  
 
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -111,11 +112,12 @@ function CartPageComponent(props) {
           items: cartItems,
           shippingCost,
           discount: cart?.discount,
+          user: session?.user,
         }),
       })
-      const checkoutRes = await res.json()
-
-      console.log("🚀 ~ handleCheckout ~ checkoutRes", checkoutRes)
+      
+      const { invoice_url } = await res.json()
+      router.push(invoice_url)
 
   } catch (err) {
     console.error(err);

@@ -24,10 +24,11 @@ function CartPageComponent(props) {
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const dispatch = useDispatch();
   const router = useRouter();
-  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   const { data: session } = useSession();
+  const cart = useSelector((state) => state.cart);
   const { items } = cart;
 
   function onChangeShipping(value) {
@@ -80,23 +81,42 @@ function CartPageComponent(props) {
     }, 400);
   }
 
-  function handleCheckout(e) {
+  async function handleCheckout(e) {
     e.preventDefault()
-    setLoading(true)
-    try {
-      if (!session) {
-        router.push("/masuk");
-        return;
-      }
-      if (items?.length < 1) {
-        toast.error("No products in the cart");
-        return;
-      }
-        
-      console.log('niga')
-      // dispatch(emptyCart());
 
-      //? https://paykings.transactiongateway.com/merchants/resources/integration/integration_portal.php?tid=2d391e6d61b0a85ff2c85c56b97fd9c4#cc_integration
+    if (!session) {
+      router.push("/auth/masuk");
+      return;
+    }
+    if (items?.length < 1) {
+      toast.error("No products in the cart");
+      return;
+    }
+
+    setLoading(true)
+
+    try {
+      const cartItems = [...items]?.map((item) => ({
+        ...item,
+        name: `${item?.name}${item?.color ? ` - ${item?.color}` : ''}`,
+        desc: `Product Price: $${item?.sale_price?.toLocaleString() || item.price?.toLocaleString()}${item?.warrantyPrice ? ` + Warranty Price: $${item?.warrantyPrice?.toLocaleString()}` : ''}`
+      }))  
+
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cartItems,
+          shippingCost,
+          discount: cart?.discount,
+        }),
+      })
+      const checkoutRes = await res.json()
+
+      console.log("🚀 ~ handleCheckout ~ checkoutRes", checkoutRes)
+
   } catch (err) {
     console.error(err);
   } finally {

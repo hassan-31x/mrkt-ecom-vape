@@ -3,7 +3,7 @@ import CategoryPageComponent from './_components'
 import { client } from '@/sanity/lib/client'
 
 export const metadata = {
-  title: "View Category",
+  title: "E-Juice",
 }
 
 const fetchData = async () => {

@@ -70,7 +70,7 @@ function PrivacyModal() {
       <div className="modal-content h-[300px] w-[90vw] max-w-[90vw] overflow-hidden">
         <div className="row justify-content-center position-relative overflow-y-scroll">
 
-          <button type="button" className="close absolute top-[5px] right-[10px] md:right-[5px] z-[99999]" onClick={closeModal}>
+          <button type="button" className="close absolute top-[7px] md:top-[5px] right-[10px] md:right-[5px] z-[99999]" onClick={closeModal}>
             <span aria-hidden="true">
               <i className="icon-close"></i>
             </span>

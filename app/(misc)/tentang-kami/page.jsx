@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client'
 import AboutPageComponent from './_components/index'
 
 export const metadata = {
-  title: "About",
+  title: "Tentang Kami",
 }
 
 const fetchData = async (slug) => {

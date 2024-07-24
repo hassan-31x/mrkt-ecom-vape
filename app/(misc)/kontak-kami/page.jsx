@@ -2,7 +2,7 @@ import { client } from '@/sanity/lib/client'
 import ContactPageComponent from './_components/index'
 
 export const metadata = {
-  title: "Contact Us",
+  title: "Kontak Kami",
 }
 
 const fetchData = async (slug) => {

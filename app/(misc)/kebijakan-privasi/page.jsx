@@ -5,7 +5,7 @@ import PageHeader from "@/components/features/page-header";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
 export const metadata = {
-  title: "Privacy Policy",
+  title: "Kebijakan Privasi",
 };
 
 const fetchData = async () => {

@@ -3,7 +3,7 @@ import BlogPageComponent from "./_components/index.jsx"
 import { client } from '@/sanity/lib/client'
 
 export const metadata = {
-  title: "Benefits",
+  title: "Informasi Penting",
 }
 
 const fetchData = async () => {

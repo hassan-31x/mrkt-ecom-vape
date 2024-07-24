@@ -8,7 +8,7 @@ import RelatedProductsOne from "@/components/partials/product/related/related-on
 import ProductMain from "./_components/product-main";
 
 export const metadata = {
-  title: "View Product",
+  title: "Produk",
 }
 
 const fetchData = async (slug) => {

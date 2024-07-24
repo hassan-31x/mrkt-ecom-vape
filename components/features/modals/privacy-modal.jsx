@@ -57,8 +57,7 @@ function PrivacyModal() {
 
   return (
     <Modal
-      // isOpen={open}
-      isOpen={true}
+      isOpen={open}
       onRequestClose={closeModal}
       style={customStyles}
       shouldReturnFocusAfterClose={false}

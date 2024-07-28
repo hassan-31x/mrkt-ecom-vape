@@ -47,6 +47,9 @@ function Header() {
                     </Link>
                   </li>
                   <li>
+                    <Link href="/affiliate-marketing">Affiliate Marketing</Link>
+                  </li>
+                  <li>
                     <Link href="/tentang-kami">Tentang Kami</Link>
                   </li>
                   <li>

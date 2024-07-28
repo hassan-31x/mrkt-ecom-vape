@@ -23,16 +23,18 @@ function PrivacyModal() {
   const router = useRouter();
 
   useEffect(() => {
-    Cookie.get(`hideConfirm-privacy-mrkt`) || setOpen(true);
+    if (!Cookie.get(`hideConfirm-privacy-mrkt`)) {
+      setOpen(true);
+    }
   }, []);
 
   function closeModal(e) {
     document
-      .getElementById("hide-popup-modal")
+      .getElementById("hide-privacy-popup-modal")
       .classList.remove("ReactModal__Content--after-open");
 
-    if (document.querySelector(".ReactModal__Overlay")) {
-      document.querySelector(".ReactModal__Overlay").style.opacity = "0";
+    if (document.querySelector(".overlay-privacy-modal")) {
+      document.querySelector(".overlay-privacy-modal").style.display = "none";
     }
   }
 
@@ -48,6 +50,7 @@ function PrivacyModal() {
   const handleConfirm = () => {
     closeModal();
     storeCookie();
+
   }
 
   const cancelConfirm = () => {
@@ -63,10 +66,10 @@ function PrivacyModal() {
       shouldReturnFocusAfterClose={false}
       contentLabel="Privacy Modal"
       className="newsletter-popup-container h-auto flex justify-center"
-      overlayClassName="flex items-end pb-2 justify-center newsletter-modal"
-      id="hide-popup-modal"
+      overlayClassName="flex items-end pb-2 justify-center overlay-privacy-modal newsletter-modal"
+      id="hide-privacy-popup-modal"
     >
-      <div className="modal-content h-[300px] w-[90vw] max-w-[90vw] overflow-hidden">
+      <div className="modal-content h-[200px] md:h-[300px] w-[90vw] max-w-[90vw] overflow-hidden">
         <div className="row justify-content-center position-relative overflow-y-scroll">
 
           <button type="button" className="close absolute top-[7px] md:top-[5px] right-[10px] md:right-[5px] z-[99999]" onClick={closeModal}>

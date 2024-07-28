@@ -15,17 +15,22 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      const idx = state.items.findIndex(
-        (item) => item.id === action.payload.id && item.nicotinePercentage === action.payload.nicotinePercentage
-      );
+      const idx = state.items.findIndex((item) => item.id === action.payload.id);
+      const { description, name, pictures, stock, slug, short_desc } = action.payload;
 
       if (idx === -1) {
         state.items.push({
-          ...action.payload,
           qty: 1,
+          price: action.payload?.sale_price ?? action.payload.price,
           cartId: getRandomId(),
           discountApplied: false,
           sum: action.payload?.sale_price ?? action.payload.price,
+          description,
+          name,
+          pictures,
+          stock,
+          slug,
+          short_desc,
         });
       } else {
         state.items[idx].qty += 1;

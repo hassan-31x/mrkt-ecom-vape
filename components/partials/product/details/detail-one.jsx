@@ -20,7 +20,6 @@ function DetailOne(props) {
   const [nicotine, setNicotine] = useState();
 
   const { data: session } = useSession();
-  console.log("🚀 ~ DetailOne ~ session:", session)
 
   const ref = useRef(null);
   const router = useRouter();
@@ -42,9 +41,9 @@ function DetailOne(props) {
 
 
   function onCartClick() {
-    if (product?.stock && qty > product?.stock) {
+    if (!product?.stock || qty > product?.stock) {
       toast.error("Insufficient stock");
-      return;
+      return
     }
 
     // if (nicotinePercentage?.length > 0 && !nicotine) {

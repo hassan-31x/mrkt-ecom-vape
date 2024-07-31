@@ -1,12 +1,14 @@
+import { NextResponse } from "next/server";
+
 export async function POST(request) {
     try {
+        const body = await request.json();
 
-        const { body } = request;
         console.log("🚀 ~ POST ~ body:", body)
-        if (body.status === 'PAID') {
+        if (body?.status === 'PAID') {
             console.log(`Invoice successfully paid with status ${body.status} and id ${body.id}`)
         }
-        
+
         return NextResponse.json(body);
     } catch (err) {
         console.error(err);

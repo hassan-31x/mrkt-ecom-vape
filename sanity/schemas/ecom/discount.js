@@ -27,7 +27,8 @@ export const discount = {
         type: 'string',
         options: {
           list: [
-            { title: 'Simple', value: 'simple' },
+            { title: 'First Order', value: 'first' },
+            { title: 'Refer Friend', value: 'refer' },
             { title: 'Affiliate', value: 'affiliate' },
           ],
         },

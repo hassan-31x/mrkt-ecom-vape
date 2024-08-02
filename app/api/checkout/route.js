@@ -7,6 +7,7 @@ export async function POST(request) {
         const body = await request.json();
         
         const { user, discount, shippingCost } = body
+        console.log("🚀 ~ POST ~ discount:", discount)
         const items = body?.items?.map(item => {
             return {
                 name: item.name,

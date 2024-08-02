@@ -54,12 +54,14 @@ export async function POST(request) {
                     _key: Math.random().toString(36).substring(7),
                     name: "Refer Friend Discount",
                     code: code,
+                    type: 'refer',
                     percentage: REFER_FRIEND_DISCOUNT_IND,
                 }] :
                 [{
                     _key: Math.random().toString(36).substring(7),
                     name: "First Order Discount",
                     code: code,
+                    type: 'first',
                     percentage: FIRST_ORDER_DISCOUNT,
                 }]
             })
@@ -122,6 +124,7 @@ export async function POST(request) {
                         _key: Math.random().toString(36).substring(7),
                         name: "Refer Friend Discount",
                         code: code,
+                        type: 'refer',
                         percentage: REFER_FRIEND_DISCOUNT_BUS,
                     }] :
                     []
@@ -137,6 +140,7 @@ export async function POST(request) {
                     _key: Math.random().toString(36).substring(7),
                     name: "Refer Friend Discount",
                     code: code,
+                    type: 'refer',
                     percentage: REFER_FRIEND_DISCOUNT_IND,
                 }
             ] }).commit()

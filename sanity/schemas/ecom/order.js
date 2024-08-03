@@ -24,8 +24,8 @@ export const order = {
         type: "string",
       },
       {
-        name: "confirmed",
-        title: "Confirmed?",
+        name: "paid",
+        title: "Paid?",
         type: "boolean", 
       },
       {

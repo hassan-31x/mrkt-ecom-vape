@@ -9,7 +9,7 @@ const uploadToSanity = async (data, discount) => {
         _type: 'order',
         orderId: data.external_id,
         userId: data?.user_id,
-        confirmed: false,
+        paid: false,
         subTotal: data.items.reduce((acc, item) => acc + (item.price * item?.quantity), 0),
         totalPrice: data.amount,
         products: data.items.map(item => {

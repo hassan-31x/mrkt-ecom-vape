@@ -59,13 +59,13 @@ export const authOptions = {
   adapter: SanityAdapter(sanityAdminClient),
   events: {
     async linkAccount({ user }) {
-      console.log('linkAccount => ', user)
+      // console.log('linkAccount => ', user)
       // TODO: change account type to business and explore other events
     }
   },
   callbacks: {
     async session({ session, token }) {
-      console.log("🚀 ~ session ~ session:", session, token)
+      // console.log("🚀 ~ session ~ session:", session, token)
       if (token) {
 
         session.user.id = token.id;
@@ -92,7 +92,7 @@ export const authOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      console.log("🚀 ~ jwt ~ user:", user)
+      // console.log("🚀 ~ jwt ~ user:", user)
       if (user) {
 
           token.id = user._id;

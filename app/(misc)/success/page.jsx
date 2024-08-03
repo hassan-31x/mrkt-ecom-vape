@@ -22,7 +22,6 @@ const SuccessPage = () => {
       }
     
       const data = await res.json();
-      console.log("🚀 ~ getOrderDetails ~ data:", data)
     } catch (err) {
       toast.error(err.message);
     } finally {
@@ -39,8 +38,7 @@ const SuccessPage = () => {
   return (
     <div className='w-full min-h-[50vh] flex items-center justify-center flex-col'>
       <h2>Congratulations, Your order has been placed!</h2>
-      <Link href='/category'>Continue Chopping</Link>
-      {JSON.stringify(sessionId)    }
+      <Link href='/ejuice'>Continue Chopping</Link>
     </div>
   )
 }

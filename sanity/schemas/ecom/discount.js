@@ -32,7 +32,7 @@ export const discount = {
             { title: 'Affiliate', value: 'affiliate' },
           ],
         },
-        defaultValue: 'simple',
+        defaultValue: 'first',
       },
       // {
       //   name: "amount",

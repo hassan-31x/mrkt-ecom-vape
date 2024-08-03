@@ -2,6 +2,7 @@ import { category } from "./schemas/blog/category";
 import { post } from "./schemas/blog/post";
 import { author } from "./schemas/blog/author";
 
+import { order } from "./schemas/ecom/order";
 import { product } from "./schemas/ecom/product";
 import { discount } from "./schemas/ecom/discount";
 
@@ -24,5 +25,5 @@ import { referral } from "./schemas/auth/referral";
 
 
 export const schema = {
-  types: [product, discount, post, author, category, home, about, faq, contact, termsCondition, privacyPolicy, blockContent, contactQuestions, user, business, referral, account, verificationToken],
+  types: [product, discount, order, post, author, category, home, about, faq, contact, termsCondition, privacyPolicy, blockContent, contactQuestions, user, business, referral, account, verificationToken],
 };

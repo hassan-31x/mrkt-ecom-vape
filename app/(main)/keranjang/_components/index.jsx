@@ -117,6 +117,7 @@ function CartPageComponent(props) {
       })
       
       const { invoice_url } = await res.json()
+      dispatch(emptyCart())
       router.push(invoice_url)
 
   } catch (err) {

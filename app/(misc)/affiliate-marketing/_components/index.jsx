@@ -1,5 +1,6 @@
 import PageHeader from "@/components/features/page-header";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
@@ -14,6 +15,7 @@ const AffiliateComponent = ({ discount, balance }) => {
   const [copyClicked, setCopyClicked] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter()
   const { data: session } = useSession();
 
   const handleChange = (e) => {
@@ -28,7 +30,7 @@ const AffiliateComponent = ({ discount, balance }) => {
 
     setLoading(true);
     try {
-      await fetch("/api/withdraw", {
+      const res = await fetch("/api/withdraw", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -40,7 +42,13 @@ const AffiliateComponent = ({ discount, balance }) => {
         }),
       });
 
+      const resData = await res.json();
+      if (resData.statusCode !== 200) {
+        return toast.error(resData.message || "Failed to withdraw. Try again");
+      }
+
       toast.success("Withdrawal successful. Check email");
+      router.refresh()
     } catch (err) {
       console.log(err);
       toast.error("Failed to withdraw. Try again");

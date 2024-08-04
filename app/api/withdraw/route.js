@@ -10,6 +10,14 @@ export async function POST(request) {
     const body = await request.json();
     const { data, session, balance } = body;
 
+    const user = await client.fetch(`*[_type == "user" && email == $email]`, {
+      email: session.user.email,
+    });
+
+    if (user[0].balance < balance) {
+      return NextResponse.json({ statusCode: 401, message: "Insufficient balance" })
+    }
+
     const requestData = {
       id: `${session.user.id}-${Date.now()}`,
       amount: balance,
@@ -43,14 +51,12 @@ export async function POST(request) {
 
     const resData = await res.json();
 
-    const user = await client.fetch(`*[_type == "user" && email == $email]`, {
-      email: session.user.email,
-    });
+    
     await sanityAdminClient.patch(user[0]._id).set({ balance: 0 }).commit();
   
-    return NextResponse.json({ message: "Withdrawal successful" });
+    return NextResponse.json({ statusCode: 200, message: "Withdrawal successful" });
   } catch (err) {
     console.log(err);
-    return NextResponse.json({ message: err?.message || "Failed to withdraw" });
+    return NextResponse.json({ statusCode: 401, message: err?.message || "Failed to withdraw" });
   }
 }

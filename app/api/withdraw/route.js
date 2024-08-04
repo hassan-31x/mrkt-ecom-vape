@@ -1,3 +1,4 @@
+import { client, sanityAdminClient } from "@/sanity/lib/client.js";
 import { NextResponse } from "next/server.js";
 
 const authToken = Buffer.from(`${process.env.XENDIT_WITHDRAW_API_KEY}:`).toString("base64");
@@ -41,6 +42,12 @@ export async function POST(request) {
     });
 
     const resData = await res.json();
+
+    const user = await client.fetch(`*[_type == "user" && email == $email]`, {
+      email: session.user.email,
+    });
+    await sanityAdminClient.patch(user[0]._id).set({ balance: 0 }).commit();
+  
     return NextResponse.json({ message: "Withdrawal successful" });
   } catch (err) {
     console.log(err);

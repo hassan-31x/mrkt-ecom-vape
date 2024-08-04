@@ -45,20 +45,18 @@ function CartPageComponent(props) {
         toast.error("1 Discount allowed per checkout");
         return;
       }
-      // setLoading(true);
+      setLoading(true);
 
-      // const res =
-      //   await client.fetch(`*[_type == 'discount' && code=='${code}'] {
-      //   ...,
-      //   "products": products[]->.id
-      // }`);
+      const res = await client.fetch(`*[_type == 'discount' && code=='${code}' && email != '${session?.user?.email}'] {
+        ...
+      }`);
 
-      // if (!res?.length) {
-      //   toast.error("Invalid Code");
-      //   return;
-      // }
+      if (!res?.length) {
+        toast.error("Invalid Code");
+        return;
+      }
 
-      // dispatch(applyDiscount(res[0]));
+      dispatch(applyDiscount(res[0]));
       console.log("applied");
     } catch (err) {
       console.log(err);

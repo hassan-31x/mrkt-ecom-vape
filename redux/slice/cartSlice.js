@@ -60,21 +60,7 @@ export const cartSlice = createSlice({
       state.discount = action.payload;
     },
     applyDiscount: (state, action) => {
-      state.items?.forEach((item) => {
-        if (
-          action.payload?.products?.includes(item.id) &&
-          !item?.discountApplied
-        ) {
-          const discountAmount =
-            action.payload?.amount ||
-            (item?.sale_price || item.price) *
-              (action.payload?.percentage / 100);
-          item.discountApplied = true;
-          item.discountAmount = discountAmount?.toFixed(2);
-          item.sale_price -= discountAmount?.toFixed(2);
-          item.sum -= discountAmount?.toFixed(2) * item.qty;
-        }
-      });
+      state.cart.discount = action.payload;
 
       toast.success("Discount applied!");
     },

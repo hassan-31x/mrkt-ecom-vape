@@ -16,7 +16,7 @@ const AffiliateComponent = ({ discount, balance }) => {
   const [loading, setLoading] = useState(false);
 
   const router = useRouter()
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +47,7 @@ const AffiliateComponent = ({ discount, balance }) => {
         return toast.error(resData.message || "Failed to withdraw. Try again");
       }
 
+      update()
       toast.success("Withdrawal successful. Check email");
       router.refresh()
     } catch (err) {

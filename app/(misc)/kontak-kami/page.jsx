@@ -7,7 +7,8 @@ import { RichTextComponents } from '@/components/features/rich-text-component'
 import ContactForm from './_components/contact-form'
 
 export const metadata = {
-  title: "Kontak Kami",
+  title: "Hubungi Kami Sebab Anda yang Utama",
+  description: "Temukan jawaban dari segala pertanyaan dan kendala  terkait kebutuhan dan keinginan bersama tim mrkt."
 }
 
 const fetchData = async (slug) => {

@@ -2,6 +2,11 @@ import HomePageComponent from './_components'
 
 import { client } from '@/sanity/lib/client'
 
+export const metadata = {
+  title: "Situs Resmi mrkt.",
+  description: "Produk nikotin dan vape dengan kualitas terbaik di Indonesia. Change the title too: situs resmi mrkt."
+}
+
 const fetchData = async () => {
   try {
 

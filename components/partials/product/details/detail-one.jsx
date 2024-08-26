@@ -31,7 +31,7 @@ function DetailOne(props) {
     if (!isInWishlist(wishlist, product)) {
       dispatch(addToWishlist(product));
     } else {
-      router?.push("/wishlist");
+      router?.push("/favorit");
     }
   }
 
@@ -140,7 +140,7 @@ function DetailOne(props) {
         <div className="details-action-wrapper">
           {isInWishlist(wishlist, product) ? (
             <Link
-              href="/wishlist"
+              href="favorit"
               className="btn-product btn-wishlist added-to-wishlist"
             >
               <span>Go to Wishlist</span>

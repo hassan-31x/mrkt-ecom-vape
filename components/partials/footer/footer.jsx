@@ -229,7 +229,7 @@ function Footer() {
                     <Link href="/keranjang">Lihat Keranjang</Link>
                   </li>
                   <li>
-                    <Link href="/wishlist">Favorit</Link>
+                    <Link href="/favorit">Favorit</Link>
                   </li>
                 </ul>
               </div>

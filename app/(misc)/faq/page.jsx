@@ -5,7 +5,8 @@ import PageHeader from "@/components/features/page-header";
 import FaqAccordion from "./_components/faq-accordion";
 
 export const metadata = {
-  title: "F.A.Q",
+  title: "Pertanyaan Seputar mrkt.",
+  description: "Berikut merupakan beberapa pertanyaan umum seputar informasi produk, info pengiriman, promo terbaru, dan lainnya"
 }
 
 const fetchData = async (slug) => {

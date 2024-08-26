@@ -20,13 +20,13 @@ const avenirFont = localFont({
   src: "../public/fonts/noir.woff2"
 })
 
-export const metadata = {
-  title: {
-    template: "%s | mrkt.",
-    default: "mrkt.",
-  },
-  description: "Rasa riang hanya dari mrkt.",
-};
+// export const metadata = {
+//   title: {
+//     template: "%s | mrkt.",
+//     default: "mrkt.",
+//   },
+//   description: "Rasa riang hanya dari mrkt.",
+// };
 
 const jost = Jost({
   subsets: ["latin-ext"],

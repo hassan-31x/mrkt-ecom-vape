@@ -10,7 +10,8 @@ import TeamSlider from "./_components/team-slider";
 import ReviewsSlider from "./_components/reviews-slider";
 
 export const metadata = {
-  title: "Tentang Kami",
+  title: "Masuk segera untuk dapatkan penawaran khusus dan terbatas",
+  description: "mrkt. mengutamakan kenikmatan tanpa mengorbankan kualitas bahan dan minimalkan risiko kesehatan"
 }
 
 const fetchData = async (slug) => {

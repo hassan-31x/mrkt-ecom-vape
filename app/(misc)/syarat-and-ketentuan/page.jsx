@@ -5,7 +5,8 @@ import PageHeader from "@/components/features/page-header";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
 export const metadata = {
-  title: "Syarat & Ketentuan",
+  title: "Syarat Layanan mrkt.",
+  description: "Silakan baca Syarat Layanan berikut dengan cermat sebelum menggunakan Situs ini agar mengetahui tentang hak dan kewajiban."
 };
 
 const fetchData = async () => {

@@ -5,7 +5,8 @@ import PageHeader from "@/components/features/page-header";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
 export const metadata = {
-  title: "Kebijakan Privasi",
+  title: "Penerapan Kebijakan Perlindungan Data Pembeli.",
+  description: "mrkt. berkomitmen untuk melindungi data pembeli dan mematuhi semua undang-undang perlindungan data dan privasi yang berlaku."
 };
 
 const fetchData = async () => {

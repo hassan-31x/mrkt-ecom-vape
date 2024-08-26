@@ -4,7 +4,8 @@ import Link from "next/link";
 import LoginForm from "./_components/login-form";
 
 export const metadata = {
-  title: "Masuk",
+  title: "Masuk dan daftar",
+  description: "Masuk segera untuk dapatkan penawaran khusus dan terbatas"
 }
 
 function RegisterPageComponent() {

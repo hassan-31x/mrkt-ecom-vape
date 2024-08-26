@@ -4,7 +4,8 @@ import Link from "next/link";
 import RegisterForm from "./_components/register-form";
 
 export const metadata = {
-  title: "Daftar",
+  title: "Daftar Sekarang untuk Dapatkan promo menarik",
+  description: "Daftar segera dan rasakan keuntungannya"
 }
 
 function RegisterPageComponent() {

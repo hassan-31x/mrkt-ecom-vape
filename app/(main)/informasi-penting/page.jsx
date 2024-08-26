@@ -6,7 +6,8 @@ import urlFor from "@/sanity/lib/image";
 import PageHeader from "@/components/features/page-header";
 
 export const metadata = {
-  title: "Informasi Penting",
+  title: "Temukan Variasi dan Informasi liquid",
+  description: "Terkait informasi dan berita terbaru terkait tips penting dan varian liquid populer saat ini"
 };
 
 const fetchData = async () => {

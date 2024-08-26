@@ -4,7 +4,8 @@ import PageHeader from "@/components/features/page-header";
 import WishlistPageComponent from "./_componenets/index";
 
 export const metadata = {
-  title: "My Wishlist",
+  title: "Produk Andalanmu",
+  description: "Lihat Keranjang yang Dimiliki"
 };
 
 const WishlistPage = () => {

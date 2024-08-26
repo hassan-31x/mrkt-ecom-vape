@@ -39,7 +39,7 @@ function Header() {
                 <ul>
                   
                   <li>
-                    <Link href="/wishlist">
+                    <Link href="/favorit">
                       <i className="icon-heart-o"></i>Favorit{" "}
                       <span className="text-secondary">
                         ({wishlist?.length || 0})

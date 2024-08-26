@@ -32,7 +32,7 @@ function ProductTwelve({ product }) {
     if (!isInWishlist(wishlist, product)) {
       dispatch(addToWishlist(product));
     } else {
-      router?.push("/wishlist");
+      router?.push("/favorit");
     }
   }
 
@@ -99,7 +99,7 @@ function ProductTwelve({ product }) {
         <div className="product-action-vertical">
           {isInWishlist(wishlist, product) ? (
             <Link
-              href="/wishlist"
+              href="/favorit"
               className="btn-product-icon btn-wishlist btn-expandable added-to-wishlist"
             >
               <span>go to wishlist</span>

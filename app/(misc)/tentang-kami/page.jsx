@@ -6,8 +6,8 @@ import urlFor from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
 
-import TeamSlider from "./_components/team-slider.jsx";
-import ReviewsSlider from "./_components/reviews-slider.jsx";
+import TeamSlider from "./_components/team-slider";
+import ReviewsSlider from "./_components/reviews-slider";
 
 export const metadata = {
   title: "Tentang Kami",

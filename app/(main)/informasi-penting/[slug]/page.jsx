@@ -11,6 +11,8 @@ import BlogTags from "./_components/blog-tags";
 
 import { PortableText } from "@portabletext/react";
 import { RichTextComponents } from "@/components/features/rich-text-component";
+import PageHeader from "@/components/features/page-header";
+import RelatedPosts from "@/components/partials/blog/related/related-posts";
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const slug = params.slug;
@@ -63,7 +65,7 @@ export const revalidate = 60;
 const SingleBlogPage = async ({ params }) => {
   const { slug = "" } = params;
   const [post, popular] = await fetchData(slug);
-  const related = post?.relatedBlogs;
+  const related = post?.[0]?.relatedBlogs || [];
 
   const loading = false;
   const options = {

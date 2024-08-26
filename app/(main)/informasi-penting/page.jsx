@@ -97,7 +97,9 @@ const BlogPage = async () => {
                             ) : (
                               ""
                             )}
-                            <Link href={`/informasi-penting/${post?.slug?.current}`}>{(new Date(post?.publishedAt)).toLocaleDateString("en-US", options)}</Link>
+                            <Link href={`/informasi-penting/${post?.slug?.current}`}>
+                              {(new Date(post?.publishedAt)).toLocaleDateString("en-US", options)}
+                            </Link>
                             <span className="meta-separator">|</span>
                           </div>
 

@@ -1,3 +1,5 @@
+"use client"
+
 import OwlCarousel from "@/components/features/owl-carousel";
 import PostOne from "@/components/features/posts/post-one";
 

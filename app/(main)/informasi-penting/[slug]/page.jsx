@@ -1,10 +1,10 @@
+import Link from "next/link";
 import Image from "next/image"
 import { client } from "@/sanity/lib/client";
 import urlFor from "@/sanity/lib/image";
 
 import NotFound from "@/app/not-found";
 import BlogMainSidebar from "./_components/blog-sidebar";
-import BlogBreadcrumb from "./_components/blog-breadcrumb";
 import BlogSocials from "./_components/blog-socials";
 import BlogAuthor from "./_components/blog-author";
 import BlogTags from "./_components/blog-tags";
@@ -78,7 +78,20 @@ const SingleBlogPage = async ({ params }) => {
   // return <SingleBlogPageComponent post={post[0]} popular={popular} />
   return (
     <div className="main">
-      <BlogBreadcrumb post={post[0]} />
+      <PageHeader title="Benefits" subTitle={post?.[0]?.title} />
+      <nav className="breadcrumb-nav">
+        <div className="container">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
+              <Link href="/">Beranda</Link>
+            </li>
+            <li className="breadcrumb-item">
+              <Link href="/informasi-penting">Benefits</Link>
+            </li>
+            <li className="breadcrumb-item active">{post?.[0]?.slug?.current}</li>
+          </ol>
+        </div>
+      </nav>
       <div className="page-content">
         <div className="container">
           <div className={`row skeleton-body ${!loading ? "loaded" : ""}`}>

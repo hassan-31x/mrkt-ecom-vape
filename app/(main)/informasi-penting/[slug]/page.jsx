@@ -1,11 +1,32 @@
+import Image from "next/image"
 import { client } from "@/sanity/lib/client";
+import urlFor from "@/sanity/lib/image";
 
-import SingleBlogPageComponent from "./_components"
 import NotFound from "@/app/not-found";
+import BlogMainSidebar from "./_components/blog-sidebar";
+import BlogBreadcrumb from "./_components/blog-breadcrumb";
+import BlogSocials from "./_components/blog-socials";
+import BlogAuthor from "./_components/blog-author";
+import BlogTags from "./_components/blog-tags";
 
-export const metadata = {
-  title: "Blog",
-};
+import { PortableText } from "@portabletext/react";
+import { RichTextComponents } from "@/components/features/rich-text-component";
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  const slug = params.slug;
+
+  const res = await client.fetch(
+    `*[_type == 'post' && slug.current == $slug] {
+      ...
+    }`,
+    { slug }
+  );
+
+  return {
+    title: res?.[0].title || "Blog",
+    description: res?.[0]?.summary || res?.[0].title || "Blog Description",
+  };
+}
 
 const fetchData = async (slug) => {
   try {
@@ -42,10 +63,70 @@ export const revalidate = 60;
 const SingleBlogPage = async ({ params }) => {
   const { slug = "" } = params;
   const [post, popular] = await fetchData(slug);
+  const related = post?.relatedBlogs;
+
+  const loading = false;
+  const options = {
+    year: "numeric",
+    month: "short",
+    day: "2-digit",
+    timeZone: "UTC",
+  };
 
   if (!post?.length || !slug) return <NotFound />;
 
-  return <SingleBlogPageComponent post={post[0]} popular={popular} />
+  // return <SingleBlogPageComponent post={post[0]} popular={popular} />
+  return (
+    <div className="main">
+      <BlogBreadcrumb post={post[0]} />
+      <div className="page-content">
+        <div className="container">
+          <div className={`row skeleton-body ${!loading ? "loaded" : ""}`}>
+            <div className="col-lg-9">
+              {loading ? (
+                <div className="skel-single-post"></div>
+              ) : (
+                <>
+                  <article className="entry single-entry">
+                    <figure
+                      className={`entry-media`}
+                      style={{
+                        paddingTop: "100%",
+                      }}
+                    >
+                      <Image alt="Post" src={urlFor(post[0]?.mainImage)?.url()} fill />
+                    </figure>
+
+                    <div className="entry-body">
+                      <BlogAuthor post={post} options={options} />
+
+                      <h2 className="entry-title">{post[0].title}</h2>
+
+                      <div className="entry-content editor-content">
+                        <PortableText value={post[0]?.body} components={RichTextComponents} />
+                        <div className="pb-1" />
+                      </div>
+
+                      <div className="entry-footer row no-gutters flex-column flex-md-row">
+                        <BlogTags />
+
+                        <BlogSocials />
+                      </div>
+                    </div>
+                  </article>
+                </>
+              )}
+
+              {related?.length ? <RelatedPosts related={related} loading={loading} /> : null}
+            </div>
+            <div className="col-lg-3">
+              <BlogMainSidebar post={post[0]} popular={popular} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default SingleBlogPage;

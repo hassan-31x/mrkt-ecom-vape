@@ -76,46 +76,6 @@ function BlogPageComponent({ posts }) {
             </div>
           ) : (
             <>
-              {/* <nav className="blog-nav">
-                <ul className="menu-cat entry-filter justify-content-center">
-                  <li className="active">
-                    <a href="#" onClick={(e) => isoFilter(e, "")}>
-                      All Blog Posts
-                      <span>6</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" onClick={(e) => isoFilter(e, "lifestyle")}>
-                      Lifestyle
-                      <span>3</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" onClick={(e) => isoFilter(e, "shopping")}>
-                      Shopping
-                      <span>1</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" onClick={(e) => isoFilter(e, "travel")}>
-                      Travel
-                      <span>2</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" onClick={(e) => isoFilter(e, "hobbies")}>
-                      Hobbies
-                      <span>2</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" onClick={(e) => isoFilter(e, "fashion")}>
-                      Fashion
-                      <span>1</span>
-                    </a>
-                  </li>
-                </ul>
-              </nav> */}
               {posts?.length == 0 ? (
                 <div className="row">
                   <p className="blogs-info">
@@ -124,14 +84,6 @@ function BlogPageComponent({ posts }) {
                 </div>
               ) : (
                 <div className="row" ref={ref}>
-                  {/* {posts?.map((post, index) => (
-                    <div
-                      className={`col-sm-6 grid-item${getPostCategory(post)}`}
-                      key={index}
-                    >
-                      <PostOne post={post} adClass="text-center" />
-                    </div>
-                  ))} */}
                   {posts?.map((post, index) => (
                     <div
                       className={`col-sm-6 grid-item`}

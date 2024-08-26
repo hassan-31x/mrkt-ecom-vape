@@ -1,29 +1,24 @@
 "use client";
 
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import React, { useState, useEffect } from "react";
-import StickyBox from "react-sticky-box";
+import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import PageHeader from "@/components/features/page-header";
 import ShopListOne from "@/components/partials/shop/list/shop-list-one";
 import Pagination from "@/components/features/pagination";
-import ShopSidebarOne from "@/components/partials/shop/sidebar/shop-sidebar-one";
 
-import Link from "next/link";
 
 function CategoryPageComponent({ products: data }) {
   const [toggle, setToggle] = useState(false);
   const [products, setProducts] = useState(data);
 
-
   const router = useRouter();
-
   const path = usePathname()
   const searchParams = useSearchParams()
   const sortBy = searchParams.get('sortBy')
 
   const loading = false;
-  const error = null;
   const perPage = 6;
   const totalCount = products?.length;
 
@@ -67,23 +62,6 @@ function CategoryPageComponent({ products: data }) {
     router.push(url + "sortBy=" + query);
   }
 
-  function toggleSidebar() {
-    if (
-      document.querySelector("body").classList.contains("sidebar-filter-active")
-    ) {
-      document.querySelector("body").classList.remove("sidebar-filter-active");
-    } else {
-      document.querySelector("body").classList.add("sidebar-filter-active");
-    }
-  }
-
-  function hideSidebar() {
-    document.querySelector("body").classList.remove("sidebar-filter-active");
-  }
-
-  if (error) {
-    return <div></div>;
-  }
 
   return (
     <main className="main shop">
@@ -149,40 +127,13 @@ function CategoryPageComponent({ products: data }) {
                 loading={loading}
               ></ShopListOne>
 
-              {totalCount > perPage ? (
+              {/* {totalCount > perPage ? (
                 <Pagination perPage={perPage} total={totalCount}></Pagination>
               ) : (
                 ""
-              )}
+              )} */}
             </div>
 
-            {/* <aside
-              className={`col-lg-3 skel-shop-sidebar order-lg-first skeleton-body ${
-                !loading ? "loaded" : ""
-              }`}
-            >
-              <div className="skel-widget"></div>
-              <div className="skel-widget"></div>
-              <div className="skel-widget"></div>
-              <div className="skel-widget"></div>
-              <StickyBox className="sticky-content" offsetTop={70}>
-                <ShopSidebarOne toggle={toggle}></ShopSidebarOne>
-              </StickyBox>
-              {toggle ? (
-                <button
-                  className="sidebar-fixed-toggler"
-                  onClick={toggleSidebar}
-                >
-                  <i className="icon-cog"></i>
-                </button>
-              ) : (
-                ""
-              )}
-              <div
-                className="sidebar-filter-overlay"
-                onClick={hideSidebar}
-              ></div>
-            </aside> */}
           </div>
         </div>
       </div>

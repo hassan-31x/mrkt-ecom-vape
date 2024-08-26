@@ -7,8 +7,20 @@ import GallerySticky from "@/components/partials/product/gallery/gallery-sticky"
 import RelatedProductsOne from "@/components/partials/product/related/related-one";
 import ProductMain from "./_components/product-main";
 
-export const metadata = {
-  title: "Produk",
+export async function generateMetadata({ params, searchParams }, parent) {
+  const slug = params.slug;
+
+  const res = await client.fetch(
+    `*[_type == 'product' && slug.current == $slug] {
+      ...
+    }`,
+    { slug }
+  );
+
+  return {
+    title: res?.[0].name || "Produk",
+    description: res?.[0]?.short_desc || res?.[0].title || "Produk",
+  };
 }
 
 const fetchData = async (slug) => {

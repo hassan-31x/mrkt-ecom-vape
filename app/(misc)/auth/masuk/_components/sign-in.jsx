@@ -114,11 +114,11 @@ const SignInComponent = ({ type }) => {
   const handleGoogleLogin = async () => {
     setLoading(true);
     try {
-      const userValid = await checkUser()
+      // const userValid = await checkUser()
 
-      if (!userValid) {
-        return;
-      }
+      // if (!userValid) {
+      //   return;
+      // }
       
       await signIn("google");
     } catch (error) {

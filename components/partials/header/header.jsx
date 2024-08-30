@@ -9,6 +9,7 @@ import StickyHeader from "@/components/features/sticky-header";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { updateDiscount } from "@/redux/slice/cartSlice";
+import { useRouter } from "next/navigation";
 
 function Header() {
   const { data: session } = useSession();

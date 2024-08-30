@@ -57,7 +57,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
     setFormErrors(initialError);
   };
 
-  const validateForm = (formData) => {
+  const validateForm = (formData, type='credentials') => {
     const errors = {};
 
     if (!formData.businessName.trim()) {
@@ -66,7 +66,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       return false;
     } 
 
-    if (!formData.email.trim()) {
+    if (type==='credentials' && !formData.email.trim()) {
       errors.email = "Please enter your email address";
       setFormErrors(errors);
       return false;
@@ -76,19 +76,19 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       return false;
     }
 
-    if (formData.password?.trim()?.length < 6) {
+    if (type==='credentials' && formData.password?.trim()?.length < 6) {
       errors.password = "Kata sandi harus mengandung enam karakter";
       setFormErrors(errors);
       return false;
     }
 
-    if (!formData.confirmPassword?.trim()) {
+    if (type==='credentials' && !formData.confirmPassword?.trim()) {
       errors.confirmPassword = "Please re-enter your password";
       setFormErrors(errors);
       return false;
     }
 
-    if (formData.confirmPassword != formData.password) {
+    if (type==='credentials' && formData.confirmPassword != formData.password) {
       errors.confirmPassword = "Passwords do not match";
       setFormErrors(errors);
       return false;
@@ -171,6 +171,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
     
     try {
       setLoading(true);
+
+      if (!validateForm(formData, 'google')) return;
       
       const code = searchParams.get("code");
 
@@ -186,6 +188,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
       //     }),
       //   });
       // }
+      return
       await signIn("google", {
         callbackUrl: "/",
       });

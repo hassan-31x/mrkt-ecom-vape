@@ -19,6 +19,12 @@ export const user = {
       type: "string",
     },
     {
+      name: "authType",
+      title: "Account Type",
+      type: "string",
+      defaultValue: "google",
+    },
+    {
       name: "whatsapp",
       title: "Whatsapp Number",
       type: "string",

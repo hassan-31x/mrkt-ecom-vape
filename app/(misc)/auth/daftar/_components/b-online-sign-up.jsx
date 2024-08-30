@@ -46,32 +46,32 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
     setFormErrors({});
   };
 
-  const validateForm = (formData) => {
+  const validateForm = (formData, type='credentials') => {
     const errors = {};
 
-    if (!formData.email.trim()) {
+    if (type==='credentials' && !formData.email.trim()) {
       errors.email = "Please enter your email address";
       setFormErrors(errors);
       return false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+    } else if (type==='credentials' && !/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Please enter a valid email address";
       setFormErrors(errors);
       return false;
     }
 
-    if (formData.password?.trim()?.length < 6) {
+    if (type==='credentials' && formData.password?.trim()?.length < 6) {
       errors.password = "Kata sandi harus mengandung enam karakter";
       setFormErrors(errors);
       return false;
     }
 
-    if (!formData.confirmPassword?.trim()) {
+    if (type==='credentials' && !formData.confirmPassword?.trim()) {
       errors.confirmPassword = "Please re-enter your password";
       setFormErrors(errors);
       return false;
     }
 
-    if (formData.confirmPassword != formData.password) {
+    if (type==='credentials' && formData.confirmPassword != formData.password) {
       errors.confirmPassword = "Passwords do not match";
       setFormErrors(errors);
       return false;
@@ -112,7 +112,7 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm(formData)) return;
+    if (!validateForm(formData, 'google')) return;
 
     setLoading(true);
 
@@ -269,7 +269,8 @@ const BusinessOnlineSignUpComponent = ({ type }) => {
         <p className="text-center">or sign in with</p>
         <div className="row">
           <div className="col-sm-12">
-            <button className="btn btn-login btn-g w-full" onClick={() => signIn("google")}>
+            <button className="btn btn-login btn-g w-full" onClick={() => {}}>
+            {/* <button className="btn btn-login btn-g w-full" onClick={() => signIn("google")}> */}
               <i className="icon-google"></i>
               Masuk dengan Google
             </button>

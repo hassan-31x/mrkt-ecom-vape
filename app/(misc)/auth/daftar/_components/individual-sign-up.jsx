@@ -42,16 +42,16 @@ const IndividualSignUpComponent = ({ type }) => {
     setFormErrors({});
   };
 
-  const validateForm = (formData) => {
+  const validateForm = (formData, type='credentials') => {
     const errors = {};
     
-    if (!formData.name.trim()) {
+    if (type==='credentials' && !formData.name.trim()) {
       errors.name = "Please enter your full name";
       setFormErrors(errors);
       return false;
     }
 
-    if (!formData.email.trim()) {
+    if (type==='credentials' && !formData.email.trim()) {
       errors.email = "Please enter your email address";
       setFormErrors(errors);
       return false;
@@ -61,19 +61,19 @@ const IndividualSignUpComponent = ({ type }) => {
       return false;
     }
 
-    if (formData.password?.trim()?.length < 6) {
+    if (type==='credentials' && formData.password?.trim()?.length < 6) {
       errors.password = "Kata sandi harus mengandung enam karakter";
       setFormErrors(errors);
       return false;
     }
 
-    if (!formData.confirmPassword?.trim()) {
+    if (type==='credentials' && !formData.confirmPassword?.trim()) {
       errors.confirmPassword = "Please re-enter your password";
       setFormErrors(errors);
       return false;
     }
 
-    if (formData.confirmPassword != formData.password) {
+    if (type==='credentials' && formData.confirmPassword != formData.password) {
       errors.confirmPassword = "Passwords do not match";
       setFormErrors(errors);
       return false;
@@ -111,7 +111,7 @@ const IndividualSignUpComponent = ({ type }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!validateForm(formData)) return;
+    if (!validateForm(formData, 'google')) return;
 
     setLoading(true);
 
@@ -149,9 +149,11 @@ const IndividualSignUpComponent = ({ type }) => {
   };
 
   const handleGoogleSignin = async () => {
+    setLoading(true);
+
+    if (!validateForm(formData, 'google')) return;
+
     try {
-      setLoading(true);
-      
       const code = searchParams.get("code");
 
       // if (code) {
@@ -166,9 +168,12 @@ const IndividualSignUpComponent = ({ type }) => {
       //     }),
       //   });
       // }
-      await signIn("google", {
-        callbackUrl: "/",
-      });
+      // const res = await signIn("google", {
+        // callbackUrl: "/",
+        // });
+        return
+        await signIn("google")
+
     } catch (error) {
       console.error("Google Signin error:", error);
       toast.error("Error signing in with Google");

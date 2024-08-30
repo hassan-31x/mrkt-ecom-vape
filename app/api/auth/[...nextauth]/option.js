@@ -4,6 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { sanityAdminClient } from "@/sanity/lib/client";
 import { SanityAdapter } from 'next-auth-sanity';
+import { redirect } from "next/navigation";
 
 export const authOptions = {
   providers: [
@@ -52,25 +53,37 @@ export const authOptions = {
     
     GoogleProvider({
         clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-        clientSecret: process.env.GOOGLE_CLIENT_SECRET
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        async profile(profile) {
+          console.log('profile, ', profile)
+        }
       }),
   ],
   
   adapter: SanityAdapter(sanityAdminClient),
   events: {
-    async linkAccount({ user }) {
-      // console.log('linkAccount => ', user)
-      // TODO: change account type to business and explore other events
-    }
+    // async linkAccount({ user }) {
+    //   // TODO: change account type to business and explore other events
+    // },
+    // async signIn({ user, account, profile, isNewUser }) {
+    //     if(account.provider === 'google') {
+    //       const dbUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email][0]`, { email: user.email });
+    //       //check if user is in your database
+    //       console.log('profile  => ', profile)
+    //       if(!dbUser) {
+    //       }
+    //       return true
+    //     }
+    // }
   },
   callbacks: {
     async session({ session, token }) {
-      // console.log("🚀 ~ session ~ session:", session, token)
       if (token) {
 
         session.user.id = token.id;
         session.user.type = token.type;
         session.user.email = token.email;
+        // session.user.infoComplete = token.infoComplete;
 
         if (token.type === 'user') {
           session.user.name = token.name;
@@ -92,12 +105,12 @@ export const authOptions = {
       return session;
     },
     async jwt({ token, user }) {
-      // console.log("🚀 ~ jwt ~ user:", user)
       if (user) {
 
           token.id = user._id;
           token.type = user.accountType;
           token.email = user?.email;
+          token.infoComplete = true
 
           if (user.accountType === 'user') {
             token.name = user?.name;
@@ -117,19 +130,13 @@ export const authOptions = {
           }
         } else {
           // TODO: for credentials login, make db call
-          token.test = 'test'
+          // const dbUser = await sanityAdminClient.fetch(`*[_type == 'user' && email == $email][0]`, { email: token.email });
+          // if (!dbUser.accountType) {
+          //   token.infoComplete = false;
+          // }
       }
       return token;
     },
-    async signIn({ user, account, profile, email, credentials }) {
-      // console.log("🚀 ~ signIn ~ user:", user, account, profile, email, credentials)
-      // if (account.type === 'credentials') {
-      //   return true
-      // }
-
-      // TODO: prevent business from signing in if account is not approved
-      return true
-    }
   },
   pages: {
     signIn: "/auth/masuk",

@@ -6,7 +6,6 @@ import urlFor from "@/sanity/lib/image";
 import NotFound from "@/app/not-found";
 import BlogMainSidebar from "./_components/blog-sidebar";
 import BlogSocials from "./_components/blog-socials";
-import BlogAuthor from "./_components/blog-author";
 import BlogTags from "./_components/blog-tags";
 
 import { PortableText } from "@portabletext/react";
@@ -80,7 +79,7 @@ const SingleBlogPage = async ({ params }) => {
   // return <SingleBlogPageComponent post={post[0]} popular={popular} />
   return (
     <div className="main">
-      <PageHeader title="Benefits" subTitle={post?.[0]?.title} />
+      <PageHeader title="Informasi Penting" subTitle={post?.[0]?.title} />
       <nav className="breadcrumb-nav">
         <div className="container">
           <ol className="breadcrumb">
@@ -88,7 +87,7 @@ const SingleBlogPage = async ({ params }) => {
               <Link href="/">Beranda</Link>
             </li>
             <li className="breadcrumb-item">
-              <Link href="/informasi-penting">Benefits</Link>
+              <Link href="/informasi-penting">Informasi Penting</Link>
             </li>
             <li className="breadcrumb-item active">{post?.[0]?.slug?.current}</li>
           </ol>
@@ -113,7 +112,13 @@ const SingleBlogPage = async ({ params }) => {
                     </figure>
 
                     <div className="entry-body">
-                      <BlogAuthor post={post} options={options} />
+                      <div className="entry-meta">
+                        <span className="entry-author">
+                          by <span className="hover:underline cursor-pointer">{post?.[0]?.author?.name}</span>
+                        </span>
+                        <span className="meta-separator">|</span>
+                        <span className="hover:underline cursor-pointer">{new Date(post?.[0]?.publishedAt).toLocaleDateString("en-US", options)}</span>
+                      </div>
 
                       <h2 className="entry-title">{post[0].title}</h2>
 
